@@ -1,0 +1,5 @@
+C:\Dropbox\Lib\Projects\Voodoo\Voodoo\Voodoo\bin\Release\Voodoo.dll.config
+C:\Dropbox\Lib\Projects\Voodoo\Voodoo\Voodoo\bin\Release\Voodoo.dll
+C:\Dropbox\Lib\Projects\Voodoo\Voodoo\Voodoo\bin\Release\Voodoo.pdb
+C:\Dropbox\Lib\Projects\Voodoo\Voodoo\Voodoo\obj\Release\Voodoo.dll
+C:\Dropbox\Lib\Projects\Voodoo\Voodoo\Voodoo\obj\Release\Voodoo.pdb

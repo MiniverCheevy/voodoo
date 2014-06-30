@@ -1,0 +1,8 @@
+C:\Dropbox\Lib\Projects\Voodoo\Voodoo\Voodoo.Tests\bin\Release\Voodoo.Tests.dll.config
+C:\Dropbox\Lib\Projects\Voodoo\Voodoo\Voodoo.Tests\bin\Release\Voodoo.Tests.dll
+C:\Dropbox\Lib\Projects\Voodoo\Voodoo\Voodoo.Tests\bin\Release\Voodoo.Tests.pdb
+C:\Dropbox\Lib\Projects\Voodoo\Voodoo\Voodoo.Tests\bin\Release\Voodoo.dll
+C:\Dropbox\Lib\Projects\Voodoo\Voodoo\Voodoo.Tests\bin\Release\Voodoo.pdb
+C:\Dropbox\Lib\Projects\Voodoo\Voodoo\Voodoo.Tests\obj\Release\Voodoo.Tests.csprojResolveAssemblyReference.cache
+C:\Dropbox\Lib\Projects\Voodoo\Voodoo\Voodoo.Tests\obj\Release\Voodoo.Tests.dll
+C:\Dropbox\Lib\Projects\Voodoo\Voodoo\Voodoo.Tests\obj\Release\Voodoo.Tests.pdb
