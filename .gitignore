@@ -1,7 +1,10 @@
+
+bin
+obj
+
 *.log
 *.sqlite
 Thumbs.db
-
 
 *.com
 *.class
@@ -9,6 +12,7 @@ Thumbs.db
 *.so
 *.nupkg
 
+_ReSharper.*
 *.user
 *.vspscc
 *.ncrunchproject

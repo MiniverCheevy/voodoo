@@ -80,9 +80,6 @@
     <Compile Include="Linq\Dynamic.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Linq\IQueryableExtension.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="Logging\FallbackLogger.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -152,9 +149,11 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QueryableExtensions.cs" />
     <Compile Include="ReflectionExtensions.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="ValidationExtensions.cs" />
     <Compile Include="Validation\CollectionMustHaveAtLeastOneItemAttribute.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -178,9 +177,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Validation\SafeValidationAttribute.cs" />
-    <Compile Include="Validation\ValidationExtensions.cs">
-      <SubType>Code</SubType>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

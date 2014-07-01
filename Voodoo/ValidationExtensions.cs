@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Voodoo.Validation;
 
-namespace Voodoo.Validation
+namespace Voodoo
 {
     public static class ValidationExtensions
     {
-        //[DebuggerNonUserCode]
         public static bool Validate(this object request)
         {
             if (request == null)

@@ -26,7 +26,7 @@ namespace Voodoo
             return false;
         }
 
-        public static string GetParameters(this MethodInfo methodInfo)
+        public static string GetParametersForCodeGeneration(this MethodInfo methodInfo)
         {
             var result = string.Empty;
             foreach (var info in methodInfo.GetParameters())

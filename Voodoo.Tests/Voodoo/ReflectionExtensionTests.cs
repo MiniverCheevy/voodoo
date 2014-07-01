@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -66,12 +67,13 @@ namespace Voodoo.Tests.Voodoo
         [TestMethod]
         public void GetParameters_MethodHasParameters_ReturnesParametersAsString()
         {
-
+            var parametersAsString = GetMethod().GetParametersForCodeGeneration();
+            Assert.AreEqual("string string, int int, int? nullableInt, List<String> list", parametersAsString);
         }
         public MethodInfo GetMethod()
         {
 
-            var method = typeof(ClassToReflect).GetMethods().First();
+            var method = typeof(ClassToReflect).GetMethod("Method");
             return method;
         }
 

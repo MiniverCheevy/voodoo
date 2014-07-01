@@ -5,7 +5,6 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.Serialization;
-using System.Security.Cryptography;
 using System.Text;
 using System.Xml;
 using System.Xml.Serialization;
@@ -17,20 +16,10 @@ namespace Voodoo
         public static TObject Clone<TObject>(TObject o) where TObject : class
         {
             var info = o.GetType().GetMethod("MemberwiseClone", BindingFlags.Instance | BindingFlags.NonPublic);
-            var clone = (TObject)info.Invoke(o, new object[] { });
+            var clone = (TObject) info.Invoke(o, new object[] {});
             return clone;
         }
 
-        public static string Encrypt(string value)
-        {
-            var x = new MD5CryptoServiceProvider();
-            var data = Encoding.ASCII.GetBytes(value);
-            data = x.ComputeHash(data);
-            var md5Hash = Encoding.ASCII.GetString(data);
-            return md5Hash;
-        }
-
-     
         public static string Base64Encode(string data)
         {
             var byteData = Encoding.UTF8.GetBytes(data);
@@ -80,11 +69,9 @@ namespace Voodoo
         [DebuggerStepThrough]
         public static string ToDataContractXml(object @object, Type type, Type[] extraTypes)
         {
-            DataContractSerializer serializer;
-            if (extraTypes == null)
-                serializer = new DataContractSerializer(type);
-            else
-                serializer = new DataContractSerializer(type, extraTypes);
+            var serializer = extraTypes == null
+                ? new DataContractSerializer(type)
+                : new DataContractSerializer(type, extraTypes);
             var memStream = new MemoryStream();
             var xmlWriter = new XmlTextWriter(memStream, Encoding.UTF8) {Namespaces = true};
             serializer.WriteObject(xmlWriter, @object);

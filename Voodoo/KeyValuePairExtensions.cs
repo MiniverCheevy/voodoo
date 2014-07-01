@@ -15,11 +15,24 @@ namespace Voodoo
 
         public static void SetValue(this List<IKeyValuePair> list, string key, string value)
         {
-            if (list.ContainsKey(key))
-            {
-                var nvp = list.FirstOrDefault(e => e.Key == key);
-                list.Remove(nvp);
-            }
+            if (!list.ContainsKey(key))
+                return;
+            var nvp = list.FirstOrDefault(e => e.Key == key);
+            if (nvp != null)
+                nvp.Value = value;
+        }
+
+        public static void RemoveValue(this List<IKeyValuePair> list, string key)
+        {
+            if (!list.ContainsKey(key))
+                return;
+            var nvp = list.FirstOrDefault(e => e.Key == key);
+            list.Remove(nvp);
+        }
+
+        public static string GetValue(this IEnumerable<IKeyValuePair> list, string name)
+        {
+            return list.SingleOrDefault(e => e.Key == name).To<string>();
         }
 
         public static bool ContainsValue(this List<IKeyValuePair> list, string value)
@@ -34,11 +47,8 @@ namespace Voodoo
 
         public static bool Contains(this List<IKeyValuePair> list, string key, string value)
         {
-            if (list.ContainsKey(key))
-            {
-                return list.To<List<IKeyValuePair>>().Any(e => e.Key == key && e.Value.Contains(value));
-            }
-            return false;
+            return list.ContainsKey(key) &&
+                   list.To<List<IKeyValuePair>>().Any(e => e.Key == key && e.Value.Contains(value));
         }
 
         public static List<IKeyValuePair> Without(this List<IKeyValuePair> list, string key)
@@ -71,10 +81,6 @@ namespace Voodoo
             return ret;
         }
 
-        //public static SelectList AsSelectList(this List<INameValuePair> list, string selectedValue = null)
-        //{
-        //    return new SelectList(list, "Value", "Name", selectedValue);
-        //}
         public static List<IKeyValuePair> ToIKeyValuePairListWithUnfriendlyNames(this Type enumeration)
         {
             if (enumeration.BaseType != typeof (Enum))
@@ -86,11 +92,6 @@ namespace Voodoo
                     .Select(e => (IKeyValuePair) new KeyValuePair(e, ((int) Enum.Parse(enumeration, e)).ToString()))
                     .ToList();
             return ret;
-        }
-
-        public static string GetValue(this IEnumerable<IKeyValuePair> list, string name)
-        {
-            return list.SingleOrDefault(e => e.Key == name).To<string>();
         }
 
         public static IEnumerable<IKeyValuePair> AsEnumerable(this NameValueCollection nvc)

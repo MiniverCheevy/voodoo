@@ -3,17 +3,18 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Linq.Expressions;
+using Voodoo.Linq;
 using Voodoo.Messages;
 using Voodoo.Messages.Paging;
 
-namespace Voodoo.Linq
+namespace Voodoo
 {
     public static class QueryableExtensions
     {
         public static IQueryable<TQueryResult> OrderByDescending<TQueryResult>(this IQueryable<TQueryResult> query,
             string sortExpression) where TQueryResult : class
         {
-            return query.OrderByDynamic(string.Format("{0} {1}",sortExpression , GridConstants.SortDirection.Descending));
+            return query.OrderByDynamic(string.Format("{0} {1}", sortExpression, GridConstants.SortDirection.Descending));
         }
 
         public static PagedResponse<TObject> PagedResult<TObject>(this IQueryable<TObject> source, IGridState paging)
@@ -26,18 +27,21 @@ namespace Voodoo.Linq
             Expression<Func<TIn, TOut>> expression) where TIn : class where TOut : class, new()
         {
             var state = new GridState(paging);
+            var sortMember = state.SortMember ?? state.DefaultSortMember;
 
-            source = !string.IsNullOrEmpty(state.SortMember)
-                ? source.OrderByDynamic(string.Format("{0} {1}", state.SortMember, state.SortDirection))
+            source = !string.IsNullOrEmpty(sortMember)
+                ? source.OrderByDynamic(string.Format("{0} {1}", sortMember, state.SortDirection))
                 : source.OrderBy(c => true);
 
-            var total = source.Count();
+            var total = DynamicQueryable.Count(source);
             var skip = (state.PageNumber - 1)*state.PageSize;
             skip = skip < 0 ? 0 : skip;
             var take = state.PageSize;
-            var list = take == int.MaxValue
-                ? source.Select(expression).ToList()
-                : source.Select(expression).Skip(skip).Take(take).Cast<TOut>().ToList();
+            var page = take == int.MaxValue
+                ? source.Select(expression)
+                : DynamicQueryable.Skip(source.Select(expression), skip).Take(take);
+
+            var list = page.Cast<TOut>().ToList();
 
             var result = new PagedResponse<TOut>(state) {State = {TotalRecords = total}};
             result.Data.AddRange(list);
@@ -46,10 +50,10 @@ namespace Voodoo.Linq
 
         public static string GetName<T>(this T type, Expression<Func<T, object>> expression)
         {
-            if (expression.Body is MemberExpression)
-            {
-                return ((MemberExpression) expression.Body).Member.Name;
-            }
+            var body = expression.Body as MemberExpression;
+            if (body != null)
+                return body.Member.Name;
+
             var op = ((UnaryExpression) expression.Body).Operand;
             return ((MemberExpression) op).Member.Name;
         }
