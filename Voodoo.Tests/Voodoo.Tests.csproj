@@ -103,6 +103,7 @@
     <Compile Include="Voodoo\Logging\FallbackLoggerTests.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Voodoo\ObjectifierTests.cs" />
     <Compile Include="Voodoo\Operations\CommandTests.cs">
       <SubType>Code</SubType>
     </Compile>

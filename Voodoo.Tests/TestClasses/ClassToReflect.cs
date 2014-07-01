@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Voodoo.Tests.TestClasses
 {
+    [Serializable]
     public class ClassToReflect
     {
         public ClassWithDate ComplexObject { get; set; }
