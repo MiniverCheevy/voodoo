@@ -17,22 +17,22 @@ namespace Voodoo
         {
             if (!list.ContainsKey(key))
                 return;
-            var nvp = list.FirstOrDefault(e => e.Key == key);
-            if (nvp != null)
-                nvp.Value = value;
+            var pair = list.FirstOrDefault(e => e.Key == key);
+            if (pair != null)
+                pair.Value = value;
         }
 
         public static void RemoveValue(this List<IKeyValuePair> list, string key)
         {
             if (!list.ContainsKey(key))
                 return;
-            var nvp = list.FirstOrDefault(e => e.Key == key);
-            list.Remove(nvp);
+            var pair = list.FirstOrDefault(e => e.Key == key);
+            list.Remove(pair);
         }
 
-        public static string GetValue(this IEnumerable<IKeyValuePair> list, string name)
+        public static string GetValue(this IEnumerable<IKeyValuePair> list, string key)
         {
-            return list.SingleOrDefault(e => e.Key == name).To<string>();
+            return list.SingleOrDefault(e => e.Key == key).To<string>();
         }
 
         public static bool ContainsValue(this List<IKeyValuePair> list, string value)

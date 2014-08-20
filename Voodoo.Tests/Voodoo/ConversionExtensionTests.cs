@@ -418,6 +418,14 @@ namespace Voodoo.Tests.Voodoo
 
 
         [TestMethod]
+        public void As_StringDouble_ReturnsNull()
+        {
+            string test = "testString";
+            var converted = test.As<Double?>();
+            Assert.AreEqual(null, converted);
+        }
+
+        [TestMethod]
         public void As_NullDouble_ReturnsNull()
         {
             Double? test = null;
@@ -682,6 +690,22 @@ namespace Voodoo.Tests.Voodoo
             var test = String.Empty;
             var converted = test.As<UInt32?>();
             Assert.AreEqual(null, converted);
+        }
+        [TestMethod]
+        public void To_DecimalAsStringToInt_ReturnsInt()
+        {
+            var test = "5.00";
+            const int expected = 5;
+            var converted = test.To<int>();
+            Assert.AreEqual(expected, converted);
+        }
+        [TestMethod]
+        public void To_DecimalToInt_ReturnsInt()
+        {
+            var test = 5.00M;
+            const int expected = 5;
+            var converted = test.To<int>();
+            Assert.AreEqual(expected, converted);
         }
     }
 }

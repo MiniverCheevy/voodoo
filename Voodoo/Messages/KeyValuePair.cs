@@ -16,7 +16,13 @@ namespace Voodoo.Messages
             Value = value;
         }
 
+        /// <summary>
+        /// Typically the string component such as code or description
+        /// </summary>
         public string Key { get; set; }
+        /// <summary>
+        /// Typically the numeric component such as the Id
+        /// </summary>
         public string Value { get; set; }
 
         public override string ToString()

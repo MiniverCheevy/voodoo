@@ -10,61 +10,35 @@ namespace Voodoo
 {
     public static class ConversionExtensions
     {
-        private static readonly customMapping[] customMappings =
-        {
-            new customMapping
+        private static readonly CustomMapping[] customMappings =
             {
-                Type = typeof (bool),
-                ReturnValue = true,
-                Values = new object[] {1, "1", "y", "yes", "Y", "Yes", "true"}
-            }
-        };
+                new CustomMapping
+                    {
+                        Type = typeof (bool),
+                        ReturnValue = true,
+                        Values = new object[] {1, "1", "y", "yes", "Y", "Yes", "true"}
+                    }
+            };
 
         private static readonly Dictionary<Type, object> nonNullDefaults = new Dictionary<Type, object>
-        {
-            {typeof (string), string.Empty},
-            {typeof (bool), false},
-            {typeof (DateTime), DateTime.MaxValue},
-            {typeof (int), 0}
-        };
-
-        //[DebuggerNonUserCode]
-        public static T To<T>(this string value)
-        {
-            if (string.IsNullOrWhiteSpace(value))
-                return returnDefaultValue<T>();
-
-            if (value is T)
-                return (T) (object) value;
-
-            value = value.Trim();
-
-            return convertValue<T>(value);
-        }
-
-        //[DebuggerNonUserCode]
-        public static T As<T>(this string value)
-        {
-            if (string.IsNullOrWhiteSpace(value))
-                return default(T);
-            try
             {
-                return value.To<T>();
-            }
-            catch
-            {
-                return default(T);
-            }
-        }
+                {typeof (string), string.Empty},
+                {typeof (bool), false},
+                {typeof (DateTime), DateTime.MaxValue},
+                {typeof (int), 0}
+            };
 
-        //[DebuggerNonUserCode]
+
         public static T As<T>(this object value)
         {
             if (value == null)
                 return default(T);
+
             try
             {
-                return value.To<T>();
+                T returnValue;
+                var result = convertValue(value, out returnValue);
+                return result ? returnValue : default(T);
             }
             catch
             {
@@ -72,7 +46,7 @@ namespace Voodoo
             }
         }
 
-        //[DebuggerNonUserCode]
+
         public static T To<T>(this object value)
         {
             if (value == null)
@@ -81,10 +55,12 @@ namespace Voodoo
             if (value is T)
                 return (T) value;
 
-            return convertValue<T>(value);
+            T returnValue;
+            convertValue(value, out returnValue);
+            return returnValue;
         }
 
-        //[DebuggerNonUserCode]
+
         private static T returnDefaultValue<T>()
         {
             var type = typeof (T);
@@ -93,16 +69,26 @@ namespace Voodoo
             return default(T);
         }
 
-        //[DebuggerNonUserCode]
-        private static T convertValue<T>(object value)
+
+        private static bool convertValue<T>(object value, out T converted)
         {
-            T converted;
             var type = typeof (T);
+            try
+            {
+                if (type.ToString().ToLower().Contains("int") && value is string &&
+                    value.ToString().Contains("."))
+                {
+                    value = value.ToString().Substring(0, value.ToString().IndexOf("."));
+                }
+            }
+            catch
+            {
+            }
             var typeCode = Type.GetTypeCode(type);
             try
             {
                 if (convertObject(value, typeCode, out converted))
-                    return converted;
+                    return true;
             }
             catch
             {
@@ -110,7 +96,7 @@ namespace Voodoo
             try
             {
                 if (parseEnumValue(value, type, out converted))
-                    return converted;
+                    return true;
             }
             catch
             {
@@ -120,12 +106,24 @@ namespace Voodoo
             {
                 value = getCustomMappedValue<T>(value);
                 var converter = TypeDescriptor.GetConverter(typeof (T));
-                return (T) converter.ConvertFromInvariantString(value.ToString());
+                converted = (T) converter.ConvertFromInvariantString(value.ToString());
+                return true;
             }
             catch
             {
-                return returnDefaultValue<T>();
             }
+
+            try
+            {
+                converted = (T) (dynamic) value;
+                return true;
+            }
+            catch
+            {
+            }
+
+            converted = returnDefaultValue<T>();
+            return false;
         }
 
         private static bool parseEnumValue<T>(object value, Type type, out T converted)
@@ -142,87 +140,87 @@ namespace Voodoo
             return false;
         }
 
-        //[DebuggerNonUserCode]
+
         private static bool convertObject<T>(object value, TypeCode typeCode, out T valueToConvert)
         {
             valueToConvert = default(T);
             switch (typeCode)
             {
                 case TypeCode.Boolean:
-                {
-                    valueToConvert = (T) (object) Convert.ToBoolean(value);
-                    return true;
-                }
+                    {
+                        valueToConvert = (T) (object) Convert.ToBoolean(value);
+                        return true;
+                    }
                 case TypeCode.Byte:
-                {
-                    valueToConvert = (T) (object) Convert.ToByte(value);
-                    return true;
-                }
+                    {
+                        valueToConvert = (T) (object) Convert.ToByte(value);
+                        return true;
+                    }
                 case TypeCode.Char:
-                {
-                    valueToConvert = (T) (object) Convert.ToChar(value);
-                    return true;
-                }
+                    {
+                        valueToConvert = (T) (object) Convert.ToChar(value);
+                        return true;
+                    }
                 case TypeCode.DateTime:
-                {
-                    valueToConvert = (T) (object) DateTime.Parse(value.ToString().Trim());
-                    return true;
-                }
+                    {
+                        valueToConvert = (T) (object) DateTime.Parse(value.ToString().Trim());
+                        return true;
+                    }
                 case TypeCode.Decimal:
-                {
-                    valueToConvert = (T) (object) Convert.ToDecimal(value);
-                    return true;
-                }
+                    {
+                        valueToConvert = (T) (object) Convert.ToDecimal(value);
+                        return true;
+                    }
                 case TypeCode.Double:
-                {
-                    valueToConvert = (T) (object) Convert.ToDouble(value);
-                    return true;
-                }
+                    {
+                        valueToConvert = (T) (object) Convert.ToDouble(value);
+                        return true;
+                    }
                 case TypeCode.Int16:
-                {
-                    valueToConvert = (T) (object) Convert.ToInt16(value);
-                    return true;
-                }
+                    {
+                        valueToConvert = (T) (object) Convert.ToInt16(value);
+                        return true;
+                    }
                 case TypeCode.Int32:
-                {
-                    valueToConvert = (T) (object) Convert.ToInt32(value);
-                    return true;
-                }
+                    {
+                        valueToConvert = (T) (object) Convert.ToInt32(value);
+                        return true;
+                    }
                 case TypeCode.Int64:
-                {
-                    valueToConvert = (T) (object) Convert.ToInt64(value);
-                    return true;
-                }
+                    {
+                        valueToConvert = (T) (object) Convert.ToInt64(value);
+                        return true;
+                    }
                 case TypeCode.SByte:
-                {
-                    valueToConvert = (T) (object) Convert.ToSByte(value);
-                    return true;
-                }
+                    {
+                        valueToConvert = (T) (object) Convert.ToSByte(value);
+                        return true;
+                    }
                 case TypeCode.Single:
-                {
-                    valueToConvert = (T) (object) Convert.ToSingle(value);
-                    return true;
-                }
+                    {
+                        valueToConvert = (T) (object) Convert.ToSingle(value);
+                        return true;
+                    }
                 case TypeCode.String:
-                {
-                    valueToConvert = (T) (object) Convert.ToString(value);
-                    return true;
-                }
+                    {
+                        valueToConvert = (T) (object) Convert.ToString(value);
+                        return true;
+                    }
                 case TypeCode.UInt16:
-                {
-                    valueToConvert = (T) (object) Convert.ToUInt16(value);
-                    return true;
-                }
+                    {
+                        valueToConvert = (T) (object) Convert.ToUInt16(value);
+                        return true;
+                    }
                 case TypeCode.UInt32:
-                {
-                    valueToConvert = (T) (object) Convert.ToUInt32(value);
-                    return true;
-                }
+                    {
+                        valueToConvert = (T) (object) Convert.ToUInt32(value);
+                        return true;
+                    }
                 case TypeCode.UInt64:
-                {
-                    valueToConvert = (T) (object) Convert.ToUInt64(value);
-                    return true;
-                }
+                    {
+                        valueToConvert = (T) (object) Convert.ToUInt64(value);
+                        return true;
+                    }
                 case TypeCode.DBNull:
                 case TypeCode.Empty:
                 default:
@@ -254,7 +252,7 @@ namespace Voodoo
         {
             var val = To<string>(o);
 
-            var ret = new StringBuilder();
+            var stringBuilder = new StringBuilder();
             var lastWasCap = false;
 
             foreach (var c in val)
@@ -263,7 +261,7 @@ namespace Voodoo
                 var n = (int) c;
                 if (n == 32 | n == 95)
                 {
-                    ret.Append(" ");
+                    stringBuilder.Append(" ");
                     lastWasCap = false;
                 }
                 else if (n >= 65 & n <= 90)
@@ -271,18 +269,18 @@ namespace Voodoo
                     //Capital letters
                     if (!lastWasCap)
                     {
-                        ret.Append(" ");
+                        stringBuilder.Append(" ");
                         lastWasCap = true;
                     }
-                    ret.Append(s);
+                    stringBuilder.Append(s);
                 }
                 else
                 {
                     lastWasCap = false;
-                    ret.Append(s);
+                    stringBuilder.Append(s);
                 }
             }
-            return ret.ToString().Trim();
+            return stringBuilder.ToString().Trim();
         }
 
         private static object getCustomMappedValue<T>(object value)
@@ -295,7 +293,7 @@ namespace Voodoo
             return value;
         }
 
-        private class customMapping
+        private class CustomMapping
         {
             public Object ReturnValue { get; set; }
 

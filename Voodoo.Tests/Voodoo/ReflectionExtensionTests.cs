@@ -21,6 +21,13 @@ namespace Voodoo.Tests.Voodoo
             Assert.IsFalse(result);
         }
         [TestMethod]
+        public void IsScalar_Decimal_ReturnsFalse()
+        {
+            var complexObject = GetProperties().First(c => c.Name == "Decimal");
+            var result = complexObject.PropertyType.IsScalar();
+            Assert.IsTrue(result);
+        }
+        [TestMethod]
         public void IsScalar_Int_ReturnsTrue()
         {
             var complexObject = GetProperties().First(c => c.Name == "Int");

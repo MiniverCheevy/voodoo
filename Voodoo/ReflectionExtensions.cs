@@ -10,7 +10,7 @@ namespace Voodoo
     {
         public static bool IsScalar(this Type t)
         {
-            const string types = "string,guid,datetime,timespan";
+            const string types = "string,guid,datetime,timespan,decimal";
             if (t.Name.ToLower().Contains("nullable"))
                 return true;
 
@@ -159,91 +159,5 @@ namespace Voodoo
             return false;
         }
 
-        /* Unity Stuff
-        public string GetCallingSignature(IMethodInvocation input)
-        {
-            string className = GetTypeName(input.MethodBase.DeclaringType);
-            string methodName = GetMethodName(input);
-            string arguments = GetArgumentList(input.Arguments);
-
-            string preMethodMessage = string.Format("{0}.{1}({2})", className, methodName, arguments);
-            return preMethodMessage;
-        }
-        public string GetResultSignature(IMethodInvocation input, IMethodReturn msg)
-        {
-
-            string className = GetTypeName(input.MethodBase.DeclaringType);
-            string methodName = GetMethodName(input);
-            string postMethodMessage = string.Format("result={0}.{1}() -> {2}", className, methodName, msg.ReturnValue);
-            return postMethodMessage;
-        }
-
-        public IMethodReturn TraceInvoke(IMethodInvocation input, GetNextHandlerDelegate getNext)
-        {
-            string className = GetTypeName(input.MethodBase.DeclaringType);
-            string methodName = GetMethodName(input);
-            string arguments = GetArgumentList(input.Arguments);
-
-            string preMethodMessage = string.Format("call={0}.{1}({2})", className, methodName, arguments);
-            System.Diagnostics.Debug.WriteLine(preMethodMessage);
-            IMethodReturn msg = null;
-
-            // Call the method that was intercepted 
-            msg = getNext()(input, getNext);
-
-            string postMethodMessage = string.Format("result={0}.{1}() -> {2}", className, methodName, msg.ReturnValue);
-            System.Diagnostics.Debug.WriteLine(postMethodMessage);
-
-            return msg;
-        }
-       
-        public void DecorateLog(ref Log log, IMethodInvocation input, string category, Exception ex = null)
-        {
-            string className = GetTypeName(input.MethodBase.DeclaringType);
-            string methodName = GetMethodName(input);
-            string arguments = GetArgumentList(input.Arguments);
-
-            log.Time = DateTime.Now;
-            log.Category = category;
-            log.MethodCall = string.Format("{0}.{1}({2})", className, methodName, arguments);
-            log.Action = methodName;
-            if (ex != null)
-                log.Exception = ex.ToString();
-
-            List<AppParameterInformation> objects = new List<AppParameterInformation>();
-            ParameterInfo[] paramNames = input.MethodBase.GetParameters();
-            List<Type> parameterTypes = new List<Type>();
-            int cnt = 0;
-
-            foreach (var o in input.Arguments)
-            {
-
-
-                if (o != null)
-                {
-                    Type t = o.GetType();
-
-                    if (CanSerialize(t))
-                    {
-                        parameterTypes.Add(t);
-                        objects.Add(new AppParameterInformation() { ParamaterName = paramNames[cnt].Name, ParamaterValue = o });
-                    }
-                    else
-                    {
-                        objects.Add(new AppParameterInformation() { ParamaterName = paramNames[cnt].Name, ParamaterValue = null });
-                    }
-                }
-                else
-                {
-                    objects.Add(new AppParameterInformation() { ParamaterName = paramNames[cnt].Name, ParamaterValue = null });
-                }
-                cnt += 1;
-            }
-
-            log.Parameters = objects.ToDataContractXml(objects.GetType(), parameterTypes.ToArray());
-
-
-
-        }*/
     }
 }

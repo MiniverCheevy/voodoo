@@ -6,6 +6,7 @@ using System.Linq.Expressions;
 using Voodoo.Linq;
 using Voodoo.Messages;
 using Voodoo.Messages.Paging;
+using Voodoo;
 
 namespace Voodoo
 {
@@ -41,7 +42,12 @@ namespace Voodoo
                 ? source.Select(expression)
                 : DynamicQueryable.Skip(source.Select(expression), skip).Take(take);
 
-            var list = page.Cast<TOut>().ToList();
+            //var list = page.Cast<TOut>().ToList();
+            var list = new List<TOut>();
+            foreach (var item in page)
+            {
+                list.Add(item.To<TOut>());
+            }
 
             var result = new PagedResponse<TOut>(state) {State = {TotalRecords = total}};
             result.Data.AddRange(list);

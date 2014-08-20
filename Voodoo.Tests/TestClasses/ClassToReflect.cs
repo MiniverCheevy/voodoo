@@ -16,6 +16,7 @@ namespace Voodoo.Tests.TestClasses
         public DateTime DateAndTime { get; set; }
         public DateTime? NullableDateAndTime { get; set; }
         public TestEnum TestEnum { get; set; }
+        public Decimal Decimal { get; set; }
 
         public void Method(string @string, int @int, int? nullableInt, List<string> list )
         {
