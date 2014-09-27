@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Document-Bootstrap</title>
+    <title>Voodoo.Patterns</title>
     <!-- Mobile viewport optimized -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -923,7 +923,7 @@
                             </td>
                             <td>int</td>
                             <td>LogMaximumNumberOfItemsInCollection</td>
-                            <td></td>
+                            <td>number of items listed from collections in the <a href="#Voodoo.Operations.ObjectStringificationQuery">ObjectStringificationQuery</a> or the ToDebugString method of <a href="#Voodoo.ConversionExtensions">ConversionExtensions</a> </td>
                         </tr>
                         <tr data-path="">
 
@@ -931,7 +931,7 @@
                             </td>
                             <td>string</td>
                             <td>LogFilePath</td>
-                            <td></td>
+                            <td>Log file path if you are using the <a href="#Voodoo.Logging.FallbackLogger">FallbackLogger</a> defaults to site root for web applications and c:\Logs otherwise</td>
                         </tr>
                         <tr data-path="">
 
@@ -939,7 +939,7 @@
                             </td>
                             <td>string</td>
                             <td>ApplicationName</td>
-                            <td></td>
+                            <td>If file system logging fails this will be the application name in the event log</td>
                         </tr>
                         <tr data-path="">
 
@@ -947,7 +947,13 @@
                             </td>
                             <td>bool</td>
                             <td>RemoveExceptionFromResponseAfterLogging</td>
-                            <td></td>
+                            <td>Exceptions in 
+                                <a href="#Voodoo.Operations.Command|TRequest,TResponse|">Command</a> or
+                                 <a href="#Voodoo.Operations.Query|TRequest,TResponse|">Query</a>
+                                failures are added to the <a href="#Voodoo.Messages.Response">Response</a>.  If you plan to serialize responses as xml or
+                                JSON you should set this to true.
+
+                            </td>
                         </tr>
                     </tbody>
                 </table>
@@ -968,8 +974,8 @@
                             </td>
                             <td>void</td>
                             <td></td>
-                            <td>RegisterLogger(ILogger logger)</td>
-                            <td></td>
+                            <td>RegisterLogger(<a href="#Voodoo.Logging.ILogger">ILogger</a> logger)</td>
+                            <td>replaces the default <a href="#Voodoo.Logging.FallbackLogger">FallbackLogger</a> logging implementation with another</td>
                         </tr>
                         <tr data-path="Voodoo.VoodooGlobalConfiguration..T..ExceptionTranslation-mapper">
                             <td title="Voodoo.VoodooGlobalConfiguration.RegisterExceptionMapping" class="optionName" data-content="">static
@@ -977,17 +983,16 @@
                             <td>void</td>
                             <td></td>
                             <td>RegisterExceptionMapping&lt;T&gt;(ExceptionTranslation mapper)</td>
-                            <td></td>
+                            <td>By default the Message of an exception is copied the response and IsOk is set to false </td>
                         </tr>
                     </tbody>
                 </table>
                 <h2 data-path="">Voodoo.Helpers</h2>
-                <p class="well">
-                </p>
                 <a id="Voodoo.Helpers.CollectionChangeSet">&nbsp;</a>
                 <h3 data-path="">CollectionChangeSet</h3>
                 <br />
                 <p class="well">
+                    Instantiate this class with two sets of ids - a source set and a changed set.  The class will return the ids that have been added or removed from the source set.
                 </p>
                 <h4>Properties</h4>
                 <table class="table table-striped table-bordered table-condensed">
@@ -1063,6 +1068,8 @@
                 &nbsp;&nbsp;&nbsp;&nbsp;Dictionary&lt;Type,<a href="#Voodoo.Infrastructure.ExceptionTranslation">ExceptionTranslation</a>&gt;<br />
                 <br />
                 <p class="well">
+                    Used to alter the behavior or obfuscate exceptions caught during the execution of a <a href="#Voodoo.Operations.Command|TRequest,TResponse|">Command</a> or
+                                 <a href="#Voodoo.Operations.Query|TRequest,TResponse|">Query</a>
                 </p>
                 <h4>Methods</h4>
                 <table class="table table-striped table-bordered table-condensed">
@@ -1103,6 +1110,8 @@
                 <h3 data-path="">ExceptionTranslation</h3>
                 <br />
                 <p class="well">
+                    Provides special handling for certain exception types.  Such as <a href="https://gist.github.com/MiniverCheevy/8af032691b8afa26a49b">DbEntityValidationExceptionTranlator</a> 
+                    this to copy the EntityValidationErrors into the details of the <a href="#Voodoo.Messages.Response">Response</a>.
                 </p>
                 <h4>Methods</h4>
                 <table class="table table-striped table-bordered table-condensed">
@@ -1127,9 +1136,6 @@
                 </table>
                 <a id="Voodoo.Infrastructure.IStorageProvider">&nbsp;</a>
                 <h3 data-path="">IStorageProvider</h3>
-                <br />
-                <p class="well">
-                </p>
                 <h4>Properties</h4>
                 <table class="table table-striped table-bordered table-condensed">
 
@@ -1215,6 +1221,9 @@
                 &nbsp;&nbsp;&nbsp;&nbsp;Exception<br />
                 <br />
                 <p class="well">
+                    During the validation phase of a <a href="#Voodoo.Operations.Command|TRequest,TResponse|">Command</a> or
+                                 <a href="#Voodoo.Operations.Query|TRequest,TResponse|">Query</a> if validation fails a <a href="Voodoo.Infrastructure.LogicException">LogicException</a>
+                    is thrown.
                 </p>
                 <h4>Properties</h4>
                 <table class="table table-striped table-bordered table-condensed">
@@ -1249,469 +1258,19 @@
                 &nbsp;&nbsp;&nbsp;&nbsp;<a href="#Voodoo.Infrastructure.ExceptionTranslation">ExceptionTranslation</a><br />
                 <br />
                 <p class="well">
-                </p>
+                    copies the LoaderExceptions into the details collection of the response</p>
                 <h2 data-path="">Voodoo.Linq</h2>
                 <p class="well">
+                    Pulled from a blog post by <a href="http://weblogs.asp.net/scottgu/dynamic-linq-part-1-using-the-linq-dynamic-query-library">Scott Gu</a>, belongs in the System.Linq.Dynamic namespace but some developers get twichy when you add things to the System namespace.
                 </p>
-                <a id="Voodoo.Linq.ClassFactory">&nbsp;</a>
-                <h3 data-path="">ClassFactory</h3>
-                <br />
+                <a id="Voodoo.Linq.ClassFactory">&nbsp;</a><h2 data-path="">Voodoo.Logging</h2>
                 <p class="well">
-                </p>
-                <h4>Methods</h4>
-                <table class="table table-striped table-bordered table-condensed">
-                    <colgroup>
-                    </colgroup>
-                    <tbody>
-                        <tr>
-                            <th></th>
-                            <th>Return Type</th>
-                            <th>Source</th>
-                            <th>Method</th>
-                            <th>Remarks</th>
-                        </tr>
-                        <tr data-path="Voodoo.Linq.ClassFactory..IEnumerable.DynamicProperty.-properties">
-                            <td title="Voodoo.Linq.ClassFactory.GetDynamicClass" class="optionName" data-content=""></td>
-                            <td>Type</td>
-                            <td></td>
-                            <td>GetDynamicClass(IEnumerable&lt;DynamicProperty&gt; properties)</td>
-                            <td></td>
-                        </tr>
-                    </tbody>
-                </table>
-                <a id="Voodoo.Linq.DynamicClass">&nbsp;</a>
-                <h3 data-path="">DynamicClass</h3>
-                <br />
-                <p class="well">
-                </p>
-                <a id="Voodoo.Linq.DynamicExpression">&nbsp;</a>
-                <h3 data-path="">DynamicExpression</h3>
-                <br />
-                <p class="well">
-                </p>
-                <h4>Methods</h4>
-                <table class="table table-striped table-bordered table-condensed">
-                    <colgroup>
-                    </colgroup>
-                    <tbody>
-                        <tr>
-                            <th></th>
-                            <th>Return Type</th>
-                            <th>Source</th>
-                            <th>Method</th>
-                            <th>Remarks</th>
-                        </tr>
-                        <tr data-path="Voodoo.Linq.DynamicExpression..Type-resultType,-string-expression,-Object[]-values">
-                            <td title="Voodoo.Linq.DynamicExpression.Parse" class="optionName" data-content="">static
-                            </td>
-                            <td>Expression</td>
-                            <td></td>
-                            <td>Parse(Type resultType, string expression, Object[] values)</td>
-                            <td></td>
-                        </tr>
-                        <tr data-path="Voodoo.Linq.DynamicExpression..Type-itType,-Type-resultType,-string-expression,-Object[]-values">
-                            <td title="Voodoo.Linq.DynamicExpression.ParseLambda" class="optionName" data-content="">static
-                            </td>
-                            <td>LambdaExpression</td>
-                            <td></td>
-                            <td>ParseLambda(Type itType, Type resultType, string expression, Object[] values)</td>
-                            <td></td>
-                        </tr>
-                        <tr data-path="Voodoo.Linq.DynamicExpression..ParameterExpression[]-parameters,-Type-resultType,-string-expression,-Object[]-values">
-                            <td title="Voodoo.Linq.DynamicExpression.ParseLambda" class="optionName" data-content="">static
-                            </td>
-                            <td>LambdaExpression</td>
-                            <td></td>
-                            <td>ParseLambda(ParameterExpression[] parameters, Type resultType, string expression, Object[] values)</td>
-                            <td></td>
-                        </tr>
-                        <tr data-path="Voodoo.Linq.DynamicExpression..T,S..string-expression,-Object[]-values">
-                            <td title="Voodoo.Linq.DynamicExpression.ParseLambda" class="optionName" data-content="">static
-                            </td>
-                            <td>Expression&lt;Func&lt;T,S&gt;&gt;</td>
-                            <td></td>
-                            <td>ParseLambda&lt;T,S&gt;(string expression, Object[] values)</td>
-                            <td></td>
-                        </tr>
-                        <tr data-path="Voodoo.Linq.DynamicExpression..DynamicProperty[]-properties">
-                            <td title="Voodoo.Linq.DynamicExpression.CreateClass" class="optionName" data-content="">static
-                            </td>
-                            <td>Type</td>
-                            <td></td>
-                            <td>CreateClass(DynamicProperty[] properties)</td>
-                            <td></td>
-                        </tr>
-                        <tr data-path="Voodoo.Linq.DynamicExpression..IEnumerable.DynamicProperty.-properties">
-                            <td title="Voodoo.Linq.DynamicExpression.CreateClass" class="optionName" data-content="">static
-                            </td>
-                            <td>Type</td>
-                            <td></td>
-                            <td>CreateClass(IEnumerable&lt;DynamicProperty&gt; properties)</td>
-                            <td></td>
-                        </tr>
-                    </tbody>
-                </table>
-                <a id="Voodoo.Linq.DynamicOrdering">&nbsp;</a>
-                <h3 data-path="">DynamicOrdering</h3>
-                <br />
-                <p class="well">
-                </p>
-                <a id="Voodoo.Linq.DynamicProperty">&nbsp;</a>
-                <h3 data-path="">DynamicProperty</h3>
-                <br />
-                <p class="well">
-                </p>
-                <h4>Properties</h4>
-                <table class="table table-striped table-bordered table-condensed">
+                    This is probably not the logger you&#39;re looking for.&nbsp; You can implment the <a href="#Voodoo.Logging.ILogger">ILogger</a> interface and create an adapter for 
+                    <a href="https://gist.github.com/MiniverCheevy/4a72daeba29e482205ba#file-elmahlogger">Elmah</a>, <a href="https://gist.github.com/MiniverCheevy/4a72daeba29e482205ba#file-nloglogger">NLog</a> 
+                    or whatever logging framework you use.
 
-                    <colgroup>
-                        <col class="widthTiny" />
-                        <col class="widthMedium" />
-                        <col class="widthSmall" />
-                        <col class="widthLarge" />
-
-                    </colgroup>
-                    <tbody>
-                        <tr>
-                            <th></th>
-                            <th>Type</th>
-                            <th>Name</th>
-                            <th>Remarks</th>
-                        </tr>
-                        <tr data-path="">
-
-                            <td title="System.String.Name" class="optionName" data-content=""></td>
-                            <td>string</td>
-                            <td>Name</td>
-                            <td></td>
-                        </tr>
-                        <tr data-path="">
-
-                            <td title="System.Type.Type" class="optionName" data-content=""></td>
-                            <td>Type</td>
-                            <td>Type</td>
-                            <td></td>
-                        </tr>
-                    </tbody>
-                </table>
-                <a id="Voodoo.Linq.DynamicQueryable">&nbsp;</a>
-                <h3 data-path="">DynamicQueryable</h3>
-                <br />
-                <p class="well">
-                </p>
-                <h4>Methods</h4>
-                <table class="table table-striped table-bordered table-condensed">
-                    <colgroup>
-                    </colgroup>
-                    <tbody>
-                        <tr>
-                            <th></th>
-                            <th>Return Type</th>
-                            <th>Source</th>
-                            <th>Method</th>
-                            <th>Remarks</th>
-                        </tr>
-                        <tr data-path="Voodoo.Linq.DynamicQueryable..T..string-predicate,-Object[]-values">
-                            <td title="Voodoo.Linq.DynamicQueryable.Where" class="optionName" data-content="">static
-                            </td>
-                            <td>IQueryable&lt;T&gt;</td>
-                            <td>IQueryable&lt;T&gt;</td>
-                            <td>Where&lt;T&gt;(string predicate, Object[] values)</td>
-                            <td></td>
-                        </tr>
-                        <tr data-path="Voodoo.Linq.DynamicQueryable..string-predicate,-Object[]-values">
-                            <td title="Voodoo.Linq.DynamicQueryable.Where" class="optionName" data-content="">static
-                            </td>
-                            <td>IQueryable</td>
-                            <td>IQueryable</td>
-                            <td>Where(string predicate, Object[] values)</td>
-                            <td></td>
-                        </tr>
-                        <tr data-path="Voodoo.Linq.DynamicQueryable..string-selector,-Object[]-values">
-                            <td title="Voodoo.Linq.DynamicQueryable.Select" class="optionName" data-content="">static
-                            </td>
-                            <td>IQueryable</td>
-                            <td>IQueryable</td>
-                            <td>Select(string selector, Object[] values)</td>
-                            <td></td>
-                        </tr>
-                        <tr data-path="Voodoo.Linq.DynamicQueryable..T..string-ordering,-Object[]-values">
-                            <td title="Voodoo.Linq.DynamicQueryable.OrderByDynamic" class="optionName" data-content="">static
-                            </td>
-                            <td>IQueryable&lt;T&gt;</td>
-                            <td>IQueryable&lt;T&gt;</td>
-                            <td>OrderByDynamic&lt;T&gt;(string ordering, Object[] values)</td>
-                            <td></td>
-                        </tr>
-                        <tr data-path="Voodoo.Linq.DynamicQueryable..string-ordering,-Object[]-values">
-                            <td title="Voodoo.Linq.DynamicQueryable.OrderByDynamic" class="optionName" data-content="">static
-                            </td>
-                            <td>IQueryable</td>
-                            <td>IQueryable</td>
-                            <td>OrderByDynamic(string ordering, Object[] values)</td>
-                            <td></td>
-                        </tr>
-                        <tr data-path="Voodoo.Linq.DynamicQueryable..int-count">
-                            <td title="Voodoo.Linq.DynamicQueryable.Take" class="optionName" data-content="">static
-                            </td>
-                            <td>IQueryable</td>
-                            <td>IQueryable</td>
-                            <td>Take(int count)</td>
-                            <td></td>
-                        </tr>
-                        <tr data-path="Voodoo.Linq.DynamicQueryable..int-count">
-                            <td title="Voodoo.Linq.DynamicQueryable.Skip" class="optionName" data-content="">static
-                            </td>
-                            <td>IQueryable</td>
-                            <td>IQueryable</td>
-                            <td>Skip(int count)</td>
-                            <td></td>
-                        </tr>
-                        <tr data-path="Voodoo.Linq.DynamicQueryable..string-keySelector,-string-elementSelector,-Object[]-values">
-                            <td title="Voodoo.Linq.DynamicQueryable.GroupBy" class="optionName" data-content="">static
-                            </td>
-                            <td>IQueryable</td>
-                            <td>IQueryable</td>
-                            <td>GroupBy(string keySelector, string elementSelector, Object[] values)</td>
-                            <td></td>
-                        </tr>
-                        <tr data-path="Voodoo.Linq.DynamicQueryable..">
-                            <td title="Voodoo.Linq.DynamicQueryable.Any" class="optionName" data-content="">static
-                            </td>
-                            <td>bool</td>
-                            <td>IQueryable</td>
-                            <td>Any()</td>
-                            <td></td>
-                        </tr>
-                        <tr data-path="Voodoo.Linq.DynamicQueryable..">
-                            <td title="Voodoo.Linq.DynamicQueryable.Count" class="optionName" data-content="">static
-                            </td>
-                            <td>int</td>
-                            <td>IQueryable</td>
-                            <td>Count()</td>
-                            <td></td>
-                        </tr>
-                    </tbody>
-                </table>
-                <a id="Voodoo.Linq.ExpressionParser">&nbsp;</a>
-                <h3 data-path="">ExpressionParser</h3>
-                <br />
-                <p class="well">
-                </p>
-                <h4>Methods</h4>
-                <table class="table table-striped table-bordered table-condensed">
-                    <colgroup>
-                    </colgroup>
-                    <tbody>
-                        <tr>
-                            <th></th>
-                            <th>Return Type</th>
-                            <th>Source</th>
-                            <th>Method</th>
-                            <th>Remarks</th>
-                        </tr>
-                        <tr data-path="Voodoo.Linq.ExpressionParser..Type-resultType">
-                            <td title="Voodoo.Linq.ExpressionParser.Parse" class="optionName" data-content=""></td>
-                            <td>Expression</td>
-                            <td></td>
-                            <td>Parse(Type resultType)</td>
-                            <td></td>
-                        </tr>
-                        <tr data-path="Voodoo.Linq.ExpressionParser..">
-                            <td title="Voodoo.Linq.ExpressionParser.ParseOrdering" class="optionName" data-content=""></td>
-                            <td>IEnumerable&lt;<a href="#Voodoo.Linq.DynamicOrdering">DynamicOrdering</a>&gt;</td>
-                            <td></td>
-                            <td>ParseOrdering()</td>
-                            <td></td>
-                        </tr>
-                    </tbody>
-                </table>
-                <a id="Voodoo.Linq.ParseException">&nbsp;</a>
-                <h3 data-path="">ParseException</h3>
-                <b>Interfaces: </b>
-                ISerializable, _Exception                   
-                <br />
-                <b>Inheritance Hierarchy: </b>
-                <br />
-                &nbsp;&nbsp;&nbsp;&nbsp;Exception<br />
-                <br />
-                <p class="well">
-                </p>
-                <h4>Properties</h4>
-                <table class="table table-striped table-bordered table-condensed">
-
-                    <colgroup>
-                        <col class="widthTiny" />
-                        <col class="widthMedium" />
-                        <col class="widthSmall" />
-                        <col class="widthLarge" />
-
-                    </colgroup>
-                    <tbody>
-                        <tr>
-                            <th></th>
-                            <th>Type</th>
-                            <th>Name</th>
-                            <th>Remarks</th>
-                        </tr>
-                        <tr data-path="">
-
-                            <td title="System.Int32.Position" class="optionName" data-content=""></td>
-                            <td>int</td>
-                            <td>Position</td>
-                            <td></td>
-                        </tr>
-                    </tbody>
-                </table>
-                <a id="Voodoo.Linq.Res">&nbsp;</a>
-                <h3 data-path="">Res</h3>
-                <br />
-                <p class="well">
-                </p>
-                <a id="Voodoo.Linq.Signature">&nbsp;</a>
-                <h3 data-path="">Signature</h3>
-                <b>Interfaces: </b>
-                IEquatable&lt;<a href="#Voodoo.Linq.Signature">Signature</a>&gt;                   
-                <br />
-                <br />
-                <p class="well">
-                </p>
-                <h2 data-path="">Voodoo.Logging</h2>
-                <p class="well">
                 </p>
                 <a id="Voodoo.Logging.DefaultLog">&nbsp;</a>
-                <h3 data-path="">DefaultLog</h3>
-                <b>Interfaces: </b>
-                <a href="#Voodoo.Logging.ILog">ILog</a>
-                <br />
-                <br />
-                <p class="well">
-                </p>
-                <h4>Properties</h4>
-                <table class="table table-striped table-bordered table-condensed">
-
-                    <colgroup>
-                        <col class="widthTiny" />
-                        <col class="widthMedium" />
-                        <col class="widthSmall" />
-                        <col class="widthLarge" />
-
-                    </colgroup>
-                    <tbody>
-                        <tr>
-                            <th></th>
-                            <th>Type</th>
-                            <th>Name</th>
-                            <th>Remarks</th>
-                        </tr>
-                        <tr data-path="">
-
-                            <td title="System.String.Action" class="optionName" data-content=""></td>
-                            <td>string</td>
-                            <td>Action</td>
-                            <td></td>
-                        </tr>
-                        <tr data-path="">
-
-                            <td title="System.String.Exception" class="optionName" data-content=""></td>
-                            <td>string</td>
-                            <td>Exception</td>
-                            <td></td>
-                        </tr>
-                        <tr data-path="">
-
-                            <td title="System.Int64.Id" class="optionName" data-content=""></td>
-                            <td>long</td>
-                            <td>Id</td>
-                            <td></td>
-                        </tr>
-                        <tr data-path="">
-
-                            <td title="System.String.IP" class="optionName" data-content=""></td>
-                            <td>string</td>
-                            <td>IP</td>
-                            <td></td>
-                        </tr>
-                        <tr data-path="">
-
-                            <td title="System.String.MethodCall" class="optionName" data-content=""></td>
-                            <td>string</td>
-                            <td>MethodCall</td>
-                            <td></td>
-                        </tr>
-                        <tr data-path="">
-
-                            <td title="System.String.Parameters" class="optionName" data-content=""></td>
-                            <td>string</td>
-                            <td>Parameters</td>
-                            <td></td>
-                        </tr>
-                        <tr data-path="">
-
-                            <td title="System.String.Result" class="optionName" data-content=""></td>
-                            <td>string</td>
-                            <td>Result</td>
-                            <td></td>
-                        </tr>
-                        <tr data-path="">
-
-                            <td title="System.DateTime.Time" class="optionName" data-content=""></td>
-                            <td>DateTime</td>
-                            <td>Time</td>
-                            <td></td>
-                        </tr>
-                        <tr data-path="">
-
-                            <td title="System.String.Url" class="optionName" data-content=""></td>
-                            <td>string</td>
-                            <td>Url</td>
-                            <td></td>
-                        </tr>
-                        <tr data-path="">
-
-                            <td title="System.String.UserName" class="optionName" data-content=""></td>
-                            <td>string</td>
-                            <td>UserName</td>
-                            <td></td>
-                        </tr>
-                        <tr data-path="">
-
-                            <td title="System.String.Category" class="optionName" data-content=""></td>
-                            <td>string</td>
-                            <td>Category</td>
-                            <td></td>
-                        </tr>
-                        <tr data-path="">
-
-                            <td title="System.String.SessionId" class="optionName" data-content=""></td>
-                            <td>string</td>
-                            <td>SessionId</td>
-                            <td></td>
-                        </tr>
-                        <tr data-path="">
-
-                            <td title="System.String.Referrer" class="optionName" data-content=""></td>
-                            <td>string</td>
-                            <td>Referrer</td>
-                            <td></td>
-                        </tr>
-                        <tr data-path="">
-
-                            <td title="System.String.Browser" class="optionName" data-content=""></td>
-                            <td>string</td>
-                            <td>Browser</td>
-                            <td></td>
-                        </tr>
-                        <tr data-path="">
-
-                            <td title="System.String.UserAgent" class="optionName" data-content=""></td>
-                            <td>string</td>
-                            <td>UserAgent</td>
-                            <td></td>
-                        </tr>
-                    </tbody>
-                </table>
-                <a id="Voodoo.Logging.FallbackLogger">&nbsp;</a>
                 <h3 data-path="">FallbackLogger</h3>
                 <b>Interfaces: </b>
                 <a href="#Voodoo.Logging.ILogger">ILogger</a>
@@ -1754,136 +1313,6 @@
                         </tr>
                     </tbody>
                 </table>
-                <a id="Voodoo.Logging.ILog">&nbsp;</a>
-                <h3 data-path="">ILog</h3>
-                <br />
-                <p class="well">
-                </p>
-                <h4>Properties</h4>
-                <table class="table table-striped table-bordered table-condensed">
-
-                    <colgroup>
-                        <col class="widthTiny" />
-                        <col class="widthMedium" />
-                        <col class="widthSmall" />
-                        <col class="widthLarge" />
-
-                    </colgroup>
-                    <tbody>
-                        <tr>
-                            <th></th>
-                            <th>Type</th>
-                            <th>Name</th>
-                            <th>Remarks</th>
-                        </tr>
-                        <tr data-path="">
-
-                            <td title="System.Int64.Id" class="optionName" data-content=""></td>
-                            <td>long</td>
-                            <td>Id</td>
-                            <td></td>
-                        </tr>
-                        <tr data-path="">
-
-                            <td title="System.String.Action" class="optionName" data-content=""></td>
-                            <td>string</td>
-                            <td>Action</td>
-                            <td></td>
-                        </tr>
-                        <tr data-path="">
-
-                            <td title="System.String.Exception" class="optionName" data-content=""></td>
-                            <td>string</td>
-                            <td>Exception</td>
-                            <td></td>
-                        </tr>
-                        <tr data-path="">
-
-                            <td title="System.String.IP" class="optionName" data-content=""></td>
-                            <td>string</td>
-                            <td>IP</td>
-                            <td></td>
-                        </tr>
-                        <tr data-path="">
-
-                            <td title="System.String.MethodCall" class="optionName" data-content=""></td>
-                            <td>string</td>
-                            <td>MethodCall</td>
-                            <td></td>
-                        </tr>
-                        <tr data-path="">
-
-                            <td title="System.String.Parameters" class="optionName" data-content=""></td>
-                            <td>string</td>
-                            <td>Parameters</td>
-                            <td></td>
-                        </tr>
-                        <tr data-path="">
-
-                            <td title="System.String.Result" class="optionName" data-content=""></td>
-                            <td>string</td>
-                            <td>Result</td>
-                            <td></td>
-                        </tr>
-                        <tr data-path="">
-
-                            <td title="System.DateTime.Time" class="optionName" data-content=""></td>
-                            <td>DateTime</td>
-                            <td>Time</td>
-                            <td></td>
-                        </tr>
-                        <tr data-path="">
-
-                            <td title="System.String.Category" class="optionName" data-content=""></td>
-                            <td>string</td>
-                            <td>Category</td>
-                            <td></td>
-                        </tr>
-                        <tr data-path="">
-
-                            <td title="System.String.UserName" class="optionName" data-content=""></td>
-                            <td>string</td>
-                            <td>UserName</td>
-                            <td></td>
-                        </tr>
-                        <tr data-path="">
-
-                            <td title="System.String.Url" class="optionName" data-content=""></td>
-                            <td>string</td>
-                            <td>Url</td>
-                            <td></td>
-                        </tr>
-                        <tr data-path="">
-
-                            <td title="System.String.SessionId" class="optionName" data-content=""></td>
-                            <td>string</td>
-                            <td>SessionId</td>
-                            <td></td>
-                        </tr>
-                        <tr data-path="">
-
-                            <td title="System.String.Referrer" class="optionName" data-content=""></td>
-                            <td>string</td>
-                            <td>Referrer</td>
-                            <td></td>
-                        </tr>
-                        <tr data-path="">
-
-                            <td title="System.String.Browser" class="optionName" data-content=""></td>
-                            <td>string</td>
-                            <td>Browser</td>
-                            <td></td>
-                        </tr>
-                        <tr data-path="">
-
-                            <td title="System.String.UserAgent" class="optionName" data-content=""></td>
-                            <td>string</td>
-                            <td>UserAgent</td>
-                            <td></td>
-                        </tr>
-                    </tbody>
-                </table>
-                <a id="Voodoo.Logging.ILogger">&nbsp;</a>
                 <h3 data-path="">ILogger</h3>
                 <br />
                 <p class="well">
@@ -1917,81 +1346,11 @@
                     </tbody>
                 </table>
                 <a id="Voodoo.Logging.LogLevels">&nbsp;</a>
-                <h3 data-path="">LogLevels</h3>
-                <b>Interfaces: </b>
-                IComparable, IFormattable, IConvertible                   
-                <br />
-                <b>Inheritance Hierarchy: </b>
-                <br />
-                &nbsp;&nbsp;&nbsp;&nbsp;Enum<br />
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ValueType<br />
-                <br />
-                <p class="well">
-                </p>
-                <a id="Voodoo.Logging.LogManager">&nbsp;</a>
-                <h3 data-path="">LogManager</h3>
-                <br />
-                <p class="well">
-                </p>
-                <h4>Properties</h4>
-                <table class="table table-striped table-bordered table-condensed">
-
-                    <colgroup>
-                        <col class="widthTiny" />
-                        <col class="widthMedium" />
-                        <col class="widthSmall" />
-                        <col class="widthLarge" />
-
-                    </colgroup>
-                    <tbody>
-                        <tr>
-                            <th></th>
-                            <th>Type</th>
-                            <th>Name</th>
-                            <th>Remarks</th>
-                        </tr>
-                        <tr data-path="">
-
-                            <td title="Voodoo.Logging.ILogger.Logger" class="optionName" data-content="">static
-                            </td>
-                            <td><a href="#Voodoo.Logging.ILogger">ILogger</a></td>
-                            <td>Logger</td>
-                            <td></td>
-                        </tr>
-                    </tbody>
-                </table>
-                <h4>Methods</h4>
-                <table class="table table-striped table-bordered table-condensed">
-                    <colgroup>
-                    </colgroup>
-                    <tbody>
-                        <tr>
-                            <th></th>
-                            <th>Return Type</th>
-                            <th>Source</th>
-                            <th>Method</th>
-                            <th>Remarks</th>
-                        </tr>
-                        <tr data-path="Voodoo.Logging.LogManager..string-message">
-                            <td title="Voodoo.Logging.LogManager.Log" class="optionName" data-content="">static
-                            </td>
-                            <td>void</td>
-                            <td></td>
-                            <td>Log(string message)</td>
-                            <td></td>
-                        </tr>
-                        <tr data-path="Voodoo.Logging.LogManager..Exception-ex">
-                            <td title="Voodoo.Logging.LogManager.Log" class="optionName" data-content="">static
-                            </td>
-                            <td>void</td>
-                            <td></td>
-                            <td>Log(Exception ex)</td>
-                            <td></td>
-                        </tr>
-                    </tbody>
-                </table>
                 <h2 data-path="">Voodoo.Messages</h2>
                 <p class="well">
+                    A <a href="Voodoo.Operations.Command|TRequest,TResponse|">Command</a> or <a href="#Voodoo.Operations.Query|TRequest,TResponse|">Query</a>
+                    takes a request (which can be any object) and returns an <a href="Vooodoo.Messages.IRepsonse">IResponse</a>.  Several default <a href="#Vooodoo.Messages.IRepsonse">IResponse</a>
+                    implementations <a href="#Vooodoo.Messages.Repsonse">Response</a>, <a href="#Voodoo.Messages.Response|T|">Response&lt;T&gt;</a>, <a href="#Voodoo.Messages.ListResponse|T|">ListResponse&lt;T&gt;</a>
                 </p>
                 <a id="Voodoo.Messages.EmptyRequest">&nbsp;</a>
                 <h3 data-path="">EmptyRequest</h3>
