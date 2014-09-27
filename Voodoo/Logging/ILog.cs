@@ -4,19 +4,7 @@ using System.Linq;
 
 namespace Voodoo.Logging
 {
-    //public static class LogBuffer
-    //{
-    //    public static List<string> Logs { get; set; }
-
-    //    public static void AddLog(string log)
-    //    {
-    //        if (Logs == null)
-    //            Logs = new List<string>();
-
-    //        Logs.Add(log);
-    //    }
-    //}
-
+    
     public interface ILog
     {
         long Id { get; set; }

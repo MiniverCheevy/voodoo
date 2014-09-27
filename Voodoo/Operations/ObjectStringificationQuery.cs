@@ -2,11 +2,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System;
-using System.Collections.Generic;
 using System.Reflection;
 using System.Text;
 using Voodoo.Messages;
+using Voodoo;
 
 namespace Voodoo.Operations
 {
@@ -17,6 +16,8 @@ namespace Voodoo.Operations
         private readonly int padding;
         private readonly StringBuilder result;
         private int depth;
+        private int maxItemsInGraph = 1000;
+        private int currentItemsInGraph = 0;
 
         public ObjectStringificationQuery(object request) : base(request)
         {
@@ -33,6 +34,10 @@ namespace Voodoo.Operations
 
         private string read(object element)
         {
+            if (currentItemsInGraph > maxItemsInGraph)
+                return string.Empty;
+             
+
             if (element == null || element is ValueType || element is string)
             {
                 write(format(element));
@@ -50,8 +55,14 @@ namespace Voodoo.Operations
                 var enumerableElement = element as IEnumerable;
                 if (enumerableElement != null)
                 {
+                    
+                    var counter = 0;
                     foreach (var item in enumerableElement)
                     {
+                        counter++;
+                        if (counter > VoodooGlobalConfiguration.LogMaximumNumberOfItemsInCollection)
+                            break;
+
                         if (item is IEnumerable && !(item is string))
                         {
                             depth++;
@@ -79,10 +90,17 @@ namespace Voodoo.Operations
                             continue;
 
                         var type = fieldInfo != null ? fieldInfo.FieldType : propertyInfo.PropertyType;
-                        var value = fieldInfo != null
-                            ? fieldInfo.GetValue(element)
-                            : propertyInfo.GetValue(element, null);
-
+                        object value = null;
+                        try
+                        {
+                            value = fieldInfo != null
+                                        ? fieldInfo.GetValue(element)
+                                        : propertyInfo.GetValue(element, null);
+                        }
+                        catch (Exception ex)
+                        {
+                            value = ex.Message;
+                        }
                         if (type.IsValueType || type == typeof (string))
                         {
                             write("{0}: {1}", memberInfo.Name, format(value));
@@ -116,14 +134,20 @@ namespace Voodoo.Operations
         {
             if (value == null)
                 return false;
-
+            if (value.GetType().IsScalar())
+                return false;
             var hash = value.GetHashCode();
-            return hashes.Contains(hash);
-            return false;
+            var wasTouched= hashes.Contains(hash);
+            if (!wasTouched)
+                hashes.Add(hash);
+            return wasTouched;
+
+
         }
 
         private void write(string value, params object[] args)
         {
+            currentItemsInGraph++;
             var space = new string(' ', depth*padding);
 
             if (args != null)

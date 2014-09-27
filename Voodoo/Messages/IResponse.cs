@@ -9,7 +9,9 @@ namespace Voodoo.Messages
         bool IsOk { get; set; }
         string Message { get; set; }
         Exception Exception { get; set; }
-        IList<KeyValuePair> Details { get; set; }
+        IList<INameValuePair> Details { get; set; }
         void SetExceptions(Exception ex);
+        void AppendResponse(IResponse response);
+        bool HasLogicException { get; set; }
     }
 }

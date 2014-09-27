@@ -35,10 +35,6 @@ namespace Voodoo.Messages.Paging
             public static readonly string LastPage = ">>";
         }
 
-        public struct SortDirection
-        {
-            public static readonly string Descending = "DESC";
-            public static readonly string Ascending = "ASC";
-        }
+       
     }
 }

@@ -26,6 +26,99 @@ namespace Voodoo
             return false;
         }
 
+        public static string GetTypeNameWithoutGenericArguments(this Type type)
+        {
+            if (!type.GetGenericArguments().Any())
+                return null;
+
+            var index = 0;
+            var testedTypeName = type.Name;
+            index = testedTypeName.IndexOf("`");
+            if (index == -1)
+                return null;
+            testedTypeName = testedTypeName.Substring(0, index);
+            return testedTypeName;
+        }
+
+        public static string GetTypeFullNameWithoutGenericArguments(this Type type)
+        {
+            if (!type.GetGenericArguments().Any())
+                return null;
+
+            var index = 0;
+            var testedTypeName = type.FullName;
+            index = testedTypeName.IndexOf("`");
+            if (index == -1)
+                return null;
+            testedTypeName = testedTypeName.Substring(0, index);
+            return testedTypeName;
+        }
+
+        public static bool IsGenericTypeDirectlyInheritedFromOtherGenericType(this Type testedType, Type possibleBaseType)
+        {
+            if (testedType == null || possibleBaseType == null || testedType.BaseType == null || !testedType.BaseType.GetGenericArguments().Any() ||
+                !possibleBaseType.GetGenericArguments().Any())
+                return false;
+
+            var left = testedType.BaseType;
+            var right = possibleBaseType;
+
+            return left.Name == right.Name && left.Namespace == right.Namespace 
+                && left.GetGenericArguments().Count() == right.GetGenericArguments().Count();
+
+            //TODO: move to shares common anscestor
+            var baseTypeName = possibleBaseType.GetTypeFullNameWithoutGenericArguments();
+            
+            var match = false;
+
+            while (testedType != null)
+            {
+                var typeName = testedType.GetTypeFullNameWithoutGenericArguments();
+                if (baseTypeName == typeName)
+                {
+                    match = true;
+                    break;
+                }
+                testedType = testedType.BaseType;
+            }
+
+            return match;
+
+            if (!match)
+                return false;
+            
+                var baseTypes = possibleBaseType.GetGenericArguments();
+                var testTypes = testedType.GetGenericArguments();
+
+                if (baseTypes.Count() != testTypes.Count())
+                    return false;
+
+                var index = 0;
+                foreach (var type in testTypes)
+                {
+                    var testedChild = type;
+                    var testedBase = baseTypes[0];
+                    while (testedChild != null)
+                    {
+                        if (testedChild == testedBase)
+                            break;
+                        testedChild = testedChild.BaseType;
+                    }
+                    return false;
+                }
+                return true;            
+        }
+
+        public static List<KeyValuePair<Type, string>> GetParameterDictionary(this MethodInfo methodInfo)
+        {
+            var result = new List<KeyValuePair<Type, string>>();
+            foreach (var info in methodInfo.GetParameters())
+            {
+                result.Add(new KeyValuePair<Type, string>(info.ParameterType, info.Name));
+            }
+            return result;
+        }
+
         public static string GetParametersForCodeGeneration(this MethodInfo methodInfo)
         {
             var result = string.Empty;
@@ -41,7 +134,10 @@ namespace Voodoo
             return result;
         }
 
-        public static string FixUpType(this Type t)
+        /// <summary>
+        ///     convert scalar Type names into compilable c# type names
+        /// </summary>
+        public static string FixUpScalarTypeName(this Type t)
         {
             var type = t.Name;
             type = type.Replace("System.", "");
@@ -80,18 +176,23 @@ namespace Voodoo
                     return "ulong";
                 case "Object":
                     return "object";
+                case "Void":
+                    return "void";
                 default:
 
                     return type;
             }
         }
 
+        /// <summary>
+        ///     /// convert Type name into compilable c# type names
+        /// </summary>
         public static string FixUpTypeName(this Type type)
         {
-            var result = type.FixUpType();
+            var result = type.FixUpScalarTypeName();
             if (type.IsGenericType && type.GetGenericTypeDefinition() == typeof (Nullable<>))
             {
-                result = string.Format("{0}?", Nullable.GetUnderlyingType(type).FixUpType());
+                result = string.Format("{0}?", Nullable.GetUnderlyingType(type).FixUpScalarTypeName());
             }
 
             else if (type.IsGenericType)
@@ -121,7 +222,7 @@ namespace Voodoo
                     }
                 }
                 inner = inner.TrimEnd(",".ToCharArray());
-                var name = type.GetGenericArguments()[0].FixUpType();
+                var name = type.GetGenericArguments()[0].FixUpScalarTypeName();
                 var outer = type.GetGenericTypeDefinition().Name;
                 var ary = outer.Split(@"`".ToCharArray());
                 outer = ary[0];
@@ -158,6 +259,5 @@ namespace Voodoo
             }
             return false;
         }
-
     }
 }

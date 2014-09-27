@@ -3,18 +3,41 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using Voodoo.Messages;
 
 namespace Voodoo
 {
     public static class CollectionExtensions
     {
+        public static void AddIfNotNull<T>(this ICollection<T> collection, T item) where T : class
+        {
+            if (item != null)
+                collection.Add(item);
+        }
+
+        public static void AddIfNotNullOrWhiteSpace(this ICollection<string> collection, object item)
+        {
+            if (item != null && !string.IsNullOrWhiteSpace(item.ToString()))
+                collection.Add(item.ToString());
+        }
+        public static ListResponse<T> ToListResponse<T>(this IEnumerable<T> items) where T : class, new()
+        {
+            var result = new ListResponse<T>();
+            result.Data.AddRange(items);
+            return result;
+        }
+
+        public static T[] ToArray<T>(this IEnumerable source)
+        {
+            return source.Cast<T>().ToArray();
+        }
 
         public static IEnumerable<T> ForEach<T>(this IEnumerable<T> source, Action<T> action)
         {
             if (action == null)
                 throw new ArgumentNullException("action");
 
-            foreach (var item in source)
+            foreach (var item in source.ToArray())
                 action(item);
 
             return source;
@@ -100,16 +123,6 @@ namespace Voodoo
             return array;
         }
 
-        public static void AddIfNotNull<T>(this ICollection<T> collection, T item) where T : class
-        {
-            if (item != null)
-                collection.Add(item);
-        }
-
-        public static void AddIfNotNullOrWhiteSpace(this ICollection<string> collection, object item)
-        {
-            if (item != null && !string.IsNullOrWhiteSpace(item.ToString()))
-                collection.Add(item.ToString());
-        }
+       
     }
 }

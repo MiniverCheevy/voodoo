@@ -13,13 +13,29 @@ namespace Voodoo.Tests.Voodoo.Operations
         [TestMethod]
         public void Execute_ExceptionIsThrown_IsNotOk()
         {
+            VoodooGlobalConfiguration.RemoveExceptionFromResponseAfterLogging = false;
             var result = new QueryThatThrowsErrors(new EmptyRequest()).Execute();
             Assert.AreEqual(false, result.IsOk);
+            VoodooGlobalConfiguration.RemoveExceptionFromResponseAfterLogging = true;
+        }
+
+        [TestMethod]
+        public void Execute_ErrorAndMergedResponses_IsNotOk()
+        {
+            VoodooGlobalConfiguration.RemoveExceptionFromResponseAfterLogging = false;
+            var result = new QueryThatThrowsErrors(new EmptyRequest()).Execute();
+            Assert.AreEqual(false, result.IsOk);
+            var response = new Response() {IsOk = true};
+            response.AppendResponse(result);
+            Assert.AreEqual(false, response.IsOk);
+
+            VoodooGlobalConfiguration.RemoveExceptionFromResponseAfterLogging = true;
         }
 
         [TestMethod]
         public void Execute_ExceptionIsThrown_ExceptionIsBubbled()
         {
+            VoodooGlobalConfiguration.RemoveExceptionFromResponseAfterLogging = false;
             var result = new QueryThatThrowsErrors(new EmptyRequest()).Execute();
             Assert.AreEqual(TestingResponse.OhNo, result.Message);
             Assert.IsNotNull(result.Exception);

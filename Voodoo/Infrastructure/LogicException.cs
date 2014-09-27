@@ -15,6 +15,6 @@ namespace Voodoo.Infrastructure
         {
         }
 
-        public List<KeyValuePair> Details { get; set; }
+        public List<INameValuePair> Details { get; set; }
     }
 }

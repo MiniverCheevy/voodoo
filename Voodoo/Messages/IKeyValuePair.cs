@@ -4,9 +4,9 @@ using System.Linq;
 
 namespace Voodoo.Messages
 {
-    public interface IKeyValuePair
+    [Obsolete("Use INameValuePair instead")]
+    public interface IKeyValuePair : INameValuePair
     {
-        string Key { get; set; }
-        string Value { get; set; }
+
     }
 }

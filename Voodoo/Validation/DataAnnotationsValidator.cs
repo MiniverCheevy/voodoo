@@ -18,16 +18,16 @@ namespace Voodoo.Validation
         public bool IsValid { get; set; }
         public List<ValidationResult> ValidationResults { get; set; }
 
-        public List<KeyValuePair> ValidationResultsAsNameValuePair
+        public List<INameValuePair> ValidationResultsAsNameValuePair
         {
             get
             {
-                var result = new List<KeyValuePair>();
+                var result = new List<INameValuePair>();
                 if (ValidationResults != null)
                 {
                     var items =
                         ValidationResults.Select(
-                            c => new KeyValuePair {Key = c.MemberNames.FirstOrDefault(), Value = c.ErrorMessage});
+                            c => new NameValuePair{Name = c.MemberNames.FirstOrDefault(), Value = c.ErrorMessage});
                     result.AddRange(items);
                 }
                 return result;

@@ -25,10 +25,11 @@ namespace Voodoo.Logging
 
         public void Log(string log, string logFilePath)
         {
+            var path = string.Empty;
             var appName = getAppName();
             try
             {
-                var path = getLogFilePath(logFilePath);
+                path = getLogFilePath(logFilePath);
 
                 deleteFileIfNeeded(path);
 
@@ -43,17 +44,17 @@ namespace Voodoo.Logging
             }
             catch (Exception ex)
             {
-                handleFileWriteFailure(log, ex, appName);
+                handleFileWriteFailure(log, ex, appName, path);
             }
         }
 
-        private static void handleFileWriteFailure(string log, Exception ex, string appName)
+        private static void handleFileWriteFailure(string actualError, Exception ex, string appName, string path)
         {
-            Debug.WriteLine("Error in Fallback Logger: " + ex);
+//Handle max event log message size is 32766
 
+            var failedToWriteMessage = "Fallback Logger Failed to write log file: " + path; 
             var source = appName ?? "Application";
-            const string logName = "Application";
-            var eventName = "Fallback Logger" + ex;
+            const string logName = "Application";            
 
             try
             {
@@ -67,18 +68,18 @@ namespace Voodoo.Logging
                 var command =
                     string.Format(
                         "eventcreate /ID 1 /L APPLICATION /T INFORMATION  /SO {0} /D \"Event Source Created\"", appName);
-                var message =
+                var eventSourceDoesNotExistMessage =
                     string.Concat(
                         "Event source does not exist for this application, you can set v:appName in the config file to customize it and/or run the following command ",
                         Environment.NewLine, command, Environment.NewLine,
                         "You may have to change the /ID parameter if it already exists");
-                EventLog.WriteEntry(source, message, EventLogEntryType.Warning);
+                EventLog.WriteEntry(source, eventSourceDoesNotExistMessage, EventLogEntryType.Warning);
             }
 
 
-            EventLog.WriteEntry(source, eventName, EventLogEntryType.Warning);
+            EventLog.WriteEntry(source, failedToWriteMessage, EventLogEntryType.Warning);
 
-            EventLog.WriteEntry(source, log, EventLogEntryType.Error);
+            EventLog.WriteEntry(source, actualError, EventLogEntryType.Error);
         }
 
         private static void deleteFileIfNeeded(string path)
@@ -100,7 +101,7 @@ namespace Voodoo.Logging
 
         private static string getLogFilePath(string logFilePath)
         {
-            var configuredPath = ConfigurationManager.AppSettings["v:logFilePath"];
+            var configuredPath = VoodooGlobalConfiguration.LogFilePath;
             if (string.IsNullOrEmpty(logFilePath))
                 logFilePath = configuredPath;
 
@@ -121,7 +122,7 @@ namespace Voodoo.Logging
             var appName = string.Empty;
             try
             {
-                appName = ConfigurationManager.AppSettings["v:appName"];
+                appName = VoodooGlobalConfiguration.ApplicationName;
                 if (string.IsNullOrEmpty(appName))
                 {
                     var assembly = Assembly.GetCallingAssembly() == null

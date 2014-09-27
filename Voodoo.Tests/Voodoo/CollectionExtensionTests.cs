@@ -9,6 +9,16 @@ namespace Voodoo.Tests.Voodoo
     [TestClass]
     public class CollectionExtensionTests
     {
+
+        [TestMethod]
+        public void ForEeach_Collection_EnumeratesProperly()
+        {
+            var items = new[] { "A", "B", "C" };
+            var count = 0;
+            items.ForEach( c => count++);
+            Assert.AreEqual(3, count);
+        }
+
         [TestMethod]
         public void ContainsAny_Contained_ReturnsTrue()
         {
@@ -34,6 +44,14 @@ namespace Voodoo.Tests.Voodoo
             var target = new[] {"A", "B", "C"};
             var result = source.ContainsAll(target);
             Assert.AreEqual(true, result);
+        }
+        [TestMethod]
+        public void ContainsAll_EmptyList_ReturnsFalse()
+        {
+            var source = new string[] {};
+            var target = new[] { "A", "B", "C" };
+            var result = source.ContainsAll(target);
+            Assert.AreEqual(false, result);
         }
 
         [TestMethod]

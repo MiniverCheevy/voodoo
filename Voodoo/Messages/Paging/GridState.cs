@@ -42,7 +42,7 @@ namespace Voodoo.Messages.Paging
             DefaultSortMember = sorting.DefaultSortMember;
             SortMember = String.IsNullOrEmpty(sorting.SortMember) ? sorting.DefaultSortMember : sorting.SortMember;
             SortDirection = String.IsNullOrEmpty(sorting.SortDirection)
-                ? GridConstants.SortDirection.Ascending
+                ? Constants.SortDirection.Ascending
                 : sorting.SortDirection;
         }
 

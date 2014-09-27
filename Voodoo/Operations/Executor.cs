@@ -33,17 +33,7 @@ namespace Voodoo.Operations
             {
                 response = BuildResponseWithException(ex);
             }
-            finally
-            {
-                try
-                {
-                    Finally();
-                }
-                catch (Exception finalException)
-                {
-                    response.Details.Add(new KeyValuePair("Exception In Final", finalException.ToString()));
-                }
-            }
+            
             return response;
         }
 
@@ -68,12 +58,11 @@ namespace Voodoo.Operations
                 var stringResponse = new ObjectStringificationQuery(request).Execute();
                 LogManager.Log(stringResponse.IsOk ? stringResponse.Text : stringResponse.Message);
             }
+            if (VoodooGlobalConfiguration.RemoveExceptionFromResponseAfterLogging)
+                response.Exception = null;
         }
 
-        protected virtual void Finally()
-        {
-        }
-
+       
         protected TResponse BuildResponseWithException(Exception ex)
         {
             response = new TResponse {IsOk = false};

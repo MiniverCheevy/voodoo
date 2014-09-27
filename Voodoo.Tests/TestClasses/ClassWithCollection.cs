@@ -9,5 +9,10 @@ namespace Voodoo.Tests.TestClasses
     {
         [CollectionMustHaveAtLeastOneItem]
         public List<string> Items { get; set; }
+
+        public ClassWithCollection()
+        {
+            Items=new List<string>();
+        }
     }
 }

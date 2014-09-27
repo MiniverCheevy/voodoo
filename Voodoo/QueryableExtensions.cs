@@ -15,7 +15,7 @@ namespace Voodoo
         public static IQueryable<TQueryResult> OrderByDescending<TQueryResult>(this IQueryable<TQueryResult> query,
             string sortExpression) where TQueryResult : class
         {
-            return query.OrderByDynamic(string.Format("{0} {1}", sortExpression, GridConstants.SortDirection.Descending));
+            return query.OrderByDynamic(string.Format("{0} {1}", sortExpression, Constants.SortDirection.Descending));
         }
 
         public static PagedResponse<TObject> PagedResult<TObject>(this IQueryable<TObject> source, IGridState paging)
@@ -74,9 +74,6 @@ namespace Voodoo
             return Expression.Lambda<T>(merge(first.Body, secondBody), first.Parameters);
         }
 
-        /// <summary>
-        ///     Used for combining expressions.  If first is null, second will be returned
-        /// </summary>
         [DebuggerStepThrough]
         public static Expression<Func<T, bool>> AndAlso<T>(this Expression<Func<T, bool>> first,
             Expression<Func<T, bool>> second)
@@ -86,9 +83,6 @@ namespace Voodoo
             return first.Compose(second, Expression.And);
         }
 
-        /// <summary>
-        ///     Used for combining expressions.  If first is null, second will be returned
-        /// </summary>
         [DebuggerStepThrough]
         public static Expression<Func<T, bool>> OrElse<T>(this Expression<Func<T, bool>> first,
             Expression<Func<T, bool>> second)
