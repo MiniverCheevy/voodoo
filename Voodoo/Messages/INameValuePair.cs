@@ -7,5 +7,6 @@ namespace Voodoo.Messages
         string Value { get; set; }
         [Obsolete("Use name instead")]
         string Key { get; set; }
+        
     }
 }

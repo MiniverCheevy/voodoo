@@ -67,46 +67,46 @@ namespace Voodoo
                 && left.GetGenericArguments().Count() == right.GetGenericArguments().Count();
 
             //TODO: move to shares common anscestor
-            var baseTypeName = possibleBaseType.GetTypeFullNameWithoutGenericArguments();
+            //var baseTypeName = possibleBaseType.GetTypeFullNameWithoutGenericArguments();
             
-            var match = false;
+            //var match = false;
 
-            while (testedType != null)
-            {
-                var typeName = testedType.GetTypeFullNameWithoutGenericArguments();
-                if (baseTypeName == typeName)
-                {
-                    match = true;
-                    break;
-                }
-                testedType = testedType.BaseType;
-            }
+            //while (testedType != null)
+            //{
+            //    var typeName = testedType.GetTypeFullNameWithoutGenericArguments();
+            //    if (baseTypeName == typeName)
+            //    {
+            //        match = true;
+            //        break;
+            //    }
+            //    testedType = testedType.BaseType;
+            //}
 
-            return match;
+            //return match;
 
-            if (!match)
-                return false;
+            //if (!match)
+            //    return false;
             
-                var baseTypes = possibleBaseType.GetGenericArguments();
-                var testTypes = testedType.GetGenericArguments();
+            //    var baseTypes = possibleBaseType.GetGenericArguments();
+            //    var testTypes = testedType.GetGenericArguments();
 
-                if (baseTypes.Count() != testTypes.Count())
-                    return false;
+            //    if (baseTypes.Count() != testTypes.Count())
+            //        return false;
 
-                var index = 0;
-                foreach (var type in testTypes)
-                {
-                    var testedChild = type;
-                    var testedBase = baseTypes[0];
-                    while (testedChild != null)
-                    {
-                        if (testedChild == testedBase)
-                            break;
-                        testedChild = testedChild.BaseType;
-                    }
-                    return false;
-                }
-                return true;            
+            //    var index = 0;
+            //    foreach (var type in testTypes)
+            //    {
+            //        var testedChild = type;
+            //        var testedBase = baseTypes[0];
+            //        while (testedChild != null)
+            //        {
+            //            if (testedChild == testedBase)
+            //                break;
+            //            testedChild = testedChild.BaseType;
+            //        }
+            //        return false;
+            //    }
+            //    return true;            
         }
 
         public static List<KeyValuePair<Type, string>> GetParameterDictionary(this MethodInfo methodInfo)

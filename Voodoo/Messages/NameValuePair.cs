@@ -22,6 +22,11 @@ namespace Voodoo.Messages
         {
             Name = name;
             Value = value;
-        }        
+        }
+
+        public override string ToString()
+        {
+            return string.Format("NameValuePair Name:{0} Value:{1}", Name.To<string>(), Value.To<string>());
+        }
     }
 }
