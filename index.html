@@ -81,20 +81,6 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Link</a></li>
-                <li><a href="#">Link</a></li>
-                <!--  <li class="dropdown">
-                              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
-                              <ul class="dropdown-menu">
-                                  <li><a href="#">Action</a></li>
-                                  <li><a href="#">Another action</a></li>
-                                  <li><a href="#">Something else here</a></li>
-                                  <li class="divider"></li>
-                                  <li><a href="#">Separated link</a></li>
-                                  <li class="divider"></li>
-                                  <li><a href="#">One more separated link</a></li>
-                              </ul>
-                          </li> -->
             </ul>
         </div>
         <!-- /.navbar-collapse -->
@@ -347,7 +333,7 @@
             Assert.AreNotEqual(bar, cantCast);
         }
                          </code></pre>
-                  <p>
+                <p>
                     Foo is an IHaveAProperty so the call to To casts it as an IHaveAProperty and all is well.  Bar is not a Foo, so the call to To&lt;Foo&gt; returns a new Foo because it cannot cast the bar.  Primitives also require some special consideration:
                 </p>
                 <pre><code data-language="csharp">
@@ -1110,7 +1096,7 @@
                 <h3 data-path="">ExceptionTranslation</h3>
                 <br />
                 <p class="well">
-                    Provides special handling for certain exception types.  Such as <a href="https://gist.github.com/MiniverCheevy/8af032691b8afa26a49b">DbEntityValidationExceptionTranlator</a> 
+                    Provides special handling for certain exception types.  Such as <a href="https://gist.github.com/MiniverCheevy/8af032691b8afa26a49b">DbEntityValidationExceptionTranlator</a>
                     this to copy the EntityValidationErrors into the details of the <a href="#Voodoo.Messages.Response">Response</a>.
                 </p>
                 <h4>Methods</h4>
@@ -1258,7 +1244,8 @@
                 &nbsp;&nbsp;&nbsp;&nbsp;<a href="#Voodoo.Infrastructure.ExceptionTranslation">ExceptionTranslation</a><br />
                 <br />
                 <p class="well">
-                    copies the LoaderExceptions into the details collection of the response</p>
+                    copies the LoaderExceptions into the details collection of the response
+                </p>
                 <h2 data-path="">Voodoo.Linq</h2>
                 <p class="well">
                     Pulled from a blog post by <a href="http://weblogs.asp.net/scottgu/dynamic-linq-part-1-using-the-linq-dynamic-query-library">Scott Gu</a>, belongs in the System.Linq.Dynamic namespace but some developers get twichy when you add things to the System namespace.
@@ -1266,7 +1253,7 @@
                 <a id="Voodoo.Linq.ClassFactory">&nbsp;</a><h2 data-path="">Voodoo.Logging</h2>
                 <p class="well">
                     This is probably not the logger you&#39;re looking for.&nbsp; You can implment the <a href="#Voodoo.Logging.ILogger">ILogger</a> interface and create an adapter for 
-                    <a href="https://gist.github.com/MiniverCheevy/4a72daeba29e482205ba#file-elmahlogger">Elmah</a>, <a href="https://gist.github.com/MiniverCheevy/4a72daeba29e482205ba#file-nloglogger">NLog</a> 
+                    <a href="https://gist.github.com/MiniverCheevy/4a72daeba29e482205ba#file-elmahlogger">Elmah</a>, <a href="https://gist.github.com/MiniverCheevy/4a72daeba29e482205ba#file-nloglogger">NLog</a>
                     or whatever logging framework you use.
 
                 </p>
@@ -1350,7 +1337,7 @@
                 <p class="well">
                     A <a href="Voodoo.Operations.Command|TRequest,TResponse|">Command</a> or <a href="#Voodoo.Operations.Query|TRequest,TResponse|">Query</a>
                     takes a request (which can be any object) and returns an <a href="Vooodoo.Messages.IRepsonse">IResponse</a>.  Several default <a href="#Vooodoo.Messages.IRepsonse">IResponse</a>
-                    implementations <a href="#Vooodoo.Messages.Repsonse">Response</a>, <a href="#Voodoo.Messages.Response|T|">Response&lt;T&gt;</a>, <a href="#Voodoo.Messages.ListResponse|T|">ListResponse&lt;T&gt;</a>
+                    implementations <a href="#Vooodoo.Messages.Repsonse">Response</a>, <a href="#Voodoo.Messages.Response|T|">Response&lt;T&gt;</a>, <a href="#Voodoo.Messages.ListResponse|T|">ListResponse&lt;T&gt;</a> are available.
                 </p>
                 <a id="Voodoo.Messages.EmptyRequest">&nbsp;</a>
                 <h3 data-path="">EmptyRequest</h3>
@@ -2058,7 +2045,58 @@
                 </table>
                 <h2 data-path="">Voodoo.Operations</h2>
                 <p class="well">
+                    Operations provide a loose <a href="http://codeofrob.com/entries/cqrs-is-too-complicated.html">Command Query Responsibility Segragation"</a> structure.  
+                    Each operation takes a request (any arbitrary object) and return aa <a href="#Voodoo.Messages.IRepsonse">IResponse</a>. 
+                    This structure is very testable.
+                    I also like to pretend that I'm doing <a href="http://en.wikipedia.org/wiki/Aspect-oriented_programming">Aspect Oriented Programming</a>
+                    by handling validation, logging and error handling in the base <a href="#Voodoo.Operations.Executor|T|">Executor</a> class.  The only functional difference between a <a href="#Voodoo.Operations.Command|TRequest,TResponse|">Command</a>
+                    and <a href="Voodoo.Operations.Query|TRequest,TResponse|">Query</a> is that commands are wrapped in a transaction scope which does not get committed if an exception occurs.  Consider a simple query:
                 </p>
+                <pre>
+                <code data-language="csharp">
+
+    public class PersonQuery: Query&lt;PersonRequest,ListResponse&lt;Person&gt;&gt;
+    {
+        public PersonQuery(PersonRequest request) : base(request)
+        {
+        }
+
+        protected override ListResponse&lt;Person&gt; ProcessRequest()
+        {
+            using (var context = getContext())
+            {
+                response.Data = context.People
+                    .Where (c=>c.FirstName.StartsWith(request.SearchString) ||
+                            c=>c.LastName.StartsWith(request.SearchString)
+                 .ToList();
+            }
+            return response;
+        }
+    }</code>
+                </pre>
+                <p>
+                    Which you would consume with 
+                </p>
+                <pre><code>
+    var request = new PersonRequest{SearchString="j"};
+    var response = new PersonQuery(request)Execute();
+                </code>
+                </pre>
+                <p class="well">
+                    There is no validation because the base <a href="Voodoo.Operations.Executor|TRequest,TResponse|">Executor</a> class invokes 
+                    <a href="http://msdn.microsoft.com/en-us/library/system.componentmodel.dataannotations.validationattribute.aspx">DataAnnotations Validation</a> including
+                     <a href="http://msdn.microsoft.com/en-us/library/system.componentmodel.dataannotations.ivalidatableobject.aspx">IValidatableObject</a>
+                    to handle thing more complex than simple property
+                     level validation.  Though you can override <b>protected virtual void Validate()</b>
+                    to add any custom validation or make a project specific query to use an entirely different validation mechanism.
+                     <i>There is no try</i> in the query because the base Executor wraps the ProcessRequest() method in a try catch block.  
+                     There is no logging because the <b>protected virtual void CustomErrorBehavior(Exception ex)</b>
+                    logs all exceptions to the registered <a href="#Voodoo.Logging.ILogger">ILogger</a>.
+                     A typical scenerio would be to execute your operations, check to see if 
+                     <b>response.IsOk == true</b> if it is go about your business, if it isn't display 
+                    the <b>response.Message</b> to your user.
+                </p>
+
                 <a id="Voodoo.Operations.Command|TRequest,TResponse|">&nbsp;</a>
                 <h3 data-path="">Command&lt;TRequest,TResponse&gt;</h3>
                 <b>Inheritance Hierarchy: </b>
