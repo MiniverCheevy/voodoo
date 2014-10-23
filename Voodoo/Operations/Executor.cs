@@ -39,6 +39,8 @@ namespace Voodoo.Operations
 
         protected virtual void Validate()
         {
+            if (request == null)
+                throw new LogicException("Request is required.");
             ValidateObjectAndThrow(request);
         }
 
@@ -47,7 +49,9 @@ namespace Voodoo.Operations
             var validator = new DataAnnotationsValidator(@object);
             if (validator.IsValid) return;
             var firstMessage = validator.ValidationResultsAsNameValuePair.First();
-            throw new LogicException(firstMessage.Value);
+            var exception = new  LogicException(firstMessage.Value);
+			exception.Details = validator.ValidationResultsAsNameValuePair;
+			throw exception;
         }
 
         protected virtual void CustomErrorBehavior(Exception ex)

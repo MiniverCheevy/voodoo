@@ -222,7 +222,6 @@ namespace Voodoo
                     }
                 }
                 inner = inner.TrimEnd(",".ToCharArray());
-                var name = type.GetGenericArguments()[0].FixUpScalarTypeName();
                 var outer = type.GetGenericTypeDefinition().Name;
                 var ary = outer.Split(@"`".ToCharArray());
                 outer = ary[0];

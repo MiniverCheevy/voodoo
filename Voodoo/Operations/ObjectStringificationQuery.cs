@@ -53,7 +53,7 @@ namespace Voodoo.Operations
                 }
 
                 var enumerableElement = element as IEnumerable;
-                if (enumerableElement != null)
+                if (enumerableElement != null && ! objectType.IsScalar())
                 {
                     
                     var counter = 0;
@@ -108,9 +108,10 @@ namespace Voodoo.Operations
                         else
                         {
                             var isEnumerable = typeof (IEnumerable).IsAssignableFrom(type);
+                            var isScalar = type.IsScalar();
                             write("{0}: {1}", memberInfo.Name, isEnumerable ? "..." : "{ }");
 
-                            var alreadyTouched = !isEnumerable && this.alreadyTouched(value);
+                            var alreadyTouched = !isScalar && !isEnumerable && this.alreadyTouched(value);
                             depth++;
                             if (!alreadyTouched)
                                 read(value);
