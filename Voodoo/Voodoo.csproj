@@ -78,6 +78,8 @@
     <Compile Include="Infrastructure\LogicException.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Infrastructure\Notations\ThridParty.cs" />
+    <Compile Include="Infrastructure\Notations\UnfinishedAttribute.cs" />
     <Compile Include="Infrastructure\ReflectionTypeLoaderExceptionTranslation.cs" />
     <Compile Include="IoNic.cs" />
     <Compile Include="Logging\LogLevels.cs" />

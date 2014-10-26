@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Voodoo.Infrastructure.Notations;
 
 namespace Voodoo.Logging
 {
-    
+    [Unfinished]
     public interface ILog
     {
         long Id { get; set; }
@@ -23,7 +24,7 @@ namespace Voodoo.Logging
         string Browser { get; set; }
         string UserAgent { get; set; }
     }
-
+    [Unfinished]
     public class DefaultLog : ILog
     {
         public string Action { get; set; }

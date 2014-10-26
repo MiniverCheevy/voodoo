@@ -1,5 +1,8 @@
-﻿namespace Voodoo.Logging
+﻿using Voodoo.Infrastructure.Notations;
+
+namespace Voodoo.Logging
 {
+    [Unfinished]
     public enum LogLevels
     {
         Off=0,
