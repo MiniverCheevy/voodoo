@@ -4,7 +4,8 @@ using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Voodoo.Messages;
 using Voodoo.Tests.TestClasses;
-
+using Voodoo.Validation.Infrastructure;
+using Message=Voodoo.Validation.Infrastructure.Messages;
 namespace Voodoo.Tests.Voodoo.Operations
 {
     [TestClass]
@@ -40,12 +41,29 @@ namespace Voodoo.Tests.Voodoo.Operations
         }
 
         [TestMethod]
-        public void Execute_RequestIsInvalid_IsNotOk()
+        public void Execute_RequestIsInvalidDataAnnotationsValidatorWithFirstErrorAsMessage_IsNotOk()
         {
+         
+            VoodooGlobalConfiguration.RegisterValidator(new DataAnnotationsValidatorWithFirstErrorAsMessage());
             var result = new CommandWithNonEmptyRequest(new RequestWithRequiredString()).Execute();
             Assert.IsNotNull(result);
             Assert.IsNotNull(result.Message);
+            Assert.AreEqual(result.Details.First().Value, result.Message);            
             Assert.AreNotEqual(true, result.IsOk);
+            VoodooGlobalConfiguration.RegisterValidator(new DataAnnotationsValidatorWithFirstErrorAsMessage());
+            VoodooGlobalConfiguration.RegisterValidator(new DataAnnotationsValidatorWithGenericMessage());
+        }
+        [TestMethod]
+        public void Execute_RequestIsInvalidDataAnnotationsValidatorWithGenericMessage_IsNotOk()
+        {
+
+            VoodooGlobalConfiguration.RegisterValidator(new DataAnnotationsValidatorWithGenericMessage());
+            var result = new CommandWithNonEmptyRequest(new RequestWithRequiredString()).Execute();
+            Assert.IsNotNull(result);
+            Assert.IsNotNull(result.Message);
+            Assert.AreEqual(Message.ValidationErrorsOccured, result.Message);
+            Assert.AreNotEqual(true, result.IsOk);
+
         }
     }
 }

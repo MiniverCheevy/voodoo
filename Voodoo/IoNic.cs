@@ -56,6 +56,8 @@ namespace Voodoo
 
         public static void WriteFile(string fileContents, string fileName)
         {
+            if (!File.Exists(fileName))
+                KillFile(fileName);
             using (var sw = File.CreateText(fileName))
             {
                 sw.Write(fileContents);

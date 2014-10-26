@@ -79,7 +79,7 @@ namespace Voodoo.Logging
 
             EventLog.WriteEntry(source, failedToWriteMessage, EventLogEntryType.Warning);
 
-            EventLog.WriteEntry(source, actualError, EventLogEntryType.Error);
+            EventLog.WriteEntry(source, string.Format("{0} {1}",actualError, ex.ToString()), EventLogEntryType.Error);
         }
 
         private static void deleteFileIfNeeded(string path)

@@ -26,6 +26,8 @@ namespace Voodoo.Messages.Paging
 
         public virtual int TotalRecords { get; set; }
 
+        public virtual int TotalPages { get; set; }
+
         public virtual string SortMember { get; set; }
 
         public virtual string SortDirection { get; set; }
@@ -53,7 +55,12 @@ namespace Voodoo.Messages.Paging
                 PageNumber = paging.PageNumber > 0 ? paging.PageNumber : 1;
                 PageSize = paging.PageSize > 0 ? paging.PageSize : 10;
                 TotalRecords = paging.TotalRecords;
+                TotalPages = Math.Ceiling(TotalRecords.To<decimal>()/PageSize.To<decimal>()).To<int>();
                 ResetPaging = paging.ResetPaging;
+                if (PageNumber <= 0)
+                    PageNumber = 1;
+                if (PageNumber > TotalPages)
+                    PageNumber = TotalPages;
             }
             else
             {

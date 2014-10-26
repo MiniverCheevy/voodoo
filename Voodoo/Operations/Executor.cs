@@ -6,6 +6,7 @@ using Voodoo.Infrastructure;
 using Voodoo.Logging;
 using Voodoo.Messages;
 using Voodoo.Validation;
+using Voodoo.Validation.Infrastructure;
 
 namespace Voodoo.Operations
 {
@@ -39,18 +40,10 @@ namespace Voodoo.Operations
 
         protected virtual void Validate()
         {
-            ValidateObjectAndThrow(request);
+            ValidationManager.Validate(request);
         }
 
-        protected void ValidateObjectAndThrow(object @object)
-        {
-            var validator = new DataAnnotationsValidator(@object);
-            if (validator.IsValid) return;
-            var firstMessage = validator.ValidationResultsAsNameValuePair.First();
-            throw new LogicException(firstMessage.Value);
-        }
-
-        protected virtual void CustomErrorBehavior(Exception ex)
+       protected virtual void CustomErrorBehavior(Exception ex)
         {
             if (!(ex is LogicException))
             {

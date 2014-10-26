@@ -5,13 +5,15 @@ using System.Reflection;
 using System.Text;
 using Voodoo.Infrastructure;
 using Voodoo.Logging;
+using Voodoo.Validation;
+using Voodoo.Validation.Infrastructure;
 
 namespace Voodoo
 {
     public static class VoodooGlobalConfiguration
     {
 
-        static VoodooGlobalConfiguration()
+        static VoodooGlobalConfiguration() 
         {
             RemoveExceptionFromResponseAfterLogging = true;
             ExceptionTranslator = new ExceptionTranslater();
@@ -24,6 +26,10 @@ namespace Voodoo
         public static void RegisterLogger(ILogger logger)
         {
             LogManager.Logger = logger;
+        }
+        public static void RegisterValidator(IValidator validator)
+        {
+            ValidationManager.Validator = validator;
         }
 
         public static void RegisterExceptionMapping<T>(ExceptionTranslation mapper)

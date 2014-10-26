@@ -7,6 +7,7 @@ using System.Reflection;
 using System.Reflection.Emit;
 using System.Text;
 using System.Threading;
+using Voodoo.Infrastructure.Notations;
 
 namespace Voodoo.Linq
 {
@@ -15,6 +16,7 @@ namespace Voodoo.Linq
     ///     System.Linq.Dynamic.DynamicQueryable run through code cleanup
     ///     http://msdn.microsoft.com/en-US/vstudio/bb894665.aspx
     /// </summary>
+    [ThirdParty]
     public static class DynamicQueryable
     {
         public static IQueryable<T> Where<T>(this IQueryable<T> source, string predicate, params object[] values)
@@ -117,6 +119,7 @@ namespace Voodoo.Linq
         }
     }
 
+    [ThirdParty]
     public abstract class DynamicClass
     {
         public override string ToString()
@@ -136,6 +139,7 @@ namespace Voodoo.Linq
         }
     }
 
+    [ThirdParty]
     public class DynamicProperty
     {
         private string name;
@@ -160,6 +164,7 @@ namespace Voodoo.Linq
         }
     }
 
+    [ThirdParty]
     public static class DynamicExpression
     {
         public static Expression Parse(Type resultType, string expression, params object[] values)
@@ -198,12 +203,14 @@ namespace Voodoo.Linq
         }
     }
 
+    [ThirdParty]
     internal class DynamicOrdering
     {
         public bool Ascending;
         public Expression Selector;
     }
 
+    [ThirdParty]
     internal class Signature : IEquatable<Signature>
     {
         public int hashCode;
@@ -241,6 +248,7 @@ namespace Voodoo.Linq
         }
     }
 
+    [ThirdParty]
     internal class ClassFactory
     {
         public static readonly ClassFactory Instance = new ClassFactory();
@@ -415,6 +423,7 @@ namespace Voodoo.Linq
         }
     }
 
+    [ThirdParty]
     public sealed class ParseException : Exception
     {
         private int position;
@@ -435,6 +444,7 @@ namespace Voodoo.Linq
         }
     }
 
+    [ThirdParty]
     internal class ExpressionParser
     {
         private struct Token
@@ -2190,6 +2200,7 @@ namespace Voodoo.Linq
         }
     }
 
+    [ThirdParty]
     internal static class Res
     {
         public const string DuplicateIdentifier = "The identifier '{0}' was defined more than once";

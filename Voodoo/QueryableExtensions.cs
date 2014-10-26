@@ -27,14 +27,16 @@ namespace Voodoo
         public static PagedResponse<TOut> PagedResult<TIn, TOut>(this IQueryable<TIn> source, IGridState paging,
             Expression<Func<TIn, TOut>> expression) where TIn : class where TOut : class, new()
         {
-            var state = new GridState(paging);
-            var sortMember = state.SortMember ?? state.DefaultSortMember;
+
+            var sortMember = paging.SortMember ?? paging.DefaultSortMember;
 
             source = !string.IsNullOrEmpty(sortMember)
-                ? source.OrderByDynamic(string.Format("{0} {1}", sortMember, state.SortDirection))
+                ? source.OrderByDynamic(string.Format("{0} {1}", sortMember, paging.SortDirection))
                 : source.OrderBy(c => true);
 
             var total = DynamicQueryable.Count(source);
+            paging.TotalRecords = total;
+            var state = new GridState(paging);
             var skip = (state.PageNumber - 1)*state.PageSize;
             skip = skip < 0 ? 0 : skip;
             var take = state.PageSize;
