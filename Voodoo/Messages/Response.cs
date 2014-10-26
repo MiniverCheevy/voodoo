@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Voodoo.Helpers;
 using Voodoo.Infrastructure;
 
 namespace Voodoo.Messages
@@ -33,28 +34,8 @@ namespace Voodoo.Messages
 
         public void SetExceptions(Exception ex)
         {
-            var mapper = VoodooGlobalConfiguration.ExceptionTranslator;
-            IsOk = false;
-            var logicException = ex as LogicException;
-            if (logicException != null)
-            {
-                HasLogicException = true;
-                Details = logicException.Details;
-                if (logicException.InnerException != null)
-                    Exception = logicException.InnerException;
-            }
-            if (mapper.DecorateResponseWithException(ex, this))
-                return;
-
-            while (ex.InnerException != null)
-            {
-                ex = ex.InnerException;
-                if (mapper.DecorateResponseWithException(ex, this))
-                    return;
-            }
-
-            Message = ex.Message;
-            Exception = ex;
+            var decorator = new ResponseExceptionDecorator(this,ex);
+            decorator.Decorate();
         }
 
         public void AppendResponse(IResponse response)
