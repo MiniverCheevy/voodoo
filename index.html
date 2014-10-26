@@ -61,25 +61,28 @@
             padding: 15px;
         }
 
-@media (min-width:768px) {
-    .desktop-only {
-        display:block !important;
-    }
-    .mobile-only {
-        display:none !important;
-    }
-}
- 
-//small screen sizes
-@media (max-width: 767px) {
-    .mobile-only {
-        display:block !important;
-    }
- 
-    .desktop-only {
-        display:none !important;
-    }
-}
+        @media (min-width:768px) {
+            .desktop-only {
+                display: block !important;
+            }
+
+            .mobile-only {
+                display: none !important;
+            }
+        }
+
+        //small screen sizes @media (max-width: 767px) {
+            .mobile-only;
+
+        {
+            display: block !important;
+        }
+
+        .desktop-only {
+            display: none !important;
+        }
+
+        }
     </style>
 </head>
 
@@ -102,11 +105,10 @@
         <div class="collapse navbar-collapse " id="navbar">
             <ul class="nav navbar-nav" id="navbar">
                 <li class="dropdown">
-        <a href="#" class="dropdown-toggle mobile-only" data-toggle="dropdown">Voodoo.Patterns<b class="caret"></b></a>
-        <ul class="dropdown-menu mobile-only" id="navigation-dropdown">
-        
-        </ul>
-      </li>
+                    <a href="#" class="dropdown-toggle mobile-only" data-toggle="dropdown">Voodoo.Patterns<b class="caret"></b></a>
+                    <ul class="dropdown-menu mobile-only" id="navigation-dropdown">
+                    </ul>
+                </li>
             </ul>
         </div>
         <!-- /.navbar-collapse -->
@@ -989,6 +991,14 @@
                             <td>RegisterLogger(<a href="#Voodoo.Logging.ILogger">ILogger</a> logger)</td>
                             <td>replaces the default <a href="#Voodoo.Logging.FallbackLogger">FallbackLogger</a> logging implementation with another</td>
                         </tr>
+						 <tr data-path="Voodoo.VoodooGlobalConfiguration..IValidator-validator">
+                            <td title="Voodoo.VoodooGlobalConfiguration.RegisterValidator" class="optionName" data-content="">static
+                            </td>
+                            <td>void</td>
+                            <td></td>
+                            <td>RegisterValidator(IValidator validator)</td>
+                            <td>replaces the default validation <a href="#Voodoo.Validation.Infrastructure.DataAnnotationsValidatorWithGenericMessage">DataAnnotationsValidatorWithGenericMessage</a> implementation with another</td>
+                        </tr>
                         <tr data-path="Voodoo.VoodooGlobalConfiguration..T..ExceptionTranslation-mapper">
                             <td title="Voodoo.VoodooGlobalConfiguration.RegisterExceptionMapping" class="optionName" data-content="">static
                             </td>
@@ -1063,6 +1073,32 @@
                             <td>bool</td>
                             <td></td>
                             <td>AreDifferent()</td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <a id="Voodoo.Helpers.ResponseExceptionDecorator">&nbsp;</a>
+                <h3 data-path="">ResponseExceptionDecorator</h3>
+                <br />
+                <p class="well">
+                </p>
+                <h4>Methods</h4>
+                <table class="table table-striped table-bordered table-condensed">
+                    <colgroup>
+                    </colgroup>
+                    <tbody>
+                        <tr>
+                            <th></th>
+                            <th>Return Type</th>
+                            <th>Source</th>
+                            <th>Method</th>
+                            <th>Remarks</th>
+                        </tr>
+                        <tr data-path="Voodoo.Helpers.ResponseExceptionDecorator..">
+                            <td title="Voodoo.Helpers.ResponseExceptionDecorator.Decorate" class="optionName" data-content=""></td>
+                            <td>void</td>
+                            <td></td>
+                            <td>Decorate()</td>
                             <td></td>
                         </tr>
                     </tbody>
@@ -1753,6 +1789,7 @@
                 <br />
                 <br />
                 <p class="well">
+                    Default implementation of the <a href="#Voodoo.Messages.IResponse">IResponse</a>
                 </p>
                 <h4>Properties</h4>
                 <table class="table table-striped table-bordered table-condensed">
@@ -1968,6 +2005,12 @@
                         </tr>
                         <tr data-path="">
 
+                            <td title="System.Int32.TotalPages" class="optionName" data-content=""></td>
+                            <td>int</td>
+                            <td>TotalPages</td>
+                            <td></td>
+                        </tr>
+                        <tr data-path="">
                             <td title="System.String.SortMember" class="optionName" data-content=""></td>
                             <td>string</td>
                             <td>SortMember</td>
@@ -2071,8 +2114,8 @@
                 </table>
                 <h2 data-path="">Voodoo.Operations</h2>
                 <p class="well">
-                    Operations provide a loose <a href="http://codeofrob.com/entries/cqrs-is-too-complicated.html">Command Query Responsibility Segragation"</a> structure.  
-                    Each operation takes a request (any arbitrary object) and return aa <a href="#Voodoo.Messages.IRepsonse">IResponse</a>. 
+                    Operations provide a loose <a href="http://codeofrob.com/entries/cqrs-is-too-complicated.html">Command Query Responsibility Segragation</a> structure.  
+                    Each operation takes a request (any arbitrary object) and return an <a href="#Voodoo.Messages.IRepsonse">IResponse</a>. 
                     This structure is very testable.
                     I also like to pretend that I'm doing <a href="http://en.wikipedia.org/wiki/Aspect-oriented_programming">Aspect Oriented Programming</a>
                     by handling validation, logging and error handling in the base <a href="#Voodoo.Operations.Executor|T|">Executor</a> class.  The only functional difference between a <a href="#Voodoo.Operations.Command|TRequest,TResponse|">Command</a>
@@ -2105,7 +2148,7 @@
                 </p>
                 <pre><code>
     var request = new PersonRequest{SearchString="j"};
-    var response = new PersonQuery(request)Execute();
+    var response = new PersonQuery(request).Execute();
                 </code>
                 </pre>
                 <p class="well">
@@ -2521,9 +2564,161 @@
                         </tr>
                     </tbody>
                 </table>
+                <h2 data-path="">Voodoo.Validation.Infrastructure</h2>
+                <p class="well">
+                </p>
+                <a id="Voodoo.Validation.Infrastructure.DataAnnotationsValidatorWithFirstErrorAsMessage">&nbsp;</a>
+                <h3 data-path="">DataAnnotationsValidatorWithFirstErrorAsMessage</h3>
+                <b>Interfaces: </b>
+                <a href="#Voodoo.Validation.Infrastructure.IValidator">IValidator</a>
+                <br />
+                <br />
+                <p class="well">
+                </p>
+                <h4>Methods</h4>
+                <table class="table table-striped table-bordered table-condensed">
+                    <colgroup>
+                    </colgroup>
+                    <tbody>
+                        <tr>
+                            <th></th>
+                            <th>Return Type</th>
+                            <th>Source</th>
+                            <th>Method</th>
+                            <th>Remarks</th>
+                        </tr>
+                        <tr data-path="Voodoo.Validation.Infrastructure.DataAnnotationsValidatorWithFirstErrorAsMessage..object-request">
+                            <td title="Voodoo.Validation.Infrastructure.DataAnnotationsValidatorWithFirstErrorAsMessage.Validate" class="optionName" data-content=""></td>
+                            <td>void</td>
+                            <td></td>
+                            <td>Validate(object request)</td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <a id="Voodoo.Validation.Infrastructure.DataAnnotationsValidatorWithGenericMessage">&nbsp;</a>
+                <h3 data-path="">DataAnnotationsValidatorWithGenericMessage</h3>
+                <b>Interfaces: </b>
+                <a href="#Voodoo.Validation.Infrastructure.IValidator">IValidator</a>
+                <br />
+                <br />
+                <p class="well">
+                    This is the default <a href="#Voodoo.Validation.Infrastructure.IValidator">IValidator</a> used during validation of operations.
+                </p>
+                <h4>Methods</h4>
+                <table class="table table-striped table-bordered table-condensed">
+                    <colgroup>
+                    </colgroup>
+                    <tbody>
+                        <tr>
+                            <th></th>
+                            <th>Return Type</th>
+                            <th>Source</th>
+                            <th>Method</th>
+                            <th>Remarks</th>
+                        </tr>
+                        <tr data-path="Voodoo.Validation.Infrastructure.DataAnnotationsValidatorWithGenericMessage..object-request">
+                            <td title="Voodoo.Validation.Infrastructure.DataAnnotationsValidatorWithGenericMessage.Validate" class="optionName" data-content=""></td>
+                            <td>void</td>
+                            <td></td>
+                            <td>Validate(object request)</td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <a id="Voodoo.Validation.Infrastructure.IValidator">&nbsp;</a>
+                <h3 data-path="">IValidator</h3>
+                <br />
+                <p class="well">
+                </p>
+                <h4>Methods</h4>
+                <table class="table table-striped table-bordered table-condensed">
+                    <colgroup>
+                    </colgroup>
+                    <tbody>
+                        <tr>
+                            <th></th>
+                            <th>Return Type</th>
+                            <th>Source</th>
+                            <th>Method</th>
+                            <th>Remarks</th>
+                        </tr>
+                        <tr data-path="Voodoo.Validation.Infrastructure.IValidator..object-request">
+                            <td title="Voodoo.Validation.Infrastructure.IValidator.Validate" class="optionName" data-content=""></td>
+                            <td>void</td>
+                            <td></td>
+                            <td>Validate(object request)</td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <a id="Voodoo.Validation.Infrastructure.Messages">&nbsp;</a>
+                <h3 data-path="">Messages</h3>
+                <br />
+                <p class="well">
+                </p>
+                <a id="Voodoo.Validation.Infrastructure.ValidationManager">&nbsp;</a>
+                <h3 data-path="">ValidationManager</h3>
+                <br />
+                <p class="well">
+                </p>
+                <h4>Properties</h4>
+                <table class="table table-striped table-bordered table-condensed">
 
+                    <colgroup>
+                        <col class="widthTiny" />
+                        <col class="widthMedium" />
+                        <col class="widthSmall" />
+                        <col class="widthLarge" />
+                    </colgroup>
+                    <tbody>
+                        <tr>
+                            <th></th>
+                            <th>Type</th>
+                            <th>Name</th>
+                            <th>Remarks</th>
+                        </tr>
+                        <tr data-path="">
+                            <td title="Voodoo.Validation.Infrastructure.IValidator.Validator" class="optionName" data-content="">static
+                            </td>
+                            <td><a href="#Voodoo.Validation.Infrastructure.IValidator">IValidator</a></td>
+                            <td>Validator</td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <h4>Methods</h4>
+                <table class="table table-striped table-bordered table-condensed">
+                    <colgroup>
+                    </colgroup>
+                    <tbody>
+                        <tr>
+                            <th></th>
+                            <th>Return Type</th>
+                            <th>Source</th>
+                            <th>Method</th>
+                            <th>Remarks</th>
+                        </tr>
+                        <tr data-path="Voodoo.Validation.Infrastructure.ValidationManager..object-object">
+                            <td title="Voodoo.Validation.Infrastructure.ValidationManager.Validate" class="optionName" data-content="">static
+                            </td>
+                            <td>void</td>
+                            <td></td>
+                            <td>Validate(object object)</td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
                 <!-------------------------End----------------->
-
+                <div>
+                    <h2>Change Log</h2>
+                    
+                    <h4>1.0.21</h3>
+                    <p class="well">
+                    <span>Added Extensibility point for validation</span><br/>
+                    <span>Tweaks to paging</span>
+                    </p>
+                </div>
                 <h2>Contributing</h2>
                 <p class="well">
                     Take care to maintain the existing coding style. Add <strong>Microsoft.VisualStudio.TestTools</strong> unit tests for any new or changed functionality. 
@@ -2541,7 +2736,7 @@
                 <br>
                 <h2>Copyright</h2>
                 <p class="well">
-                    Copyright © 2013 Shawn Doucet
+                    Copyright © 2010 Shawn Doucet
                 </p>
                 <p>Documentation build with <a href="https://github.com/MiniverCheevy/api-documentor">api-documentor</a> and <a href="http://gregfranko.com/Document-Bootstrap/">Document-Bootstrap</a></p>
             </div>
@@ -2571,10 +2766,10 @@
         $(function () {
 
             $("#toc").tocify({ selectors: "h2, h3, h4", scrollTo: 60, highlightOffset: 60, extendPage: true });
-                  $("#navigation-dropdown").tocify({ selectors: "h2, h3", scrollTo: 60, highlightOffset: 60, extendPage: true });
+            $("#navigation-dropdown").tocify({ selectors: "h2, h3", scrollTo: 60, highlightOffset: 60, extendPage: true });
 
 
-navbar
+            navbar
             prettyPrint();
 
             $(".optionName").popover({ trigger: "hover", container: "body" });
