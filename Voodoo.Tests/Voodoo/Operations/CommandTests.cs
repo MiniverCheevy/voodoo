@@ -5,7 +5,6 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Voodoo.Messages;
 using Voodoo.Tests.TestClasses;
 using Voodoo.Validation.Infrastructure;
-using Message=Voodoo.Validation.Infrastructure.Messages;
 namespace Voodoo.Tests.Voodoo.Operations
 {
     [TestClass]
@@ -61,7 +60,7 @@ namespace Voodoo.Tests.Voodoo.Operations
             var result = new CommandWithNonEmptyRequest(new RequestWithRequiredString()).Execute();
             Assert.IsNotNull(result);
             Assert.IsNotNull(result.Message);
-            Assert.AreEqual(Message.ValidationErrorsOccured, result.Message);
+            Assert.AreEqual(Strings.Validation.validationErrorsOccurred, result.Message);
             Assert.AreNotEqual(true, result.IsOk);
 
         }

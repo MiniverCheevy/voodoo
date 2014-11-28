@@ -2,32 +2,33 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Threading.Tasks;
 using Voodoo.Infrastructure;
 using Voodoo.Logging;
 using Voodoo.Messages;
 using Voodoo.Validation.Infrastructure;
-
+#if net45 || net451 
 namespace Voodoo.Operations
 {
-    public abstract class Executor<TRequest, TResponse> where TRequest : class where TResponse : class, IResponse, new()
+    public abstract class ExecutorAsync<TRequest, TResponse> where TRequest : class where TResponse : class, IResponse, new()
     {
         protected TRequest request;
         protected TResponse response;
 
-        protected Executor(TRequest request)
+        protected ExecutorAsync(TRequest request)
         {
             this.request = request;
         }
 
         [DebuggerNonUserCode]
-        public virtual TResponse Execute()
+        public async virtual Task<TResponse> ExecuteAsync()
         {
-            response = new TResponse {IsOk = true};
+            response = new TResponse { IsOk = true };
 
             try
             {
                 Validate();
-                response = ProcessRequest();
+                response = await ProcessRequestAsync();
             }
             catch (Exception ex)
             {
@@ -36,7 +37,7 @@ namespace Voodoo.Operations
 
             return response;
         }
-
+        protected abstract Task<TResponse> ProcessRequestAsync();
         protected virtual void Validate()
         {
             ValidationManager.Validate(request);
@@ -57,12 +58,13 @@ namespace Voodoo.Operations
 
         protected TResponse BuildResponseWithException(Exception ex)
         {
-            response = new TResponse {IsOk = false};
+            response = new TResponse { IsOk = false };
             response.SetExceptions(ex);
             CustomErrorBehavior(ex);
             return response;
         }
 
-        protected abstract TResponse ProcessRequest();
+        
     }
 }
+#endif

@@ -20,6 +20,7 @@ namespace Voodoo
             if (item != null && !string.IsNullOrWhiteSpace(item.ToString()))
                 collection.Add(item.ToString());
         }
+
         public static ListResponse<T> ToListResponse<T>(this IEnumerable<T> items) where T : class, new()
         {
             var result = new ListResponse<T>();
@@ -42,6 +43,7 @@ namespace Voodoo
 
             return source;
         }
+
         /// <summary>
         ///     Indicates whether <paramref name="collection" /> contains any of the members in <paramref name="toFind" />.
         /// </summary>
@@ -122,7 +124,5 @@ namespace Voodoo
 
             return array;
         }
-
-       
     }
 }

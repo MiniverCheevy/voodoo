@@ -10,7 +10,7 @@ namespace Voodoo
     {
         public static void Add(this IList<INameValuePair> list, string name, string value)
         {
-            list.Add(new NameValuePair{Name=name,Value= value});
+            list.Add(new NameValuePair {Name = name, Value = value});
         }
 
         public static void SetValue(this IList<INameValuePair> list, string name, string value)
@@ -28,7 +28,6 @@ namespace Voodoo
                 return;
             var pair = list.Where(e => e.Name == name).ToArray();
             pair.ForEach(c => list.Remove(c));
-
         }
 
         public static void RemoveByValue(this IList<INameValuePair> list, string value)
@@ -44,7 +43,7 @@ namespace Voodoo
             if (list == null)
                 return null;
 
-            var result= list.FirstOrDefault(e => e.Name == name);
+            var result = list.FirstOrDefault(e => e.Name == name);
             if (result != null)
                 return result.Value;
 
@@ -68,7 +67,7 @@ namespace Voodoo
 
         public static bool ContainsItem(this IEnumerable<INameValuePair> list, string name, string value)
         {
-            return list.ToList().Any(e => e.Name == name && e.Value==value);
+            return list.ToList().Any(e => e.Name == name && e.Value == value);
         }
 
         public static IList<INameValuePair> Without(this IEnumerable<INameValuePair> list, string name)
@@ -76,12 +75,13 @@ namespace Voodoo
             return list.To<List<INameValuePair>>().Where(e => e.Name != name).ToList();
         }
 
-        public static IList<INameValuePair> ToINameValuePairList<TKey,TValue>(this Dictionary<TKey, TValue> items)
+        public static IList<INameValuePair> ToINameValuePairList<TKey, TValue>(this Dictionary<TKey, TValue> items)
         {
             if (items == null)
                 return new List<INameValuePair>();
 
-            var result = items.Select(e => (INameValuePair) new NameValuePair(e.Key.To<string>(), e.Value.To<string>())).ToList();
+            var result =
+                items.Select(e => (INameValuePair) new NameValuePair(e.Key.To<string>(), e.Value.To<string>())).ToList();
             return result;
         }
 
@@ -89,7 +89,7 @@ namespace Voodoo
         {
             if (enumeration.BaseType != typeof (Enum))
             {
-                throw new ArgumentException("enumeration must be an enum");
+                throw new ArgumentException(Strings.Validation.enumerationMustBeAnEnum);
             }
             var result =
                 Enum.GetNames(enumeration)
@@ -105,7 +105,7 @@ namespace Voodoo
         {
             if (enumeration.BaseType != typeof (Enum))
             {
-                throw new ArgumentException("enumeration must be an enum");
+                throw new ArgumentException(Strings.Validation.enumerationMustBeAnEnum);
             }
             var ret =
                 Enum.GetNames(enumeration)

@@ -18,12 +18,12 @@ namespace Voodoo.Messages
         }
 
         /// <summary>
-        /// Typically the string component such as code or description
-        /// </summary>        
+        ///     Typically the string component such as code or description
+        /// </summary>
         public string Key { get; set; }
 
         /// <summary>
-        /// Typically the numeric component such as the Id
+        ///     Typically the numeric component such as the Id
         /// </summary>
         public string Value { get; set; }
 

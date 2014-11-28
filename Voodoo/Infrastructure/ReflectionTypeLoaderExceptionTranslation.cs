@@ -6,8 +6,7 @@ using Voodoo.Messages;
 
 namespace Voodoo.Infrastructure
 {
-    public class ReflectionTypeLoaderExceptionTranslation :
-        ExceptionTranslation
+    public class ReflectionTypeLoaderExceptionTranslation : ExceptionTranslation
     {
         protected override bool TranslateException(Exception exception, IResponse response)
         {

@@ -7,6 +7,5 @@ namespace Voodoo.Messages
     [Obsolete("Use INameValuePair instead")]
     public interface IKeyValuePair : INameValuePair
     {
-
     }
 }

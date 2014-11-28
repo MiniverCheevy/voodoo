@@ -20,13 +20,13 @@ namespace Voodoo.Messages.Paging
             resetPagingIfNeeded(state);
         }
 
+        public virtual int TotalPages { get; set; }
+
         public virtual int PageNumber { get; set; }
 
         public virtual int PageSize { get; set; }
 
         public virtual int TotalRecords { get; set; }
-
-        public virtual int TotalPages { get; set; }
 
         public virtual string SortMember { get; set; }
 
@@ -44,7 +44,7 @@ namespace Voodoo.Messages.Paging
             DefaultSortMember = sorting.DefaultSortMember;
             SortMember = String.IsNullOrEmpty(sorting.SortMember) ? sorting.DefaultSortMember : sorting.SortMember;
             SortDirection = String.IsNullOrEmpty(sorting.SortDirection)
-                ? Constants.SortDirection.Ascending
+                ? Strings.SortDirection.Ascending
                 : sorting.SortDirection;
         }
 

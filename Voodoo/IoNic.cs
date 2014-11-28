@@ -3,16 +3,45 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 
 namespace Voodoo
 {
     public static class IoNic
     {
+        public static string GetApplicationRootDirectory()
+        {
+            return System.Web.HttpContext.Current == null ? 
+                Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) : 
+                System.Web.HttpContext.Current.Server.MapPath(".");
+        }
+
         public static string GetTempFileNameAndPath(string fileExtensionNoDot = "txt")
         {
             var path = Environment.GetEnvironmentVariable("TEMP") ?? "c:\temp";
             path = Path.Combine(path, string.Format("{0}.{1}", Guid.NewGuid(), fileExtensionNoDot));
             return path;
+        }
+
+
+        public static string ExecuteAndReturnOutput(string path, string arguments)
+        {
+            var p = new Process
+            {
+                StartInfo =
+                    new ProcessStartInfo
+                    {
+                        FileName = path,
+                        UseShellExecute = false,
+                        RedirectStandardOutput =true,
+                        CreateNoWindow = true,
+                        Arguments = arguments
+                    }
+            };
+            p.Start();
+            var output = p.StandardOutput.ReadToEnd();
+            p.WaitForExit();
+            return output;
         }
 
         public static void ShellExecute(string path)
@@ -33,6 +62,7 @@ namespace Voodoo
 
         public static string ReadFile(string fileName)
         {
+            
             string buffer;
             using (var streamReader = File.OpenText(fileName))
             {
@@ -56,6 +86,10 @@ namespace Voodoo
 
         public static void WriteFile(string fileContents, string fileName)
         {
+            var directory = Path.GetDirectoryName(fileName);
+            if (!Directory.Exists(directory))
+                MakeDir(directory);
+
             if (!File.Exists(fileName))
                 KillFile(fileName);
             using (var sw = File.CreateText(fileName))

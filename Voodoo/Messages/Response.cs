@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using Voodoo.Helpers;
-using Voodoo.Infrastructure;
 
 namespace Voodoo.Messages
 {
@@ -34,7 +33,7 @@ namespace Voodoo.Messages
 
         public void SetExceptions(Exception ex)
         {
-            var decorator = new ResponseExceptionDecorator(this,ex);
+            var decorator = new ResponseExceptionDecorator(this, ex);
             decorator.Decorate();
         }
 
@@ -49,6 +48,5 @@ namespace Voodoo.Messages
             if (response.Details != null)
                 response.Details.ForEach(c => this.Details.Add(c));
         }
-        
     }
 }

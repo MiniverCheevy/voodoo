@@ -4,8 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text;
-using Voodoo.Messages;
 using Voodoo;
+using Voodoo.Messages;
 
 namespace Voodoo.Operations
 {
@@ -15,9 +15,9 @@ namespace Voodoo.Operations
         private readonly List<int> hashes;
         private readonly int padding;
         private readonly StringBuilder result;
+        private int currentItemsInGraph;
         private int depth;
         private int maxItemsInGraph = 1000;
-        private int currentItemsInGraph = 0;
 
         public ObjectStringificationQuery(object request) : base(request)
         {
@@ -36,7 +36,7 @@ namespace Voodoo.Operations
         {
             if (currentItemsInGraph > maxItemsInGraph)
                 return string.Empty;
-             
+
 
             if (element == null || element is ValueType || element is string)
             {
@@ -55,7 +55,6 @@ namespace Voodoo.Operations
                 var enumerableElement = element as IEnumerable;
                 if (enumerableElement != null && ! objectType.IsScalar())
                 {
-                    
                     var counter = 0;
                     foreach (var item in enumerableElement)
                     {
@@ -94,8 +93,8 @@ namespace Voodoo.Operations
                         try
                         {
                             value = fieldInfo != null
-                                        ? fieldInfo.GetValue(element)
-                                        : propertyInfo.GetValue(element, null);
+                                ? fieldInfo.GetValue(element)
+                                : propertyInfo.GetValue(element, null);
                         }
                         catch (Exception ex)
                         {
@@ -138,12 +137,10 @@ namespace Voodoo.Operations
             if (value.GetType().IsScalar())
                 return false;
             var hash = value.GetHashCode();
-            var wasTouched= hashes.Contains(hash);
+            var wasTouched = hashes.Contains(hash);
             if (!wasTouched)
                 hashes.Add(hash);
             return wasTouched;
-
-
         }
 
         private void write(string value, params object[] args)

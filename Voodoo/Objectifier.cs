@@ -17,9 +17,10 @@ namespace Voodoo
         public static TObject ShallowCopy<TObject>(TObject o) where TObject : class
         {
             var info = o.GetType().GetMethod("MemberwiseClone", BindingFlags.Instance | BindingFlags.NonPublic);
-            var clone = (TObject)info.Invoke(o, new object[] { });
+            var clone = (TObject) info.Invoke(o, new object[] {});
             return clone;
         }
+
         public static TObject DeepCopy<TObject>(TObject o) where TObject : class
         {
             using (var stream = new MemoryStream())
@@ -27,7 +28,7 @@ namespace Voodoo
                 var formatter = new BinaryFormatter();
                 formatter.Serialize(stream, o);
                 stream.Position = 0;
-                return (TObject)formatter.Deserialize(stream);
+                return (TObject) formatter.Deserialize(stream);
             }
         }
 
@@ -60,7 +61,7 @@ namespace Voodoo
         [DebuggerStepThrough]
         public static T FromXml<T>(string xml, Type[] extraTypes) where T : class, new()
         {
-            var type = typeof(T);
+            var type = typeof (T);
             var xmlSerializer = extraTypes == null ? new XmlSerializer(type) : new XmlSerializer(type, extraTypes);
             var stringReader = new StringReader(xml);
             var xmlReader = new XmlTextReader(stringReader);
@@ -80,12 +81,12 @@ namespace Voodoo
         [DebuggerStepThrough]
         public static string ToDataContractXml<TObject>(TObject @object, Type[] extraTypes)
         {
-            Type type = typeof(TObject);
+            var type = typeof (TObject);
             var serializer = extraTypes == null
                 ? new DataContractSerializer(type)
                 : new DataContractSerializer(type, extraTypes);
             var memStream = new MemoryStream();
-            var xmlWriter = new XmlTextWriter(memStream, Encoding.UTF8) { Namespaces = true };
+            var xmlWriter = new XmlTextWriter(memStream, Encoding.UTF8) {Namespaces = true};
             serializer.WriteObject(xmlWriter, @object);
 
             xmlWriter.Close();
@@ -109,9 +110,8 @@ namespace Voodoo
         [DebuggerStepThrough]
         public static string ToXml<TObject>(TObject @object, Type[] extraTypes, bool omitNamespaces)
         {
-            var type = typeof(TObject);
-            var serializer = extraTypes == null ?
-                new XmlSerializer(type) : new XmlSerializer(type, extraTypes);
+            var type = typeof (TObject);
+            var serializer = extraTypes == null ? new XmlSerializer(type) : new XmlSerializer(type, extraTypes);
             var memStream = new MemoryStream();
             var xmlWriter = new XmlTextWriter(memStream, new UTF8Encoding());
             var ns = new XmlSerializerNamespaces();

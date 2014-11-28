@@ -27,7 +27,7 @@ namespace Voodoo.Validation
                 {
                     var items =
                         ValidationResults.Select(
-                            c => new NameValuePair{Name = c.MemberNames.FirstOrDefault(), Value = c.ErrorMessage});
+                            c => new NameValuePair {Name = c.MemberNames.FirstOrDefault(), Value = c.ErrorMessage});
                     result.AddRange(items);
                 }
                 return result;

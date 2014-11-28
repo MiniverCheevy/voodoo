@@ -1,13 +1,11 @@
 ﻿using System;
-using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using Voodoo.Messages;
 
 namespace Voodoo.Infrastructure
 {
-    public class ExceptionTranslater: Dictionary<Type,ExceptionTranslation>
+    public class ExceptionTranslater : Dictionary<Type, ExceptionTranslation>
     {
         public bool Contains<T>()
         {
@@ -22,6 +20,7 @@ namespace Voodoo.Infrastructure
             var translator = this[typeof (T)];
             return translator.DecorateResponse(ex, response);
         }
+
         public bool DecorateResponseWithException(Exception ex, IResponse response)
         {
             if (!this.ContainsKey(ex.GetType()))

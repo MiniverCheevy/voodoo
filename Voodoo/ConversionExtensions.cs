@@ -11,22 +11,22 @@ namespace Voodoo
     public static class ConversionExtensions
     {
         private static readonly CustomMapping[] customMappings =
+        {
+            new CustomMapping
             {
-                new CustomMapping
-                    {
-                        Type = typeof (bool),
-                        ReturnValue = true,
-                        Values = new object[] {1, "1", "y", "yes", "Y", "Yes", "true"}
-                    }
-            };
+                Type = typeof (bool),
+                ReturnValue = true,
+                Values = new object[] {1, "1", "y", "yes", "Y", "Yes", "true"}
+            }
+        };
 
         private static readonly Dictionary<Type, object> nonNullDefaults = new Dictionary<Type, object>
-            {
-                {typeof (string), string.Empty},
-                {typeof (bool), false},
-                {typeof (DateTime), DateTime.MaxValue},
-                {typeof (int), 0}
-            };
+        {
+            {typeof (string), string.Empty},
+            {typeof (bool), false},
+            {typeof (DateTime), DateTime.MaxValue},
+            {typeof (int), 0}
+        };
 
 
         public static T As<T>(this object value)
@@ -75,8 +75,7 @@ namespace Voodoo
             var type = typeof (T);
             try
             {
-                if (type.ToString().ToLower().Contains("int") && value is string &&
-                    value.ToString().Contains("."))
+                if (type.ToString().ToLower().Contains("int") && value is string && value.ToString().Contains("."))
                 {
                     value = value.ToString().Substring(0, value.ToString().IndexOf("."));
                 }
@@ -115,7 +114,7 @@ namespace Voodoo
 
             try
             {
-                converted = (T) (dynamic) value;
+                converted = (T) value;
                 return true;
             }
             catch
@@ -147,80 +146,80 @@ namespace Voodoo
             switch (typeCode)
             {
                 case TypeCode.Boolean:
-                    {
-                        valueToConvert = (T) (object) Convert.ToBoolean(value);
-                        return true;
-                    }
+                {
+                    valueToConvert = (T) (object) Convert.ToBoolean(value);
+                    return true;
+                }
                 case TypeCode.Byte:
-                    {
-                        valueToConvert = (T) (object) Convert.ToByte(value);
-                        return true;
-                    }
+                {
+                    valueToConvert = (T) (object) Convert.ToByte(value);
+                    return true;
+                }
                 case TypeCode.Char:
-                    {
-                        valueToConvert = (T) (object) Convert.ToChar(value);
-                        return true;
-                    }
+                {
+                    valueToConvert = (T) (object) Convert.ToChar(value);
+                    return true;
+                }
                 case TypeCode.DateTime:
-                    {
-                        valueToConvert = (T) (object) DateTime.Parse(value.ToString().Trim());
-                        return true;
-                    }
+                {
+                    valueToConvert = (T) (object) DateTime.Parse(value.ToString().Trim());
+                    return true;
+                }
                 case TypeCode.Decimal:
-                    {
-                        valueToConvert = (T) (object) Convert.ToDecimal(value);
-                        return true;
-                    }
+                {
+                    valueToConvert = (T) (object) Convert.ToDecimal(value);
+                    return true;
+                }
                 case TypeCode.Double:
-                    {
-                        valueToConvert = (T) (object) Convert.ToDouble(value);
-                        return true;
-                    }
+                {
+                    valueToConvert = (T) (object) Convert.ToDouble(value);
+                    return true;
+                }
                 case TypeCode.Int16:
-                    {
-                        valueToConvert = (T) (object) Convert.ToInt16(value);
-                        return true;
-                    }
+                {
+                    valueToConvert = (T) (object) Convert.ToInt16(value);
+                    return true;
+                }
                 case TypeCode.Int32:
-                    {
-                        valueToConvert = (T) (object) Convert.ToInt32(value);
-                        return true;
-                    }
+                {
+                    valueToConvert = (T) (object) Convert.ToInt32(value);
+                    return true;
+                }
                 case TypeCode.Int64:
-                    {
-                        valueToConvert = (T) (object) Convert.ToInt64(value);
-                        return true;
-                    }
+                {
+                    valueToConvert = (T) (object) Convert.ToInt64(value);
+                    return true;
+                }
                 case TypeCode.SByte:
-                    {
-                        valueToConvert = (T) (object) Convert.ToSByte(value);
-                        return true;
-                    }
+                {
+                    valueToConvert = (T) (object) Convert.ToSByte(value);
+                    return true;
+                }
                 case TypeCode.Single:
-                    {
-                        valueToConvert = (T) (object) Convert.ToSingle(value);
-                        return true;
-                    }
+                {
+                    valueToConvert = (T) (object) Convert.ToSingle(value);
+                    return true;
+                }
                 case TypeCode.String:
-                    {
-                        valueToConvert = (T) (object) Convert.ToString(value);
-                        return true;
-                    }
+                {
+                    valueToConvert = (T) (object) Convert.ToString(value);
+                    return true;
+                }
                 case TypeCode.UInt16:
-                    {
-                        valueToConvert = (T) (object) Convert.ToUInt16(value);
-                        return true;
-                    }
+                {
+                    valueToConvert = (T) (object) Convert.ToUInt16(value);
+                    return true;
+                }
                 case TypeCode.UInt32:
-                    {
-                        valueToConvert = (T) (object) Convert.ToUInt32(value);
-                        return true;
-                    }
+                {
+                    valueToConvert = (T) (object) Convert.ToUInt32(value);
+                    return true;
+                }
                 case TypeCode.UInt64:
-                    {
-                        valueToConvert = (T) (object) Convert.ToUInt64(value);
-                        return true;
-                    }
+                {
+                    valueToConvert = (T) (object) Convert.ToUInt64(value);
+                    return true;
+                }
                 case TypeCode.DBNull:
                 case TypeCode.Empty:
                 default:

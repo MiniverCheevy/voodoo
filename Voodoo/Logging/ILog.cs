@@ -24,6 +24,7 @@ namespace Voodoo.Logging
         string Browser { get; set; }
         string UserAgent { get; set; }
     }
+
     [Unfinished]
     public class DefaultLog : ILog
     {

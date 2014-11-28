@@ -1,19 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Voodoo.Messages
 {
     public class NameValuePair : INameValuePair
     {
-        public string Name { get; set; }
-        public string Value { get; set; }
-
-        [Obsolete("Use Name instead.")]
-        public string Key
-        {
-            get { return Name; }
-            set { Name = value; }
-        }
-
         public NameValuePair()
         {
         }
@@ -22,6 +14,16 @@ namespace Voodoo.Messages
         {
             Name = name;
             Value = value;
+        }
+
+        public string Name { get; set; }
+        public string Value { get; set; }
+
+        [Obsolete("Use Name instead.")]
+        public string Key
+        {
+            get { return Name; }
+            set { Name = value; }
         }
 
         public override string ToString()

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -52,9 +51,9 @@ namespace Voodoo.Logging
         {
 //Handle max event log message size is 32766
 
-            var failedToWriteMessage = "Fallback Logger Failed to write log file: " + path; 
+            var failedToWriteMessage = "Fallback Logger Failed to write log file: " + path;
             var source = appName ?? "Application";
-            const string logName = "Application";            
+            const string logName = "Application";
 
             try
             {
@@ -79,7 +78,7 @@ namespace Voodoo.Logging
 
             EventLog.WriteEntry(source, failedToWriteMessage, EventLogEntryType.Warning);
 
-            EventLog.WriteEntry(source, string.Format("{0} {1}",actualError, ex.ToString()), EventLogEntryType.Error);
+            EventLog.WriteEntry(source, string.Format("{0} {1}", actualError, ex), EventLogEntryType.Error);
         }
 
         private static void deleteFileIfNeeded(string path)

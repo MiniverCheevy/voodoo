@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Linq.Expressions;
+using Voodoo;
 using Voodoo.Linq;
 using Voodoo.Messages;
 using Voodoo.Messages.Paging;
-using Voodoo;
 
 namespace Voodoo
 {
@@ -15,7 +15,7 @@ namespace Voodoo
         public static IQueryable<TQueryResult> OrderByDescending<TQueryResult>(this IQueryable<TQueryResult> query,
             string sortExpression) where TQueryResult : class
         {
-            return query.OrderByDynamic(string.Format("{0} {1}", sortExpression, Constants.SortDirection.Descending));
+            return query.OrderByDynamic(string.Format("{0} {1}", sortExpression, Strings.SortDirection.Descending));
         }
 
         public static PagedResponse<TObject> PagedResult<TObject>(this IQueryable<TObject> source, IGridState paging)
@@ -27,7 +27,6 @@ namespace Voodoo
         public static PagedResponse<TOut> PagedResult<TIn, TOut>(this IQueryable<TIn> source, IGridState paging,
             Expression<Func<TIn, TOut>> expression) where TIn : class where TOut : class, new()
         {
-
             var sortMember = paging.SortMember ?? paging.DefaultSortMember;
 
             source = !string.IsNullOrEmpty(sortMember)

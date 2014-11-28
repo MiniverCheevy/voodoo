@@ -54,21 +54,22 @@ namespace Voodoo
             return testedTypeName;
         }
 
-        public static bool IsGenericTypeDirectlyInheritedFromOtherGenericType(this Type testedType, Type possibleBaseType)
+        public static bool IsGenericTypeDirectlyInheritedFromOtherGenericType(this Type testedType,
+            Type possibleBaseType)
         {
-            if (testedType == null || possibleBaseType == null || testedType.BaseType == null || !testedType.BaseType.GetGenericArguments().Any() ||
-                !possibleBaseType.GetGenericArguments().Any())
+            if (testedType == null || possibleBaseType == null || testedType.BaseType == null ||
+                !testedType.BaseType.GetGenericArguments().Any() || !possibleBaseType.GetGenericArguments().Any())
                 return false;
 
             var left = testedType.BaseType;
             var right = possibleBaseType;
 
-            return left.Name == right.Name && left.Namespace == right.Namespace 
-                && left.GetGenericArguments().Count() == right.GetGenericArguments().Count();
+            return left.Name == right.Name && left.Namespace == right.Namespace &&
+                   left.GetGenericArguments().Count() == right.GetGenericArguments().Count();
 
             //TODO: move to shares common anscestor
             //var baseTypeName = possibleBaseType.GetTypeFullNameWithoutGenericArguments();
-            
+
             //var match = false;
 
             //while (testedType != null)
@@ -86,7 +87,7 @@ namespace Voodoo
 
             //if (!match)
             //    return false;
-            
+
             //    var baseTypes = possibleBaseType.GetGenericArguments();
             //    var testTypes = testedType.GetGenericArguments();
 

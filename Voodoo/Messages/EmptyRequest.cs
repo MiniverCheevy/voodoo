@@ -5,6 +5,6 @@ using System.Linq;
 namespace Voodoo.Messages
 {
     public class EmptyRequest
-    {        
+    {
     }
 }

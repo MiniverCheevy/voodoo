@@ -1,4 +1,8 @@
-﻿namespace Voodoo.Validation.Infrastructure
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace Voodoo.Validation.Infrastructure
 {
     public class ValidationManager
     {
@@ -13,6 +17,6 @@
         public static void Validate(object @object)
         {
             Validator.Validate(@object);
-        }        
+        }
     }
 }

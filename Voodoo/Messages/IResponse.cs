@@ -10,8 +10,8 @@ namespace Voodoo.Messages
         string Message { get; set; }
         Exception Exception { get; set; }
         IList<INameValuePair> Details { get; set; }
+        bool HasLogicException { get; set; }
         void SetExceptions(Exception ex);
         void AppendResponse(IResponse response);
-        bool HasLogicException { get; set; }
     }
 }
