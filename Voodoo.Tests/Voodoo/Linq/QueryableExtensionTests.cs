@@ -61,6 +61,22 @@ namespace Voodoo.Tests.Voodoo.Linq
             Assert.AreEqual(4, result[1].Id);
             
         }
+        [TestMethod]
+        public void PagedResult_ValidValue_ReturnsConvertedListList()
+        {
+
+            var list = GetTestList().AsQueryable();
+            var paging = new PersonPagedRequest { PageNumber = 2, PageSize = 2 };
+
+            var pagedResult = list.PagedResult(paging, 
+                c=> new NameValuePair(){Name=c.Name, Value = c.Id.ToString()});
+            var result = pagedResult.Data;
+            Assert.AreEqual(4, pagedResult.State.TotalRecords);
+            Assert.AreEqual(2, pagedResult.Data.Count);
+            Assert.AreEqual("3", result[0].Value);
+            Assert.AreEqual("4", result[1].Value);
+
+        }
 
         public class PersonPagedRequest : PagedRequest
 

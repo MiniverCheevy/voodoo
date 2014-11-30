@@ -30,7 +30,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;net451</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;net451,net45</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
@@ -72,7 +72,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release net451|AnyCPU'">
     <OutputPath>bin\Release\net451\</OutputPath>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
-    <DefineConstants>TRACE;net451</DefineConstants>
+    <DefineConstants>TRACE;net451,net45</DefineConstants>
     <Optimize>true</Optimize>
     <DebugType>pdbonly</DebugType>
     <PlatformTarget>AnyCPU</PlatformTarget>
