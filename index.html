@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -21,7 +21,6 @@
     <!--[if lt IE 9]>
             <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"> </script>
         <![endif]-->
-
     <!-- Le fav and touch icons -->
     <link href="../assets/ico/favicon.ico" rel="shortcut icon">
     <link href="../assets/ico/apple-touch-icon-144-precomposed.png" rel="apple-touch-icon-precomposed" sizes="144x144">
@@ -88,7 +87,8 @@
 
 <body>
     <a id="fork-me" href="https://github.com/MiniverCheevy/voodoo/fork" target="_blank">
-        <img style="border: 0px currentColor; border-image: none; top: 0px; right: 0px; position: fixed; z-index: 999999;" alt="Fork me on GitHub" src="https://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png"></a>
+        <img style="border: 0px currentColor; border-image: none; top: 0px; right: 0px; position: fixed; z-index: 999999;" alt="Fork me on GitHub" src="https://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png">
+    </a>
     <nav class="navbar navbar-default navbar-fixed-top" role="navigation" style="margin-bottom: 120px;">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
@@ -106,8 +106,7 @@
             <ul class="nav navbar-nav" id="navbar">
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle mobile-only" data-toggle="dropdown">Voodoo.Patterns<b class="caret"></b></a>
-                    <ul class="dropdown-menu mobile-only" id="navigation-dropdown">
-                    </ul>
+                    <ul class="dropdown-menu mobile-only" id="navigation-dropdown"></ul>
                 </li>
             </ul>
         </div>
@@ -134,7 +133,7 @@
                     <p>A c# library containing extension methods and reusable base classes, the automated tests in the project are probably the best documentation.</p>
                     <br>
                     <p>
-                        The project is hosted on <a class="projectLinks" href="https://github.com/MiniverCheevy/voodoo" target="_blank">Github</a> and is available for use under the <a class="projectLinks" href="http://opensource.org/licenses/MIT" target="_blank">MIT software license</a>.  
+                        The project is hosted on <a class="projectLinks" href="https://github.com/MiniverCheevy/voodoo" target="_blank">Github</a> and is available for use under the <a class="projectLinks" href="http://opensource.org/licenses/MIT" target="_blank">MIT software license</a>.
                         You can report bugs and discuss features on the <a href="https://github.com/MiniverCheevy/voodoo/issues" target="_blank">GitHub issues page</a>.
                     </p>
                     <p><a class="btn btn-primary btn-lg" href="https://github.com/MiniverCheevy/voodoo/fork" target="_blank">Fork on Github »</a></p>
@@ -144,14 +143,15 @@
                 <h2>Install from Nuget</h2>
                 <div class="nuget-badge">
                     <p>
-                        <code>PM&gt; Install-Package Voodoo.Patterns
+                        <code>
+                            PM&gt; Install-Package Voodoo.Patterns
                         </code>
                     </p>
                 </div>
                 <h2>Requirements</h2>
                 <br>
                 <p class="well">
-                    .net 4.0
+                    .net 4.0, async support for .net 4.5 and 4.5.1
                 </p>
 
                 <br>
@@ -170,7 +170,7 @@
                 </p>
                 <h4>Methods</h4>
                 <table class="table table-striped table-bordered table-condensed">
-
+                    <colgroup></colgroup>
                     <tbody>
                         <tr>
                             <th></th>
@@ -180,7 +180,8 @@
                             <th>Remarks</th>
                         </tr>
                         <tr data-path="Voodoo.CollectionExtensions..T..T-item">
-                            <td title="Voodoo.CollectionExtensions.AddIfNotNull" class="optionName" data-content="">static
+                            <td title="Voodoo.CollectionExtensions.AddIfNotNull" class="optionName" data-content="">
+                                static
                             </td>
                             <td>void</td>
                             <td>ICollection&lt;T&gt;</td>
@@ -188,7 +189,8 @@
                             <td></td>
                         </tr>
                         <tr data-path="Voodoo.CollectionExtensions..object-item">
-                            <td title="Voodoo.CollectionExtensions.AddIfNotNullOrWhiteSpace" class="optionName" data-content="">static
+                            <td title="Voodoo.CollectionExtensions.AddIfNotNullOrWhiteSpace" class="optionName" data-content="">
+                                static
                             </td>
                             <td>void</td>
                             <td>ICollection&lt;String&gt;</td>
@@ -196,7 +198,8 @@
                             <td></td>
                         </tr>
                         <tr data-path="Voodoo.CollectionExtensions..T..">
-                            <td title="Voodoo.CollectionExtensions.ToListResponse" class="optionName" data-content="">static
+                            <td title="Voodoo.CollectionExtensions.ToListResponse" class="optionName" data-content="">
+                                static
                             </td>
                             <td><a href="#Voodoo.Messages.ListResponse|T|">ListResponse</a>&lt;T&gt;</td>
                             <td>IEnumerable&lt;T&gt;</td>
@@ -204,7 +207,8 @@
                             <td></td>
                         </tr>
                         <tr data-path="Voodoo.CollectionExtensions..T..">
-                            <td title="Voodoo.CollectionExtensions.ToArray" class="optionName" data-content="">static
+                            <td title="Voodoo.CollectionExtensions.ToArray" class="optionName" data-content="">
+                                static
                             </td>
                             <td>T[]</td>
                             <td>IEnumerable</td>
@@ -212,7 +216,8 @@
                             <td></td>
                         </tr>
                         <tr data-path="Voodoo.CollectionExtensions..T..Action.T.-action">
-                            <td title="Voodoo.CollectionExtensions.ForEach" class="optionName" data-content="">static
+                            <td title="Voodoo.CollectionExtensions.ForEach" class="optionName" data-content="">
+                                static
                             </td>
                             <td>IEnumerable&lt;T&gt;</td>
                             <td>IEnumerable&lt;T&gt;</td>
@@ -220,7 +225,8 @@
                             <td></td>
                         </tr>
                         <tr data-path="Voodoo.CollectionExtensions..T..ICollection.T.-toFind">
-                            <td title="Voodoo.CollectionExtensions.ContainsAny" class="optionName" data-content="">static
+                            <td title="Voodoo.CollectionExtensions.ContainsAny" class="optionName" data-content="">
+                                static
                             </td>
                             <td>bool</td>
                             <td>ICollection&lt;T&gt;</td>
@@ -228,7 +234,8 @@
                             <td></td>
                         </tr>
                         <tr data-path="Voodoo.CollectionExtensions..T..ICollection.T.-toFind">
-                            <td title="Voodoo.CollectionExtensions.ContainsAll" class="optionName" data-content="">static
+                            <td title="Voodoo.CollectionExtensions.ContainsAll" class="optionName" data-content="">
+                                static
                             </td>
                             <td>bool</td>
                             <td>ICollection&lt;T&gt;</td>
@@ -236,7 +243,8 @@
                             <td></td>
                         </tr>
                         <tr data-path="Voodoo.CollectionExtensions..T..">
-                            <td title="Voodoo.CollectionExtensions.ToArray" class="optionName" data-content="">static
+                            <td title="Voodoo.CollectionExtensions.ToArray" class="optionName" data-content="">
+                                static
                             </td>
                             <td>T[]</td>
                             <td>ICollection</td>
@@ -244,7 +252,8 @@
                             <td></td>
                         </tr>
                         <tr data-path="Voodoo.CollectionExtensions..T..">
-                            <td title="Voodoo.CollectionExtensions.ToArray" class="optionName" data-content="">static
+                            <td title="Voodoo.CollectionExtensions.ToArray" class="optionName" data-content="">
+                                static
                             </td>
                             <td>T[]</td>
                             <td>ICollection&lt;T&gt;</td>
@@ -262,7 +271,7 @@
                 </p>
                 <h4>Methods</h4>
                 <table class="table table-striped table-bordered table-condensed">
-
+                    <colgroup></colgroup>
                     <tbody>
                         <tr>
                             <th></th>
@@ -272,7 +281,8 @@
                             <th>Remarks</th>
                         </tr>
                         <tr data-path="Voodoo.ConversionExtensions..T..">
-                            <td title="Voodoo.ConversionExtensions.As" class="optionName" data-content="">static
+                            <td title="Voodoo.ConversionExtensions.As" class="optionName" data-content="">
+                                static
                             </td>
                             <td>T</td>
                             <td>object</td>
@@ -280,7 +290,8 @@
                             <td>attempts to convert anything to anything else, may return null, see <a href="#ToAsBoxing">below</a></td>
                         </tr>
                         <tr data-path="Voodoo.ConversionExtensions..T..">
-                            <td title="Voodoo.ConversionExtensions.To" class="optionName" data-content="">static
+                            <td title="Voodoo.ConversionExtensions.To" class="optionName" data-content="">
+                                static
                             </td>
                             <td>T</td>
                             <td>object</td>
@@ -288,7 +299,8 @@
                             <td>attempts to convert anything to anything else, never returns null, see <a href="#ToAsBoxing">below</a></td>
                         </tr>
                         <tr data-path="Voodoo.ConversionExtensions..">
-                            <td title="Voodoo.ConversionExtensions.ToStartOfDay" class="optionName" data-content="">static
+                            <td title="Voodoo.ConversionExtensions.ToStartOfDay" class="optionName" data-content="">
+                                static
                             </td>
                             <td>DateTime</td>
                             <td>DateTime</td>
@@ -296,7 +308,8 @@
                             <td>sets the time component to 00:00:00:000</td>
                         </tr>
                         <tr data-path="Voodoo.ConversionExtensions..">
-                            <td title="Voodoo.ConversionExtensions.ToEndOfDay" class="optionName" data-content="">static
+                            <td title="Voodoo.ConversionExtensions.ToEndOfDay" class="optionName" data-content="">
+                                static
                             </td>
                             <td>DateTime</td>
                             <td>DateTime</td>
@@ -304,20 +317,23 @@
                             <td>sets the time component to 23:59:59:999</td>
                         </tr>
                         <tr data-path="Voodoo.ConversionExtensions..">
-                            <td title="Voodoo.ConversionExtensions.ToDebugString" class="optionName" data-content="">static
+                            <td title="Voodoo.ConversionExtensions.ToDebugString" class="optionName" data-content="">
+                                static
                             </td>
                             <td>string</td>
                             <td>object</td>
                             <td>ToDebugString()</td>
-                            <td>returns the results of the <a href="#Voodoo.Operations.ObjectStringificationQuery">ObjectStringificationQuery</a>
-                                listing out all properites and thier values of an object.  
-                                                You can set the maximum number of items in a collection with <a href="#Voodoo.VoodooGlobalConfiguration">VoodooGlobalConfiguration</a>.  
-                                                With default error handling behavior in place a <a href="#Voodoo.Operations.Command|TRequest,TResponse|">Command</a> or <a href="#Voodoo.Operations.Query|TRequest,TResponse|">Query</a> will include a stringified version of the request in the logs.
+                            <td>
+                                returns the results of the <a href="#Voodoo.Operations.ObjectStringificationQuery">ObjectStringificationQuery</a>
+                                listing out all properites and thier values of an object.
+                                You can set the maximum number of items in a collection with <a href="#Voodoo.VoodooGlobalConfiguration">VoodooGlobalConfiguration</a>.
+                                With default error handling behavior in place a <a href="#Voodoo.Operations.Command|TRequest,TResponse|">Command</a> or <a href="#Voodoo.Operations.Query|TRequest,TResponse|">Query</a> will include a stringified version of the request in the logs.
 
                             </td>
                         </tr>
                         <tr data-path="Voodoo.ConversionExtensions..">
-                            <td title="Voodoo.ConversionExtensions.ToFriendlyString" class="optionName" data-content="">static
+                            <td title="Voodoo.ConversionExtensions.ToFriendlyString" class="optionName" data-content="">
+                                static
                             </td>
                             <td>string</td>
                             <td>object</td>
@@ -336,26 +352,21 @@
         {         
             string AProperty { get; set; }
         }
-
         public class Foo : IHaveAProperty
         {
             public string AProperty { get; set; }
         }
-
         public class Bar : IHaveAProperty
         {
             public string AProperty { get; set; }
         }
-
         [TestMethod]
         public void ToAndAs()
         {
             var foo = new Foo() {AProperty = "A"};
             var bar = new Bar() {AProperty = "B" };
-
             var toInterface = foo.To&lt;IHaveAProperty&gt;();
             Assert.AreEqual(foo, toInterface);
-
             var cantCast = bar.To&lt;Foo&gt;();
             Assert.IsNotNull(bar);
             Assert.AreNotEqual(bar, cantCast);
@@ -381,8 +392,7 @@
                 </p>
                 <h4>Methods</h4>
                 <table class="table table-striped table-bordered table-condensed">
-                    <colgroup>
-                    </colgroup>
+                    <colgroup></colgroup>
                     <tbody>
                         <tr>
                             <th></th>
@@ -391,16 +401,36 @@
                             <th>Method</th>
                             <th>Remarks</th>
                         </tr>
+                        <tr data-path="Voodoo.IoNic..">
+                            <td title="Voodoo.IoNic.GetApplicationRootDirectory" class="optionName" data-content="">
+                                static
+                            </td>
+                            <td>string</td>
+                            <td></td>
+                            <td>GetApplicationRootDirectory()</td>
+                            <td></td>
+                        </tr>
                         <tr data-path="Voodoo.IoNic..string-fileExtensionNoDot">
-                            <td title="Voodoo.IoNic.GetTempFileNameAndPath" class="optionName" data-content="">static
+                            <td title="Voodoo.IoNic.GetTempFileNameAndPath" class="optionName" data-content="">
+                                static
                             </td>
                             <td>string</td>
                             <td></td>
                             <td>GetTempFileNameAndPath(string fileExtensionNoDot)</td>
                             <td>returns the path to the system temp directory with a file name generated from a guid</td>
                         </tr>
+                        <tr data-path="Voodoo.IoNic..string-path,-string-arguments">
+                            <td title="Voodoo.IoNic.ExecuteAndReturnOutput" class="optionName" data-content="">
+                                static
+                            </td>
+                            <td>string</td>
+                            <td></td>
+                            <td>ExecuteAndReturnOutput(string path, string arguments)</td>
+                            <td></td>
+                        </tr>
                         <tr data-path="Voodoo.IoNic..string-path">
-                            <td title="Voodoo.IoNic.ShellExecute" class="optionName" data-content="">static
+                            <td title="Voodoo.IoNic.ShellExecute" class="optionName" data-content="">
+                                static
                             </td>
                             <td>void</td>
                             <td></td>
@@ -408,7 +438,8 @@
                             <td>spins off a process with Shell Execute, hiding all output</td>
                         </tr>
                         <tr data-path="Voodoo.IoNic..string-fileName">
-                            <td title="Voodoo.IoNic.ReadFile" class="optionName" data-content="">static
+                            <td title="Voodoo.IoNic.ReadFile" class="optionName" data-content="">
+                                static
                             </td>
                             <td>string</td>
                             <td></td>
@@ -416,7 +447,8 @@
                             <td>reads the contents of a text file into a string</td>
                         </tr>
                         <tr data-path="Voodoo.IoNic..string-contents,-string-fileName">
-                            <td title="Voodoo.IoNic.AppendToFile" class="optionName" data-content="">static
+                            <td title="Voodoo.IoNic.AppendToFile" class="optionName" data-content="">
+                                static
                             </td>
                             <td>void</td>
                             <td></td>
@@ -424,7 +456,8 @@
                             <td>appends the string to an existing file, will create the file if it doesn't exist</td>
                         </tr>
                         <tr data-path="Voodoo.IoNic..string-fileContents,-string-fileName">
-                            <td title="Voodoo.IoNic.WriteFile" class="optionName" data-content="">static
+                            <td title="Voodoo.IoNic.WriteFile" class="optionName" data-content="">
+                                static
                             </td>
                             <td>void</td>
                             <td></td>
@@ -432,7 +465,8 @@
                             <td>writes the string to a file, will delete the file if it already exists</td>
                         </tr>
                         <tr data-path="Voodoo.IoNic..string-path">
-                            <td title="Voodoo.IoNic.MakeDir" class="optionName" data-content="">static
+                            <td title="Voodoo.IoNic.MakeDir" class="optionName" data-content="">
+                                static
                             </td>
                             <td>void</td>
                             <td></td>
@@ -440,7 +474,8 @@
                             <td>creats a directory, will not throw an expection if directory already exists</td>
                         </tr>
                         <tr data-path="Voodoo.IoNic..string-path">
-                            <td title="Voodoo.IoNic.ClearDir" class="optionName" data-content="">static
+                            <td title="Voodoo.IoNic.ClearDir" class="optionName" data-content="">
+                                static
                             </td>
                             <td>void</td>
                             <td></td>
@@ -448,7 +483,8 @@
                             <td>deletes all files in a directory, works with read only files</td>
                         </tr>
                         <tr data-path="Voodoo.IoNic..string-path">
-                            <td title="Voodoo.IoNic.KillDir" class="optionName" data-content="">static
+                            <td title="Voodoo.IoNic.KillDir" class="optionName" data-content="">
+                                static
                             </td>
                             <td>void</td>
                             <td></td>
@@ -456,7 +492,8 @@
                             <td>deletes a directory, first recursively deleteing all files and folders, works with read only files</td>
                         </tr>
                         <tr data-path="Voodoo.IoNic..string-path">
-                            <td title="Voodoo.IoNic.KillFile" class="optionName" data-content="">static
+                            <td title="Voodoo.IoNic.KillFile" class="optionName" data-content="">
+                                static
                             </td>
                             <td>void</td>
                             <td></td>
@@ -476,8 +513,7 @@
                      </code></pre>
                 <h4>Methods</h4>
                 <table class="table table-striped table-bordered table-condensed">
-                    <colgroup>
-                    </colgroup>
+                    <colgroup></colgroup>
                     <tbody>
                         <tr>
                             <th></th>
@@ -487,7 +523,8 @@
                             <th>Remarks</th>
                         </tr>
                         <tr data-path="Voodoo.NameValuePairExtensions..string-name,-string-value">
-                            <td title="Voodoo.NameValuePairExtensions.Add" class="optionName" data-content="">static
+                            <td title="Voodoo.NameValuePairExtensions.Add" class="optionName" data-content="">
+                                static
                             </td>
                             <td>void</td>
                             <td>IList&lt;<a href="#Voodoo.Messages.INameValuePair">INameValuePair</a>&gt;</td>
@@ -495,7 +532,8 @@
                             <td></td>
                         </tr>
                         <tr data-path="Voodoo.NameValuePairExtensions..string-name,-string-value">
-                            <td title="Voodoo.NameValuePairExtensions.SetValue" class="optionName" data-content="">static
+                            <td title="Voodoo.NameValuePairExtensions.SetValue" class="optionName" data-content="">
+                                static
                             </td>
                             <td>void</td>
                             <td>IList&lt;<a href="#Voodoo.Messages.INameValuePair">INameValuePair</a>&gt;</td>
@@ -503,7 +541,8 @@
                             <td></td>
                         </tr>
                         <tr data-path="Voodoo.NameValuePairExtensions..string-name">
-                            <td title="Voodoo.NameValuePairExtensions.RemoveByName" class="optionName" data-content="">static
+                            <td title="Voodoo.NameValuePairExtensions.RemoveByName" class="optionName" data-content="">
+                                static
                             </td>
                             <td>void</td>
                             <td>IList&lt;<a href="#Voodoo.Messages.INameValuePair">INameValuePair</a>&gt;</td>
@@ -511,7 +550,8 @@
                             <td></td>
                         </tr>
                         <tr data-path="Voodoo.NameValuePairExtensions..string-value">
-                            <td title="Voodoo.NameValuePairExtensions.RemoveByValue" class="optionName" data-content="">static
+                            <td title="Voodoo.NameValuePairExtensions.RemoveByValue" class="optionName" data-content="">
+                                static
                             </td>
                             <td>void</td>
                             <td>IList&lt;<a href="#Voodoo.Messages.INameValuePair">INameValuePair</a>&gt;</td>
@@ -519,7 +559,8 @@
                             <td></td>
                         </tr>
                         <tr data-path="Voodoo.NameValuePairExtensions..string-name">
-                            <td title="Voodoo.NameValuePairExtensions.GetValue" class="optionName" data-content="">static
+                            <td title="Voodoo.NameValuePairExtensions.GetValue" class="optionName" data-content="">
+                                static
                             </td>
                             <td>string</td>
                             <td>IEnumerable&lt;<a href="#Voodoo.Messages.INameValuePair">INameValuePair</a>&gt;</td>
@@ -527,7 +568,8 @@
                             <td></td>
                         </tr>
                         <tr data-path="Voodoo.NameValuePairExtensions..string-value">
-                            <td title="Voodoo.NameValuePairExtensions.ContainsValue" class="optionName" data-content="">static
+                            <td title="Voodoo.NameValuePairExtensions.ContainsValue" class="optionName" data-content="">
+                                static
                             </td>
                             <td>bool</td>
                             <td>IEnumerable&lt;<a href="#Voodoo.Messages.INameValuePair">INameValuePair</a>&gt;</td>
@@ -535,7 +577,8 @@
                             <td></td>
                         </tr>
                         <tr data-path="Voodoo.NameValuePairExtensions..string-name">
-                            <td title="Voodoo.NameValuePairExtensions.ContainsName" class="optionName" data-content="">static
+                            <td title="Voodoo.NameValuePairExtensions.ContainsName" class="optionName" data-content="">
+                                static
                             </td>
                             <td>bool</td>
                             <td>IEnumerable&lt;<a href="#Voodoo.Messages.INameValuePair">INameValuePair</a>&gt;</td>
@@ -543,7 +586,8 @@
                             <td></td>
                         </tr>
                         <tr data-path="Voodoo.NameValuePairExtensions..string-name,-string-value">
-                            <td title="Voodoo.NameValuePairExtensions.ContainsItem" class="optionName" data-content="">static
+                            <td title="Voodoo.NameValuePairExtensions.ContainsItem" class="optionName" data-content="">
+                                static
                             </td>
                             <td>bool</td>
                             <td>IEnumerable&lt;<a href="#Voodoo.Messages.INameValuePair">INameValuePair</a>&gt;</td>
@@ -551,7 +595,8 @@
                             <td></td>
                         </tr>
                         <tr data-path="Voodoo.NameValuePairExtensions..string-name">
-                            <td title="Voodoo.NameValuePairExtensions.Without" class="optionName" data-content="">static
+                            <td title="Voodoo.NameValuePairExtensions.Without" class="optionName" data-content="">
+                                static
                             </td>
                             <td>IList&lt;<a href="#Voodoo.Messages.INameValuePair">INameValuePair</a>&gt;</td>
                             <td>IEnumerable&lt;<a href="#Voodoo.Messages.INameValuePair">INameValuePair</a>&gt;</td>
@@ -559,7 +604,8 @@
                             <td></td>
                         </tr>
                         <tr data-path="Voodoo.NameValuePairExtensions..TKey,TValue..">
-                            <td title="Voodoo.NameValuePairExtensions.ToINameValuePairList" class="optionName" data-content="">static
+                            <td title="Voodoo.NameValuePairExtensions.ToINameValuePairList" class="optionName" data-content="">
+                                static
                             </td>
                             <td>IList&lt;<a href="#Voodoo.Messages.INameValuePair">INameValuePair</a>&gt;</td>
                             <td>Dictionary&lt;TKey,TValue&gt;</td>
@@ -567,7 +613,8 @@
                             <td></td>
                         </tr>
                         <tr data-path="Voodoo.NameValuePairExtensions..">
-                            <td title="Voodoo.NameValuePairExtensions.ToINameValuePairList" class="optionName" data-content="">static
+                            <td title="Voodoo.NameValuePairExtensions.ToINameValuePairList" class="optionName" data-content="">
+                                static
                             </td>
                             <td>IList&lt;<a href="#Voodoo.Messages.INameValuePair">INameValuePair</a>&gt;</td>
                             <td>Type</td>
@@ -575,7 +622,8 @@
                             <td></td>
                         </tr>
                         <tr data-path="Voodoo.NameValuePairExtensions..">
-                            <td title="Voodoo.NameValuePairExtensions.ToINameValuePairListWithUnfriendlyNames" class="optionName" data-content="">static
+                            <td title="Voodoo.NameValuePairExtensions.ToINameValuePairListWithUnfriendlyNames" class="optionName" data-content="">
+                                static
                             </td>
                             <td>IList&lt;<a href="#Voodoo.Messages.INameValuePair">INameValuePair</a>&gt;</td>
                             <td>Type</td>
@@ -583,7 +631,8 @@
                             <td></td>
                         </tr>
                         <tr data-path="Voodoo.NameValuePairExtensions..">
-                            <td title="Voodoo.NameValuePairExtensions.AsEnumerable" class="optionName" data-content="">static
+                            <td title="Voodoo.NameValuePairExtensions.AsEnumerable" class="optionName" data-content="">
+                                static
                             </td>
                             <td>IEnumerable&lt;<a href="#Voodoo.Messages.INameValuePair">INameValuePair</a>&gt;</td>
                             <td>NameValueCollection</td>
@@ -600,8 +649,7 @@
                 </p>
                 <h4>Methods</h4>
                 <table class="table table-striped table-bordered table-condensed">
-                    <colgroup>
-                    </colgroup>
+                    <colgroup></colgroup>
                     <tbody>
                         <tr>
                             <th></th>
@@ -611,7 +659,8 @@
                             <th>Remarks</th>
                         </tr>
                         <tr data-path="Voodoo.Objectifyer..TObject..TObject-o">
-                            <td title="Voodoo.Objectifyer.ShallowCopy" class="optionName" data-content="">static
+                            <td title="Voodoo.Objectifyer.ShallowCopy" class="optionName" data-content="">
+                                static
                             </td>
                             <td>TObject</td>
                             <td></td>
@@ -619,7 +668,8 @@
                             <td>invokes <a href="http://msdn.microsoft.com/en-us/library/system.object.memberwiseclone.aspx">MemberwiseClone</a> creating a copy of the object, any nested objects or collections will still reference the origonal objects nested objects or colllections</td>
                         </tr>
                         <tr data-path="Voodoo.Objectifyer..TObject..TObject-o">
-                            <td title="Voodoo.Objectifyer.DeepCopy" class="optionName" data-content="">static
+                            <td title="Voodoo.Objectifyer.DeepCopy" class="optionName" data-content="">
+                                static
                             </td>
                             <td>TObject</td>
                             <td></td>
@@ -627,7 +677,8 @@
                             <td>performs a binary serialization and deserialization of the object</td>
                         </tr>
                         <tr data-path="Voodoo.Objectifyer..string-data">
-                            <td title="Voodoo.Objectifyer.Base64Encode" class="optionName" data-content="">static
+                            <td title="Voodoo.Objectifyer.Base64Encode" class="optionName" data-content="">
+                                static
                             </td>
                             <td>string</td>
                             <td></td>
@@ -635,7 +686,8 @@
                             <td></td>
                         </tr>
                         <tr data-path="Voodoo.Objectifyer..string-data">
-                            <td title="Voodoo.Objectifyer.Base64Decode" class="optionName" data-content="">static
+                            <td title="Voodoo.Objectifyer.Base64Decode" class="optionName" data-content="">
+                                static
                             </td>
                             <td>string</td>
                             <td></td>
@@ -643,7 +695,8 @@
                             <td></td>
                         </tr>
                         <tr data-path="Voodoo.Objectifyer..T..string-xml">
-                            <td title="Voodoo.Objectifyer.FromXml" class="optionName" data-content="">static
+                            <td title="Voodoo.Objectifyer.FromXml" class="optionName" data-content="">
+                                static
                             </td>
                             <td>T</td>
                             <td></td>
@@ -651,7 +704,8 @@
                             <td></td>
                         </tr>
                         <tr data-path="Voodoo.Objectifyer..T..string-xml,-Type[]-extraTypes">
-                            <td title="Voodoo.Objectifyer.FromXml" class="optionName" data-content="">static
+                            <td title="Voodoo.Objectifyer.FromXml" class="optionName" data-content="">
+                                static
                             </td>
                             <td>T</td>
                             <td></td>
@@ -659,7 +713,8 @@
                             <td></td>
                         </tr>
                         <tr data-path="Voodoo.Objectifyer..TObject..TObject-object">
-                            <td title="Voodoo.Objectifyer.ToDataContractXml" class="optionName" data-content="">static
+                            <td title="Voodoo.Objectifyer.ToDataContractXml" class="optionName" data-content="">
+                                static
                             </td>
                             <td>string</td>
                             <td></td>
@@ -667,7 +722,8 @@
                             <td></td>
                         </tr>
                         <tr data-path="Voodoo.Objectifyer..TObject..TObject-object,-Type[]-extraTypes">
-                            <td title="Voodoo.Objectifyer.ToDataContractXml" class="optionName" data-content="">static
+                            <td title="Voodoo.Objectifyer.ToDataContractXml" class="optionName" data-content="">
+                                static
                             </td>
                             <td>string</td>
                             <td></td>
@@ -675,7 +731,8 @@
                             <td></td>
                         </tr>
                         <tr data-path="Voodoo.Objectifyer..TObject..TObject-object">
-                            <td title="Voodoo.Objectifyer.ToXml" class="optionName" data-content="">static
+                            <td title="Voodoo.Objectifyer.ToXml" class="optionName" data-content="">
+                                static
                             </td>
                             <td>string</td>
                             <td></td>
@@ -683,7 +740,8 @@
                             <td></td>
                         </tr>
                         <tr data-path="Voodoo.Objectifyer..TObject..TObject-object,-bool-omitNamespaces">
-                            <td title="Voodoo.Objectifyer.ToXml" class="optionName" data-content="">static
+                            <td title="Voodoo.Objectifyer.ToXml" class="optionName" data-content="">
+                                static
                             </td>
                             <td>string</td>
                             <td></td>
@@ -691,7 +749,8 @@
                             <td></td>
                         </tr>
                         <tr data-path="Voodoo.Objectifyer..TObject..TObject-object,-Type[]-extraTypes,-bool-omitNamespaces">
-                            <td title="Voodoo.Objectifyer.ToXml" class="optionName" data-content="">static
+                            <td title="Voodoo.Objectifyer.ToXml" class="optionName" data-content="">
+                                static
                             </td>
                             <td>string</td>
                             <td></td>
@@ -707,8 +766,7 @@
                 </p>
                 <h4>Methods</h4>
                 <table class="table table-striped table-bordered table-condensed">
-                    <colgroup>
-                    </colgroup>
+                    <colgroup></colgroup>
                     <tbody>
                         <tr>
                             <th></th>
@@ -718,7 +776,8 @@
                             <th>Remarks</th>
                         </tr>
                         <tr data-path="Voodoo.QueryableExtensions..TQueryResult..string-sortExpression">
-                            <td title="Voodoo.QueryableExtensions.OrderByDescending" class="optionName" data-content="">static
+                            <td title="Voodoo.QueryableExtensions.OrderByDescending" class="optionName" data-content="">
+                                static
                             </td>
                             <td>IQueryable&lt;TQueryResult&gt;</td>
                             <td>IQueryable&lt;TQueryResult&gt;</td>
@@ -726,7 +785,8 @@
                             <td></td>
                         </tr>
                         <tr data-path="Voodoo.QueryableExtensions..TObject..IGridState-paging">
-                            <td title="Voodoo.QueryableExtensions.PagedResult" class="optionName" data-content="">static
+                            <td title="Voodoo.QueryableExtensions.PagedResult" class="optionName" data-content="">
+                                static
                             </td>
                             <td><a href="#Voodoo.Messages.PagedResponse|TQueryResult|">PagedResponse</a>&lt;TObject&gt;</td>
                             <td>IQueryable&lt;TObject&gt;</td>
@@ -734,7 +794,8 @@
                             <td></td>
                         </tr>
                         <tr data-path="Voodoo.QueryableExtensions..TIn,TOut..IGridState-paging,-Expression.Func.TIn,TOut..-expression">
-                            <td title="Voodoo.QueryableExtensions.PagedResult" class="optionName" data-content="">static
+                            <td title="Voodoo.QueryableExtensions.PagedResult" class="optionName" data-content="">
+                                static
                             </td>
                             <td><a href="#Voodoo.Messages.PagedResponse|TQueryResult|">PagedResponse</a>&lt;TOut&gt;</td>
                             <td>IQueryable&lt;TIn&gt;</td>
@@ -742,7 +803,8 @@
                             <td></td>
                         </tr>
                         <tr data-path="Voodoo.QueryableExtensions..T..Expression.Func.T,Object..-expression">
-                            <td title="Voodoo.QueryableExtensions.GetName" class="optionName" data-content="">static
+                            <td title="Voodoo.QueryableExtensions.GetName" class="optionName" data-content="">
+                                static
                             </td>
                             <td>string</td>
                             <td>T</td>
@@ -750,7 +812,8 @@
                             <td></td>
                         </tr>
                         <tr data-path="Voodoo.QueryableExtensions..T..Expression.T.-second,-Func.Expression,Expression,Expression.-merge">
-                            <td title="Voodoo.QueryableExtensions.Compose" class="optionName" data-content="">static
+                            <td title="Voodoo.QueryableExtensions.Compose" class="optionName" data-content="">
+                                static
                             </td>
                             <td>Expression&lt;T&gt;</td>
                             <td>Expression&lt;T&gt;</td>
@@ -758,7 +821,8 @@
                             <td></td>
                         </tr>
                         <tr data-path="Voodoo.QueryableExtensions..T..Expression.Func.T,Boolean..-second">
-                            <td title="Voodoo.QueryableExtensions.AndAlso" class="optionName" data-content="">static
+                            <td title="Voodoo.QueryableExtensions.AndAlso" class="optionName" data-content="">
+                                static
                             </td>
                             <td>Expression&lt;Func&lt;T,Boolean&gt;&gt;</td>
                             <td>Expression&lt;Func&lt;T,Boolean&gt;&gt;</td>
@@ -766,7 +830,8 @@
                             <td></td>
                         </tr>
                         <tr data-path="Voodoo.QueryableExtensions..T..Expression.Func.T,Boolean..-second">
-                            <td title="Voodoo.QueryableExtensions.OrElse" class="optionName" data-content="">static
+                            <td title="Voodoo.QueryableExtensions.OrElse" class="optionName" data-content="">
+                                static
                             </td>
                             <td>Expression&lt;Func&lt;T,Boolean&gt;&gt;</td>
                             <td>Expression&lt;Func&lt;T,Boolean&gt;&gt;</td>
@@ -782,8 +847,7 @@
                 </p>
                 <h4>Methods</h4>
                 <table class="table table-striped table-bordered table-condensed">
-                    <colgroup>
-                    </colgroup>
+                    <colgroup></colgroup>
                     <tbody>
                         <tr>
                             <th></th>
@@ -793,7 +857,8 @@
                             <th>Remarks</th>
                         </tr>
                         <tr data-path="Voodoo.ReflectionExtensions..">
-                            <td title="Voodoo.ReflectionExtensions.IsScalar" class="optionName" data-content="">static
+                            <td title="Voodoo.ReflectionExtensions.IsScalar" class="optionName" data-content="">
+                                static
                             </td>
                             <td>bool</td>
                             <td>Type</td>
@@ -801,7 +866,8 @@
                             <td></td>
                         </tr>
                         <tr data-path="Voodoo.ReflectionExtensions..">
-                            <td title="Voodoo.ReflectionExtensions.GetTypeNameWithoutGenericArguments" class="optionName" data-content="">static
+                            <td title="Voodoo.ReflectionExtensions.GetTypeNameWithoutGenericArguments" class="optionName" data-content="">
+                                static
                             </td>
                             <td>string</td>
                             <td>Type</td>
@@ -809,7 +875,8 @@
                             <td></td>
                         </tr>
                         <tr data-path="Voodoo.ReflectionExtensions..">
-                            <td title="Voodoo.ReflectionExtensions.GetTypeFullNameWithoutGenericArguments" class="optionName" data-content="">static
+                            <td title="Voodoo.ReflectionExtensions.GetTypeFullNameWithoutGenericArguments" class="optionName" data-content="">
+                                static
                             </td>
                             <td>string</td>
                             <td>Type</td>
@@ -817,7 +884,8 @@
                             <td></td>
                         </tr>
                         <tr data-path="Voodoo.ReflectionExtensions..Type-possibleBaseType">
-                            <td title="Voodoo.ReflectionExtensions.IsGenericTypeDirectlyInheritedFromOtherGenericType" class="optionName" data-content="">static
+                            <td title="Voodoo.ReflectionExtensions.IsGenericTypeDirectlyInheritedFromOtherGenericType" class="optionName" data-content="">
+                                static
                             </td>
                             <td>bool</td>
                             <td>Type</td>
@@ -825,7 +893,8 @@
                             <td></td>
                         </tr>
                         <tr data-path="Voodoo.ReflectionExtensions..">
-                            <td title="Voodoo.ReflectionExtensions.GetParameterDictionary" class="optionName" data-content="">static
+                            <td title="Voodoo.ReflectionExtensions.GetParameterDictionary" class="optionName" data-content="">
+                                static
                             </td>
                             <td>List&lt;KeyValuePair&lt;Type,String&gt;&gt;</td>
                             <td>MethodInfo</td>
@@ -833,7 +902,8 @@
                             <td></td>
                         </tr>
                         <tr data-path="Voodoo.ReflectionExtensions..">
-                            <td title="Voodoo.ReflectionExtensions.GetParametersForCodeGeneration" class="optionName" data-content="">static
+                            <td title="Voodoo.ReflectionExtensions.GetParametersForCodeGeneration" class="optionName" data-content="">
+                                static
                             </td>
                             <td>string</td>
                             <td>MethodInfo</td>
@@ -841,7 +911,8 @@
                             <td></td>
                         </tr>
                         <tr data-path="Voodoo.ReflectionExtensions..">
-                            <td title="Voodoo.ReflectionExtensions.FixUpScalarTypeName" class="optionName" data-content="">static
+                            <td title="Voodoo.ReflectionExtensions.FixUpScalarTypeName" class="optionName" data-content="">
+                                static
                             </td>
                             <td>string</td>
                             <td>Type</td>
@@ -849,7 +920,8 @@
                             <td></td>
                         </tr>
                         <tr data-path="Voodoo.ReflectionExtensions..">
-                            <td title="Voodoo.ReflectionExtensions.FixUpTypeName" class="optionName" data-content="">static
+                            <td title="Voodoo.ReflectionExtensions.FixUpTypeName" class="optionName" data-content="">
+                                static
                             </td>
                             <td>string</td>
                             <td>Type</td>
@@ -857,7 +929,8 @@
                             <td></td>
                         </tr>
                         <tr data-path="Voodoo.ReflectionExtensions..">
-                            <td title="Voodoo.ReflectionExtensions.GetMethodName" class="optionName" data-content="">static
+                            <td title="Voodoo.ReflectionExtensions.GetMethodName" class="optionName" data-content="">
+                                static
                             </td>
                             <td>string</td>
                             <td>MethodBase</td>
@@ -865,7 +938,8 @@
                             <td></td>
                         </tr>
                         <tr data-path="Voodoo.ReflectionExtensions..Type-interfaceType">
-                            <td title="Voodoo.ReflectionExtensions.DoesImplementInterfaceOf" class="optionName" data-content="">static
+                            <td title="Voodoo.ReflectionExtensions.DoesImplementInterfaceOf" class="optionName" data-content="">
+                                static
                             </td>
                             <td>bool</td>
                             <td>Type</td>
@@ -873,7 +947,8 @@
                             <td></td>
                         </tr>
                         <tr data-path="Voodoo.ReflectionExtensions..Type-typeDefinition">
-                            <td title="Voodoo.ReflectionExtensions.IsGenericCollectionTypeOf" class="optionName" data-content="">static
+                            <td title="Voodoo.ReflectionExtensions.IsGenericCollectionTypeOf" class="optionName" data-content="">
+                                static
                             </td>
                             <td>bool</td>
                             <td>Type</td>
@@ -882,6 +957,15 @@
                         </tr>
                     </tbody>
                 </table>
+                <a id="Voodoo.Strings">&nbsp;</a>
+                <h3 data-path="">Strings</h3>
+                <b>Inheritance Hierarchy: </b>
+                <br />
+                &nbsp;&nbsp;&nbsp;&nbsp;ValueType<br />
+                <br />
+                <p class="well">
+                    Assorted constants and strings.
+                </p>
                 <a id="Voodoo.ValidationExtensions">&nbsp;</a>
                 <h3 data-path="">ValidationExtensions</h3>
                 <br />
@@ -889,8 +973,7 @@
                 </p>
                 <h4>Methods</h4>
                 <table class="table table-striped table-bordered table-condensed">
-                    <colgroup>
-                    </colgroup>
+                    <colgroup></colgroup>
                     <tbody>
                         <tr>
                             <th></th>
@@ -900,7 +983,8 @@
                             <th>Remarks</th>
                         </tr>
                         <tr data-path="Voodoo.ValidationExtensions..">
-                            <td title="Voodoo.ValidationExtensions.Validate" class="optionName" data-content="">static
+                            <td title="Voodoo.ValidationExtensions.Validate" class="optionName" data-content="">
+                                static
                             </td>
                             <td>bool</td>
                             <td>object</td>
@@ -933,7 +1017,8 @@
                         </tr>
                         <tr data-path="">
 
-                            <td title="System.Int32.LogMaximumNumberOfItemsInCollection" class="optionName" data-content="">static
+                            <td title="System.Int32.LogMaximumNumberOfItemsInCollection" class="optionName" data-content="">
+                                static
                             </td>
                             <td>int</td>
                             <td>LogMaximumNumberOfItemsInCollection</td>
@@ -941,7 +1026,8 @@
                         </tr>
                         <tr data-path="">
 
-                            <td title="System.String.LogFilePath" class="optionName" data-content="">static
+                            <td title="System.String.LogFilePath" class="optionName" data-content="">
+                                static
                             </td>
                             <td>string</td>
                             <td>LogFilePath</td>
@@ -949,7 +1035,8 @@
                         </tr>
                         <tr data-path="">
 
-                            <td title="System.String.ApplicationName" class="optionName" data-content="">static
+                            <td title="System.String.ApplicationName" class="optionName" data-content="">
+                                static
                             </td>
                             <td>string</td>
                             <td>ApplicationName</td>
@@ -957,13 +1044,15 @@
                         </tr>
                         <tr data-path="">
 
-                            <td title="System.Boolean.RemoveExceptionFromResponseAfterLogging" class="optionName" data-content="">static
+                            <td title="System.Boolean.RemoveExceptionFromResponseAfterLogging" class="optionName" data-content="">
+                                static
                             </td>
                             <td>bool</td>
                             <td>RemoveExceptionFromResponseAfterLogging</td>
-                            <td>Exceptions in 
+                            <td>
+                                Exceptions in
                                 <a href="#Voodoo.Operations.Command|TRequest,TResponse|">Command</a> or
-                                 <a href="#Voodoo.Operations.Query|TRequest,TResponse|">Query</a>
+                                <a href="#Voodoo.Operations.Query|TRequest,TResponse|">Query</a>
                                 failures are added to the <a href="#Voodoo.Messages.Response">Response</a>.  If you plan to serialize responses as xml or
                                 JSON you should set this to true.
 
@@ -973,8 +1062,7 @@
                 </table>
                 <h4>Methods</h4>
                 <table class="table table-striped table-bordered table-condensed">
-                    <colgroup>
-                    </colgroup>
+                    <colgroup></colgroup>
                     <tbody>
                         <tr>
                             <th></th>
@@ -984,15 +1072,17 @@
                             <th>Remarks</th>
                         </tr>
                         <tr data-path="Voodoo.VoodooGlobalConfiguration..ILogger-logger">
-                            <td title="Voodoo.VoodooGlobalConfiguration.RegisterLogger" class="optionName" data-content="">static
+                            <td title="Voodoo.VoodooGlobalConfiguration.RegisterLogger" class="optionName" data-content="">
+                                static
                             </td>
                             <td>void</td>
                             <td></td>
                             <td>RegisterLogger(<a href="#Voodoo.Logging.ILogger">ILogger</a> logger)</td>
                             <td>replaces the default <a href="#Voodoo.Logging.FallbackLogger">FallbackLogger</a> logging implementation with another</td>
                         </tr>
-						 <tr data-path="Voodoo.VoodooGlobalConfiguration..IValidator-validator">
-                            <td title="Voodoo.VoodooGlobalConfiguration.RegisterValidator" class="optionName" data-content="">static
+                        <tr data-path="Voodoo.VoodooGlobalConfiguration..IValidator-validator">
+                            <td title="Voodoo.VoodooGlobalConfiguration.RegisterValidator" class="optionName" data-content="">
+                                static
                             </td>
                             <td>void</td>
                             <td></td>
@@ -1000,7 +1090,8 @@
                             <td>replaces the default validation <a href="#Voodoo.Validation.Infrastructure.DataAnnotationsValidatorWithGenericMessage">DataAnnotationsValidatorWithGenericMessage</a> implementation with another</td>
                         </tr>
                         <tr data-path="Voodoo.VoodooGlobalConfiguration..T..ExceptionTranslation-mapper">
-                            <td title="Voodoo.VoodooGlobalConfiguration.RegisterExceptionMapping" class="optionName" data-content="">static
+                            <td title="Voodoo.VoodooGlobalConfiguration.RegisterExceptionMapping" class="optionName" data-content="">
+                                static
                             </td>
                             <td>void</td>
                             <td></td>
@@ -1058,8 +1149,7 @@
                 </table>
                 <h4>Methods</h4>
                 <table class="table table-striped table-bordered table-condensed">
-                    <colgroup>
-                    </colgroup>
+                    <colgroup></colgroup>
                     <tbody>
                         <tr>
                             <th></th>
@@ -1084,8 +1174,7 @@
                 </p>
                 <h4>Methods</h4>
                 <table class="table table-striped table-bordered table-condensed">
-                    <colgroup>
-                    </colgroup>
+                    <colgroup></colgroup>
                     <tbody>
                         <tr>
                             <th></th>
@@ -1109,7 +1198,7 @@
                 <a id="Voodoo.Infrastructure.ExceptionTranslater">&nbsp;</a>
                 <h3 data-path="">ExceptionTranslater</h3>
                 <b>Interfaces: </b>
-                IDictionary&lt;Type,<a href="#Voodoo.Infrastructure.ExceptionTranslation">ExceptionTranslation</a>&gt;, ICollection&lt;KeyValuePair&lt;Type,ExceptionTranslation&gt;&gt;, IEnumerable&lt;KeyValuePair&lt;Type,ExceptionTranslation&gt;&gt;, IEnumerable, IDictionary, ICollection, IReadOnlyDictionary&lt;Type,<a href="#Voodoo.Infrastructure.ExceptionTranslation">ExceptionTranslation</a>&gt;, IReadOnlyCollection&lt;KeyValuePair&lt;Type,ExceptionTranslation&gt;&gt;, ISerializable, IDeserializationCallback                   
+                IDictionary&lt;Type,<a href="#Voodoo.Infrastructure.ExceptionTranslation">ExceptionTranslation</a>&gt;, ICollection&lt;KeyValuePair&lt;Type,ExceptionTranslation&gt;&gt;, IEnumerable&lt;KeyValuePair&lt;Type,ExceptionTranslation&gt;&gt;, IEnumerable, IDictionary, ICollection, IReadOnlyDictionary&lt;Type,<a href="#Voodoo.Infrastructure.ExceptionTranslation">ExceptionTranslation</a>&gt;, IReadOnlyCollection&lt;KeyValuePair&lt;Type,ExceptionTranslation&gt;&gt;, ISerializable, IDeserializationCallback
                 <br />
                 <b>Inheritance Hierarchy: </b>
                 <br />
@@ -1117,12 +1206,11 @@
                 <br />
                 <p class="well">
                     Used to alter the behavior or obfuscate exceptions caught during the execution of a <a href="#Voodoo.Operations.Command|TRequest,TResponse|">Command</a> or
-                                 <a href="#Voodoo.Operations.Query|TRequest,TResponse|">Query</a>
+                    <a href="#Voodoo.Operations.Query|TRequest,TResponse|">Query</a>
                 </p>
                 <h4>Methods</h4>
                 <table class="table table-striped table-bordered table-condensed">
-                    <colgroup>
-                    </colgroup>
+                    <colgroup></colgroup>
                     <tbody>
                         <tr>
                             <th></th>
@@ -1163,8 +1251,7 @@
                 </p>
                 <h4>Methods</h4>
                 <table class="table table-striped table-bordered table-condensed">
-                    <colgroup>
-                    </colgroup>
+                    <colgroup></colgroup>
                     <tbody>
                         <tr>
                             <th></th>
@@ -1212,8 +1299,7 @@
                 </table>
                 <h4>Methods</h4>
                 <table class="table table-striped table-bordered table-condensed">
-                    <colgroup>
-                    </colgroup>
+                    <colgroup></colgroup>
                     <tbody>
                         <tr>
                             <th></th>
@@ -1262,15 +1348,14 @@
                 <a id="Voodoo.Infrastructure.LogicException">&nbsp;</a>
                 <h3 data-path="">LogicException</h3>
                 <b>Interfaces: </b>
-                ISerializable, _Exception                   
-                <br />
+                ISerializable, _Exception                    <br />
                 <b>Inheritance Hierarchy: </b>
                 <br />
                 &nbsp;&nbsp;&nbsp;&nbsp;Exception<br />
                 <br />
                 <p class="well">
                     During the validation phase of a <a href="#Voodoo.Operations.Command|TRequest,TResponse|">Command</a> or
-                                 <a href="#Voodoo.Operations.Query|TRequest,TResponse|">Query</a> if validation fails a <a href="Voodoo.Infrastructure.LogicException">LogicException</a>
+                    <a href="#Voodoo.Operations.Query|TRequest,TResponse|">Query</a> if validation fails a <a href="Voodoo.Infrastructure.LogicException">LogicException</a>
                     is thrown.
                 </p>
                 <h4>Properties</h4>
@@ -1308,29 +1393,51 @@
                 <p class="well">
                     copies the LoaderExceptions into the details collection of the response
                 </p>
+                <h2 data-path="">Voodoo.Infrastructure.Notations</h2>
+                <p class="well">
+                </p>
+                <a id="Voodoo.Infrastructure.Notations.ThirdPartyAttribute">&nbsp;</a>
+                <h3 data-path="">ThirdPartyAttribute</h3>
+                <b>Interfaces: </b>
+                _Attribute                    <br />
+                <b>Inheritance Hierarchy: </b>
+                <br />
+                &nbsp;&nbsp;&nbsp;&nbsp;Attribute<br />
+                <br />
+                <p class="well">
+                </p>
+                <a id="Voodoo.Infrastructure.Notations.UnfinishedAttribute">&nbsp;</a>
+                <h3 data-path="">UnfinishedAttribute</h3>
+                <b>Interfaces: </b>
+                _Attribute                    <br />
+                <b>Inheritance Hierarchy: </b>
+                <br />
+                &nbsp;&nbsp;&nbsp;&nbsp;Attribute<br />
+                <br />
+                <p class="well">
+                </p>
                 <h2 data-path="">Voodoo.Linq</h2>
                 <p class="well">
                     Pulled from a blog post by <a href="http://weblogs.asp.net/scottgu/dynamic-linq-part-1-using-the-linq-dynamic-query-library">Scott Gu</a>, belongs in the System.Linq.Dynamic namespace but some developers get twichy when you add things to the System namespace.
                 </p>
-                <a id="Voodoo.Linq.ClassFactory">&nbsp;</a><h2 data-path="">Voodoo.Logging</h2>
+                <h2 data-path="">Voodoo.Logging</h2>
+
                 <p class="well">
-                    This is probably not the logger you&#39;re looking for.&nbsp; You can implment the <a href="#Voodoo.Logging.ILogger">ILogger</a> interface and create an adapter for 
+                    This is probably not the logger you&#39;re looking for.&nbsp; You can implment the <a href="#Voodoo.Logging.ILogger">ILogger</a> interface and create an adapter for
                     <a href="https://gist.github.com/MiniverCheevy/4a72daeba29e482205ba#file-elmahlogger">Elmah</a>, <a href="https://gist.github.com/MiniverCheevy/4a72daeba29e482205ba#file-nloglogger">NLog</a>
                     or whatever logging framework you use.
 
                 </p>
-                <a id="Voodoo.Logging.DefaultLog">&nbsp;</a>
+                <a id="Voodoo.Logging.FallbackLogger">&nbsp;</a>
                 <h3 data-path="">FallbackLogger</h3>
                 <b>Interfaces: </b>
-                <a href="#Voodoo.Logging.ILogger">ILogger</a>
-                <br />
+                <a href="#Voodoo.Logging.ILogger">ILogger</a>                    <br />
                 <br />
                 <p class="well">
                 </p>
                 <h4>Methods</h4>
                 <table class="table table-striped table-bordered table-condensed">
-                    <colgroup>
-                    </colgroup>
+                    <colgroup></colgroup>
                     <tbody>
                         <tr>
                             <th></th>
@@ -1362,14 +1469,14 @@
                         </tr>
                     </tbody>
                 </table>
+                <a id="Voodoo.Logging.ILogger">&nbsp;</a>
                 <h3 data-path="">ILogger</h3>
                 <br />
                 <p class="well">
                 </p>
                 <h4>Methods</h4>
                 <table class="table table-striped table-bordered table-condensed">
-                    <colgroup>
-                    </colgroup>
+                    <colgroup></colgroup>
                     <tbody>
                         <tr>
                             <th></th>
@@ -1394,7 +1501,67 @@
                         </tr>
                     </tbody>
                 </table>
-                <a id="Voodoo.Logging.LogLevels">&nbsp;</a>
+                <a id="Voodoo.Logging.LogManager">&nbsp;</a>
+                <h3 data-path="">LogManager</h3>
+                <br />
+                <p class="well">
+                </p>
+                <h4>Properties</h4>
+                <table class="table table-striped table-bordered table-condensed">
+                    <colgroup>
+                        <col class="widthTiny" />
+                        <col class="widthMedium" />
+                        <col class="widthSmall" />
+                        <col class="widthLarge" />
+                    </colgroup>
+                    <tbody>
+                        <tr>
+                            <th></th>
+                            <th>Type</th>
+                            <th>Name</th>
+                            <th>Remarks</th>
+                        </tr>
+                        <tr data-path="">
+                            <td title="Voodoo.Logging.ILogger.Logger" class="optionName" data-content="">
+                                static
+                            </td>
+                            <td><a href="#Voodoo.Logging.ILogger">ILogger</a></td>
+                            <td>Logger</td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <h4>Methods</h4>
+                <table class="table table-striped table-bordered table-condensed">
+                    <colgroup></colgroup>
+                    <tbody>
+                        <tr>
+                            <th></th>
+                            <th>Return Type</th>
+                            <th>Source</th>
+                            <th>Method</th>
+                            <th>Remarks</th>
+                        </tr>
+                        <tr data-path="Voodoo.Logging.LogManager..string-message">
+                            <td title="Voodoo.Logging.LogManager.Log" class="optionName" data-content="">
+                                static
+                            </td>
+                            <td>void</td>
+                            <td></td>
+                            <td>Log(string message)</td>
+                            <td></td>
+                        </tr>
+                        <tr data-path="Voodoo.Logging.LogManager..Exception-ex">
+                            <td title="Voodoo.Logging.LogManager.Log" class="optionName" data-content="">
+                                static
+                            </td>
+                            <td>void</td>
+                            <td></td>
+                            <td>Log(Exception ex)</td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
                 <h2 data-path="">Voodoo.Messages</h2>
                 <p class="well">
                     A <a href="Voodoo.Operations.Command|TRequest,TResponse|">Command</a> or <a href="#Voodoo.Operations.Query|TRequest,TResponse|">Query</a>
@@ -1512,8 +1679,7 @@
                 </table>
                 <h4>Methods</h4>
                 <table class="table table-striped table-bordered table-condensed">
-                    <colgroup>
-                    </colgroup>
+                    <colgroup></colgroup>
                     <tbody>
                         <tr>
                             <th></th>
@@ -1785,8 +1951,7 @@
                 <a id="Voodoo.Messages.Response">&nbsp;</a>
                 <h3 data-path="">Response</h3>
                 <b>Interfaces: </b>
-                <a href="#Voodoo.Messages.IResponse">IResponse</a>
-                <br />
+                <a href="#Voodoo.Messages.IResponse">IResponse</a>                    <br />
                 <br />
                 <p class="well">
                     Default implementation of the <a href="#Voodoo.Messages.IResponse">IResponse</a>
@@ -1854,8 +2019,7 @@
                 </table>
                 <h4>Methods</h4>
                 <table class="table table-striped table-bordered table-condensed">
-                    <colgroup>
-                    </colgroup>
+                    <colgroup></colgroup>
                     <tbody>
                         <tr>
                             <th></th>
@@ -1960,8 +2124,7 @@
                 <a id="Voodoo.Messages.Paging.GridState">&nbsp;</a>
                 <h3 data-path="">GridState</h3>
                 <b>Interfaces: </b>
-                <a href="#Voodoo.Messages.Paging.IGridState">IGridState</a>
-                <br />
+                <a href="#Voodoo.Messages.Paging.IGridState">IGridState</a>                    <br />
                 <br />
                 <p class="well">
                 </p>
@@ -1981,6 +2144,12 @@
                             <th>Type</th>
                             <th>Name</th>
                             <th>Remarks</th>
+                        </tr>
+                        <tr data-path="">
+                            <td title="System.Int32.TotalPages" class="optionName" data-content=""></td>
+                            <td>int</td>
+                            <td>TotalPages</td>
+                            <td></td>
                         </tr>
                         <tr data-path="">
 
@@ -2005,12 +2174,6 @@
                         </tr>
                         <tr data-path="">
 
-                            <td title="System.Int32.TotalPages" class="optionName" data-content=""></td>
-                            <td>int</td>
-                            <td>TotalPages</td>
-                            <td></td>
-                        </tr>
-                        <tr data-path="">
                             <td title="System.String.SortMember" class="optionName" data-content=""></td>
                             <td>string</td>
                             <td>SortMember</td>
@@ -2114,8 +2277,8 @@
                 </table>
                 <h2 data-path="">Voodoo.Operations</h2>
                 <p class="well">
-                    Operations provide a loose <a href="http://codeofrob.com/entries/cqrs-is-too-complicated.html">Command Query Responsibility Segragation</a> structure.  
-                    Each operation takes a request (any arbitrary object) and return an <a href="#Voodoo.Messages.IRepsonse">IResponse</a>. 
+                    Operations provide a loose <a href="http://codeofrob.com/entries/cqrs-is-too-complicated.html">Command Query Responsibility Segragation</a> structure.
+                    Each operation takes a request (any arbitrary object) and return an <a href="#Voodoo.Messages.IRepsonse">IResponse</a>.
                     This structure is very testable.
                     I also like to pretend that I'm doing <a href="http://en.wikipedia.org/wiki/Aspect-oriented_programming">Aspect Oriented Programming</a>
                     by handling validation, logging and error handling in the base <a href="#Voodoo.Operations.Executor|T|">Executor</a> class.  The only functional difference between a <a href="#Voodoo.Operations.Command|TRequest,TResponse|">Command</a>
@@ -2123,13 +2286,11 @@
                 </p>
                 <pre>
                 <code data-language="csharp">
-
     public class PersonQuery: Query&lt;PersonRequest,ListResponse&lt;Person&gt;&gt;
     {
         public PersonQuery(PersonRequest request) : base(request)
         {
         }
-
         protected override ListResponse&lt;Person&gt; ProcessRequest()
         {
             using (var context = getContext())
@@ -2144,7 +2305,7 @@
     }</code>
                 </pre>
                 <p>
-                    Which you would consume with 
+                    Which you would consume with
                 </p>
                 <pre><code>
     var request = new PersonRequest{SearchString="j"};
@@ -2152,17 +2313,17 @@
                 </code>
                 </pre>
                 <p class="well">
-                    There is no validation because the base <a href="Voodoo.Operations.Executor|TRequest,TResponse|">Executor</a> class invokes 
+                    There is no validation because the base <a href="Voodoo.Operations.Executor|TRequest,TResponse|">Executor</a> class invokes
                     <a href="http://msdn.microsoft.com/en-us/library/system.componentmodel.dataannotations.validationattribute.aspx">DataAnnotations Validation</a> including
-                     <a href="http://msdn.microsoft.com/en-us/library/system.componentmodel.dataannotations.ivalidatableobject.aspx">IValidatableObject</a>
+                    <a href="http://msdn.microsoft.com/en-us/library/system.componentmodel.dataannotations.ivalidatableobject.aspx">IValidatableObject</a>
                     to handle thing more complex than simple property
-                     level validation.  Though you can override <b>protected virtual void Validate()</b>
+                    level validation.  Though you can override <b>protected virtual void Validate()</b>
                     to add any custom validation or make a project specific query to use an entirely different validation mechanism.
-                     <i>There is no try</i> in the query because the base Executor wraps the ProcessRequest() method in a try catch block.  
-                     There is no logging because the <b>protected virtual void CustomErrorBehavior(Exception ex)</b>
+                    <i>There is no try</i> in the query because the base Executor wraps the ProcessRequest() method in a try catch block.
+                    There is no logging because the <b>protected virtual void CustomErrorBehavior(Exception ex)</b>
                     logs all exceptions to the registered <a href="#Voodoo.Logging.ILogger">ILogger</a>.
-                     A typical scenerio would be to execute your operations, check to see if 
-                     <b>response.IsOk == true</b> if it is go about your business, if it isn't display 
+                    A typical scenerio would be to execute your operations, check to see if
+                    <b>response.IsOk == true</b> if it is go about your business, if it isn't display
                     the <b>response.Message</b> to your user.
                 </p>
 
@@ -2176,8 +2337,7 @@
                 </p>
                 <h4>Methods</h4>
                 <table class="table table-striped table-bordered table-condensed">
-                    <colgroup>
-                    </colgroup>
+                    <colgroup></colgroup>
                     <tbody>
                         <tr>
                             <th></th>
@@ -2202,8 +2362,7 @@
                 </p>
                 <h4>Methods</h4>
                 <table class="table table-striped table-bordered table-condensed">
-                    <colgroup>
-                    </colgroup>
+                    <colgroup></colgroup>
                     <tbody>
                         <tr>
                             <th></th>
@@ -2238,14 +2397,78 @@
                 <br />
                 <p class="well">
                 </p>
+                <h2 data-path="">Voodoo.Operations.Async</h2>
+                <p class="well">
+                    <a href="http://msdn.microsoft.com/en-us/magazine/dn802603.aspx">Async/Await</a> ready operations. QueryAsync and ExecutorAsync require .net 4.5 ,CommandAsync requires .net 4.5.1 because of the <a href="http://msdn.microsoft.com/en-us/library/dn261473(v=vs.110).aspx">TransactionScopeAsyncFlowOption</a> constructor introduced in .net 4.5.1.
+                </p>
+                <a id="Voodoo.Operations.Async.CommandAsync|TRequest,TResponse|">&nbsp;</a>
+                <h3 data-path="">CommandAsync&lt;TRequest,TResponse&gt;</h3>
+                <b>Inheritance Hierarchy: </b>
+                <br />
+                &nbsp;&nbsp;&nbsp;&nbsp;<a href="#Voodoo.Operations.Async.ExecutorAsync|TRequest,TResponse|">ExecutorAsync</a>&lt;TRequest,TResponse&gt;<br />
+                <br />
+                <p class="well">
+                </p>
+                <h4>Methods</h4>
+                <table class="table table-striped table-bordered table-condensed">
+                    <colgroup></colgroup>
+                    <tbody>
+                        <tr>
+                            <th></th>
+                            <th>Return Type</th>
+                            <th>Source</th>
+                            <th>Method</th>
+                            <th>Remarks</th>
+                        </tr>
+                        <tr data-path="Voodoo.Operations.Async.CommandAsync|TRequest,TResponse|..">
+                            <td title="Voodoo.Operations.Async.CommandAsync`2.ExecuteAsync" class="optionName" data-content=""></td>
+                            <td>Task&lt;TResponse&gt;</td>
+                            <td></td>
+                            <td>ExecuteAsync()</td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <a id="Voodoo.Operations.Async.ExecutorAsync|TRequest,TResponse|">&nbsp;</a>
+                <h3 data-path="">ExecutorAsync&lt;TRequest,TResponse&gt;</h3>
+                <br />
+                <p class="well">
+                </p>
+                <h4>Methods</h4>
+                <table class="table table-striped table-bordered table-condensed">
+                    <colgroup></colgroup>
+                    <tbody>
+                        <tr>
+                            <th></th>
+                            <th>Return Type</th>
+                            <th>Source</th>
+                            <th>Method</th>
+                            <th>Remarks</th>
+                        </tr>
+                        <tr data-path="Voodoo.Operations.Async.ExecutorAsync|TRequest,TResponse|..">
+                            <td title="Voodoo.Operations.Async.ExecutorAsync`2.ExecuteAsync" class="optionName" data-content=""></td>
+                            <td>Task&lt;TResponse&gt;</td>
+                            <td></td>
+                            <td>ExecuteAsync()</td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <a id="Voodoo.Operations.Async.QueryAsync|TRequest,TResponse|">&nbsp;</a>
+                <h3 data-path="">QueryAsync&lt;TRequest,TResponse&gt;</h3>
+                <b>Inheritance Hierarchy: </b>
+                <br />
+                &nbsp;&nbsp;&nbsp;&nbsp;<a href="#Voodoo.Operations.Async.ExecutorAsync|TRequest,TResponse|">ExecutorAsync</a>&lt;TRequest,TResponse&gt;<br />
+                <br />
+                <p class="well">
+                </p>
                 <h2 data-path="">Voodoo.Validation</h2>
                 <p class="well">
                 </p>
                 <a id="Voodoo.Validation.CollectionMustHaveAtLeastOneItemAttribute">&nbsp;</a>
                 <h3 data-path="">CollectionMustHaveAtLeastOneItemAttribute</h3>
                 <b>Interfaces: </b>
-                _Attribute                   
-                <br />
+                _Attribute                    <br />
                 <b>Inheritance Hierarchy: </b>
                 <br />
                 &nbsp;&nbsp;&nbsp;&nbsp;<a href="#Voodoo.Validation.SafeValidationAttribute">SafeValidationAttribute</a><br />
@@ -2256,8 +2479,7 @@
                 </p>
                 <h4>Methods</h4>
                 <table class="table table-striped table-bordered table-condensed">
-                    <colgroup>
-                    </colgroup>
+                    <colgroup></colgroup>
                     <tbody>
                         <tr>
                             <th></th>
@@ -2313,7 +2535,7 @@
                         </tr>
                         <tr data-path="">
 
-                            <td title="System.Collections.Generic.List`1[[Voodoo.Messages.INameValuePair, Voodoo, Version=1.0.17.0, Culture=neutral, PublicKeyToken=null]].ValidationResultsAsNameValuePair" class="optionName" data-content=""></td>
+                            <td title="System.Collections.Generic.List`1[[Voodoo.Messages.INameValuePair, Voodoo, Version=1.0.24.0, Culture=neutral, PublicKeyToken=null]].ValidationResultsAsNameValuePair" class="optionName" data-content=""></td>
                             <td>List&lt;<a href="#Voodoo.Messages.INameValuePair">INameValuePair</a>&gt;</td>
                             <td>ValidationResultsAsNameValuePair</td>
                             <td></td>
@@ -2323,8 +2545,7 @@
                 <a id="Voodoo.Validation.EnumIsRequiredAttribute">&nbsp;</a>
                 <h3 data-path="">EnumIsRequiredAttribute</h3>
                 <b>Interfaces: </b>
-                _Attribute                   
-                <br />
+                _Attribute                    <br />
                 <b>Inheritance Hierarchy: </b>
                 <br />
                 &nbsp;&nbsp;&nbsp;&nbsp;<a href="#Voodoo.Validation.SafeValidationAttribute">SafeValidationAttribute</a><br />
@@ -2335,8 +2556,7 @@
                 </p>
                 <h4>Methods</h4>
                 <table class="table table-striped table-bordered table-condensed">
-                    <colgroup>
-                    </colgroup>
+                    <colgroup></colgroup>
                     <tbody>
                         <tr>
                             <th></th>
@@ -2357,8 +2577,7 @@
                 <a id="Voodoo.Validation.GreaterThanZeroIntegerIsRequired">&nbsp;</a>
                 <h3 data-path="">GreaterThanZeroIntegerIsRequired</h3>
                 <b>Interfaces: </b>
-                _Attribute                   
-                <br />
+                _Attribute                    <br />
                 <b>Inheritance Hierarchy: </b>
                 <br />
                 &nbsp;&nbsp;&nbsp;&nbsp;<a href="#Voodoo.Validation.SafeValidationAttribute">SafeValidationAttribute</a><br />
@@ -2369,8 +2588,7 @@
                 </p>
                 <h4>Methods</h4>
                 <table class="table table-striped table-bordered table-condensed">
-                    <colgroup>
-                    </colgroup>
+                    <colgroup></colgroup>
                     <tbody>
                         <tr>
                             <th></th>
@@ -2391,8 +2609,7 @@
                 <a id="Voodoo.Validation.RequiredDateTimeAttribute">&nbsp;</a>
                 <h3 data-path="">RequiredDateTimeAttribute</h3>
                 <b>Interfaces: </b>
-                _Attribute                   
-                <br />
+                _Attribute                    <br />
                 <b>Inheritance Hierarchy: </b>
                 <br />
                 &nbsp;&nbsp;&nbsp;&nbsp;<a href="#Voodoo.Validation.SafeValidationAttribute">SafeValidationAttribute</a><br />
@@ -2403,8 +2620,7 @@
                 </p>
                 <h4>Methods</h4>
                 <table class="table table-striped table-bordered table-condensed">
-                    <colgroup>
-                    </colgroup>
+                    <colgroup></colgroup>
                     <tbody>
                         <tr>
                             <th></th>
@@ -2425,8 +2641,7 @@
                 <a id="Voodoo.Validation.RequiredGuid">&nbsp;</a>
                 <h3 data-path="">RequiredGuid</h3>
                 <b>Interfaces: </b>
-                _Attribute                   
-                <br />
+                _Attribute                    <br />
                 <b>Inheritance Hierarchy: </b>
                 <br />
                 &nbsp;&nbsp;&nbsp;&nbsp;<a href="#Voodoo.Validation.SafeValidationAttribute">SafeValidationAttribute</a><br />
@@ -2437,8 +2652,7 @@
                 </p>
                 <h4>Methods</h4>
                 <table class="table table-striped table-bordered table-condensed">
-                    <colgroup>
-                    </colgroup>
+                    <colgroup></colgroup>
                     <tbody>
                         <tr>
                             <th></th>
@@ -2459,8 +2673,7 @@
                 <a id="Voodoo.Validation.RequiredInt">&nbsp;</a>
                 <h3 data-path="">RequiredInt</h3>
                 <b>Interfaces: </b>
-                _Attribute                   
-                <br />
+                _Attribute                    <br />
                 <b>Inheritance Hierarchy: </b>
                 <br />
                 &nbsp;&nbsp;&nbsp;&nbsp;<a href="#Voodoo.Validation.SafeValidationAttribute">SafeValidationAttribute</a><br />
@@ -2471,8 +2684,7 @@
                 </p>
                 <h4>Methods</h4>
                 <table class="table table-striped table-bordered table-condensed">
-                    <colgroup>
-                    </colgroup>
+                    <colgroup></colgroup>
                     <tbody>
                         <tr>
                             <th></th>
@@ -2493,8 +2705,7 @@
                 <a id="Voodoo.Validation.RequiredNonZeroInt">&nbsp;</a>
                 <h3 data-path="">RequiredNonZeroInt</h3>
                 <b>Interfaces: </b>
-                _Attribute                   
-                <br />
+                _Attribute                    <br />
                 <b>Inheritance Hierarchy: </b>
                 <br />
                 &nbsp;&nbsp;&nbsp;&nbsp;<a href="#Voodoo.Validation.SafeValidationAttribute">SafeValidationAttribute</a><br />
@@ -2505,8 +2716,7 @@
                 </p>
                 <h4>Methods</h4>
                 <table class="table table-striped table-bordered table-condensed">
-                    <colgroup>
-                    </colgroup>
+                    <colgroup></colgroup>
                     <tbody>
                         <tr>
                             <th></th>
@@ -2527,8 +2737,7 @@
                 <a id="Voodoo.Validation.SafeValidationAttribute">&nbsp;</a>
                 <h3 data-path="">SafeValidationAttribute</h3>
                 <b>Interfaces: </b>
-                _Attribute                   
-                <br />
+                _Attribute                    <br />
                 <b>Inheritance Hierarchy: </b>
                 <br />
                 &nbsp;&nbsp;&nbsp;&nbsp;ValidationAttribute<br />
@@ -2538,8 +2747,7 @@
                 </p>
                 <h4>Methods</h4>
                 <table class="table table-striped table-bordered table-condensed">
-                    <colgroup>
-                    </colgroup>
+                    <colgroup></colgroup>
                     <tbody>
                         <tr>
                             <th></th>
@@ -2570,15 +2778,13 @@
                 <a id="Voodoo.Validation.Infrastructure.DataAnnotationsValidatorWithFirstErrorAsMessage">&nbsp;</a>
                 <h3 data-path="">DataAnnotationsValidatorWithFirstErrorAsMessage</h3>
                 <b>Interfaces: </b>
-                <a href="#Voodoo.Validation.Infrastructure.IValidator">IValidator</a>
-                <br />
+                <a href="#Voodoo.Validation.Infrastructure.IValidator">IValidator</a>                    <br />
                 <br />
                 <p class="well">
                 </p>
                 <h4>Methods</h4>
                 <table class="table table-striped table-bordered table-condensed">
-                    <colgroup>
-                    </colgroup>
+                    <colgroup></colgroup>
                     <tbody>
                         <tr>
                             <th></th>
@@ -2599,16 +2805,14 @@
                 <a id="Voodoo.Validation.Infrastructure.DataAnnotationsValidatorWithGenericMessage">&nbsp;</a>
                 <h3 data-path="">DataAnnotationsValidatorWithGenericMessage</h3>
                 <b>Interfaces: </b>
-                <a href="#Voodoo.Validation.Infrastructure.IValidator">IValidator</a>
-                <br />
+                <a href="#Voodoo.Validation.Infrastructure.IValidator">IValidator</a>                    <br />
                 <br />
                 <p class="well">
                     This is the default <a href="#Voodoo.Validation.Infrastructure.IValidator">IValidator</a> used during validation of operations.
                 </p>
                 <h4>Methods</h4>
                 <table class="table table-striped table-bordered table-condensed">
-                    <colgroup>
-                    </colgroup>
+                    <colgroup></colgroup>
                     <tbody>
                         <tr>
                             <th></th>
@@ -2633,8 +2837,7 @@
                 </p>
                 <h4>Methods</h4>
                 <table class="table table-striped table-bordered table-condensed">
-                    <colgroup>
-                    </colgroup>
+                    <colgroup></colgroup>
                     <tbody>
                         <tr>
                             <th></th>
@@ -2652,11 +2855,6 @@
                         </tr>
                     </tbody>
                 </table>
-                <a id="Voodoo.Validation.Infrastructure.Messages">&nbsp;</a>
-                <h3 data-path="">Messages</h3>
-                <br />
-                <p class="well">
-                </p>
                 <a id="Voodoo.Validation.Infrastructure.ValidationManager">&nbsp;</a>
                 <h3 data-path="">ValidationManager</h3>
                 <br />
@@ -2679,7 +2877,8 @@
                             <th>Remarks</th>
                         </tr>
                         <tr data-path="">
-                            <td title="Voodoo.Validation.Infrastructure.IValidator.Validator" class="optionName" data-content="">static
+                            <td title="Voodoo.Validation.Infrastructure.IValidator.Validator" class="optionName" data-content="">
+                                static
                             </td>
                             <td><a href="#Voodoo.Validation.Infrastructure.IValidator">IValidator</a></td>
                             <td>Validator</td>
@@ -2689,8 +2888,7 @@
                 </table>
                 <h4>Methods</h4>
                 <table class="table table-striped table-bordered table-condensed">
-                    <colgroup>
-                    </colgroup>
+                    <colgroup></colgroup>
                     <tbody>
                         <tr>
                             <th></th>
@@ -2700,7 +2898,8 @@
                             <th>Remarks</th>
                         </tr>
                         <tr data-path="Voodoo.Validation.Infrastructure.ValidationManager..object-object">
-                            <td title="Voodoo.Validation.Infrastructure.ValidationManager.Validate" class="optionName" data-content="">static
+                            <td title="Voodoo.Validation.Infrastructure.ValidationManager.Validate" class="optionName" data-content="">
+                                static
                             </td>
                             <td>void</td>
                             <td></td>
@@ -2712,25 +2911,31 @@
                 <!-------------------------End----------------->
                 <div>
                     <h2>Change Log</h2>
-                    
-                    <h4>1.0.21</h3>
+
+                    <h3>
+                        1.0.21
+                    </h3>
                     <p class="well">
-                    <span>Added Extensibility point for validation</span><br/>
-                    <span>Tweaks to paging</span>
+                        <span>Added Extensibility point for validation</span><br />
+                        <span>Tweaks to paging</span>
+                    </p>
+                    <h3>
+                        1.0.23
+                    </h3>
+                    <p class="well">
+                        <span>.net 4.5 added ExecutorAsync and QueryAsync</span><br />
+                        <span>.net 4.5.1 added CommandAsync (async transaction options not available in .net 4.5)</span>
                     </p>
                 </div>
                 <h2>Contributing</h2>
                 <p class="well">
-                    Take care to maintain the existing coding style. Add <strong>Microsoft.VisualStudio.TestTools</strong> unit tests for any new or changed functionality. 
-                </p>
-                <p class="well">
-                    <span class="note">After you have verified your code, send a pull request to the <em>Voodoo.Patterns</em> develop branch.  After you send a pull request, you will hear back from me shortly after I review your code.
-                    </span>
+                    Take care to maintain the existing coding style. Add <strong>Microsoft.VisualStudio.TestTools</strong> unit tests for any new or changed functionality.
+                    After you have verified your code, send a pull request to the <em>Voodoo.Patterns</em> develop branch.  After you send a pull request, you will hear back from me shortly after I review your code.
                 </p>
                 <br>
                 <h2>Extending</h2>
                 <p class="well">
-                    If you find that you need a feature that <em>Voodoo.Patterns</em> does not currently support, either let me know via the 
+                    If you find that you need a feature that <em>Voodoo.Patterns</em> does not currently support, either let me know via the
                     <a href="https://github.com/MiniverCheevy/voodoo/issues" target="_blank">Github issue tracker</a>, or <a href="https://github.com/MiniverCheevy/voodoo/fork" target="_blank">fork the project</a> and and easily extend <em>Voodoo.Patterns</em>!
                 </p>
                 <br>
@@ -2745,7 +2950,6 @@
 
     </div>
     <!--/.fluid-container-->
-
     <!-- Le javascript
             ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
