@@ -4,8 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Transactions;
 using Voodoo.Messages;
+
 #if  net451 
-namespace Voodoo.Operations
+namespace Voodoo.Operations.Async
 {
     public abstract class CommandAsync<TRequest, TResponse> : ExecutorAsync<TRequest,TResponse> where TResponse : class, IResponse, new() where TRequest : class
     {

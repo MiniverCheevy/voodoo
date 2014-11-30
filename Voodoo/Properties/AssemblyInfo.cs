@@ -8,10 +8,10 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 
-[assembly: AssemblyVersion("1.0.22")]
-[assembly: AssemblyFileVersion("1.0.22")]
+[assembly: AssemblyVersion("1.0.24")]
+[assembly: AssemblyFileVersion("1.0.24")]
 [assembly: AssemblyTitle("Voodoo")]
-[assembly: AssemblyDescription(".Net Utility Classes")]
+[assembly: AssemblyDescription("docs at http://minivercheevy.github.io/voodoo/")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Shawn Doucet")]
 [assembly: AssemblyProduct("Voodoo")]

@@ -7,8 +7,9 @@ using Voodoo.Infrastructure;
 using Voodoo.Logging;
 using Voodoo.Messages;
 using Voodoo.Validation.Infrastructure;
+
 #if net45 || net451 
-namespace Voodoo.Operations
+namespace Voodoo.Operations.Async
 {
     public abstract class ExecutorAsync<TRequest, TResponse> where TRequest : class where TResponse : class, IResponse, new()
     {

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Voodoo.Messages;
 using Voodoo.Operations;
+using Voodoo.Operations.Async;
 
 namespace Voodoo.Tests.TestClasses
 {
