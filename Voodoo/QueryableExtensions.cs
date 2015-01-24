@@ -12,6 +12,18 @@ namespace Voodoo
 {
     public static class QueryableExtensions
     {
+        public static IGridState Map(this IGridState target, IGridState source)
+       {
+            
+            target.PageNumber = source.PageNumber;
+            target.PageSize = source.PageSize;
+            target.TotalRecords = source.TotalRecords;
+            target.SortMember = source.SortMember;
+            target.SortDirection = source.SortDirection;
+            target.ResetPaging = source.ResetPaging;
+            return target;
+        }
+    
         public static IQueryable<TQueryResult> OrderByDescending<TQueryResult>(this IQueryable<TQueryResult> query,
             string sortExpression) where TQueryResult : class
         {
@@ -33,9 +45,10 @@ namespace Voodoo
                 ? source.OrderByDynamic(string.Format("{0} {1}", sortMember, paging.SortDirection))
                 : source.OrderBy(c => true);
 
-            var total = DynamicQueryable.Count(source);
-            paging.TotalRecords = total;
-            var state = new GridState(paging);
+            paging.TotalRecords = DynamicQueryable.Count(source);
+            var state = paging.Map(new GridState(paging));
+            
+                         
             var skip = (state.PageNumber - 1)*state.PageSize;
             skip = skip < 0 ? 0 : skip;
             var take = state.PageSize;
@@ -50,7 +63,7 @@ namespace Voodoo
                 list.Add(item.To<TOut>());
             }
 
-            var result = new PagedResponse<TOut>(state) {State = {TotalRecords = total}};
+            var result = new PagedResponse<TOut>(state);
             result.Data.AddRange(list);
             return result;
         }

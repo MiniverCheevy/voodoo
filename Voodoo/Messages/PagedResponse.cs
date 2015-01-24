@@ -14,9 +14,20 @@ namespace Voodoo.Messages
 
         public PagedResponse(IGridState state)
         {
-            State = new GridState(state);
+            State = state;
+            State.Map(state);
         }
-
+        public void From<TIn, TOut>(PagedResponse<TIn> source, Func<TIn, TOut> transform)
+            where TIn: class, new()
+            where TOut : TQueryResult
+        {
+            State = source.State;            
+            State.Map(source.State);
+            var transformed = source.Data.Select(transform).ToList();
+            foreach (var item in transformed)
+                Data.Add(item);
+            
+        }
 
         public IGridState State { get; set; }
     }

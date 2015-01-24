@@ -9,10 +9,12 @@ namespace Voodoo.Infrastructure
     {
         public LogicException(string message) : base(message)
         {
+            Details = new List<INameValuePair>();
         }
 
         public LogicException(string message, Exception ex) : base(message, ex)
         {
+            Details = new List<INameValuePair>();
         }
 
         public List<INameValuePair> Details { get; set; }

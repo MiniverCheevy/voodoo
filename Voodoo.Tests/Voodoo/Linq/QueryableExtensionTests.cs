@@ -64,7 +64,6 @@ namespace Voodoo.Tests.Voodoo.Linq
         [TestMethod]
         public void PagedResult_ValidValue_ReturnsConvertedListList()
         {
-
             var list = GetTestList().AsQueryable();
             var paging = new PersonPagedRequest { PageNumber = 2, PageSize = 2 };
 
@@ -78,13 +77,20 @@ namespace Voodoo.Tests.Voodoo.Linq
 
         }
 
-        public class PersonPagedRequest : PagedRequest
-
+        [TestMethod]
+        public void PagedResult_CustomStateIsReturned_ReturnsConvertedListList()
         {
-            public override string DefaultSortMember
-            {
-                get { return "Id"; }
-            }
+            var list = GetTestList().AsQueryable();
+            var paging = new PersonPagedRequest 
+            { PageNumber = 2, PageSize = 2 , Text="foo"};
+
+            var pagedResult = list.PagedResult(paging);
+            var response = new PagedResponse<NameValuePair>();
+                response.From(pagedResult,
+                c => new NameValuePair() { Name = c.Name, Value = c.Id.ToString() });
+
+            Assert.IsTrue(response.State is PersonPagedRequest);
+            Assert.AreEqual(paging.Text , response.State.As<PersonPagedRequest>().Text);
         }
 
         public List<Person> GetTestList()

@@ -31,7 +31,10 @@ namespace Voodoo.Operations
             response.Text = read(request);
             return response;
         }
-
+	protected override void Validate()
+        {
+            
+        }
         private string read(object element)
         {
             if (currentItemsInGraph > maxItemsInGraph)

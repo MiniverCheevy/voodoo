@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Voodoo", "Voodoo.csproj", "{878AED33-344D-44CE-B11D-F9EA7A47113A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Voodoo.Tests", "..\Voodoo.Tests\Voodoo.Tests.csproj", "{D3FB4510-24E4-4710-ACE3-DAA267CFD625}"
@@ -13,8 +15,8 @@ Global
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{878AED33-344D-44CE-B11D-F9EA7A47113A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{878AED33-344D-44CE-B11D-F9EA7A47113A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{878AED33-344D-44CE-B11D-F9EA7A47113A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{878AED33-344D-44CE-B11D-F9EA7A47113A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{878AED33-344D-44CE-B11D-F9EA7A47113A}.Release|Any CPU.ActiveCfg = Release net451|Any CPU
+		{878AED33-344D-44CE-B11D-F9EA7A47113A}.Release|Any CPU.Build.0 = Release net451|Any CPU
 		{D3FB4510-24E4-4710-ACE3-DAA267CFD625}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D3FB4510-24E4-4710-ACE3-DAA267CFD625}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D3FB4510-24E4-4710-ACE3-DAA267CFD625}.Release|Any CPU.ActiveCfg = Release|Any CPU

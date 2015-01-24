@@ -112,6 +112,7 @@
     <Compile Include="TestClasses\Person.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="TestClasses\PersonPagedRequest.cs" />
     <Compile Include="TestClasses\QueryThatDoesNotThrowErrors.cs" />
     <Compile Include="TestClasses\RequestWithRequiredString.cs" />
     <Compile Include="TestClasses\TestEnum.cs">
