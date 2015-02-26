@@ -108,6 +108,7 @@
     <Compile Include="TestClasses\CommandThatThrowsErrors.cs" />
     <Compile Include="TestClasses\CommandWithNonEmptyRequest.cs" />
     <Compile Include="TestClasses\DataObject.cs" />
+    <Compile Include="TestClasses\ExecutorAsyncThatFailsValidation.cs" />
     <Compile Include="TestClasses\ExecutorAsyncThatThrowsExceptions.cs" />
     <Compile Include="TestClasses\Person.cs">
       <SubType>Code</SubType>
@@ -120,6 +121,7 @@
     </Compile>
     <Compile Include="TestClasses\TestingResponse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestClasses\TestResponse.cs" />
     <Compile Include="TestClasses\TwitchyObject.cs" />
     <Compile Include="MultiTargetedBuilds.cs" />
     <Compile Include="Voodoo\ConversionExtensions.Demo.cs" />

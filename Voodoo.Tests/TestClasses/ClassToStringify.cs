@@ -15,6 +15,7 @@ namespace Voodoo.Tests.TestClasses
         public List<List<string>> NestedLists { get; set; }
         public ClassToStringify NullObject { get; set; }
         public ClassToStringify NestedObject { get; set; }
+        public ClassToStringify AnotherNestedObject { get; set; }
         public string AString { get; set; }
         public TwitchyObject AnObnoxiousObjectWhosePropertiesThrowExceptions { get; set; }
     }

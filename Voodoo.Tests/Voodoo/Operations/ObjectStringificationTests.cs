@@ -51,6 +51,14 @@ namespace Voodoo.Tests.Voodoo.Operations
                     Number = 7
                 };
             response.NestedObject = response;
+            response.AnotherNestedObject = new ClassToStringify
+            {
+                Decimal = 2.2M,
+                Items = new List<string> {"goo", "goo", "gachoo"},
+                NestedLists = new List<List<string>>() {new List<string>() {"blue"}},
+                Number = 99
+            };
+            
             response.AString = "String";
             response.AnObnoxiousObjectWhosePropertiesThrowExceptions = new TwitchyObject();
             return response;

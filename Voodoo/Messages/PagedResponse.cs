@@ -25,8 +25,7 @@ namespace Voodoo.Messages
             State.Map(source.State);
             var transformed = source.Data.Select(transform).ToList();
             foreach (var item in transformed)
-                Data.Add(item);
-            
+                Data.Add(item);            
         }
 
         public IGridState State { get; set; }

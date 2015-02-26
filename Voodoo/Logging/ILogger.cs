@@ -9,4 +9,9 @@ namespace Voodoo.Logging
         void Log(string message);
         void Log(Exception ex);
     }
+
+    public interface IDetailedLogger
+    {
+
+    }
 }

@@ -8,6 +8,11 @@ namespace Voodoo
 {
     public static class ReflectionExtensions
     {
+        public static bool IsEnumerable(this Type t)
+        {
+            return typeof (IEnumerable).IsAssignableFrom(t);
+        }
+
         public static bool IsScalar(this Type t)
         {
             const string types = "string,guid,datetime,timespan,decimal";

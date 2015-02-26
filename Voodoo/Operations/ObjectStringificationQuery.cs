@@ -82,7 +82,10 @@ namespace Voodoo.Operations
                 }
                 else
                 {
-                    var members = element.GetType().GetMembers(BindingFlags.Public | BindingFlags.Instance);
+                    var members = element.GetType().GetMembers(BindingFlags.Public | BindingFlags.Instance)
+                        .OrderBy(OrderProperties)
+                        .ThenBy(c=>c.Name)
+                        .ToArray();
                     foreach (var memberInfo in members)
                     {
                         var fieldInfo = memberInfo as FieldInfo;
@@ -131,6 +134,24 @@ namespace Voodoo.Operations
             }
 
             return result.ToString();
+        }
+
+        private int OrderProperties(MemberInfo arg)
+        {
+            if (arg is PropertyInfo)
+            {
+                var info = arg.To<PropertyInfo>();
+                if (info.PropertyType.IsScalar())
+                    return 1;
+                else if (info.PropertyType.IsEnumerable())
+                    return 3;
+                else
+                    return 2;
+            }
+            else
+            {
+                return 10;
+            }
         }
 
         private bool alreadyTouched(object value)
