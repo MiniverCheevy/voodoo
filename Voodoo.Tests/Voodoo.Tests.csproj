@@ -110,6 +110,7 @@
     <Compile Include="TestClasses\DataObject.cs" />
     <Compile Include="TestClasses\ExecutorAsyncThatFailsValidation.cs" />
     <Compile Include="TestClasses\ExecutorAsyncThatThrowsExceptions.cs" />
+    <Compile Include="TestClasses\MessageObject.cs" />
     <Compile Include="TestClasses\Person.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -137,6 +138,7 @@
     <Compile Include="Voodoo\CollectionExtensionTests.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Voodoo\Helpers\CollectionReconcilerTests.cs" />
     <Compile Include="Voodoo\Infrastructure\IoNicSmokeTests.cs" />
     <Compile Include="Voodoo\Linq\QueryableExtensionTests.cs">
       <SubType>Code</SubType>

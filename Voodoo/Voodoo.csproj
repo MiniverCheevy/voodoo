@@ -95,6 +95,7 @@
     <Compile Include="Helpers\CollectionChangeSet.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Helpers\CollectionReconciler.cs" />
     <Compile Include="Helpers\ResponseExceptionDecorator.cs" />
     <Compile Include="Infrastructure\ExceptionTranslater.cs" />
     <Compile Include="Infrastructure\ExceptionTranslation.cs" />

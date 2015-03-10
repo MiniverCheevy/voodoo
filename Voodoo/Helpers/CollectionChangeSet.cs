@@ -14,9 +14,9 @@ namespace Voodoo.Helpers
             left = (existing ?? new int[] {}).ToArray();
             right = (modified ?? new int[] {}).ToArray();
 
-            Added = Enumerable.ToArray(right).Where(c => !left.Contains(c)).ToArray();
-            Edited = Enumerable.ToArray(right).Intersect(left).ToArray();
-            Deleted = Enumerable.ToArray(left).Where(c => !right.Contains(c)).ToArray();
+            Added = right.Where(c => !left.Contains(c)).ToArray();
+            Edited = right.Intersect(left).ToArray();
+            Deleted = left.Where(c => !right.Contains(c)).ToArray();
         }
 
         public int[] Added { get; protected set; }
