@@ -774,6 +774,15 @@
                             <th>Source</th>
                             <th>Method</th>
                             <th>Remarks</th>
+                                    </tr>
+                                        <tr data-path="Voodoo.QueryableExtensions..IGridState-source">
+                                            <td title="Voodoo.QueryableExtensions.Map" class="optionName" data-content="">
+                                                static
+                                            </td>
+                                            <td><a href="#Voodoo.Messages.Paging.IGridState">IGridState</a></td>
+                                            <td><a href="#Voodoo.Messages.Paging.IGridState">IGridState</a></td>
+                                            <td>Map(IGridState source)</td>
+                                            <td></td>
                         </tr>
                         <tr data-path="Voodoo.QueryableExtensions..TQueryResult..string-sortExpression">
                             <td title="Voodoo.QueryableExtensions.OrderByDescending" class="optionName" data-content="">
@@ -782,24 +791,51 @@
                             <td>IQueryable&lt;TQueryResult&gt;</td>
                             <td>IQueryable&lt;TQueryResult&gt;</td>
                             <td>OrderByDescending&lt;TQueryResult&gt;(string sortExpression)</td>
-                            <td></td>
-                        </tr>
-                        <tr data-path="Voodoo.QueryableExtensions..TObject..IGridState-paging">
-                            <td title="Voodoo.QueryableExtensions.PagedResult" class="optionName" data-content="">
-                                static
-                            </td>
-                            <td><a href="#Voodoo.Messages.PagedResponse|TQueryResult|">PagedResponse</a>&lt;TObject&gt;</td>
-                            <td>IQueryable&lt;TObject&gt;</td>
-                            <td>PagedResult&lt;TObject&gt;(IGridState paging)</td>
-                            <td></td>
-                        </tr>
-                        <tr data-path="Voodoo.QueryableExtensions..TIn,TOut..IGridState-paging,-Expression.Func.TIn,TOut..-expression">
-                            <td title="Voodoo.QueryableExtensions.PagedResult" class="optionName" data-content="">
-                                static
-                            </td>
-                            <td><a href="#Voodoo.Messages.PagedResponse|TQueryResult|">PagedResponse</a>&lt;TOut&gt;</td>
-                            <td>IQueryable&lt;TIn&gt;</td>
-                            <td>PagedResult&lt;TIn,TOut&gt;(IGridState paging, Expression&lt;Func&lt;TIn,TOut&gt;&gt; expression)</td>
+                                            <td></td>
+                                        </tr>
+                                        <tr data-path="Voodoo.QueryableExtensions..TObject..IGridState-paging">
+                                            <td title="Voodoo.QueryableExtensions.ToPagedResponse" class="optionName" data-content="">
+                                                static
+                                            </td>
+                                            <td><a href="#Voodoo.Messages.PagedResponse|TQueryResult|">PagedResponse</a>&lt;TObject&gt;</td>
+                                            <td>IQueryable&lt;TObject&gt;</td>
+                                            <td>ToPagedResponse&lt;TObject&gt;(IGridState paging)</td>
+                                            <td></td>
+                                        </tr>
+                                        <tr data-path="Voodoo.QueryableExtensions..TIn,TOut..IGridState-paging,-Expression.Func.TIn,TOut..-transform">
+                                            <td title="Voodoo.QueryableExtensions.ToPagedResponse" class="optionName" data-content="">
+                                                static
+                                            </td>
+                                            <td><a href="#Voodoo.Messages.PagedResponse|TQueryResult|">PagedResponse</a>&lt;TOut&gt;</td>
+                                            <td>IQueryable&lt;TIn&gt;</td>
+                                            <td>ToPagedResponse&lt;TIn,TOut&gt;(IGridState paging, Expression&lt;Func&lt;TIn,TOut&gt;&gt; transform)</td>
+                                            <td></td>
+                                        </tr>
+                                        <tr data-path="Voodoo.QueryableExtensions..TObject..IGridState-paging">
+                                            <td title="Voodoo.QueryableExtensions.ToPagedResponseAsync" class="optionName" data-content="">
+                                                static
+                                            </td>
+                                            <td>Task&lt;PagedResponse&lt;TObject&gt;&gt;</td>
+                                            <td>IQueryable&lt;TObject&gt;</td>
+                                            <td>ToPagedResponseAsync&lt;TObject&gt;(IGridState paging)</td>
+                                            <td></td>
+                                        </tr>
+                                        <tr data-path="Voodoo.QueryableExtensions..TIn,TOut..IGridState-paging,-Expression.Func.TIn,TOut..-transform">
+                                            <td title="Voodoo.QueryableExtensions.ToPagedResponseAsync" class="optionName" data-content="">
+                                                static
+                                            </td>
+                                            <td>Task&lt;PagedResponse&lt;TOut&gt;&gt;</td>
+                                            <td>IQueryable&lt;TIn&gt;</td>
+                                            <td>ToPagedResponseAsync&lt;TIn,TOut&gt;(IGridState paging, Expression&lt;Func&lt;TIn,TOut&gt;&gt; transform)</td>
+                                            <td></td>
+                                        </tr>
+                                        <tr data-path="Voodoo.QueryableExtensions..TSource,TKey..Func.TSource,TKey.-keySelector">
+                                            <td title="Voodoo.QueryableExtensions.GroupBy" class="optionName" data-content="">
+                                                static
+                                            </td>
+                                            <td><a href="#Voodoo.Messages.PagedResponse|TQueryResult|">PagedResponse</a>&lt;Grouping&lt;TSource&gt;&gt;</td>
+                                            <td><a href="#Voodoo.Messages.PagedResponse|TQueryResult|">PagedResponse</a>&lt;TSource&gt;</td>
+                                            <td>GroupBy&lt;TSource,TKey&gt;(Func&lt;TSource,TKey&gt; keySelector)</td>
                             <td></td>
                         </tr>
                         <tr data-path="Voodoo.QueryableExtensions..T..Expression.Func.T,Object..-expression">
@@ -857,12 +893,30 @@
                             <th>Remarks</th>
                         </tr>
                         <tr data-path="Voodoo.ReflectionExtensions..">
+                                            <td title="Voodoo.ReflectionExtensions.IsEnumerable" class="optionName" data-content="">
+                                                static
+                                            </td>
+                                            <td>bool</td>
+                                            <td>Type</td>
+                                            <td>IsEnumerable()</td>
+                                            <td></td>
+                                        </tr>
+                                        <tr data-path="Voodoo.ReflectionExtensions..">
                             <td title="Voodoo.ReflectionExtensions.IsScalar" class="optionName" data-content="">
                                 static
                             </td>
                             <td>bool</td>
                             <td>Type</td>
                             <td>IsScalar()</td>
+                                            <td></td>
+                                        </tr>
+                                        <tr data-path="Voodoo.ReflectionExtensions..">
+                                            <td title="Voodoo.ReflectionExtensions.GetTypesSafetly" class="optionName" data-content="">
+                                                static
+                                            </td>
+                                            <td>Type[]</td>
+                                            <td>Assembly</td>
+                                            <td>GetTypesSafetly()</td>
                             <td></td>
                         </tr>
                         <tr data-path="Voodoo.ReflectionExtensions..">
@@ -1163,6 +1217,114 @@
                             <td>bool</td>
                             <td></td>
                             <td>AreDifferent()</td>
+                                            <td></td>
+                                        </tr>
+                                </tbody>
+                            </table>
+                    <a id="Voodoo.Helpers.CollectionReconciler|TExisting,TModified,TKey|">&nbsp;</a>
+                    <h3 data-path="">CollectionReconciler&lt;TExisting,TModified,TKey&gt;</h3>
+                    <br />
+                    <p class="well">
+                    Used to compare two collections of objects and segregate the changes.
+                    </p>
+                    <h4>Properties</h4>
+                            <table class="table table-striped table-bordered table-condensed">
+                                <colgroup>
+                                    <col class="widthTiny"  />
+                                    <col class="widthMedium"  />
+                                    <col class="widthSmall"  />
+                                    <col class="widthLarge"  />
+                                </colgroup>
+                                <tbody>
+                                    <tr>
+                                        <th></th>
+                                        <th>Type</th>
+                                        <th>Name</th>
+                                        <th>Remarks</th>
+                                    </tr>
+                                        <tr data-path="">
+                                            <td title=".Edited" class="optionName" data-content="">
+                                            </td>
+                                            <td><a href="#Voodoo.Helpers.EditedItem|TExisting,TModified,TKey|">EditedItem</a><TExisting,TModified,TKey> []</td>
+                                            <td>Edited</td>
+                                            <td>neither added nor deleted</td>
+                                        </tr>
+                                        <tr data-path="">
+                                            <td title=".Deleted" class="optionName" data-content="">
+                                            </td>
+                                            <td>TExisting[]</td>
+                                            <td>Deleted</td>
+                                            <td>in the existing list but not modified</td>
+                                        </tr>
+                                        <tr data-path="">
+                                            <td title=".Added" class="optionName" data-content="">
+                                            </td>
+                                            <td>TModified[]</td>
+                                            <td>Added</td>
+                                            <td>in the modified list but not existing</td>
+                                        </tr>
+                                        <tr data-path="">
+                                            <td title=".AddedKeys" class="optionName" data-content="">
+                                            </td>
+                                            <td>TKey[]</td>
+                                            <td>AddedKeys</td>
+                                            <td>keys for added items</td>
+                                        </tr>
+                                        <tr data-path="">
+                                            <td title=".DeletedKeys" class="optionName" data-content="">
+                                            </td>
+                                            <td>TKey[]</td>
+                                            <td>DeletedKeys</td>
+                                            <td>keys for deleted items</td>
+                                        </tr>
+                                        <tr data-path="">
+                                            <td title=".EditedKeys" class="optionName" data-content="">
+                                            </td>
+                                            <td>TKey[]</td>
+                                            <td>EditedKeys</td>
+                                            <td>keys for items neither added or deleted</td>
+                                        </tr>
+                                </tbody>
+                            </table>
+                    <a id="Voodoo.Helpers.EditedItem|TExisting,TModified,TKey|">&nbsp;</a>
+                    <h3 data-path="">EditedItem&lt;TExisting,TModified,TKey&gt;</h3>
+                    <br />
+                    <p class="well">
+                    </p>
+                    <h4>Properties</h4>
+                            <table class="table table-striped table-bordered table-condensed">
+                                <colgroup>
+                                    <col class="widthTiny"  />
+                                    <col class="widthMedium"  />
+                                    <col class="widthSmall"  />
+                                    <col class="widthLarge"  />
+                                </colgroup>
+                                <tbody>
+                                    <tr>
+                                        <th></th>
+                                        <th>Type</th>
+                                        <th>Name</th>
+                                        <th>Remarks</th>
+                                    </tr>
+                                        <tr data-path="">
+                                            <td title=".Existing" class="optionName" data-content="">
+                                            </td>
+                                            <td>TExisting</td>
+                                            <td>Existing</td>
+                                            <td></td>
+                                        </tr>
+                                        <tr data-path="">
+                                            <td title=".Modified" class="optionName" data-content="">
+                                            </td>
+                                            <td>TModified</td>
+                                            <td>Modified</td>
+                                            <td></td>
+                                        </tr>
+                                        <tr data-path="">
+                                            <td title=".Key" class="optionName" data-content="">
+                                            </td>
+                                            <td>TKey</td>
+                                            <td>Key</td>
                             <td></td>
                         </tr>
                     </tbody>
@@ -1391,7 +1553,58 @@
                 &nbsp;&nbsp;&nbsp;&nbsp;<a href="#Voodoo.Infrastructure.ExceptionTranslation">ExceptionTranslation</a><br />
                 <br />
                 <p class="well">
-                    copies the LoaderExceptions into the details collection of the response
+                    </p>
+                    <a id="Voodoo.Infrastructure.RestAttribute">&nbsp;</a>
+                    <h3 data-path="">RestAttribute</h3>
+                    <b>Interfaces: </b>
+_Attribute                    <br />
+                    <b>Inheritance Hierarchy: </b>
+                    <br />
+&nbsp;&nbsp;&nbsp;&nbsp;Attribute<br />
+                    <br />
+                    <p class="well">
+                    </p>
+                    <h4>Properties</h4>
+                            <table class="table table-striped table-bordered table-condensed">
+                                <colgroup>
+                                    <col class="widthTiny"  />
+                                    <col class="widthMedium"  />
+                                    <col class="widthSmall"  />
+                                    <col class="widthLarge"  />
+                                </colgroup>
+                                <tbody>
+                                    <tr>
+                                        <th></th>
+                                        <th>Type</th>
+                                        <th>Name</th>
+                                        <th>Remarks</th>
+                                    </tr>
+                                        <tr data-path="">
+                                            <td title="Voodoo.Infrastructure.Verb.Verb" class="optionName" data-content="">
+                                            </td>
+                                            <td><a href="#Voodoo.Infrastructure.Verb">Verb</a></td>
+                                            <td>Verb</td>
+                                            <td></td>
+                                        </tr>
+                                        <tr data-path="">
+                                            <td title="System.String.Resource" class="optionName" data-content="">
+                                            </td>
+                                            <td>string</td>
+                                            <td>Resource</td>
+                                            <td></td>
+                                        </tr>
+                                </tbody>
+                            </table>
+                    <a id="Voodoo.Infrastructure.Verb">&nbsp;</a>
+                    <h3 data-path="">Verb</h3>
+                    <b>Interfaces: </b>
+IComparable, IFormattable, IConvertible                    <br />
+                    <b>Inheritance Hierarchy: </b>
+                    <br />
+&nbsp;&nbsp;&nbsp;&nbsp;Enum<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ValueType<br />
+                    <br />
+                    <p class="well">
                 </p>
                 <h2 data-path="">Voodoo.Infrastructure.Notations</h2>
                 <p class="well">
@@ -1405,6 +1618,7 @@
                 &nbsp;&nbsp;&nbsp;&nbsp;Attribute<br />
                 <br />
                 <p class="well">
+                used to filter thrird party code from documentation
                 </p>
                 <a id="Voodoo.Infrastructure.Notations.UnfinishedAttribute">&nbsp;</a>
                 <h3 data-path="">UnfinishedAttribute</h3>
@@ -1415,6 +1629,7 @@
                 &nbsp;&nbsp;&nbsp;&nbsp;Attribute<br />
                 <br />
                 <p class="well">
+				used to filter unfinished code from documentation
                 </p>
                 <h2 data-path="">Voodoo.Linq</h2>
                 <p class="well">
@@ -1423,9 +1638,7 @@
                 <h2 data-path="">Voodoo.Logging</h2>
 
                 <p class="well">
-                    This is probably not the logger you&#39;re looking for.&nbsp; You can implment the <a href="#Voodoo.Logging.ILogger">ILogger</a> interface and create an adapter for
-                    <a href="https://gist.github.com/MiniverCheevy/4a72daeba29e482205ba#file-elmahlogger">Elmah</a>, <a href="https://gist.github.com/MiniverCheevy/4a72daeba29e482205ba#file-nloglogger">NLog</a>
-                    or whatever logging framework you use.
+                   
 
                 </p>
                 <a id="Voodoo.Logging.FallbackLogger">&nbsp;</a>
@@ -1434,6 +1647,9 @@
                 <a href="#Voodoo.Logging.ILogger">ILogger</a>                    <br />
                 <br />
                 <p class="well">
+                 This is probably not the logger you&#39;re looking for.&nbsp; You can implment the <a href="#Voodoo.Logging.ILogger">ILogger</a> interface and create an adapter for
+                    <a href="https://gist.github.com/MiniverCheevy/4a72daeba29e482205ba#file-elmahlogger">Elmah</a>, <a href="https://gist.github.com/MiniverCheevy/4a72daeba29e482205ba#file-nloglogger">NLog</a>
+                    or whatever logging framework you use.
                 </p>
                 <h4>Methods</h4>
                 <table class="table table-striped table-bordered table-condensed">
@@ -1469,6 +1685,11 @@
                         </tr>
                     </tbody>
                 </table>
+                    <a id="Voodoo.Logging.IDetailedLogger">&nbsp;</a>
+                    <h3 data-path="">IDetailedLogger</h3>
+                    <br />
+                    <p class="well">
+                    </p>
                 <a id="Voodoo.Logging.ILogger">&nbsp;</a>
                 <h3 data-path="">ILogger</h3>
                 <br />
@@ -1573,6 +1794,57 @@
                 <br />
                 <p class="well">
                 </p>
+				 <a id="Voodoo.Messages.Grouping|T|">&nbsp;</a>
+                    <h3 data-path="">Grouping&lt;T&gt;</h3>
+                    <br />
+                    <p class="well">
+                    </p>
+                    <h4>Properties</h4>
+                            <table class="table table-striped table-bordered table-condensed">
+                                
+                                <colgroup>
+                                    <col class="widthTiny"  />
+                                    <col class="widthMedium"  />
+                                    <col class="widthSmall"  />
+                                    <col class="widthLarge"  />
+                                    
+                                </colgroup>
+                                <tbody>
+                                    <tr>
+                                        <th></th>
+                                        <th>Type</th>
+                                        <th>Name</th>
+                                        <th>Remarks</th>
+                                    </tr>
+                                        <tr data-path="">
+
+                                            <td title="System.String.Name" class="optionName" data-content="">
+                                                
+                                            </td>
+                                            <td>string</td>
+                                            <td>Name</td>
+                                            <td></td>
+                                        </tr>
+                                        <tr data-path="">
+
+                                            <td title="System.Guid.Id" class="optionName" data-content="">
+                                                
+                                            </td>
+                                            <td>Guid</td>
+                                            <td>Id</td>
+                                            <td></td>
+                                        </tr>
+                                        <tr data-path="">
+
+                                            <td title=".Data" class="optionName" data-content="">
+                                                
+                                            </td>
+                                            <td>List&lt;T&gt;</td>
+                                            <td>Data</td>
+                                            <td></td>
+                                        </tr>
+                                </tbody>
+                            </table>
                 <a id="Voodoo.Messages.INameValuePair">&nbsp;</a>
                 <h3 data-path="">INameValuePair</h3>
                 <br />
@@ -1939,6 +2211,28 @@
                             <td title="Voodoo.Messages.Paging.IGridState.State" class="optionName" data-content=""></td>
                             <td><a href="#Voodoo.Messages.Paging.IGridState">IGridState</a></td>
                             <td>State</td>
+                                            <td></td>
+                                        </tr>
+                                </tbody>
+                            </table>
+                    <h4>Methods</h4>
+                            <table class="table table-striped table-bordered table-condensed">
+                                <colgroup>                                   
+                                </colgroup>
+                                <tbody>
+                                    <tr>
+                                        <th></th>
+                                        <th>Return Type</th>
+                                        <th>Source</th>
+                                        <th>Method</th>
+                                        <th>Remarks</th>
+                                    </tr>
+                                        <tr data-path="Voodoo.Messages.PagedResponse|TQueryResult|..TIn,TOut..PagedResponse.TIn.-source,-Func.TIn,TOut.-transform">
+                                            <td title="Voodoo.Messages.PagedResponse`1.From" class="optionName" data-content="">
+                                            </td>
+                                            <td>void</td>
+                                            <td></td>
+                                            <td>From&lt;TIn,TOut&gt;(PagedResponse&lt;TIn&gt; source, Func&lt;TIn,TOut&gt; transform)</td>
                             <td></td>
                         </tr>
                     </tbody>
@@ -2926,6 +3220,37 @@
                         <span>.net 4.5 added ExecutorAsync and QueryAsync</span><br />
                         <span>.net 4.5.1 added CommandAsync (async transaction options not available in .net 4.5)</span>
                     </p>
+					 <h3>
+                        1.0.26
+                    </h3>
+                    <p class="well">
+                        <span>tweaks to paging, paged request</span><br />
+                    </p>
+					 <h3>
+                        1.0.28
+                    </h3>
+                    <p class="well">
+                        <span>Rest attribute, new reflection extensions</span><br />
+                    </p>
+					<h3>
+                        1.0.29
+                    </h3>
+                    <p class="well">
+                        <span>collection reconciliation, new reflection extensions</span><br />
+                    </p>
+                     	<h3>   1.0.30
+                    </h3>
+                    <p class="well">
+                        <span>ToPagedRequestAsync for .net 4.5 or higher</span><br />
+                    </p>					
+					 </p>
+                    	<h3>    1.0.31
+                    </h3>
+                    <p class="well">
+                        <span>PagedResponse post materialization transformation</span><br />
+                    </p>
+					
+					
                 </div>
                 <h2>Contributing</h2>
                 <p class="well">
