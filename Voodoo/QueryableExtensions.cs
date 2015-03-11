@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Threading.Tasks;
 using Voodoo;
 using Voodoo.Linq;
 using Voodoo.Messages;
@@ -50,8 +51,34 @@ namespace Voodoo
             return ToPagedResponse(source, paging, x => x);
         }
 
+
         public static PagedResponse<TOut> ToPagedResponse<TIn, TOut>(this IQueryable<TIn> source, IGridState paging,
             Expression<Func<TIn, TOut>> expression) where TIn : class where TOut : class, new()
+        {
+            IQueryable page;
+            var state = buildPagedQuery(source, paging, expression, out page);
+
+            var list = page.ToArray<TOut>();
+         
+            var result = new PagedResponse<TOut>(state);
+           
+            result.Data.AddRange(list);
+            return result;
+        }
+
+#if net45
+
+        public static async Task<PagedResponse<TOut>> ToPagedResponseAsync<TIn, TOut>(this IQueryable<TIn> source, IGridState paging,
+            Expression<Func<TIn, TOut>> expression)
+            where TIn : class
+            where TOut : class, new()
+        {
+            return await Task.Run( ()=> ToPagedResponse(source, paging, expression));
+        }
+
+#endif
+        private static IGridState buildPagedQuery<TIn, TOut>(IQueryable<TIn> source, IGridState paging, Expression<Func<TIn, TOut>> expression,
+            out IQueryable page) where TIn : class where TOut : class, new()
         {
             var sortMember = paging.SortMember ?? paging.DefaultSortMember;
 
@@ -61,25 +88,25 @@ namespace Voodoo
 
             paging.TotalRecords = DynamicQueryable.Count(source);
             var state = paging.Map(new GridState(paging));
-            
-                         
+
+
             var skip = (state.PageNumber - 1)*state.PageSize;
             skip = skip < 0 ? 0 : skip;
             var take = state.PageSize;
-            var page = take == int.MaxValue
+            page = take == int.MaxValue
                 ? source.Select(expression)
-                : DynamicQueryable.Skip(source.Select(expression), skip).Take(take);
+                : source.Skip(skip).Take(take).Select(expression);
+            return state;
+        }
 
-            //var list = page.Cast<TOut>().ToList();
-            var list = new List<TOut>();
-            foreach (var item in page)
-            {
-                list.Add(item.To<TOut>());
-            }
-
-            var result = new PagedResponse<TOut>(state);
-            result.Data.AddRange(list);
-            return result;
+        public static PagedResponse<Grouping<TSource>> GroupBy<TSource, TKey>(this PagedResponse<TSource> source,
+            Func<TSource, TKey> keySelector) where TSource : class, new()
+        {
+            var response = new PagedResponse<Grouping<TSource>>(source.State);
+            var grouped = source.Data.GroupBy(keySelector);
+            response.Data =
+                grouped.Select(c => new Grouping<TSource>() {Name = c.Key.To<string>(), Data = c.ToList<TSource>()}).ToList();
+            return response;
         }
 
         public static string GetName<T>(this T type, Expression<Func<T, object>> expression)

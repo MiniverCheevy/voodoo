@@ -30,7 +30,12 @@ namespace Voodoo
 
         public static T[] ToArray<T>(this IEnumerable source)
         {
-            return source.Cast<T>().ToArray();
+            var response = new List<T>();
+            foreach (var item in source)
+            {
+                response.Add(item.To<T>());
+            }
+            return response.ToArray();
         }
 
         public static IEnumerable<T> ForEach<T>(this IEnumerable<T> source, Action<T> action)

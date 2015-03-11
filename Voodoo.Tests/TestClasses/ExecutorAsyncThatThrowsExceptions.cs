@@ -18,7 +18,9 @@ namespace Voodoo.Tests.TestClasses
         {
             await Task.Delay(300);
             throw new Exception("Boom");
+#pragma warning disable 162
             response.ExecuteFinished = true;
+#pragma warning restore 162
         }
     }
 }

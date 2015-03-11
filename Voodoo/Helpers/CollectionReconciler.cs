@@ -6,14 +6,6 @@ namespace Voodoo.Helpers
 {
     public class CollectionReconciler<TExisting, TModified, TKey>
     {
-
-        public class EditedItem<TExisting, TModified, TKey>
-        {
-            public TExisting Existing { get; set; }
-            public TModified Modified { get; set; }
-            public TKey Key { get; set; }
-        }
-
         private readonly TKey[] left;
         private readonly TKey[] right;
 
@@ -47,5 +39,12 @@ namespace Voodoo.Helpers
         public TKey[] DeletedKeys { get; protected set; }
         public TKey[] EditedKeys { get; protected set; }
        
+    }
+
+    public class EditedItem<TExisting, TModified, TKey>
+    {
+        public TExisting Existing { get; set; }
+        public TModified Modified { get; set; }
+        public TKey Key { get; set; }
     }
 }

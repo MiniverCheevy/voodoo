@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -7,6 +8,7 @@ using System.Reflection;
 using System.Reflection.Emit;
 using System.Text;
 using System.Threading;
+using System.Threading.Tasks;
 using Voodoo.Infrastructure.Notations;
 
 namespace Voodoo.Linq
@@ -108,7 +110,7 @@ namespace Voodoo.Linq
                     source.Provider.Execute(Expression.Call(typeof (Queryable), "Any", new Type[] {source.ElementType},
                         source.Expression));
         }
-
+       
         public static int Count(this IQueryable source)
         {
             if (source == null) throw new ArgumentNullException("source");

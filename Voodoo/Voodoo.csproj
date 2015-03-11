@@ -111,6 +111,7 @@
     <Compile Include="Infrastructure\RestAttribute.cs" />
     <Compile Include="IoNic.cs" />
     <Compile Include="Logging\LogLevels.cs" />
+    <Compile Include="Messages\Grouping.cs" />
     <Compile Include="NameValuePairExtensions.cs" />
     <Compile Include="Linq\Dynamic.cs">
       <SubType>Code</SubType>

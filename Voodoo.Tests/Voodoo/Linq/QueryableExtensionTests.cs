@@ -53,7 +53,7 @@ namespace Voodoo.Tests.Voodoo.Linq
             var list = GetTestList().AsQueryable();
             var paging = new PersonPagedRequest {PageNumber = 2, PageSize = 2 };
 
-            var pagedResult = list.PagedResult(paging);
+            var pagedResult = list.ToPagedResponse(paging);
             var result = pagedResult.Data;
             Assert.AreEqual(4, pagedResult.State.TotalRecords);
             Assert.AreEqual(2,pagedResult.Data.Count);
@@ -67,7 +67,7 @@ namespace Voodoo.Tests.Voodoo.Linq
             var list = GetTestList().AsQueryable();
             var paging = new PersonPagedRequest { PageNumber = 2, PageSize = 2 };
 
-            var pagedResult = list.PagedResult(paging, 
+            var pagedResult = list.ToPagedResponse(paging, 
                 c=> new NameValuePair(){Name=c.Name, Value = c.Id.ToString()});
             var result = pagedResult.Data;
             Assert.AreEqual(4, pagedResult.State.TotalRecords);
@@ -84,7 +84,7 @@ namespace Voodoo.Tests.Voodoo.Linq
             var paging = new PersonPagedRequest 
             { PageNumber = 2, PageSize = 2 , Text="foo"};
 
-            var pagedResult = list.PagedResult(paging);
+            var pagedResult = list.ToPagedResponse(paging);
             var response = new PagedResponse<NameValuePair>();
                 response.From(pagedResult,
                 c => new NameValuePair() { Name = c.Name, Value = c.Id.ToString() });
