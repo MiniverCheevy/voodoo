@@ -53,10 +53,10 @@ namespace Voodoo
 
 
         public static PagedResponse<TOut> ToPagedResponse<TIn, TOut>(this IQueryable<TIn> source, IGridState paging,
-            Expression<Func<TIn, TOut>> expression) where TIn : class where TOut : class, new()
+            Expression<Func<TIn, TOut>> transform) where TIn : class where TOut : class, new()
         {
             IQueryable page;
-            var state = buildPagedQuery(source, paging, expression, out page);
+            var state = buildPagedQuery(source, paging, transform, out page);
 
             var list = page.ToArray<TOut>();
          
@@ -67,17 +67,22 @@ namespace Voodoo
         }
 
 #if net45
-
+        public static async Task<PagedResponse<TObject>> ToPagedResponseAsync<TObject>(this IQueryable<TObject> source, IGridState paging)
+            where TObject : class, new()
+    {
+        return await Task.Run(() => ToPagedResponse < TObject, TObject>(source, paging, c => c));
+        }
         public static async Task<PagedResponse<TOut>> ToPagedResponseAsync<TIn, TOut>(this IQueryable<TIn> source, IGridState paging,
-            Expression<Func<TIn, TOut>> expression)
+            Expression<Func<TIn, TOut>> transform)
             where TIn : class
             where TOut : class, new()
         {
-            return await Task.Run( ()=> ToPagedResponse(source, paging, expression));
+            return await Task.Run( ()=> ToPagedResponse(source, paging, transform));
         }
 
 #endif
-        private static IGridState buildPagedQuery<TIn, TOut>(IQueryable<TIn> source, IGridState paging, Expression<Func<TIn, TOut>> expression,
+        private static IGridState buildPagedQuery<TIn, TOut>(IQueryable<TIn> source, IGridState paging, 
+            Expression<Func<TIn, TOut>> expression,
             out IQueryable page) where TIn : class where TOut : class, new()
         {
             var sortMember = paging.SortMember ?? paging.DefaultSortMember;
@@ -93,9 +98,11 @@ namespace Voodoo
             var skip = (state.PageNumber - 1)*state.PageSize;
             skip = skip < 0 ? 0 : skip;
             var take = state.PageSize;
-            page = take == int.MaxValue
-                ? source.Select(expression)
-                : source.Skip(skip).Take(take).Select(expression);
+            var data = take == int.MaxValue
+                ? source.ToArray()
+                : source.Skip(skip).Take(take).ToArray();
+            var transformed = data.AsQueryable().Select(expression).ToArray<TOut>();
+            page = transformed.AsQueryable();
             return state;
         }
 
