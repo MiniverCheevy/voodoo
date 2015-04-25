@@ -152,6 +152,7 @@
     <Compile Include="Voodoo\Operations\CommandTests.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Voodoo\Operations\ObjectEmissionTests.cs" />
     <Compile Include="Voodoo\Operations\ObjectStringificationTests.cs" />
     <Compile Include="Voodoo\Operations\QueryTests.cs">
       <SubType>Code</SubType>

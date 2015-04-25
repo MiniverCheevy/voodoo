@@ -92,6 +92,40 @@ namespace Voodoo.Tests.Voodoo.Linq
             Assert.IsTrue(response.State is PersonPagedRequest);
             Assert.AreEqual(paging.Text , response.State.As<PersonPagedRequest>().Text);
         }
+        [TestMethod]
+        public void PagedResult_EvenRecordsPerPage_TotalPagesIsAccurate()
+        {
+            var list = GetTestList().AsQueryable();
+            var paging = new PersonPagedRequest { PageNumber = 2, PageSize = 2, Text = "foo" };
+
+            var pagedResult = list.ToPagedResponse(paging);
+           
+            Assert.AreEqual(2, pagedResult.State.TotalPages);
+            Assert.AreEqual(4, pagedResult.State.TotalRecords);
+        }
+        [TestMethod]
+        public void PagedResult_OddRecordsPerPage_TotalPagesIsAccurate()
+        {
+            var list = GetTestList().AsQueryable();
+            var paging = new PersonPagedRequest { PageNumber = 2, PageSize = 3, Text = "foo" };
+
+            var pagedResult = list.ToPagedResponse(paging);
+
+
+            Assert.AreEqual(2, pagedResult.State.TotalPages);
+            Assert.AreEqual(4, pagedResult.State.TotalRecords);
+        }
+        [TestMethod]
+        public void PagedResult_AllRecordsInOnePage_TotalPagesIsAccurate()
+        {
+            var list = GetTestList().AsQueryable();
+            var paging = new PersonPagedRequest { PageNumber = 1, PageSize = 4, Text = "foo" };
+
+            var pagedResult = list.ToPagedResponse(paging);
+
+            Assert.AreEqual(1, pagedResult.State.TotalPages);
+            Assert.AreEqual(4, pagedResult.State.TotalRecords);
+        }
 
         public List<Person> GetTestList()
         {

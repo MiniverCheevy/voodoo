@@ -5,6 +5,7 @@ using System.Linq;
 using Voodoo.Infrastructure;
 using Voodoo.Logging;
 using Voodoo.Messages;
+using Voodoo.Operations.Async;
 using Voodoo.Validation.Infrastructure;
 
 namespace Voodoo.Operations
@@ -44,14 +45,10 @@ namespace Voodoo.Operations
 
         protected virtual void CustomErrorBehavior(Exception ex)
         {
-            if (!(ex is LogicException))
-            {
-                LogManager.Logger.Log(ex);
-                var stringResponse = new ObjectStringificationQuery(request).Execute();
-                LogManager.Log(stringResponse.IsOk ? stringResponse.Text : stringResponse.Message);
-            }
+            ExceptionHelper.HandleException(ex, this.GetType(), request);
             if (VoodooGlobalConfiguration.RemoveExceptionFromResponseAfterLogging)
                 response.Exception = null;
+
         }
 
 

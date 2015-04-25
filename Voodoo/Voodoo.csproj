@@ -111,7 +111,10 @@
     <Compile Include="Infrastructure\RestAttribute.cs" />
     <Compile Include="IoNic.cs" />
     <Compile Include="Logging\LogLevels.cs" />
+    <Compile Include="Messages\DefaultRequest.cs" />
     <Compile Include="Messages\Grouping.cs" />
+    <Compile Include="Messages\IdRequest.cs" />
+    <Compile Include="Messages\OptionalIdRequest.cs" />
     <Compile Include="NameValuePairExtensions.cs" />
     <Compile Include="Linq\Dynamic.cs">
       <SubType>Code</SubType>
@@ -174,10 +177,12 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Operations\Async\CommandAsync.cs" />
+    <Compile Include="Operations\ExceptionHelper.cs" />
     <Compile Include="Operations\Executor.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Operations\Async\ExecutorAsync.cs" />
+    <Compile Include="Operations\ObjectEmissionQuery.cs" />
     <Compile Include="Operations\ObjectStringificationQuery.cs" />
     <Compile Include="Operations\Query.cs">
       <SubType>Code</SubType>

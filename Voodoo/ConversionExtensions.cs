@@ -245,6 +245,13 @@ namespace Voodoo
                 return response.Text;
             return response.Message;
         }
+        public static string ToCode(this object o)
+        {
+            var response = new ObjectEmissionQuery(o).Execute();
+            if (response.IsOk)
+                return response.Text;
+            return response.Message;
+        }
 
         [DebuggerStepThrough]
         public static string ToFriendlyString(this object o)

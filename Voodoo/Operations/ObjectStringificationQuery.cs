@@ -12,12 +12,12 @@ namespace Voodoo.Operations
     //http://stackoverflow.com/questions/852181/c-printing-all-properties-of-an-object
     public class ObjectStringificationQuery : Query<object, TextResponse>
     {
+        private const int maxItemsInGraph = 1000;
         private readonly List<int> hashes;
         private readonly int padding;
         private readonly StringBuilder result;
         private int currentItemsInGraph;
         private int depth;
-        private int maxItemsInGraph = 1000;
 
         public ObjectStringificationQuery(object request) : base(request)
         {
@@ -31,10 +31,11 @@ namespace Voodoo.Operations
             response.Text = read(request);
             return response;
         }
-	protected override void Validate()
+
+        protected override void Validate()
         {
-            
         }
+
         private string read(object element)
         {
             if (currentItemsInGraph > maxItemsInGraph)
@@ -56,7 +57,7 @@ namespace Voodoo.Operations
                 }
 
                 var enumerableElement = element as IEnumerable;
-                if (enumerableElement != null && ! objectType.IsScalar())
+                if (enumerableElement != null && !objectType.IsScalar())
                 {
                     var counter = 0;
                     foreach (var item in enumerableElement)
@@ -82,10 +83,12 @@ namespace Voodoo.Operations
                 }
                 else
                 {
-                    var members = element.GetType().GetMembers(BindingFlags.Public | BindingFlags.Instance)
-                        .OrderBy(OrderProperties)
-                        .ThenBy(c=>c.Name)
-                        .ToArray();
+                    var members =
+                        element.GetType()
+                            .GetMembers(BindingFlags.Public | BindingFlags.Instance)
+                            .OrderBy(OrderProperties)
+                            .ThenBy(c => c.Name)
+                            .ToArray();
                     foreach (var memberInfo in members)
                     {
                         var fieldInfo = memberInfo as FieldInfo;
@@ -143,15 +146,11 @@ namespace Voodoo.Operations
                 var info = arg.To<PropertyInfo>();
                 if (info.PropertyType.IsScalar())
                     return 1;
-                else if (info.PropertyType.IsEnumerable())
+                if (info.PropertyType.IsEnumerable())
                     return 3;
-                else
-                    return 2;
+                return 2;
             }
-            else
-            {
-                return 10;
-            }
+            return 10;
         }
 
         private bool alreadyTouched(object value)

@@ -11,9 +11,17 @@ namespace Voodoo
     {
         public static string GetApplicationRootDirectory()
         {
+
             return System.Web.HttpContext.Current == null ? 
                 Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) : 
                 System.Web.HttpContext.Current.Server.MapPath(".");
+        }
+
+        public static string ResolveRelativePath(string path, string rootFolder = null)
+        {
+            rootFolder = rootFolder ?? GetApplicationRootDirectory();
+            var newPath = Path.Combine(rootFolder, path);
+            return Path.GetFullPath(newPath);
         }
 
         public static string GetTempFileNameAndPath(string fileExtensionNoDot = "txt")

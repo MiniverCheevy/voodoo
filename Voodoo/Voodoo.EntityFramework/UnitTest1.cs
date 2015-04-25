@@ -9,6 +9,7 @@ namespace Voodoo.EntityFramework
         [TestMethod]
         public void TestMethod1()
         {
+        	
         }
     }
 }

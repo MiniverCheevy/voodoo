@@ -22,6 +22,7 @@ namespace Voodoo
             target.SortMember = source.SortMember;
             target.SortDirection = source.SortDirection;
             target.ResetPaging = source.ResetPaging;
+            target.TotalPages = source.TotalPages;
             return target;
         }
     
@@ -92,6 +93,8 @@ namespace Voodoo
                 : source.OrderBy(c => true);
 
             paging.TotalRecords = DynamicQueryable.Count(source);
+            paging.TotalPages =
+                Math.Ceiling(paging.TotalRecords.To<decimal>()/paging.PageSize.To<decimal>()).To<int>();
             var state = paging.Map(new GridState(paging));
 
 

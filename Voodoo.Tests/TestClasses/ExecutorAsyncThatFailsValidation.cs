@@ -15,7 +15,7 @@ namespace Voodoo.Tests.TestClasses
         {
         }
 
-        protected override void Validate()
+        protected override async Task Validate()
         {
             throw new LogicException("Boom");
         }

@@ -25,7 +25,7 @@ namespace Voodoo.Tests.Voodoo.Operations.Async
         public async Task Execute_FailsValidation_IsNotOk()
         {
 
-            var response = await new ExecutorAsyncThatThrowsExceptions(new EmptyRequest()).ExecuteAsync();
+            var response = await new ExecutorAsyncThatFailsValidation(new EmptyRequest()).ExecuteAsync();
             Assert.AreEqual("Boom", response.Message);
             Assert.AreEqual(false, response.IsOk);
             Assert.AreEqual(false, response.ExecuteFinished);
