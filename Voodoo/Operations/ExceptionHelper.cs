@@ -32,7 +32,7 @@ namespace Voodoo.Operations
                 }
                 else 
                 {
-                    builder.AppendFormat("var response = await new {0}(request).Execute();", thisType);
+                    builder.AppendFormat("var response = new {0}(request).Execute();", thisType);
                 }
                 builder.AppendLine(string.Empty);
                 builder.AppendLine(
