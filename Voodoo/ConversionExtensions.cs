@@ -28,7 +28,6 @@ namespace Voodoo
             {typeof (int), 0}
         };
 
-
         public static T As<T>(this object value)
         {
             if (value == null)
@@ -46,7 +45,6 @@ namespace Voodoo
             }
         }
 
-
         public static T To<T>(this object value)
         {
             if (value == null)
@@ -60,7 +58,6 @@ namespace Voodoo
             return returnValue;
         }
 
-
         private static T returnDefaultValue<T>()
         {
             var type = typeof (T);
@@ -68,7 +65,6 @@ namespace Voodoo
                 return (T) nonNullDefaults[type];
             return default(T);
         }
-
 
         private static bool convertValue<T>(object value, out T converted)
         {
@@ -138,7 +134,6 @@ namespace Voodoo
             converted = default(T);
             return false;
         }
-
 
         private static bool convertObject<T>(object value, TypeCode typeCode, out T valueToConvert)
         {
@@ -245,6 +240,7 @@ namespace Voodoo
                 return response.Text;
             return response.Message;
         }
+
         public static string ToCode(this object o)
         {
             var response = new ObjectEmissionQuery(o).Execute();
@@ -302,9 +298,7 @@ namespace Voodoo
         private class CustomMapping
         {
             public Object ReturnValue { get; set; }
-
             public Type Type { get; set; }
-
             public Object[] Values { get; set; }
         }
     }

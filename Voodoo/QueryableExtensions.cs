@@ -14,8 +14,7 @@ namespace Voodoo
     public static class QueryableExtensions
     {
         public static IGridState Map(this IGridState target, IGridState source)
-       {
-            
+        {
             target.PageNumber = source.PageNumber;
             target.PageSize = source.PageSize;
             target.TotalRecords = source.TotalRecords;
@@ -25,7 +24,7 @@ namespace Voodoo
             target.TotalPages = source.TotalPages;
             return target;
         }
-    
+
         public static IQueryable<TQueryResult> OrderByDescending<TQueryResult>(this IQueryable<TQueryResult> query,
             string sortExpression) where TQueryResult : class
         {
@@ -52,7 +51,6 @@ namespace Voodoo
             return ToPagedResponse(source, paging, x => x);
         }
 
-
         public static PagedResponse<TOut> ToPagedResponse<TIn, TOut>(this IQueryable<TIn> source, IGridState paging,
             Expression<Func<TIn, TOut>> transform) where TIn : class where TOut : class, new()
         {
@@ -60,31 +58,15 @@ namespace Voodoo
             var state = buildPagedQuery(source, paging, transform, out page);
 
             var list = page.ToArray<TOut>();
-         
+
             var result = new PagedResponse<TOut>(state);
-           
+
             result.Data.AddRange(list);
             return result;
         }
 
-#if net45
-        public static async Task<PagedResponse<TObject>> ToPagedResponseAsync<TObject>(this IQueryable<TObject> source, IGridState paging)
-            where TObject : class, new()
-    {
-        return await Task.Run(() => ToPagedResponse < TObject, TObject>(source, paging, c => c));
-        }
-        public static async Task<PagedResponse<TOut>> ToPagedResponseAsync<TIn, TOut>(this IQueryable<TIn> source, IGridState paging,
-            Expression<Func<TIn, TOut>> transform)
-            where TIn : class
-            where TOut : class, new()
-        {
-            return await Task.Run( ()=> ToPagedResponse(source, paging, transform));
-        }
-
-#endif
-        private static IGridState buildPagedQuery<TIn, TOut>(IQueryable<TIn> source, IGridState paging, 
-            Expression<Func<TIn, TOut>> expression,
-            out IQueryable page) where TIn : class where TOut : class, new()
+        private static IGridState buildPagedQuery<TIn, TOut>(IQueryable<TIn> source, IGridState paging,
+            Expression<Func<TIn, TOut>> expression, out IQueryable page) where TIn : class where TOut : class, new()
         {
             var sortMember = paging.SortMember ?? paging.DefaultSortMember;
 
@@ -93,17 +75,14 @@ namespace Voodoo
                 : source.OrderBy(c => true);
 
             paging.TotalRecords = DynamicQueryable.Count(source);
-            paging.TotalPages =
-                Math.Ceiling(paging.TotalRecords.To<decimal>()/paging.PageSize.To<decimal>()).To<int>();
+            paging.TotalPages = Math.Ceiling(paging.TotalRecords.To<decimal>()/paging.PageSize.To<decimal>()).To<int>();
             var state = paging.Map(new GridState(paging));
 
 
             var skip = (state.PageNumber - 1)*state.PageSize;
             skip = skip < 0 ? 0 : skip;
             var take = state.PageSize;
-            var data = take == int.MaxValue
-                ? source.ToArray()
-                : source.Skip(skip).Take(take).ToArray();
+            var data = take == int.MaxValue ? source.ToArray() : source.Skip(skip).Take(take).ToArray();
             var transformed = data.AsQueryable().Select(expression).ToArray<TOut>();
             page = transformed.AsQueryable();
             return state;
@@ -115,7 +94,7 @@ namespace Voodoo
             var response = new PagedResponse<Grouping<TSource>>(source.State);
             var grouped = source.Data.GroupBy(keySelector);
             response.Data =
-                grouped.Select(c => new Grouping<TSource>() {Name = c.Key.To<string>(), Data = c.ToList<TSource>()}).ToList();
+                grouped.Select(c => new Grouping<TSource> {Name = c.Key.To<string>(), Data = c.ToList()}).ToList();
             return response;
         }
 
@@ -157,7 +136,6 @@ namespace Voodoo
             return first.Compose(second, Expression.Or);
         }
 
-
         /// <summary>
         ///     http://microsoftnlayerapp.codeplex.com/
         /// </summary>
@@ -186,5 +164,20 @@ namespace Voodoo
                 return base.VisitParameter(p);
             }
         }
+
+#if net45
+        public static async Task<PagedResponse<TObject>> ToPagedResponseAsync<TObject>(this IQueryable<TObject> source,
+            IGridState paging) where TObject : class, new()
+        {
+            return await Task.Run(() => ToPagedResponse(source, paging, c => c));
+        }
+
+        public static async Task<PagedResponse<TOut>> ToPagedResponseAsync<TIn, TOut>(this IQueryable<TIn> source,
+            IGridState paging, Expression<Func<TIn, TOut>> transform) where TIn : class where TOut : class, new()
+        {
+            return await Task.Run(() => ToPagedResponse(source, paging, transform));
+        }
+
+#endif
     }
 }

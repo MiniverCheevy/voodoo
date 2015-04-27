@@ -19,13 +19,9 @@ namespace Voodoo
         }
 
         internal static ExceptionTranslater ExceptionTranslator { get; set; }
-
         public static int LogMaximumNumberOfItemsInCollection { get; set; }
-
         public static string LogFilePath { get; set; }
-
         public static string ApplicationName { get; set; }
-
         public static bool RemoveExceptionFromResponseAfterLogging { get; set; }
 
         public static void RegisterLogger(ILogger logger)

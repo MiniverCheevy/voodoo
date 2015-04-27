@@ -14,13 +14,13 @@ namespace Voodoo.Infrastructure
 
     public class RestAttribute : Attribute
     {
-        public Verb Verb { get; set; }
-        public string Resource { get; set; }
-
         public RestAttribute(Verb verb, string resource)
         {
             Verb = verb;
             Resource = resource;
         }
+
+        public Verb Verb { get; set; }
+        public string Resource { get; set; }
     }
 }

@@ -17,7 +17,6 @@ namespace Voodoo.Messages
         }
 
         public abstract string DefaultSortMember { get; }
-
         public string SortDirection { get; set; }
         public bool ResetPaging { get; set; }
         public int PageNumber { get; set; }

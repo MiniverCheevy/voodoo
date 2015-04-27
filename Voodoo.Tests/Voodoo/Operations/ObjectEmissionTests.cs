@@ -34,7 +34,10 @@ namespace Voodoo.Tests.Voodoo.Operations
                 Items = new List<string> {"foo", "bar"},
                 NestedLists = new List<List<string>> {new List<string> {"foo"}},
                 Number = 7,
-                Date = "1/1/1970".To<DateTime>()
+                Date = "1/1/1970".To<DateTime>(),
+                Boolean = true,
+                NullableInt = 7,
+                NullableBoolean = false
             };
             request.NestedObject = request;
             request.AnotherNestedObject = new ClassToStringify

@@ -30,7 +30,7 @@ namespace Voodoo.Operations
                 {
                     builder.AppendFormat("var response = await new {0}(request).ExecuteAsync();", thisType);
                 }
-                else 
+                else
                 {
                     builder.AppendFormat("var response = new {0}(request).Execute();", thisType);
                 }

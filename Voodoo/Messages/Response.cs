@@ -20,15 +20,10 @@ namespace Voodoo.Messages
         }
 
         public int NumberOfRowsEffected { get; set; }
-
         public bool IsOk { get; set; }
-
         public bool HasLogicException { get; set; }
-
         public string Message { get; set; }
-
         public IList<INameValuePair> Details { get; set; }
-
         public Exception Exception { get; set; }
 
         public void SetExceptions(Exception ex)
@@ -39,14 +34,14 @@ namespace Voodoo.Messages
 
         public void AppendResponse(IResponse response)
         {
-            this.IsOk = this.IsOk && response.IsOk;
-            if (this.Message == null)
-                this.Message = response.Message;
+            IsOk = IsOk && response.IsOk;
+            if (Message == null)
+                Message = response.Message;
             else
-                this.Details.Add(new NameValuePair("", response.Message));
+                Details.Add(new NameValuePair("", response.Message));
 
             if (response.Details != null)
-                response.Details.ForEach(c => this.Details.Add(c));
+                response.Details.ForEach(c => Details.Add(c));
         }
     }
 }

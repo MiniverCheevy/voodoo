@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Web;
 
 namespace Voodoo
 {
@@ -11,10 +12,9 @@ namespace Voodoo
     {
         public static string GetApplicationRootDirectory()
         {
-
-            return System.Web.HttpContext.Current == null ? 
-                Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) : 
-                System.Web.HttpContext.Current.Server.MapPath(".");
+            return HttpContext.Current == null
+                ? Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)
+                : HttpContext.Current.Server.MapPath(".");
         }
 
         public static string ResolveRelativePath(string path, string rootFolder = null)
@@ -31,7 +31,6 @@ namespace Voodoo
             return path;
         }
 
-
         public static string ExecuteAndReturnOutput(string path, string arguments)
         {
             var p = new Process
@@ -41,7 +40,7 @@ namespace Voodoo
                     {
                         FileName = path,
                         UseShellExecute = false,
-                        RedirectStandardOutput =true,
+                        RedirectStandardOutput = true,
                         CreateNoWindow = true,
                         Arguments = arguments
                     }
@@ -70,7 +69,6 @@ namespace Voodoo
 
         public static string ReadFile(string fileName)
         {
-            
             string buffer;
             using (var streamReader = File.OpenText(fileName))
             {

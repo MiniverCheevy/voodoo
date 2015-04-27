@@ -9,12 +9,12 @@ namespace Voodoo.Infrastructure
     {
         public bool Contains<T>()
         {
-            return this.ContainsKey(typeof (T));
+            return ContainsKey(typeof (T));
         }
 
         public bool DecorateResponseWithException<T>(Exception ex, IResponse response)
         {
-            if (! this.Contains<T>())
+            if (!Contains<T>())
                 return false;
 
             var translator = this[typeof (T)];
@@ -23,7 +23,7 @@ namespace Voodoo.Infrastructure
 
         public bool DecorateResponseWithException(Exception ex, IResponse response)
         {
-            if (!this.ContainsKey(ex.GetType()))
+            if (!ContainsKey(ex.GetType()))
                 return false;
 
             var translator = this[ex.GetType()];

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -8,7 +7,6 @@ using System.Reflection;
 using System.Reflection.Emit;
 using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using Voodoo.Infrastructure.Notations;
 
 namespace Voodoo.Linq
@@ -32,7 +30,7 @@ namespace Voodoo.Linq
             if (predicate == null) throw new ArgumentNullException("predicate");
             var lambda = DynamicExpression.ParseLambda(source.ElementType, typeof (bool), predicate, values);
             return
-                source.Provider.CreateQuery(Expression.Call(typeof (Queryable), "Where", new Type[] {source.ElementType},
+                source.Provider.CreateQuery(Expression.Call(typeof (Queryable), "Where", new[] {source.ElementType},
                     source.Expression, Expression.Quote(lambda)));
         }
 
@@ -43,7 +41,7 @@ namespace Voodoo.Linq
             var lambda = DynamicExpression.ParseLambda(source.ElementType, null, selector, values);
             return
                 source.Provider.CreateQuery(Expression.Call(typeof (Queryable), "Select",
-                    new Type[] {source.ElementType, lambda.Body.Type}, source.Expression, Expression.Quote(lambda)));
+                    new[] {source.ElementType, lambda.Body.Type}, source.Expression, Expression.Quote(lambda)));
         }
 
         public static IQueryable<T> OrderByDynamic<T>(this IQueryable<T> source, string ordering, params object[] values)
@@ -55,7 +53,7 @@ namespace Voodoo.Linq
         {
             if (source == null) throw new ArgumentNullException("source");
             if (ordering == null) throw new ArgumentNullException("ordering");
-            var parameters = new ParameterExpression[] {Expression.Parameter(source.ElementType, "")};
+            var parameters = new[] {Expression.Parameter(source.ElementType, "")};
             var parser = new ExpressionParser(parameters, ordering, values);
             var orderings = parser.ParseOrdering();
             var queryExpr = source.Expression;
@@ -64,7 +62,7 @@ namespace Voodoo.Linq
             foreach (var o in orderings)
             {
                 queryExpr = Expression.Call(typeof (Queryable), o.Ascending ? methodAsc : methodDesc,
-                    new Type[] {source.ElementType, o.Selector.Type}, queryExpr,
+                    new[] {source.ElementType, o.Selector.Type}, queryExpr,
                     Expression.Quote(Expression.Lambda(o.Selector, parameters)));
                 methodAsc = "ThenBy";
                 methodDesc = "ThenByDescending";
@@ -76,7 +74,7 @@ namespace Voodoo.Linq
         {
             if (source == null) throw new ArgumentNullException("source");
             return
-                source.Provider.CreateQuery(Expression.Call(typeof (Queryable), "Take", new Type[] {source.ElementType},
+                source.Provider.CreateQuery(Expression.Call(typeof (Queryable), "Take", new[] {source.ElementType},
                     source.Expression, Expression.Constant(count)));
         }
 
@@ -84,7 +82,7 @@ namespace Voodoo.Linq
         {
             if (source == null) throw new ArgumentNullException("source");
             return
-                source.Provider.CreateQuery(Expression.Call(typeof (Queryable), "Skip", new Type[] {source.ElementType},
+                source.Provider.CreateQuery(Expression.Call(typeof (Queryable), "Skip", new[] {source.ElementType},
                     source.Expression, Expression.Constant(count)));
         }
 
@@ -98,7 +96,7 @@ namespace Voodoo.Linq
             var elementLambda = DynamicExpression.ParseLambda(source.ElementType, null, elementSelector, values);
             return
                 source.Provider.CreateQuery(Expression.Call(typeof (Queryable), "GroupBy",
-                    new Type[] {source.ElementType, keyLambda.Body.Type, elementLambda.Body.Type}, source.Expression,
+                    new[] {source.ElementType, keyLambda.Body.Type, elementLambda.Body.Type}, source.Expression,
                     Expression.Quote(keyLambda), Expression.Quote(elementLambda)));
         }
 
@@ -107,16 +105,16 @@ namespace Voodoo.Linq
             if (source == null) throw new ArgumentNullException("source");
             return
                 (bool)
-                    source.Provider.Execute(Expression.Call(typeof (Queryable), "Any", new Type[] {source.ElementType},
+                    source.Provider.Execute(Expression.Call(typeof (Queryable), "Any", new[] {source.ElementType},
                         source.Expression));
         }
-       
+
         public static int Count(this IQueryable source)
         {
             if (source == null) throw new ArgumentNullException("source");
             return
                 (int)
-                    source.Provider.Execute(Expression.Call(typeof (Queryable), "Count", new Type[] {source.ElementType},
+                    source.Provider.Execute(Expression.Call(typeof (Queryable), "Count", new[] {source.ElementType},
                         source.Expression));
         }
     }
@@ -144,26 +142,16 @@ namespace Voodoo.Linq
     [ThirdParty]
     public class DynamicProperty
     {
-        private string name;
-        private Type type;
-
         public DynamicProperty(string name, Type type)
         {
             if (name == null) throw new ArgumentNullException("name");
             if (type == null) throw new ArgumentNullException("type");
-            this.name = name;
-            this.type = type;
+            Name = name;
+            Type = type;
         }
 
-        public string Name
-        {
-            get { return name; }
-        }
-
-        public Type Type
-        {
-            get { return type; }
-        }
+        public string Name { get; private set; }
+        public Type Type { get; private set; }
     }
 
     [ThirdParty]
@@ -178,8 +166,7 @@ namespace Voodoo.Linq
         public static LambdaExpression ParseLambda(Type itType, Type resultType, string expression,
             params object[] values)
         {
-            return ParseLambda(new ParameterExpression[] {Expression.Parameter(itType, "")}, resultType, expression,
-                values);
+            return ParseLambda(new[] {Expression.Parameter(itType, "")}, resultType, expression, values);
         }
 
         public static LambdaExpression ParseLambda(ParameterExpression[] parameters, Type resultType, string expression,
@@ -254,7 +241,6 @@ namespace Voodoo.Linq
     internal class ClassFactory
     {
         public static readonly ClassFactory Instance = new ClassFactory();
-
         private int classCount;
         private Dictionary<Signature, Type> classes;
         private ModuleBuilder module;
@@ -355,7 +341,7 @@ namespace Voodoo.Linq
                 genGet.Emit(OpCodes.Ret);
                 var mbSet = tb.DefineMethod("set_" + dp.Name,
                     MethodAttributes.Public | MethodAttributes.SpecialName | MethodAttributes.HideBySig, null,
-                    new Type[] {dp.Type});
+                    new[] {dp.Type});
                 var genSet = mbSet.GetILGenerator();
                 genSet.Emit(OpCodes.Ldarg_0);
                 genSet.Emit(OpCodes.Ldarg_1);
@@ -372,7 +358,7 @@ namespace Voodoo.Linq
         {
             var mb = tb.DefineMethod("Equals",
                 MethodAttributes.Public | MethodAttributes.ReuseSlot | MethodAttributes.Virtual |
-                MethodAttributes.HideBySig, typeof (bool), new Type[] {typeof (object)});
+                MethodAttributes.HideBySig, typeof (bool), new[] {typeof (object)});
             var gen = mb.GetILGenerator();
             var other = gen.DeclareLocal(tb);
             var next = gen.DefineLabel();
@@ -394,7 +380,7 @@ namespace Voodoo.Linq
                 gen.Emit(OpCodes.Ldfld, field);
                 gen.Emit(OpCodes.Ldloc, other);
                 gen.Emit(OpCodes.Ldfld, field);
-                gen.EmitCall(OpCodes.Callvirt, ct.GetMethod("Equals", new Type[] {ft, ft}), null);
+                gen.EmitCall(OpCodes.Callvirt, ct.GetMethod("Equals", new[] {ft, ft}), null);
                 gen.Emit(OpCodes.Brtrue_S, next);
                 gen.Emit(OpCodes.Ldc_I4_0);
                 gen.Emit(OpCodes.Ret);
@@ -418,7 +404,7 @@ namespace Voodoo.Linq
                 gen.EmitCall(OpCodes.Call, ct.GetMethod("get_Default"), null);
                 gen.Emit(OpCodes.Ldarg_0);
                 gen.Emit(OpCodes.Ldfld, field);
-                gen.EmitCall(OpCodes.Callvirt, ct.GetMethod("GetHashCode", new Type[] {ft}), null);
+                gen.EmitCall(OpCodes.Callvirt, ct.GetMethod("GetHashCode", new[] {ft}), null);
                 gen.Emit(OpCodes.Xor);
             }
             gen.Emit(OpCodes.Ret);
@@ -428,177 +414,22 @@ namespace Voodoo.Linq
     [ThirdParty]
     public sealed class ParseException : Exception
     {
-        private int position;
-
         public ParseException(string message, int position) : base(message)
         {
-            this.position = position;
+            Position = position;
         }
 
-        public int Position
-        {
-            get { return position; }
-        }
+        public int Position { get; private set; }
 
         public override string ToString()
         {
-            return string.Format(Res.ParseExceptionFormat, Message, position);
+            return string.Format(Res.ParseExceptionFormat, Message, Position);
         }
     }
 
     [ThirdParty]
     internal class ExpressionParser
     {
-        private struct Token
-        {
-            public TokenId id;
-            public int pos;
-            public string text;
-        }
-
-        private enum TokenId
-        {
-            Unknown,
-            End,
-            Identifier,
-            StringLiteral,
-            IntegerLiteral,
-            RealLiteral,
-            Exclamation,
-            Percent,
-            Amphersand,
-            OpenParen,
-            CloseParen,
-            Asterisk,
-            Plus,
-            Comma,
-            Minus,
-            Dot,
-            Slash,
-            Colon,
-            LessThan,
-            Equal,
-            GreaterThan,
-            Question,
-            OpenBracket,
-            CloseBracket,
-            Bar,
-            ExclamationEqual,
-            DoubleAmphersand,
-            LessThanEqual,
-            LessGreater,
-            DoubleEqual,
-            GreaterThanEqual,
-            DoubleBar
-        }
-
-        private interface ILogicalSignatures
-        {
-            void F(bool x, bool y);
-            void F(bool? x, bool? y);
-        }
-
-        private interface IArithmeticSignatures
-        {
-            void F(int x, int y);
-            void F(uint x, uint y);
-            void F(long x, long y);
-            void F(ulong x, ulong y);
-            void F(float x, float y);
-            void F(double x, double y);
-            void F(decimal x, decimal y);
-            void F(int? x, int? y);
-            void F(uint? x, uint? y);
-            void F(long? x, long? y);
-            void F(ulong? x, ulong? y);
-            void F(float? x, float? y);
-            void F(double? x, double? y);
-            void F(decimal? x, decimal? y);
-        }
-
-        private interface IRelationalSignatures : IArithmeticSignatures
-        {
-            void F(string x, string y);
-            void F(char x, char y);
-            void F(DateTime x, DateTime y);
-            void F(TimeSpan x, TimeSpan y);
-            void F(char? x, char? y);
-            void F(DateTime? x, DateTime? y);
-            void F(TimeSpan? x, TimeSpan? y);
-        }
-
-        private interface IEqualitySignatures : IRelationalSignatures
-        {
-            void F(bool x, bool y);
-            void F(bool? x, bool? y);
-        }
-
-        private interface IAddSignatures : IArithmeticSignatures
-        {
-            void F(DateTime x, TimeSpan y);
-            void F(TimeSpan x, TimeSpan y);
-            void F(DateTime? x, TimeSpan? y);
-            void F(TimeSpan? x, TimeSpan? y);
-        }
-
-        private interface ISubtractSignatures : IAddSignatures
-        {
-            void F(DateTime x, DateTime y);
-            void F(DateTime? x, DateTime? y);
-        }
-
-        private interface INegationSignatures
-        {
-            void F(int x);
-            void F(long x);
-            void F(float x);
-            void F(double x);
-            void F(decimal x);
-            void F(int? x);
-            void F(long? x);
-            void F(float? x);
-            void F(double? x);
-            void F(decimal? x);
-        }
-
-        private interface INotSignatures
-        {
-            void F(bool x);
-            void F(bool? x);
-        }
-
-        private interface IEnumerableSignatures
-        {
-            void Where(bool predicate);
-            void Any();
-            void Any(bool predicate);
-            void All(bool predicate);
-            void Count();
-            void Count(bool predicate);
-            void Min(object selector);
-            void Max(object selector);
-            void Sum(int selector);
-            void Sum(int? selector);
-            void Sum(long selector);
-            void Sum(long? selector);
-            void Sum(float selector);
-            void Sum(float? selector);
-            void Sum(double selector);
-            void Sum(double? selector);
-            void Sum(decimal selector);
-            void Sum(decimal? selector);
-            void Average(int selector);
-            void Average(int? selector);
-            void Average(long selector);
-            void Average(long? selector);
-            void Average(float selector);
-            void Average(float? selector);
-            void Average(double selector);
-            void Average(double? selector);
-            void Average(decimal selector);
-            void Average(decimal? selector);
-        }
-
         private static readonly Type[] predefinedTypes =
         {
             typeof (Object), typeof (Boolean), typeof (Char),
@@ -610,21 +441,18 @@ namespace Voodoo.Linq
         private static readonly Expression trueLiteral = Expression.Constant(true);
         private static readonly Expression falseLiteral = Expression.Constant(false);
         private static readonly Expression nullLiteral = Expression.Constant(null);
-
         private static readonly string keywordIt = "it";
         private static readonly string keywordIif = "iif";
         private static readonly string keywordNew = "new";
-
         private static Dictionary<string, object> keywords;
-
-        private Dictionary<string, object> symbols;
-        private IDictionary<string, object> externals;
-        private Dictionary<Expression, string> literals;
-        private ParameterExpression it;
-        private string text;
-        private int textPos;
-        private int textLen;
         private char ch;
+        private IDictionary<string, object> externals;
+        private ParameterExpression it;
+        private Dictionary<Expression, string> literals;
+        private Dictionary<string, object> symbols;
+        private string text;
+        private int textLen;
+        private int textPos;
         private Token token;
 
         public ExpressionParser(ParameterExpression[] parameters, string expression, object[] values)
@@ -683,7 +511,6 @@ namespace Voodoo.Linq
             ValidateToken(TokenId.End, Res.SyntaxError);
             return expr;
         }
-
 #pragma warning disable 0219
         public IEnumerable<DynamicOrdering> ParseOrdering()
         {
@@ -709,7 +536,6 @@ namespace Voodoo.Linq
             return orderings;
         }
 #pragma warning restore 0219
-
         // ?: operator
         private Expression ParseExpression()
         {
@@ -1001,9 +827,9 @@ namespace Voodoo.Linq
                 if (!UInt64.TryParse(text, out value))
                     throw ParseError(Res.InvalidIntegerLiteral, text);
                 NextToken();
-                if (value <= (ulong) Int32.MaxValue) return CreateLiteral((int) value, text);
-                if (value <= (ulong) UInt32.MaxValue) return CreateLiteral((uint) value, text);
-                if (value <= (ulong) Int64.MaxValue) return CreateLiteral((long) value, text);
+                if (value <= Int32.MaxValue) return CreateLiteral((int) value, text);
+                if (value <= UInt32.MaxValue) return CreateLiteral((uint) value, text);
+                if (value <= Int64.MaxValue) return CreateLiteral((long) value, text);
                 return CreateLiteral(value, text);
             }
             else
@@ -1063,9 +889,9 @@ namespace Voodoo.Linq
             if (keywords.TryGetValue(token.text, out value))
             {
                 if (value is Type) return ParseTypeAccess((Type) value);
-                if (value == (object) keywordIt) return ParseIt();
-                if (value == (object) keywordIif) return ParseIif();
-                if (value == (object) keywordNew) return ParseNew();
+                if (value == keywordIt) return ParseIt();
+                if (value == keywordIif) return ParseIif();
+                if (value == keywordNew) return ParseNew();
                 NextToken();
                 return (Expression) value;
             }
@@ -1263,20 +1089,17 @@ namespace Voodoo.Linq
                             throw ParseError(errorPos, Res.MethodsAreInaccessible, GetTypeName(method.DeclaringType));
                         if (method.ReturnType == typeof (void))
                             throw ParseError(errorPos, Res.MethodIsVoid, id, GetTypeName(method.DeclaringType));
-                        return Expression.Call(instance, (MethodInfo) method, args);
+                        return Expression.Call(instance, method, args);
                     default:
                         throw ParseError(errorPos, Res.AmbiguousMethodInvocation, id, GetTypeName(type));
                 }
             }
-            else
-            {
-                var member = FindPropertyOrField(type, id, instance == null);
-                if (member == null)
-                    throw ParseError(errorPos, Res.UnknownPropertyOrField, id, GetTypeName(type));
-                return member is PropertyInfo
-                    ? Expression.Property(instance, (PropertyInfo) member)
-                    : Expression.Field(instance, (FieldInfo) member);
-            }
+            var member = FindPropertyOrField(type, id, instance == null);
+            if (member == null)
+                throw ParseError(errorPos, Res.UnknownPropertyOrField, id, GetTypeName(type));
+            return member is PropertyInfo
+                ? Expression.Property(instance, (PropertyInfo) member)
+                : Expression.Field(instance, (FieldInfo) member);
         }
 
         private static Type FindGenericType(Type generic, Type type)
@@ -1310,19 +1133,19 @@ namespace Voodoo.Linq
             Type[] typeArgs;
             if (signature.Name == "Min" || signature.Name == "Max")
             {
-                typeArgs = new Type[] {elementType, args[0].Type};
+                typeArgs = new[] {elementType, args[0].Type};
             }
             else
             {
-                typeArgs = new Type[] {elementType};
+                typeArgs = new[] {elementType};
             }
             if (args.Length == 0)
             {
-                args = new Expression[] {instance};
+                args = new[] {instance};
             }
             else
             {
-                args = new Expression[] {instance, Expression.Lambda(args[0], innerIt)};
+                args = new[] {instance, Expression.Lambda(args[0], innerIt)};
             }
             return Expression.Call(typeof (Enumerable), signature.Name, typeArgs, args);
         }
@@ -1366,18 +1189,15 @@ namespace Voodoo.Linq
                     throw ParseError(errorPos, Res.InvalidIndex);
                 return Expression.ArrayIndex(expr, index);
             }
-            else
+            MethodBase mb;
+            switch (FindIndexer(expr.Type, args, out mb))
             {
-                MethodBase mb;
-                switch (FindIndexer(expr.Type, args, out mb))
-                {
-                    case 0:
-                        throw ParseError(errorPos, Res.NoApplicableIndexer, GetTypeName(expr.Type));
-                    case 1:
-                        return Expression.Call(expr, (MethodInfo) mb, args);
-                    default:
-                        throw ParseError(errorPos, Res.AmbiguousIndexerInvocation, GetTypeName(expr.Type));
-                }
+                case 0:
+                    throw ParseError(errorPos, Res.NoApplicableIndexer, GetTypeName(expr.Type));
+                case 1:
+                    return Expression.Call(expr, (MethodInfo) mb, args);
+                default:
+                    throw ParseError(errorPos, Res.AmbiguousIndexerInvocation, GetTypeName(expr.Type));
             }
         }
 
@@ -1453,7 +1273,7 @@ namespace Voodoo.Linq
 
         private void CheckAndPromoteOperand(Type signatures, string opName, ref Expression expr, int errorPos)
         {
-            var args = new Expression[] {expr};
+            var args = new[] {expr};
             MethodBase method;
             if (FindMethod(signatures, "F", false, args, out method) != 1)
                 throw ParseError(errorPos, Res.IncompatibleOperand, opName, GetTypeName(args[0].Type));
@@ -1463,7 +1283,7 @@ namespace Voodoo.Linq
         private void CheckAndPromoteOperands(Type signatures, string opName, ref Expression left, ref Expression right,
             int errorPos)
         {
-            var args = new Expression[] {left, right};
+            var args = new[] {left, right};
             MethodBase method;
             if (FindMethod(signatures, "F", false, args, out method) != 1)
                 throw IncompatibleOperandsError(opName, left, right, errorPos);
@@ -1547,13 +1367,6 @@ namespace Voodoo.Linq
                 types.Add(type);
                 foreach (var t in type.GetInterfaces()) AddInterface(types, t);
             }
-        }
-
-        private class MethodData
-        {
-            public Expression[] Args;
-            public MethodBase MethodBase;
-            public ParameterInfo[] Parameters;
         }
 
         private int FindBestMethod(IEnumerable<MethodBase> methods, Expression[] args, out MethodBase method)
@@ -2199,6 +2012,163 @@ namespace Voodoo.Linq
             d.Add(keywordNew, keywordNew);
             foreach (var type in predefinedTypes) d.Add(type.Name, type);
             return d;
+        }
+
+        private struct Token
+        {
+            public TokenId id;
+            public int pos;
+            public string text;
+        }
+
+        private enum TokenId
+        {
+            Unknown,
+            End,
+            Identifier,
+            StringLiteral,
+            IntegerLiteral,
+            RealLiteral,
+            Exclamation,
+            Percent,
+            Amphersand,
+            OpenParen,
+            CloseParen,
+            Asterisk,
+            Plus,
+            Comma,
+            Minus,
+            Dot,
+            Slash,
+            Colon,
+            LessThan,
+            Equal,
+            GreaterThan,
+            Question,
+            OpenBracket,
+            CloseBracket,
+            Bar,
+            ExclamationEqual,
+            DoubleAmphersand,
+            LessThanEqual,
+            LessGreater,
+            DoubleEqual,
+            GreaterThanEqual,
+            DoubleBar
+        }
+
+        private interface ILogicalSignatures
+        {
+            void F(bool x, bool y);
+            void F(bool? x, bool? y);
+        }
+
+        private interface IArithmeticSignatures
+        {
+            void F(int x, int y);
+            void F(uint x, uint y);
+            void F(long x, long y);
+            void F(ulong x, ulong y);
+            void F(float x, float y);
+            void F(double x, double y);
+            void F(decimal x, decimal y);
+            void F(int? x, int? y);
+            void F(uint? x, uint? y);
+            void F(long? x, long? y);
+            void F(ulong? x, ulong? y);
+            void F(float? x, float? y);
+            void F(double? x, double? y);
+            void F(decimal? x, decimal? y);
+        }
+
+        private interface IRelationalSignatures : IArithmeticSignatures
+        {
+            void F(string x, string y);
+            void F(char x, char y);
+            void F(DateTime x, DateTime y);
+            void F(TimeSpan x, TimeSpan y);
+            void F(char? x, char? y);
+            void F(DateTime? x, DateTime? y);
+            void F(TimeSpan? x, TimeSpan? y);
+        }
+
+        private interface IEqualitySignatures : IRelationalSignatures
+        {
+            void F(bool x, bool y);
+            void F(bool? x, bool? y);
+        }
+
+        private interface IAddSignatures : IArithmeticSignatures
+        {
+            void F(DateTime x, TimeSpan y);
+            void F(TimeSpan x, TimeSpan y);
+            void F(DateTime? x, TimeSpan? y);
+            void F(TimeSpan? x, TimeSpan? y);
+        }
+
+        private interface ISubtractSignatures : IAddSignatures
+        {
+            void F(DateTime x, DateTime y);
+            void F(DateTime? x, DateTime? y);
+        }
+
+        private interface INegationSignatures
+        {
+            void F(int x);
+            void F(long x);
+            void F(float x);
+            void F(double x);
+            void F(decimal x);
+            void F(int? x);
+            void F(long? x);
+            void F(float? x);
+            void F(double? x);
+            void F(decimal? x);
+        }
+
+        private interface INotSignatures
+        {
+            void F(bool x);
+            void F(bool? x);
+        }
+
+        private interface IEnumerableSignatures
+        {
+            void Where(bool predicate);
+            void Any();
+            void Any(bool predicate);
+            void All(bool predicate);
+            void Count();
+            void Count(bool predicate);
+            void Min(object selector);
+            void Max(object selector);
+            void Sum(int selector);
+            void Sum(int? selector);
+            void Sum(long selector);
+            void Sum(long? selector);
+            void Sum(float selector);
+            void Sum(float? selector);
+            void Sum(double selector);
+            void Sum(double? selector);
+            void Sum(decimal selector);
+            void Sum(decimal? selector);
+            void Average(int selector);
+            void Average(int? selector);
+            void Average(long selector);
+            void Average(long? selector);
+            void Average(float selector);
+            void Average(float? selector);
+            void Average(double selector);
+            void Average(double? selector);
+            void Average(decimal selector);
+            void Average(decimal? selector);
+        }
+
+        private class MethodData
+        {
+            public Expression[] Args;
+            public MethodBase MethodBase;
+            public ParameterInfo[] Parameters;
         }
     }
 

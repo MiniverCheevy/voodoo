@@ -5,10 +5,12 @@ using System.Threading.Tasks;
 using System.Transactions;
 using Voodoo.Messages;
 
-#if  net451 
+#if  net451
+
 namespace Voodoo.Operations.Async
 {
-    public abstract class CommandAsync<TRequest, TResponse> : ExecutorAsync<TRequest,TResponse> where TResponse : class, IResponse, new() where TRequest : class
+    public abstract class CommandAsync<TRequest, TResponse> : ExecutorAsync<TRequest, TResponse>
+        where TResponse : class, IResponse, new() where TRequest : class
     {
         protected CommandAsync(TRequest request) : base(request)
         {
@@ -16,20 +18,20 @@ namespace Voodoo.Operations.Async
 
         public override async Task<TResponse> ExecuteAsync()
         {
+            var transactionOptions = new TransactionOptions {IsolationLevel = IsolationLevel.ReadCommitted};
 
-            var transactionOptions = new TransactionOptions { IsolationLevel = IsolationLevel.ReadCommitted };
-            
 
-            using (var transaction = 
-                new TransactionScope(TransactionScopeOption.Required, transactionOptions, TransactionScopeAsyncFlowOption.Enabled))
+            using (
+                var transaction = new TransactionScope(TransactionScopeOption.Required, transactionOptions,
+                    TransactionScopeAsyncFlowOption.Enabled))
             {
                 response = await base.ExecuteAsync();
                 if (response.IsOk)
                     transaction.Complete();
                 return response;
             }
-
         }
     }
 }
+
 #endif

@@ -107,12 +107,12 @@ namespace Voodoo.Operations
                 {
                     if (alreadyTouched(value))
                     {
-                        writeInline("//{1} = new {0}() <-- bidirectional reference found", element.GetType().FixUpTypeName(),
-                            memberInfo.Name);
+                        writeInline("//{1} = new {0}() <-- bidirectional reference found",
+                            element.GetType().FixUpTypeName(), memberInfo.Name);
                     }
                     else
                     {
-                        writeInline("{0}=",memberInfo.Name);
+                        writeInline("{0}=", memberInfo.Name);
                         readObject(value);
                     }
                 }
@@ -172,6 +172,7 @@ namespace Voodoo.Operations
 
             result.AppendLine(value);
         }
+
         private void writeNoPad(string value, params object[] args)
         {
             currentItemsInGraph++;
@@ -181,15 +182,17 @@ namespace Voodoo.Operations
 
             result.AppendLine(value);
         }
+
         private void writeInline(string value, params object[] args)
         {
-            var pad = depth * 5;
+            var pad = depth*5;
             result.Append(new string(' ', pad));
             if (args != null)
                 value = string.Format(value, args);
 
             result.Append(value);
         }
+
         private void writeInlineNoPad(string value, params object[] args)
         {
             if (args != null)
@@ -197,6 +200,7 @@ namespace Voodoo.Operations
 
             result.Append(value);
         }
+
         private string format(object o)
         {
             if (o == null)
@@ -218,6 +222,10 @@ namespace Voodoo.Operations
 
             if (o is char && (char) o == '\0')
                 return string.Empty;
+            if (o is bool)
+                return o.ToString().ToLower();
+            if (o.GetType() == typeof(bool?) && o.To<bool?>().HasValue)
+                return o.To<bool?>().ToString().ToLower();
 
             if (o is ValueType)
                 return (o.ToString());

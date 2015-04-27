@@ -14,6 +14,5 @@ namespace Voodoo.Messages.Paging
         string SortDirection { get; set; }
         string DefaultSortMember { get; }
         bool ResetPaging { get; set; }
-
     }
 }

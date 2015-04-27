@@ -10,10 +10,10 @@ namespace Voodoo.Helpers
         private readonly TKey[] right;
 
         public CollectionReconciler(IEnumerable<TExisting> existing, IEnumerable<TModified> modified,
-            Func<TExisting,TKey> existingKey, Func<TModified,TKey> modifiedKey)
+            Func<TExisting, TKey> existingKey, Func<TModified, TKey> modifiedKey)
         {
-            existing = (existing ?? new TExisting[] { }).ToArray();
-            modified = (modified ?? new TModified[] { }).ToArray();
+            existing = (existing ?? new TExisting[] {}).ToArray();
+            modified = (modified ?? new TModified[] {}).ToArray();
 
             left = existing.Select(existingKey).ToArray();
             right = modified.Select(modifiedKey).ToArray();
@@ -24,21 +24,19 @@ namespace Voodoo.Helpers
 
             Added = modified.Where(c => AddedKeys.Contains(modifiedKey(c))).ToArray();
             Deleted = existing.Where(c => DeletedKeys.Contains(existingKey(c))).ToArray();
-            Edited = existing.Join(modified, existingKey, modifiedKey,
-                (e, m) => new EditedItem<TExisting, TModified, TKey> {Existing = e, Modified = m, Key = existingKey(e)})
-                .ToArray();
+            Edited =
+                existing.Join(modified, existingKey, modifiedKey,
+                    (e, m) =>
+                        new EditedItem<TExisting, TModified, TKey> {Existing = e, Modified = m, Key = existingKey(e)})
+                    .ToArray();
         }
 
         public EditedItem<TExisting, TModified, TKey>[] Edited { get; set; }
-
         public TExisting[] Deleted { get; set; }
-
         public TModified[] Added { get; set; }
-
         public TKey[] AddedKeys { get; protected set; }
         public TKey[] DeletedKeys { get; protected set; }
         public TKey[] EditedKeys { get; protected set; }
-       
     }
 
     public class EditedItem<TExisting, TModified, TKey>

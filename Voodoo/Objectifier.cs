@@ -71,7 +71,6 @@ namespace Voodoo
             return result;
         }
 
-
         [DebuggerStepThrough]
         public static string ToDataContractXml<TObject>(TObject @object)
         {

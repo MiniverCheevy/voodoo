@@ -31,6 +31,7 @@ namespace Voodoo
 
             return false;
         }
+
         public static Type[] GetTypesSafetly(this Assembly assembly)
         {
             try
@@ -41,9 +42,9 @@ namespace Voodoo
             {
                 LogManager.Log(string.Format("error loading types from {0}", assembly.FullName));
                 return rtl.Types;
-
             }
         }
+
         public static string GetTypeNameWithoutGenericArguments(this Type type)
         {
             if (!type.GetGenericArguments().Any())

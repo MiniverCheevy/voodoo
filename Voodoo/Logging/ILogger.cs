@@ -12,6 +12,5 @@ namespace Voodoo.Logging
 
     public interface IDetailedLogger
     {
-
     }
 }

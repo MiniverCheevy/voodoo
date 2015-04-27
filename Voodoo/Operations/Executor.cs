@@ -2,10 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using Voodoo.Infrastructure;
-using Voodoo.Logging;
 using Voodoo.Messages;
-using Voodoo.Operations.Async;
 using Voodoo.Validation.Infrastructure;
 
 namespace Voodoo.Operations
@@ -45,12 +42,10 @@ namespace Voodoo.Operations
 
         protected virtual void CustomErrorBehavior(Exception ex)
         {
-            ExceptionHelper.HandleException(ex, this.GetType(), request);
+            ExceptionHelper.HandleException(ex, GetType(), request);
             if (VoodooGlobalConfiguration.RemoveExceptionFromResponseAfterLogging)
                 response.Exception = null;
-
         }
-
 
         protected TResponse BuildResponseWithException(Exception ex)
         {

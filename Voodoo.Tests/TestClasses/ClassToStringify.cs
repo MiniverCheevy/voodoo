@@ -20,6 +20,10 @@ namespace Voodoo.Tests.TestClasses
         public List<ClassToStringify> ListOfObjects { get; set; }
         public string AString { get; set; }
         public TwitchyObject AnObnoxiousObjectWhosePropertiesThrowExceptions { get; set; }
-        
+
+
+        public bool Boolean { get; set; }
+        public bool? NullableBoolean { get; set; }
+        public int? NullableInt { get; set; }
     }
 }

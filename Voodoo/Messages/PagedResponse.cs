@@ -17,17 +17,17 @@ namespace Voodoo.Messages
             State = state;
             State.Map(state);
         }
-        public void From<TIn, TOut>(PagedResponse<TIn> source, Func<TIn, TOut> transform)
-            where TIn: class, new()
+
+        public IGridState State { get; set; }
+
+        public void From<TIn, TOut>(PagedResponse<TIn> source, Func<TIn, TOut> transform) where TIn : class, new()
             where TOut : TQueryResult
         {
-            State = source.State;            
+            State = source.State;
             State.Map(source.State);
             var transformed = source.Data.Select(transform).ToList();
             foreach (var item in transformed)
-                Data.Add(item);            
+                Data.Add(item);
         }
-
-        public IGridState State { get; set; }
     }
 }

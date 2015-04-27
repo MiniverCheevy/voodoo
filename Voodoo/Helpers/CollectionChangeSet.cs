@@ -23,7 +23,6 @@ namespace Voodoo.Helpers
         public int[] Deleted { get; protected set; }
         public int[] Edited { get; protected set; }
 
-
         public bool AreDifferent()
         {
             if (Added.Any() || Deleted.Any())

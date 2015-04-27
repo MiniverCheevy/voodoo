@@ -11,7 +11,6 @@ namespace Voodoo.Messages.Paging
         {
         }
 
-
         [SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public GridState(IGridState state = null)
         {
@@ -21,19 +20,12 @@ namespace Voodoo.Messages.Paging
         }
 
         public virtual int TotalPages { get; set; }
-
         public virtual int PageNumber { get; set; }
-
         public virtual int PageSize { get; set; }
-
         public virtual int TotalRecords { get; set; }
-
         public virtual string SortMember { get; set; }
-
         public virtual string SortDirection { get; set; }
-
         public virtual string DefaultSortMember { get; set; }
-
         public virtual bool ResetPaging { get; set; }
 
         protected void ApplySorting(IGridState sorting)
