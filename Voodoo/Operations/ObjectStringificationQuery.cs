@@ -49,7 +49,7 @@ namespace Voodoo.Operations
             else
             {
                 var objectType = element.GetType();
-                if (!typeof (IEnumerable).IsAssignableFrom(objectType))
+                if (!typeof(IEnumerable).GetTypeInfo().IsAssignableFrom(objectType))
                 {
                     write("{{{0}}}", objectType.FullName);
                     hashes.Add(element.GetHashCode());
@@ -115,7 +115,7 @@ namespace Voodoo.Operations
                         }
                         else
                         {
-                            var isEnumerable = typeof (IEnumerable).IsAssignableFrom(type);
+                            var isEnumerable = typeof(IEnumerable).GetTypeInfo().IsAssignableFrom(type);
                             var isScalar = type.IsScalar();
                             write("{0}: {1}", memberInfo.Name, isEnumerable ? "..." : "{ }");
 
@@ -130,7 +130,7 @@ namespace Voodoo.Operations
                     }
                 }
 
-                if (!typeof (IEnumerable).IsAssignableFrom(objectType))
+                if (!typeof(IEnumerable).GetTypeInfo().IsAssignableFrom(objectType))
                 {
                     depth--;
                 }
@@ -183,7 +183,7 @@ namespace Voodoo.Operations
                 return ("null");
 
             if (o is DateTime)
-                return (((DateTime) o).ToShortDateString());
+                return (((DateTime) o).ToString("d"));
 
             if (o is string)
                 return string.Format("\"{0}\"", o);

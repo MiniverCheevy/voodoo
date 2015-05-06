@@ -253,6 +253,7 @@ namespace Voodoo.Linq
         private ClassFactory()
         {
             var name = new AssemblyName("DynamicClasses");
+            
             var assembly = AppDomain.CurrentDomain.DefineDynamicAssembly(name, AssemblyBuilderAccess.Run);
 #if ENABLE_LINQ_PARTIAL_TRUST
             new ReflectionPermission(PermissionState.Unrestricted).Assert();
@@ -601,11 +602,12 @@ namespace Voodoo.Linq
                 {
                     if (left.Type != right.Type)
                     {
-                        if (left.Type.IsAssignableFrom(right.Type))
+
+                        if (left.Type.GetTypeInfo().IsAssignableFrom(right.Type))
                         {
                             right = Expression.Convert(right, left.Type);
                         }
-                        else if (right.Type.IsAssignableFrom(left.Type))
+                        else if (right.Type.GetTypeInfo().IsAssignableFrom(left.Type))
                         {
                             left = Expression.Convert(left, right.Type);
                         }
@@ -1054,7 +1056,7 @@ namespace Voodoo.Linq
                 if ((IsNumericType(exprType) || IsEnumType(exprType)) && (IsNumericType(type)) || IsEnumType(type))
                     return Expression.ConvertChecked(expr, type);
             }
-            if (exprType.IsAssignableFrom(type) || type.IsAssignableFrom(exprType) || exprType.IsInterface ||
+            if (exprType.GetTypeInfo().IsAssignableFrom(type) || type.IsAssignableFrom(exprType) || exprType.IsInterface ||
                 type.IsInterface)
                 return Expression.Convert(expr, type);
             throw ParseError(errorPos, Res.CannotConvertValue, GetTypeName(exprType), GetTypeName(type));
@@ -1115,7 +1117,7 @@ namespace Voodoo.Linq
                         if (found != null) return found;
                     }
                 }
-                type = type.BaseType;
+                type = type.GetTypeInfo().BaseType;
             }
             return null;
         }
@@ -1243,7 +1245,7 @@ namespace Voodoo.Linq
         private static int GetNumericTypeKind(Type type)
         {
             type = GetNonNullableType(type);
-            if (type.IsEnum) return 0;
+            if (type.GetTypeInfo().IsEnum) return 0;
             switch (Type.GetTypeCode(type))
             {
                 case TypeCode.Char:
@@ -1356,7 +1358,7 @@ namespace Voodoo.Linq
             while (type != null)
             {
                 yield return type;
-                type = type.BaseType;
+                type = type.GetTypeInfo().BaseType;
             }
         }
 
@@ -1521,7 +1523,7 @@ namespace Voodoo.Linq
         private static bool IsCompatibleWith(Type source, Type target)
         {
             if (source == target) return true;
-            if (!target.IsValueType) return target.IsAssignableFrom(source);
+            if (!target.IsValueType) return target.GetTypeInfo().IsAssignableFrom(source);
             var st = GetNonNullableType(source);
             var tt = GetNonNullableType(target);
             if (st != source && tt == target) return false;

@@ -32,7 +32,7 @@ namespace Voodoo.Logging
 
                 deleteFileIfNeeded(path);
 
-                var text = string.Concat(DateTime.Now.ToLongDateString(), " ", DateTime.Now.ToLongTimeString(),
+                var text = string.Concat(DateTime.Now.ToString("F"),
                     Environment.NewLine, log, Environment.NewLine,
                     "**********************************************************", Environment.NewLine);
 
