@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+#if !DNXCORE50
 using System.Transactions;
+#endif
 using Voodoo.Messages;
 
 namespace Voodoo.Operations
@@ -14,18 +16,26 @@ namespace Voodoo.Operations
         {
         }
 
-        [DebuggerNonUserCode]
+        
         public override TResponse Execute()
         {
+#if !DNXCORE50
             var transactionOptions = new TransactionOptions {IsolationLevel = IsolationLevel.ReadCommitted};
 
             using (var transaction = new TransactionScope(TransactionScopeOption.Required, transactionOptions))
             {
+#endif
                 response = base.Execute();
-                if (response.IsOk)
+            if (response.IsOk)
+            {
+#if !DNXCORE50
                     transaction.Complete();
-                return response;
+#endif
             }
+#if !DNXCORE50
+            }
+#endif
+                return response;
         }
     }
 }

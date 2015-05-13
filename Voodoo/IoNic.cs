@@ -4,17 +4,46 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Web;
+#if DNXCORE50
+using Microsoft.AspNet.Hosting;
+using Microsoft.AspNet.Http;
+#endif
 
 namespace Voodoo
 {
     public static class IoNic
     {
-        public static string GetApplicationRootDirectory()
+        public static bool IsWebHosted
         {
-            return HttpContext.Current == null
+            get
+            {
+#if DNX40 || DNX45 || DNX451 || DNX452 || DNX46
+                return System.Web.HttpContext.Current == null;
+
+#elif DNXCORE50
+                //return string.IsNullOrWhiteSpace(HostingEnvironment.WebRootPath)
+                //    ? Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)
+                //    : HostingEnvironment.Virtual;
+                throw new NotImplementedException();
+#endif
+                return false;
+            }
+        }
+            public static string GetApplicationRootDirectory()
+        {
+#if DNX40 || DNX45 || DNX451 || DNX452 || DNX46
+                return System.Web.HttpContext.Current == null
                 ? Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)
-                : HttpContext.Current.Server.MapPath(".");
+                : System.Web.HttpContext.Current.Server.MapPath(".");
+
+#elif DNXCORE50
+            throw new NotImplementedException();
+            //return string.IsNullOrWhiteSpace(HostingEnvironment.WebRootPath)
+            //    ? Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)
+            //    : HostingEnvironment.Virtual;
+#endif
+            return null;
+
         }
 
         public static string ResolveRelativePath(string path, string rootFolder = null)
@@ -85,15 +114,14 @@ namespace Voodoo
             using (var sw = File.AppendText(fileName))
             {
                 sw.Write(contents);
-                sw.Flush();
-                sw.Close();
+                sw.Flush();                
             }
         }
 
         public static void WriteFile(string fileContents, string fileName)
         {
             var directory = Path.GetDirectoryName(fileName);
-            if (!Directory.Exists(directory))
+            if (!Directory.Exists(directory)) 
                 MakeDir(directory);
 
             if (!File.Exists(fileName))
@@ -102,7 +130,6 @@ namespace Voodoo
             {
                 sw.Write(fileContents);
                 sw.Flush();
-                sw.Close();
             }
         }
 

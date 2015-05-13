@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 
 namespace Voodoo.Validation
 {
@@ -18,7 +19,7 @@ namespace Voodoo.Validation
 
             var enumType = value.GetType();
 
-            if (enumType.BaseType != typeof (Enum))
+            if (enumType.GetTypeInfo().BaseType != typeof (Enum))
                 return false;
 
             if (Enum.IsDefined(enumType, value) == false)

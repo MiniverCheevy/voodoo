@@ -131,9 +131,9 @@ namespace Voodoo.Tests.Voodoo.Linq
         {
             return new List<Person>()
                 {
-                new Person{Id=1, Name = "Red", IsTrue =true},
-                new Person{Id=2, Name = "Green", IsTrue =true},
                 new Person{Id=3, Name = "Orange", IsTrue =true},
+                new Person{Id=2, Name = "Green", IsTrue =true},                
+                new Person{Id=1, Name = "Red", IsTrue =true},
                 new Person{Id=4, Name = "Yellow", IsTrue =true},
                 }
                 ;

@@ -30,7 +30,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;net451;net45</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;DNX451</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
@@ -41,7 +41,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release net40|AnyCPU'">
     <OutputPath>bin\Release\net40\</OutputPath>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <DefineConstants>TRACE</DefineConstants>
+    <DefineConstants>TRACE,DNX40</DefineConstants>
     <Optimize>true</Optimize>
     <DebugType>pdbonly</DebugType>
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -52,7 +52,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release net45|AnyCPU'">
     <OutputPath>bin\Release\net45\</OutputPath>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <DefineConstants>TRACE;net45</DefineConstants>
+    <DefineConstants>TRACE;DNX45</DefineConstants>
     <Optimize>true</Optimize>
     <DebugType>pdbonly</DebugType>
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -63,7 +63,31 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release net451|AnyCPU'">
     <OutputPath>bin\Release\net451\</OutputPath>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
-    <DefineConstants>TRACE;net451;net45</DefineConstants>
+    <DefineConstants>TRACE;DNX451</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+    <WarningLevel>2</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release net452|AnyCPU'">
+    <OutputPath>bin\Release\net452\</OutputPath>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <DefineConstants>TRACE;DNX452</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+    <WarningLevel>2</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release net46|AnyCPU'">
+    <OutputPath>bin\Release\net46</OutputPath>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <DefineConstants>TRACE;DNX46</DefineConstants>
     <Optimize>true</Optimize>
     <DebugType>pdbonly</DebugType>
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -105,6 +129,7 @@
     <Compile Include="Infrastructure\LogicException.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Infrastructure\Notations\FullDotNetOnly.cs" />
     <Compile Include="Infrastructure\Notations\ThridParty.cs" />
     <Compile Include="Infrastructure\Notations\UnfinishedAttribute.cs" />
     <Compile Include="Infrastructure\ReflectionTypeLoaderExceptionTranslation.cs" />

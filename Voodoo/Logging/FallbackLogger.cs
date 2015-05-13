@@ -4,7 +4,8 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Web;
+using Voodoo.Infrastructure;
+using Voodoo.Infrastructure.Notations;
 
 namespace Voodoo.Logging
 {
@@ -46,11 +47,11 @@ namespace Voodoo.Logging
                 handleFileWriteFailure(log, ex, appName, path);
             }
         }
-
+        [FullDotNetOnly]
         private static void handleFileWriteFailure(string actualError, Exception ex, string appName, string path)
         {
 //Handle max event log message size is 32766
-
+#if !DNXCORE50
             var failedToWriteMessage = "Fallback Logger Failed to write log file: " + path;
             var source = appName ?? "Application";
             const string logName = "Application";
@@ -79,6 +80,7 @@ namespace Voodoo.Logging
             EventLog.WriteEntry(source, failedToWriteMessage, EventLogEntryType.Warning);
 
             EventLog.WriteEntry(source, string.Format("{0} {1}", actualError, ex), EventLogEntryType.Error);
+#endif
         }
 
         private static void deleteFileIfNeeded(string path)
@@ -109,7 +111,7 @@ namespace Voodoo.Logging
 
             if (string.IsNullOrEmpty(logFilePath))
             {
-                logFilePath = HttpContext.Current != null ? HttpContext.Current.Server.MapPath("~") : @"c:\Logs\";
+                logFilePath = IoNic.IsWebHosted ? IoNic.GetApplicationRootDirectory() : @"c:\Logs" ;
             }
             var fileName = string.Format("log.{0}.txt", today);
             var path = Path.Combine(logFilePath, fileName);
@@ -124,10 +126,16 @@ namespace Voodoo.Logging
                 appName = VoodooGlobalConfiguration.ApplicationName;
                 if (string.IsNullOrEmpty(appName))
                 {
+#if !DNXCORE50
                     var assembly = Assembly.GetCallingAssembly() == null
                         ? AppDomain.CurrentDomain.FriendlyName
                         : Assembly.GetCallingAssembly().FullName;
                     appName = assembly.Split(',')[0];
+                    appName="DotNetCoreApp";
+#endif
+#if !DNXCORE50
+                     appName="Unnamed DotNetCoreApp";
+#endif
                 }
             }
             catch

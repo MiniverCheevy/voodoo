@@ -5,10 +5,13 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.Serialization;
-using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
+#if !DNXCORE50
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Xml;
 using System.Xml.Serialization;
+#endif
+using Voodoo.Infrastructure.Notations;
 
 namespace Voodoo
 {
@@ -17,10 +20,12 @@ namespace Voodoo
         public static TObject ShallowCopy<TObject>(TObject o) where TObject : class
         {
             var info = o.GetType().GetMethod("MemberwiseClone", BindingFlags.Instance | BindingFlags.NonPublic);
-            var clone = (TObject) info.Invoke(o, new object[] {});
+            var clone = (TObject)info.Invoke(o, new object[] { });
             return clone;
         }
 
+#if !DNXCORE50
+        [FullDotNetOnly]
         public static TObject DeepCopy<TObject>(TObject o) where TObject : class
         {
             using (var stream = new MemoryStream())
@@ -28,10 +33,10 @@ namespace Voodoo
                 var formatter = new BinaryFormatter();
                 formatter.Serialize(stream, o);
                 stream.Position = 0;
-                return (TObject) formatter.Deserialize(stream);
+                return (TObject)formatter.Deserialize(stream);
             }
         }
-
+#endif
         public static string Base64Encode(string data)
         {
             var byteData = Encoding.UTF8.GetBytes(data);
@@ -52,79 +57,89 @@ namespace Voodoo
             return result;
         }
 
-        [DebuggerStepThrough]
+#if !DNXCORE50
+        [FullDotNetOnly]
         public static T FromXml<T>(string xml) where T : class, new()
         {
             return FromXml<T>(xml, null);
         }
 
-        [DebuggerStepThrough]
+
+        [FullDotNetOnly]
         public static T FromXml<T>(string xml, Type[] extraTypes) where T : class, new()
         {
-            var type = typeof (T);
+            var type = typeof(T);
             var xmlSerializer = extraTypes == null ? new XmlSerializer(type) : new XmlSerializer(type, extraTypes);
-            var stringReader = new StringReader(xml);
-            var xmlReader = new XmlTextReader(stringReader);
-            var result = xmlSerializer.Deserialize(xmlReader) as T;
-            xmlReader.Close();
-            stringReader.Close();
-            return result;
+            using (var stringReader = new StringReader(xml))
+            {
+                using (var xmlReader = new XmlTextReader(stringReader))
+                {
+                    var result = xmlSerializer.Deserialize(xmlReader) as T;
+                    return result;
+                }
+            }
         }
 
-        [DebuggerStepThrough]
+        [FullDotNetOnly]
         public static string ToDataContractXml<TObject>(TObject @object)
         {
             return ToDataContractXml(@object, null);
         }
 
-        [DebuggerStepThrough]
+        [FullDotNetOnly]
         public static string ToDataContractXml<TObject>(TObject @object, Type[] extraTypes)
         {
-            var type = typeof (TObject);
+            var type = typeof(TObject);
             var serializer = extraTypes == null
                 ? new DataContractSerializer(type)
                 : new DataContractSerializer(type, extraTypes);
-            var memStream = new MemoryStream();
-            var xmlWriter = new XmlTextWriter(memStream, Encoding.UTF8) {Namespaces = true};
-            serializer.WriteObject(xmlWriter, @object);
+            using (var memStream = new MemoryStream()) {
+                using (var xmlWriter = new XmlTextWriter(memStream, Encoding.UTF8) { Namespaces = true })
+                {
+                    serializer.WriteObject(xmlWriter, @object);
 
-            xmlWriter.Close();
-            memStream.Close();
+
             var xml = Encoding.UTF8.GetString(memStream.GetBuffer());
             return xml;
         }
+    }
+        }
 
-        [DebuggerStepThrough]
+        [FullDotNetOnly]        
         public static string ToXml<TObject>(TObject @object)
         {
             return ToXml(@object, null, false);
         }
 
-        [DebuggerStepThrough]
+        [FullDotNetOnly]        
         public static string ToXml<TObject>(TObject @object, bool omitNamespaces)
         {
             return ToXml(@object, null, omitNamespaces);
         }
 
-        [DebuggerStepThrough]
+        [FullDotNetOnly]        
         public static string ToXml<TObject>(TObject @object, Type[] extraTypes, bool omitNamespaces)
         {
             var type = typeof (TObject);
             var serializer = extraTypes == null ? new XmlSerializer(type) : new XmlSerializer(type, extraTypes);
-            var memStream = new MemoryStream();
-            var xmlWriter = new XmlTextWriter(memStream, new UTF8Encoding());
-            var ns = new XmlSerializerNamespaces();
-            ns.Add("", "");
-            if (omitNamespaces)
-                serializer.Serialize(xmlWriter, @object, ns);
-            else
-                serializer.Serialize(xmlWriter, @object);
-            xmlWriter.Close();
-            memStream.Close();
-            var xml = Encoding.UTF8.GetString(memStream.GetBuffer());
-            var closingTag = xml.LastIndexOf('>');
-            xml = xml.Substring(0, closingTag + 1);
-            return xml;
+            using (var memStream = new MemoryStream())
+            {
+                using (var xmlWriter = new XmlTextWriter(memStream, new UTF8Encoding()))
+                {
+                    var ns = new XmlSerializerNamespaces();
+                    ns.Add("", "");
+                    if (omitNamespaces)
+                        serializer.Serialize(xmlWriter, @object, ns);
+                    else
+                        serializer.Serialize(xmlWriter, @object);
+
+                    var xml = Encoding.UTF8.GetString(memStream.GetBuffer());
+                    var closingTag = xml.LastIndexOf('>');
+                    xml = xml.Substring(0, closingTag + 1);
+                    return xml;
+                }
+            }
         }
+#endif
     }
 }

@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using Voodoo.Operations;
+using System.Reflection;
 
 namespace Voodoo
 {
@@ -79,10 +80,14 @@ namespace Voodoo
             catch
             {
             }
-            var typeCode = Type.GetTypeCode(type);
+            
+            TypeCode? typeCode = null;
+            var convertable = default(T) as IConvertible;
+            if (convertable != null)
+                typeCode = convertable.GetTypeCode();
             try
             {
-                if (convertObject(value, typeCode, out converted))
+                if (typeCode.HasValue && convertObject(value, typeCode.Value, out converted))
                     return true;
             }
             catch
@@ -123,7 +128,7 @@ namespace Voodoo
 
         private static bool parseEnumValue<T>(object value, Type type, out T converted)
         {
-            if (type.BaseType == typeof (Enum))
+            if (type.GetTypeInfo().BaseType == typeof (Enum))
             {
                 var obj = Enum.Parse(type, value.ToString());
                 {
@@ -249,7 +254,7 @@ namespace Voodoo
             return response.Message;
         }
 
-        [DebuggerStepThrough]
+        
         public static string ToFriendlyString(this object o)
         {
             var val = To<string>(o);

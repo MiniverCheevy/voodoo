@@ -53,6 +53,22 @@ namespace Voodoo.Tests
             build(ProjectPath, new string[] { "Build" }, properties);
 
         }
+        [TestMethod]
+        public void Build_Net452_IsOk()
+        {
+
+            var properties = new Dictionary<string, string> { { "Configuration", "Release net452" } };
+            build(ProjectPath, new string[] { "Build" }, properties);
+
+        }
+        [TestMethod]
+        public void Build_Net46_IsOk()
+        {
+
+            var properties = new Dictionary<string, string> { { "Configuration", "Release net46" } };
+            build(ProjectPath, new string[] { "Build" }, properties);
+
+        }
         private bool build(FileInfo msbuildFile, string[] targets = null, IDictionary<string, string> properties = null, LoggerVerbosity loggerVerbosity = LoggerVerbosity.Detailed)
         {
             if (!msbuildFile.Exists) throw new ArgumentException("msbuildFile does not exist");

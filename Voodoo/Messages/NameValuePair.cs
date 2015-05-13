@@ -19,12 +19,6 @@ namespace Voodoo.Messages
         public string Name { get; set; }
         public string Value { get; set; }
 
-        [Obsolete("Use Name instead.")]
-        public string Key
-        {
-            get { return Name; }
-            set { Name = value; }
-        }
 
         public override string ToString()
         {

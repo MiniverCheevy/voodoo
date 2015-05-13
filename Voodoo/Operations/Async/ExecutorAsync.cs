@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Voodoo.Messages;
 using Voodoo.Validation.Infrastructure;
 
-#if net45 || net451
+#if ! DNX40 
 
 namespace Voodoo.Operations.Async
 {
@@ -21,7 +21,7 @@ namespace Voodoo.Operations.Async
             this.request = request;
         }
 
-        [DebuggerNonUserCode]
+        
         public virtual async Task<TResponse> ExecuteAsync()
         {
             response = new TResponse {IsOk = true};

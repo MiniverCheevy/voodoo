@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Voodoo.Messages;
 
-#if net45 || net451
+#if ! DNX40 
 
 namespace Voodoo.Operations.Async
 {

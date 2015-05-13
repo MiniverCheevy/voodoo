@@ -9,6 +9,12 @@ namespace Voodoo
 {
     public static class ReflectionExtensions
     {
+#if DNX40
+        public static Type GetTypeInfo(this Type t)
+        {
+            return t;
+        }
+#endif
         public static bool IsEnumerable(this Type t)
         {
             return typeof (IEnumerable).IsAssignableFrom(t);
@@ -23,10 +29,10 @@ namespace Voodoo
             if (types.Contains(t.Name.ToLower()))
                 return true;
 
-            if (t.IsPrimitive)
+            if (t.GetTypeInfo().IsPrimitive)
                 return true;
 
-            if (t.IsEnum)
+            if (t.GetTypeInfo().IsEnum)
                 return true;
 
             return false;
@@ -76,11 +82,11 @@ namespace Voodoo
         public static bool IsGenericTypeDirectlyInheritedFromOtherGenericType(this Type testedType,
             Type possibleBaseType)
         {
-            if (testedType == null || possibleBaseType == null || testedType.BaseType == null ||
-                !testedType.BaseType.GetGenericArguments().Any() || !possibleBaseType.GetGenericArguments().Any())
+            if (testedType == null || possibleBaseType == null || testedType.GetTypeInfo().BaseType == null ||
+                !testedType.GetTypeInfo().BaseType.GetGenericArguments().Any() || !possibleBaseType.GetGenericArguments().Any())
                 return false;
 
-            var left = testedType.BaseType;
+            var left = testedType.GetTypeInfo().BaseType;
             var right = possibleBaseType;
 
             return left.Name == right.Name && left.Namespace == right.Namespace &&
@@ -210,17 +216,17 @@ namespace Voodoo
         public static string FixUpTypeName(this Type type)
         {
             var result = type.FixUpScalarTypeName();
-            if (type.IsGenericType && type.GetGenericTypeDefinition() == typeof (Nullable<>))
+            if (type.GetTypeInfo().IsGenericType && type.GetGenericTypeDefinition() == typeof (Nullable<>))
             {
                 result = string.Format("{0}?", Nullable.GetUnderlyingType(type).FixUpScalarTypeName());
             }
 
-            else if (type.IsGenericType)
+            else if (type.GetTypeInfo().IsGenericType)
             {
                 var inner = string.Empty;
                 foreach (var t in type.GetGenericArguments())
                 {
-                    if (t.IsGenericType)
+                    if (t.GetTypeInfo().IsGenericType)
                     {
                         var outer1 = t.GetGenericTypeDefinition().Name;
                         var ary1 = outer1.Split(@"`".ToCharArray());
@@ -266,7 +272,7 @@ namespace Voodoo
 
         public static bool IsGenericCollectionTypeOf(this Type type, Type typeDefinition)
         {
-            if (type.IsGenericType)
+            if (type.GetTypeInfo().IsGenericType)
             {
                 var collectionTypeInterfaces = new[] {typeof (IEnumerable), typeof (IList), typeof (ICollection)};
                 var isCollectionType = type.GetInterfaces().Intersect(collectionTypeInterfaces).Any();

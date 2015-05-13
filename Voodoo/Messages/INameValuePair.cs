@@ -9,7 +9,5 @@ namespace Voodoo.Messages
         string Name { get; set; }
         string Value { get; set; }
 
-        [Obsolete("Use name instead")]
-        string Key { get; set; }
     }
 }

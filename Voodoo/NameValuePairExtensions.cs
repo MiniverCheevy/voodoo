@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
+using System.Reflection;
 using Voodoo.Messages;
 
 namespace Voodoo
@@ -87,7 +88,7 @@ namespace Voodoo
 
         public static IList<INameValuePair> ToINameValuePairList(this Type enumeration)
         {
-            if (enumeration.BaseType != typeof (Enum))
+            if (enumeration.GetTypeInfo().BaseType != typeof (Enum))
             {
                 throw new ArgumentException(Strings.Validation.enumerationMustBeAnEnum);
             }
@@ -103,7 +104,7 @@ namespace Voodoo
 
         public static IList<INameValuePair> ToINameValuePairListWithUnfriendlyNames(this Type enumeration)
         {
-            if (enumeration.BaseType != typeof (Enum))
+            if (enumeration.GetTypeInfo().BaseType != typeof (Enum))
             {
                 throw new ArgumentException(Strings.Validation.enumerationMustBeAnEnum);
             }

@@ -74,7 +74,7 @@ namespace Voodoo
                 ? source.OrderByDynamic(string.Format("{0} {1}", sortMember, paging.SortDirection))
                 : source.OrderBy(c => true);
 
-            paging.TotalRecords = DynamicQueryable.Count(source);
+            paging.TotalRecords = LinqHelper.Count(source);
             paging.TotalPages = Math.Ceiling(paging.TotalRecords.To<decimal>()/paging.PageSize.To<decimal>()).To<int>();
             var state = paging.Map(new GridState(paging));
 
@@ -108,7 +108,7 @@ namespace Voodoo
             return ((MemberExpression) op).Member.Name;
         }
 
-        [DebuggerStepThrough]
+        
         public static Expression<T> Compose<T>(this Expression<T> first, Expression<T> second,
             Func<Expression, Expression, Expression> merge)
         {
@@ -118,7 +118,7 @@ namespace Voodoo
             return Expression.Lambda<T>(merge(first.Body, secondBody), first.Parameters);
         }
 
-        [DebuggerStepThrough]
+        
         public static Expression<Func<T, bool>> AndAlso<T>(this Expression<Func<T, bool>> first,
             Expression<Func<T, bool>> second)
         {
@@ -127,7 +127,7 @@ namespace Voodoo
             return first.Compose(second, Expression.And);
         }
 
-        [DebuggerStepThrough]
+        
         public static Expression<Func<T, bool>> OrElse<T>(this Expression<Func<T, bool>> first,
             Expression<Func<T, bool>> second)
         {

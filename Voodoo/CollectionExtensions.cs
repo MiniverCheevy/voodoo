@@ -52,7 +52,7 @@ namespace Voodoo
         /// <summary>
         ///     Indicates whether <paramref name="collection" /> contains any of the members in <paramref name="toFind" />.
         /// </summary>
-        [DebuggerNonUserCode]
+        
         public static bool ContainsAny<T>(this ICollection<T> collection, ICollection<T> toFind)
         {
             var found = false;
@@ -72,7 +72,7 @@ namespace Voodoo
         ///     Determines whether <paramref name="collection" /> contains all of the members of the <paramref name="toFind" />
         ///     collection.
         /// </summary>
-        [DebuggerNonUserCode]
+        
         public static bool ContainsAll<T>(this ICollection<T> collection, ICollection<T> toFind)
         {
             bool foundAll;
@@ -99,7 +99,7 @@ namespace Voodoo
         /// <summary>
         ///     Creates an array of the items in <paramref name="collection" />.
         /// </summary>
-        [DebuggerNonUserCode]
+        
         public static T[] ToArray<T>(this ICollection collection)
         {
             var array = new T[collection.Count];
@@ -116,7 +116,7 @@ namespace Voodoo
         /// <summary>
         ///     Creates an array of the items in <paramref name="collection" />.
         /// </summary>
-        [DebuggerNonUserCode]
+        
         public static T[] ToArray<T>(this ICollection<T> collection)
         {
             var array = new T[collection.Count];
