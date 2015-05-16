@@ -33,7 +33,7 @@ namespace Voodoo.Operations.Async
             }
             catch (Exception ex)
             {
-                response = await BuildResponseWithException(ex);
+                response = BuildResponseWithException(ex);
             }
 
             return response;
@@ -46,18 +46,18 @@ namespace Voodoo.Operations.Async
             ValidationManager.Validate(request);
         }
 
-        protected virtual async Task CustomErrorBehavior(Exception ex)
+        protected virtual void CustomErrorBehavior(Exception ex)
         {
             ExceptionHelper.HandleException(ex, GetType(), request);
             if (VoodooGlobalConfiguration.RemoveExceptionFromResponseAfterLogging)
                 response.Exception = null;
         }
 
-        protected async Task<TResponse> BuildResponseWithException(Exception ex)
+        protected TResponse BuildResponseWithException(Exception ex)
         {
             response = new TResponse {IsOk = false};
             response.SetExceptions(ex);
-            await CustomErrorBehavior(ex);
+            CustomErrorBehavior(ex);
             return response;
         }
     }

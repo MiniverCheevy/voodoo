@@ -28,12 +28,12 @@ namespace Voodoo.Tests.Voodoo
         public void ProveSubClassInheritsFromBase()
         {
             var baseType =
-                typeof (MessageClass).GetTypeInfo().Assembly.GetTypes().First(c => c.Name.StartsWith("TestBaseClass"));
-            var subType = new TestSubClass().GetType();
+                typeof (MessageClass).GetTypeInfo().Assembly.DefinedTypes.First(c => c.Name.StartsWith("TestBaseClass"));
+            var subType = new TestSubClass().GetType().GetTypeInfo();
 
             //Assert.Equal failed. Expected:<Voodoo.Tests.Voodoo.TestBaseClass`1[T]>. Actual:<Voodoo.Tests.Voodoo.TestBaseClass`1[Voodoo.Tests.Voodoo.MessageClass]>. 
 
-            Assert.NotEqual(baseType, subType.GetTypeInfo().BaseType);
+            Assert.NotEqual(baseType, subType.BaseType.GetTypeInfo());
         }
     }
 }

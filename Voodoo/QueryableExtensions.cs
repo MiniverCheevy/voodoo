@@ -30,21 +30,7 @@ namespace Voodoo
         {
             return query.OrderByDynamic(string.Format("{0} {1}", sortExpression, Strings.SortDirection.Descending));
         }
-
-        [Obsolete("Use ToPagedResponse")]
-        public static PagedResponse<TObject> PagedResult<TObject>(this IQueryable<TObject> source, IGridState paging)
-            where TObject : class, new()
-        {
-            return ToPagedResponse(source, paging);
-        }
-
-        [Obsolete("Use ToPagedResponse")]
-        public static PagedResponse<TOut> PagedResult<TIn, TOut>(this IQueryable<TIn> source, IGridState paging,
-            Expression<Func<TIn, TOut>> expression) where TIn : class where TOut : class, new()
-        {
-            return ToPagedResponse(source, paging, expression);
-        }
-
+        
         public static PagedResponse<TObject> ToPagedResponse<TObject>(this IQueryable<TObject> source, IGridState paging)
             where TObject : class, new()
         {

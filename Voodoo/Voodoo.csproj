@@ -114,7 +114,6 @@
     <Compile Include="CollectionExtensions.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Constants.cs" />
     <Compile Include="ConversionExtensions.cs" />
     <Compile Include="Helpers\CollectionChangeSet.cs">
       <SubType>Code</SubType>
@@ -135,15 +134,13 @@
     <Compile Include="Infrastructure\ReflectionTypeLoaderExceptionTranslation.cs" />
     <Compile Include="Infrastructure\RestAttribute.cs" />
     <Compile Include="IoNic.cs" />
+    <Compile Include="Linq\LinqHelper.cs" />
     <Compile Include="Logging\LogLevels.cs" />
     <Compile Include="Messages\DefaultRequest.cs" />
     <Compile Include="Messages\Grouping.cs" />
     <Compile Include="Messages\IdRequest.cs" />
     <Compile Include="Messages\OptionalIdRequest.cs" />
     <Compile Include="NameValuePairExtensions.cs" />
-    <Compile Include="Linq\Dynamic.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="Logging\FallbackLogger.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -159,14 +156,8 @@
     <Compile Include="Messages\EmptyRequest.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Messages\IKeyValuePair.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="Messages\INameValuePair.cs" />
     <Compile Include="Messages\IResponse.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Messages\KeyValuePair.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Messages\ListResponse.cs">
@@ -235,7 +226,6 @@
     <Compile Include="Validation\Infrastructure\DataAnnotationsValidatorWithFirstErrorAsMessage.cs" />
     <Compile Include="Validation\Infrastructure\DataAnnotationsValidatorWithGenericMessage.cs" />
     <Compile Include="Validation\Infrastructure\IValidator.cs" />
-    <Compile Include="Validation\Infrastructure\Messages.cs" />
     <Compile Include="Validation\Infrastructure\ValidationManager.cs" />
     <Compile Include="Validation\RequiredDateTime.cs">
       <SubType>Code</SubType>
@@ -253,12 +243,12 @@
     <Compile Include="VoodooGlobalConfiguration.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="breaking changes.txt" />
     <Content Include="license.txt" />
   </ItemGroup>
   <ItemGroup>
     <None Include="NugetPack.bat" />
   </ItemGroup>
-  
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

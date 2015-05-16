@@ -2124,24 +2124,6 @@
         "lib/portable-wpa81+wp80+win80+net45+aspnetcore50/System.Xml.XmlSerializer.dll"
       ]
     },
-    "Voodoo/1.0.0.0": {
-      "serviceable": false,
-      "sha": "U6pTDtmH7xIS78EB32o3oOw/PUDXxodmCYrP9JJrkcS4UUi/QgReHyMivdGfMDqXTIbKEF84eYUNcgFVzElOOA==",
-      "frameworks": {
-        "DNXCore,Version=v5.0": {
-          "dependencies": {},
-          "frameworkAssemblies": [],
-          "runtimeAssemblies": [],
-          "compileAssemblies": []
-        }
-      },
-      "files": [
-        "Voodoo.1.0.0.0.nupkg",
-        "Voodoo.1.0.0.0.nupkg.sha512",
-        "Voodoo.nuspec",
-        "lib/net40/Voodoo.dll"
-      ]
-    },
     "xunit/2.1.0-beta2-build2981": {
       "serviceable": false,
       "sha": "qTzY4x9uJ+CXDpS7/mm+rmz4YvpwY4IwTgRs6bk9R71G2yXneuuSJ+XaZ5V8ytGHgXeIWfwp3h4sg8uRi2GNxw==",
