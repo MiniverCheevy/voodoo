@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
 namespace Voodoo.Messages.Paging
@@ -11,7 +10,6 @@ namespace Voodoo.Messages.Paging
         {
         }
 
-        [SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public GridState(IGridState state = null)
         {
             ApplyPaging(state);

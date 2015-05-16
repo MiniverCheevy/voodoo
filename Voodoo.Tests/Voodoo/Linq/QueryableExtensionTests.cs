@@ -1,52 +1,51 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Xunit;
 using Voodoo.Linq;
 using Voodoo.Messages;
 using Voodoo.Tests.TestClasses;
 
 namespace Voodoo.Tests.Voodoo.Linq
 {
-    [TestClass]
+    
     public class QueryableExtensionTests
     {
         private readonly Person person = new Person();
 
-        [TestMethod]
+        [Fact]
         public void GetName_StringProperty_ReturnsName()
         {
             var result = person.GetName(c => c.Name);
-            Assert.AreEqual("Name", result);
+            Assert.Equal("Name", result);
         }
 
-        [TestMethod]
+        [Fact]
         public void GetName_IntValue_ReturnsName()
         {
             var result = person.GetName(c => c.Id);
-            Assert.AreEqual("Id", result);
+            Assert.Equal("Id", result);
         }
 
-        [TestMethod]
+        [Fact]
         public void GetName_BoolValue_ReturnsName()
-        {
+        { 
             var result = person.GetName(c => c.IsTrue);
-            Assert.AreEqual("IsTrue", result);
+            Assert.Equal("IsTrue", result);
         }
 
-        [TestMethod]
+        [Fact]
         public void OrderByDescending_ValidValue_ReturnsSortedList()
         {
             var list = GetTestList().AsQueryable();
             var result = list.OrderByDescending("Id").ToArray();
-            Assert.AreEqual(4, result[0].Id);
-            Assert.AreEqual(3, result[1].Id);
-            Assert.AreEqual(2, result[2].Id);
-            Assert.AreEqual(1, result[3].Id);
+            Assert.Equal(4, result[0].Id);
+            Assert.Equal(3, result[1].Id);
+            Assert.Equal(2, result[2].Id);
+            Assert.Equal(1, result[3].Id);
         }
 
-        [TestMethod]
+        [Fact]
         public void PagedResult_ValidValue_ReturnsSortedList()
         {
 
@@ -55,13 +54,13 @@ namespace Voodoo.Tests.Voodoo.Linq
 
             var pagedResult = list.ToPagedResponse(paging);
             var result = pagedResult.Data;
-            Assert.AreEqual(4, pagedResult.State.TotalRecords);
-            Assert.AreEqual(2,pagedResult.Data.Count);
-            Assert.AreEqual(3, result[0].Id);
-            Assert.AreEqual(4, result[1].Id);
+            Assert.Equal(4, pagedResult.State.TotalRecords);
+            Assert.Equal(2,pagedResult.Data.Count);
+            Assert.Equal(3, result[0].Id);
+            Assert.Equal(4, result[1].Id);
             
         }
-        [TestMethod]
+        [Fact]
         public void PagedResult_ValidValue_ReturnsConvertedListList()
         {
             var list = GetTestList().AsQueryable();
@@ -70,14 +69,14 @@ namespace Voodoo.Tests.Voodoo.Linq
             var pagedResult = list.ToPagedResponse(paging, 
                 c=> new NameValuePair(){Name=c.Name, Value = c.Id.ToString()});
             var result = pagedResult.Data;
-            Assert.AreEqual(4, pagedResult.State.TotalRecords);
-            Assert.AreEqual(2, pagedResult.Data.Count);
-            Assert.AreEqual("3", result[0].Value);
-            Assert.AreEqual("4", result[1].Value);
+            Assert.Equal(4, pagedResult.State.TotalRecords);
+            Assert.Equal(2, pagedResult.Data.Count);
+            Assert.Equal("3", result[0].Value);
+            Assert.Equal("4", result[1].Value);
 
         }
 
-        [TestMethod]
+        [Fact]
         public void PagedResult_CustomStateIsReturned_ReturnsConvertedListList()
         {
             var list = GetTestList().AsQueryable();
@@ -89,10 +88,10 @@ namespace Voodoo.Tests.Voodoo.Linq
                 response.From(pagedResult,
                 c => new NameValuePair() { Name = c.Name, Value = c.Id.ToString() });
 
-            Assert.IsTrue(response.State is PersonPagedRequest);
-            Assert.AreEqual(paging.Text , response.State.As<PersonPagedRequest>().Text);
+            Assert.True(response.State is PersonPagedRequest);
+            Assert.Equal(paging.Text , response.State.As<PersonPagedRequest>().Text);
         }
-        [TestMethod]
+        [Fact]
         public void PagedResult_EvenRecordsPerPage_TotalPagesIsAccurate()
         {
             var list = GetTestList().AsQueryable();
@@ -100,10 +99,10 @@ namespace Voodoo.Tests.Voodoo.Linq
 
             var pagedResult = list.ToPagedResponse(paging);
            
-            Assert.AreEqual(2, pagedResult.State.TotalPages);
-            Assert.AreEqual(4, pagedResult.State.TotalRecords);
+            Assert.Equal(2, pagedResult.State.TotalPages);
+            Assert.Equal(4, pagedResult.State.TotalRecords);
         }
-        [TestMethod]
+        [Fact]
         public void PagedResult_OddRecordsPerPage_TotalPagesIsAccurate()
         {
             var list = GetTestList().AsQueryable();
@@ -112,10 +111,10 @@ namespace Voodoo.Tests.Voodoo.Linq
             var pagedResult = list.ToPagedResponse(paging);
 
 
-            Assert.AreEqual(2, pagedResult.State.TotalPages);
-            Assert.AreEqual(4, pagedResult.State.TotalRecords);
+            Assert.Equal(2, pagedResult.State.TotalPages);
+            Assert.Equal(4, pagedResult.State.TotalRecords);
         }
-        [TestMethod]
+        [Fact]
         public void PagedResult_AllRecordsInOnePage_TotalPagesIsAccurate()
         {
             var list = GetTestList().AsQueryable();
@@ -123,8 +122,8 @@ namespace Voodoo.Tests.Voodoo.Linq
 
             var pagedResult = list.ToPagedResponse(paging);
 
-            Assert.AreEqual(1, pagedResult.State.TotalPages);
-            Assert.AreEqual(4, pagedResult.State.TotalRecords);
+            Assert.Equal(1, pagedResult.State.TotalPages);
+            Assert.Equal(4, pagedResult.State.TotalRecords);
         }
 
         public List<Person> GetTestList()

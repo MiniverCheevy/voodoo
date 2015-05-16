@@ -1,80 +1,80 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Xunit;
 using Voodoo.Tests.TestClasses;
 using Voodoo.Validation;
 
 namespace Voodoo.Tests.Voodoo.Validation
 {
-    [TestClass]
+    
     public class EnumIsRequiredTests
     {
-        [TestMethod]
+        [Fact]
         public void IsValid_ValueIsNotSet_ReturnsFalse()
         {
             var item = new ClassWithEnum();
             var isvalid = item.Validate();
-            Assert.AreEqual(false, isvalid);
+            Assert.Equal(false, isvalid);
         }
 
-        [TestMethod]
+        [Fact]
         public void IsValid_ValueIsNull_ReturnsFalse()
         {
             var item = new ClassWithNullableEnum();
             var isvalid = item.Validate();
-            Assert.AreEqual(false, isvalid);
+            Assert.Equal(false, isvalid);
         }
 
-        [TestMethod]
+        [Fact]
         public void IsValid_ValueIsValid_ReturnsTrue()
         {
             var item = new ClassWithEnum();
             item.TestEnum = TestEnum.Blue;
             var isvalid = item.Validate();
-            Assert.AreEqual(true, isvalid);
+            Assert.Equal(true, isvalid);
         }
 
-        [TestMethod]
+        [Fact]
         public void IsValid_NullableValueIsValid_ReturnsTrue()
         {
             var item = new ClassWithNullableEnum();
             item.TestEnum = TestEnum.Blue;
             var isvalid = item.Validate();
-            Assert.AreEqual(true, isvalid);
+            Assert.Equal(true, isvalid);
         }
 
-        [TestMethod]
+        [Fact]
         public void IsValid_WrongPropertyType_ReturnsFalse()
         {
             var item = new ClassMismatchedEnumIsRequiredAttribute();
             var isvalid = item.Validate();
-            Assert.AreEqual(false, isvalid);
+            Assert.Equal(false, isvalid);
         }
 
-        [TestMethod]
+        [Fact]
         public void IsValid_NullableWrongPropertyType_ReturnsFalse()
         {
             var item = new ClassMismatchedEnumIsRequiredAttribute();
             var isvalid = item.Validate();
-            Assert.AreEqual(false, isvalid);
+            Assert.Equal(false, isvalid);
         }
 
-        [TestMethod]
+        [Fact]
         public void IsValid_NullWrongPropertyType_ReturnsFalse()
         {
             var item = new ClassMismatchedEnumIsRequiredAttribute();
             var isvalid = item.Validate();
-            Assert.AreEqual(false, isvalid);
+            Assert.Equal(false, isvalid);
         }
 
-        [TestMethod]
+        [Fact]
         public void IsValid_NotNullWrongPropertyType_ReturnsFalse()
         {
             var item = new ClassMismatchedEnumIsRequiredAttribute();
             item.SomeProperty = new ClassMismatchedEnumIsRequiredAttribute();
             var isvalid = item.Validate();
-            Assert.AreEqual(false, isvalid);
+            Assert.Equal(false, isvalid);
         }
     }
 }

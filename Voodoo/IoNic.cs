@@ -5,8 +5,8 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 #if DNXCORE50
-using Microsoft.AspNet.Hosting;
-using Microsoft.AspNet.Http;
+//using Microsoft.AspNet.Hosting;
+//using Microsoft.AspNet.Http;
 #endif
 
 namespace Voodoo
@@ -25,8 +25,7 @@ namespace Voodoo
                 //    ? Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)
                 //    : HostingEnvironment.Virtual;
                 throw new NotImplementedException();
-#endif
-                return false;
+#endif                
             }
         }
             public static string GetApplicationRootDirectory()
@@ -42,7 +41,7 @@ namespace Voodoo
             //    ? Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)
             //    : HostingEnvironment.Virtual;
 #endif
-            return null;
+            
 
         }
 

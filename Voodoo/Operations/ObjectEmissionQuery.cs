@@ -91,9 +91,8 @@ namespace Voodoo.Operations
                 {
                     value = propertyInfo.GetValue(element, null);
                 }
-                catch (Exception ex)
-                {
-                    //value = ex.Message;
+                catch 
+                {                    
                 }
                 if (type.IsScalar())
                 {

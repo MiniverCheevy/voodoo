@@ -36,11 +36,14 @@ namespace Voodoo.Logging
                 var text = string.Concat(DateTime.Now.ToString("F"),
                     Environment.NewLine, log, Environment.NewLine,
                     "**********************************************************", Environment.NewLine);
-
+                #if !DNXCORE50
                 lock (locker)
                 {
+                #endif
                     File.AppendAllText(path, text);
+#if !DNXCORE50
                 }
+#endif
             }
             catch (Exception ex)
             {

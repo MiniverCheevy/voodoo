@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Xunit;
 using Voodoo.Logging;
 using Voodoo.Messages;
 using Voodoo.Operations;
@@ -23,7 +23,7 @@ namespace Voodoo.Tests.TestClasses
         {
             base.CustomErrorBehavior(ex);
             response.TestingData = TestingResponse.CustomErrorBehavior;
-            Assert.IsNotNull(response.Exception);
+            Assert.NotNull(response.Exception);
             LogManager.Log(response.Exception);
         }
     }

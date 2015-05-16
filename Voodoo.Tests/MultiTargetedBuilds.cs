@@ -1,4 +1,5 @@
-﻿using System;
+﻿#if !DNXCORE50
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.IO;
@@ -7,12 +8,12 @@ using Microsoft.Build.Framework;
 using Microsoft.Build.Logging;
 using Microsoft.Build.Tasks;
 using Microsoft.Build.Utilities;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Xunit;
 
 
 namespace Voodoo.Tests
 {
-    [TestClass]
+    
     public class MultiTargetedBuilds
     {
        //TODO: find this programatically
@@ -29,7 +30,7 @@ namespace Voodoo.Tests
         }
 
 
-        [TestMethod]
+        [Fact]
         public void Build_Net4_IsOk()
         {
 
@@ -37,7 +38,7 @@ namespace Voodoo.Tests
             build(ProjectPath, new string[] { "Build" }, properties);
 
         }
-        [TestMethod]
+        [Fact]
         public void Build_Net45_IsOk()
         {
 
@@ -45,7 +46,7 @@ namespace Voodoo.Tests
             build(ProjectPath, new string[] { "Build" }, properties);
 
         }
-        [TestMethod]
+        [Fact]
         public void Build_Net451_IsOk()
         {
 
@@ -53,7 +54,7 @@ namespace Voodoo.Tests
             build(ProjectPath, new string[] { "Build" }, properties);
 
         }
-        [TestMethod]
+        [Fact]
         public void Build_Net452_IsOk()
         {
 
@@ -61,7 +62,7 @@ namespace Voodoo.Tests
             build(ProjectPath, new string[] { "Build" }, properties);
 
         }
-        [TestMethod]
+        [Fact]
         public void Build_Net46_IsOk()
         {
 
@@ -175,3 +176,4 @@ namespace Voodoo.Tests
 	}
 }
 
+#endif

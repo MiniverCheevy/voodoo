@@ -1,4 +1,5 @@
-﻿using System;
+﻿#if ! DNXCORE50
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -39,3 +40,4 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
+#endif

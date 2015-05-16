@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Voodoo.Messages.Paging;
 
@@ -8,7 +7,6 @@ namespace Voodoo.Messages
 {
     public abstract class PagedRequest : Request, IGridState
     {
-        [SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         protected PagedRequest()
         {
             SortMember = DefaultSortMember;

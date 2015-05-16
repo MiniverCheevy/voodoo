@@ -33,7 +33,7 @@ namespace Voodoo.Operations.Async
             }
             catch (Exception ex)
             {
-                response = BuildResponseWithException(ex);
+                response = await BuildResponseWithException(ex);
             }
 
             return response;
@@ -53,11 +53,11 @@ namespace Voodoo.Operations.Async
                 response.Exception = null;
         }
 
-        protected TResponse BuildResponseWithException(Exception ex)
+        protected async Task<TResponse> BuildResponseWithException(Exception ex)
         {
             response = new TResponse {IsOk = false};
             response.SetExceptions(ex);
-            CustomErrorBehavior(ex);
+            await CustomErrorBehavior(ex);
             return response;
         }
     }

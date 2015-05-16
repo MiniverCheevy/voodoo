@@ -1,67 +1,67 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Xunit;
 using Voodoo.Messages;
 using Voodoo.Tests.TestClasses;
 using Voodoo.Validation.Infrastructure;
 namespace Voodoo.Tests.Voodoo.Operations
 {
-    [TestClass]
+    
     public class CommandTests
     {
-        [TestMethod]
+        [Fact]
         public void Execute_ExceptionIsThrown_IsNotOk()
         {
             VoodooGlobalConfiguration.RemoveExceptionFromResponseAfterLogging = false;
             
             var result = new CommandThatThrowsErrors(new EmptyRequest()).Execute();
-            Assert.AreEqual(false, result.IsOk);
+            Assert.Equal(false, result.IsOk);
             VoodooGlobalConfiguration.RemoveExceptionFromResponseAfterLogging = true;
         }
 
-        [TestMethod]
+        [Fact]
         public void Execute_ExceptionIsThrown_ExceptionIsBubbled()
         {
             VoodooGlobalConfiguration.RemoveExceptionFromResponseAfterLogging = false;
             var result = new CommandThatThrowsErrors(new EmptyRequest()).Execute();
-            Assert.AreEqual(TestingResponse.OhNo, result.Message);
-            Assert.IsNotNull(result.Exception);
+            Assert.Equal(TestingResponse.OhNo, result.Message);
+            Assert.NotNull(result.Exception);
             VoodooGlobalConfiguration.RemoveExceptionFromResponseAfterLogging = true;
         }
 
-        [TestMethod]
+        [Fact]
         public void Execute_CommandReturnsResponse_IsOk()
         {
             var result = new CommandThatDoesNotThrowErrors(new EmptyRequest()).Execute();
-            Assert.IsNotNull(result);
-            Assert.IsNull(result.Message);
-            Assert.AreEqual(true, result.IsOk);
+            Assert.NotNull(result);
+            Assert.Null(result.Message);
+            Assert.Equal(true, result.IsOk);
         }
 
-        [TestMethod]
+        [Fact]
         public void Execute_RequestIsInvalidDataAnnotationsValidatorWithFirstErrorAsMessage_IsNotOk()
         {
          
             VoodooGlobalConfiguration.RegisterValidator(new DataAnnotationsValidatorWithFirstErrorAsMessage());
             var result = new CommandWithNonEmptyRequest(new RequestWithRequiredString()).Execute();
-            Assert.IsNotNull(result);
-            Assert.IsNotNull(result.Message);
-            Assert.AreEqual(result.Details.First().Value, result.Message);            
-            Assert.AreNotEqual(true, result.IsOk);
+            Assert.NotNull(result);
+            Assert.NotNull(result.Message);
+            Assert.Equal(result.Details.First().Value, result.Message);            
+            Assert.NotEqual(true, result.IsOk);
             VoodooGlobalConfiguration.RegisterValidator(new DataAnnotationsValidatorWithFirstErrorAsMessage());
             VoodooGlobalConfiguration.RegisterValidator(new DataAnnotationsValidatorWithGenericMessage());
         }
-        [TestMethod]
+        [Fact]
         public void Execute_RequestIsInvalidDataAnnotationsValidatorWithGenericMessage_IsNotOk()
         {
 
             VoodooGlobalConfiguration.RegisterValidator(new DataAnnotationsValidatorWithGenericMessage());
             var result = new CommandWithNonEmptyRequest(new RequestWithRequiredString()).Execute();
-            Assert.IsNotNull(result);
-            Assert.IsNotNull(result.Message);
-            Assert.AreEqual(Strings.Validation.validationErrorsOccurred, result.Message);
-            Assert.AreNotEqual(true, result.IsOk);
+            Assert.NotNull(result);
+            Assert.NotNull(result.Message);
+            Assert.Equal(Strings.Validation.validationErrorsOccurred, result.Message);
+            Assert.NotEqual(true, result.IsOk);
 
         }
     }

@@ -5,7 +5,9 @@ using Voodoo.Validation;
 
 namespace Voodoo.Tests.TestClasses
 {
+    #if !DNXCORE50
     [Serializable]
+#endif
     public class ClassWithDate
     {
         [RequiredDateTime]

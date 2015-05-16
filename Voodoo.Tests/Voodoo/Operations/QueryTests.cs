@@ -1,53 +1,53 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Xunit;
 using Voodoo.Messages;
 using Voodoo.Tests.TestClasses;
 
 namespace Voodoo.Tests.Voodoo.Operations
 {
-    [TestClass]
+    
     public class QueryTests
     {
-        [TestMethod]
+        [Fact]
         public void Execute_ExceptionIsThrown_IsNotOk()
         {
             VoodooGlobalConfiguration.RemoveExceptionFromResponseAfterLogging = false;
             var result = new QueryThatThrowsErrors(new EmptyRequest()).Execute();
-            Assert.AreEqual(false, result.IsOk);
+            Assert.Equal(false, result.IsOk);
             VoodooGlobalConfiguration.RemoveExceptionFromResponseAfterLogging = true;
         }
 
-        [TestMethod]
+        [Fact]
         public void Execute_ErrorAndMergedResponses_IsNotOk()
         {
             VoodooGlobalConfiguration.RemoveExceptionFromResponseAfterLogging = false;
             var result = new QueryThatThrowsErrors(new EmptyRequest()).Execute();
-            Assert.AreEqual(false, result.IsOk);
+            Assert.Equal(false, result.IsOk);
             var response = new Response() {IsOk = true};
             response.AppendResponse(result);
-            Assert.AreEqual(false, response.IsOk);
+            Assert.Equal(false, response.IsOk);
 
             VoodooGlobalConfiguration.RemoveExceptionFromResponseAfterLogging = true;
         }
 
-        [TestMethod]
+        [Fact]
         public void Execute_ExceptionIsThrown_ExceptionIsBubbled()
         {
             VoodooGlobalConfiguration.RemoveExceptionFromResponseAfterLogging = false;
             var result = new QueryThatThrowsErrors(new EmptyRequest()).Execute();
-            Assert.AreEqual(TestingResponse.OhNo, result.Message);
-            Assert.IsNotNull(result.Exception);
+            Assert.Equal(TestingResponse.OhNo, result.Message);
+            Assert.NotNull(result.Exception);
         }
 
-        [TestMethod]
+        [Fact]
         public void Execute_QueryReturnsResponse_IsOk()
         {
             var result = new QueryThatDoesNotThrowErrors(new EmptyRequest()).Execute();
-            Assert.IsNotNull(result);
-            Assert.IsNull(result.Message);
-            Assert.AreEqual(true, result.IsOk);
+            Assert.NotNull(result);
+            Assert.Null(result.Message);
+            Assert.Equal(true, result.IsOk);
         }
     }
 }

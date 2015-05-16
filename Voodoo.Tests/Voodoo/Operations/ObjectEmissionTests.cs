@@ -2,22 +2,22 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Xunit;
 using Voodoo.Operations;
 using Voodoo.Tests.TestClasses;
 
 namespace Voodoo.Tests.Voodoo.Operations
 {
-    [TestClass]
+    
     public class ObjectEmissionTests
     {
-        [TestMethod]
+        [Fact]
         public void SmokeTest()
         {
             var request = GetValidRequest();
             var response = new ObjectEmissionQuery(request).Execute();
-            Assert.AreEqual(null, response.Message);
-            Assert.AreEqual(true, response.IsOk);
+            Assert.Equal(null, response.Message);
+            Assert.Equal(true, response.IsOk);
             Debug.WriteLine(response.Text);
         }
 

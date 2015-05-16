@@ -220,7 +220,9 @@ namespace Voodoo
                     valueToConvert = (T) (object) Convert.ToUInt64(value);
                     return true;
                 }
+#if !DNXCORE50
                 case TypeCode.DBNull:
+#endif
                 case TypeCode.Empty:
                 default:
                     break;
