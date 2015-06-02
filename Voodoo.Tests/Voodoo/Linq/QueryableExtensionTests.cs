@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Xunit;
 using Voodoo.Linq;
 using Voodoo.Messages;
@@ -59,6 +60,21 @@ namespace Voodoo.Tests.Voodoo.Linq
             Assert.Equal(3, result[0].Id);
             Assert.Equal(4, result[1].Id);
             
+        }
+        [Fact]
+        public async Task PagedResultAsync_ValidValue_ReturnsSortedList()
+        {
+
+            var list = GetTestList().AsQueryable();
+            var paging = new PersonPagedRequest { PageNumber = 2, PageSize = 2 };
+
+            var pagedResult = await list.ToPagedResponseAsync(paging);
+            var result = pagedResult.Data;
+            Assert.Equal(4, pagedResult.State.TotalRecords);
+            Assert.Equal(2, pagedResult.Data.Count);
+            Assert.Equal(3, result[0].Id);
+            Assert.Equal(4, result[1].Id);
+
         }
         [Fact]
         public void PagedResult_ValidValue_ReturnsConvertedListList()

@@ -51,6 +51,7 @@ namespace Voodoo
             return result;
         }
 
+       
         private static IGridState buildPagedQuery<TIn, TOut>(IQueryable<TIn> source, IGridState paging,
             Expression<Func<TIn, TOut>> expression, out IQueryable page) where TIn : class where TOut : class, new()
         {
@@ -151,7 +152,7 @@ namespace Voodoo
             }
         }
 
-#if net45
+#if ! DNX40
         public static async Task<PagedResponse<TObject>> ToPagedResponseAsync<TObject>(this IQueryable<TObject> source,
             IGridState paging) where TObject : class, new()
         {

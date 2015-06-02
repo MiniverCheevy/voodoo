@@ -113,14 +113,20 @@
     <Compile Include="TestClasses\ClassToReflect.cs" />
     <Compile Include="TestClasses\ClassToStringify.cs" />
     <Compile Include="TestClasses\ClassWithCollection.cs" />
+    <Compile Include="TestClasses\ClassWithCompareValidator.cs" />
     <Compile Include="TestClasses\ClassWithDate.cs" />
     <Compile Include="TestClasses\ClassWithEnum.cs" />
+    <Compile Include="TestClasses\ClassWithGuid.cs" />
+    <Compile Include="TestClasses\ClassWithGuidAsString.cs" />
     <Compile Include="TestClasses\ClassWithInt.cs" />
     <Compile Include="TestClasses\ClassWithNullableDate.cs" />
     <Compile Include="TestClasses\ClassWithNullableEnum.cs" />
+    <Compile Include="TestClasses\ClassWithNullableGuid.cs" />
     <Compile Include="TestClasses\ClassWithNullableInt.cs" />
+    <Compile Include="TestClasses\ClassWithRequiredInt.cs" />
     <Compile Include="TestClasses\ClassWithRequiredNonZeroInt.cs" />
     <Compile Include="TestClasses\ClassWithRequiredNonZeroNullableInt.cs" />
+    <Compile Include="TestClasses\ClassWithRequiredNullableInt.cs" />
     <Compile Include="TestClasses\CommandThatDoesNotThrowErrors.cs" />
     <Compile Include="TestClasses\CommandThatThrowsErrors.cs" />
     <Compile Include="TestClasses\CommandWithNonEmptyRequest.cs" />
@@ -177,12 +183,8 @@
     </Compile>
     <Compile Include="Voodoo\ReflectionExtensionTests.cs" />
     <Compile Include="Voodoo\ReflectionHierarchyTests.cs" />
-    <Compile Include="Voodoo\Validation\ClassWithGuid.cs" />
-    <Compile Include="Voodoo\Validation\ClassWithGuidAsString.cs" />
-    <Compile Include="Voodoo\Validation\ClassWithInt.cs" />
-    <Compile Include="Voodoo\Validation\ClassWithNullableGuid.cs" />
-    <Compile Include="Voodoo\Validation\ClassWithNullableInt.cs" />
     <Compile Include="Voodoo\Validation\CollectionMustHaveAtLeastOneItemTests.cs" />
+    <Compile Include="Voodoo\Validation\DataAnnotationsValidatorTests.cs" />
     <Compile Include="Voodoo\Validation\EnumIsRequiredTests.cs" />
     <Compile Include="Voodoo\Validation\GreaterThanZeroIntegerIsRequiredTests.cs" />
     <Compile Include="Voodoo\Validation\RequiredDateTimeTests.cs" />
