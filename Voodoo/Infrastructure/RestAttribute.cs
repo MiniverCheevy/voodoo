@@ -18,7 +18,27 @@ namespace Voodoo.Infrastructure
         {
             Verb = verb;
             Resource = resource;
+            Roles=new string[] {};
         }
+        public RestAttribute(Verb verb, string resource, bool allowAnonymous)
+        {
+            Verb = verb;
+            Resource = resource;
+            AllowAnonymous = allowAnonymous;
+            Roles = new string[] { };
+        }
+
+        public RestAttribute(Verb verb, string resource, params string[] roles)
+        {
+            Verb = verb;
+            Resource = resource;
+            AllowAnonymous = false;
+            Roles = roles;
+        }
+
+        public string[] Roles { get; set; }
+
+        public bool AllowAnonymous { get; set; }
 
         public Verb Verb { get; set; }
         public string Resource { get; set; }
