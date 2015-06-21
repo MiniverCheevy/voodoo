@@ -21,6 +21,7 @@ namespace Voodoo.Tests.TestClasses
         public string AString { get; set; }
         public TwitchyObject AnObnoxiousObjectWhosePropertiesThrowExceptions { get; set; }
 
+        public TestEnum TestEnum { get; set; }
 
         public bool Boolean { get; set; }
         public bool? NullableBoolean { get; set; }

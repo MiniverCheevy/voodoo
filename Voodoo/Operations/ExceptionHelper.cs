@@ -16,9 +16,7 @@ namespace Voodoo.Operations
                 LogManager.Logger.Log(ex);
 
                 var builder = new StringBuilder();
-                builder.AppendFormat("Details for '{0}' exception:", ex.Message);
-                builder.AppendLine(string.Empty);
-                builder.Append(request.ToDebugString());
+                builder.AppendFormat("Details for '{0}' exception:", ex.Message);              
                 builder.AppendLine(string.Empty);
                 builder.AppendLine("Code to reproduce error:");
                 builder.AppendLine(string.Empty);
@@ -35,10 +33,7 @@ namespace Voodoo.Operations
                     builder.AppendFormat("var response = new {0}(request).Execute();", thisType);
                 }
                 builder.AppendLine(string.Empty);
-                builder.AppendLine(
-                    "Assert.AreEqual(response.Message, \"Some people just want to watch the world burn.\");");
                 builder.AppendLine("Assert.AreEqual(true, response.IsOk);");
-
                 LogManager.Log(builder.ToString());
             }
         }

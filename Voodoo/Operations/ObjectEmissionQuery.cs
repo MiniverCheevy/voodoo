@@ -106,7 +106,7 @@ namespace Voodoo.Operations
                 {
                     if (alreadyTouched(value))
                     {
-                        writeInline("//{1} = new {0}() <-- bidirectional reference found",
+                        write("//{1} = new {0}() <-- bidirectional reference found",
                             element.GetType().FixUpTypeName(), memberInfo.Name);
                     }
                     else
@@ -204,7 +204,14 @@ namespace Voodoo.Operations
         {
             if (o == null)
                 return ("null");
-
+            if (o is Enum)
+            {
+                var value = o.ToString();
+                if (value == "0")
+                    return string.Format("({0})0",o.GetType().Name);
+                else
+                    return string.Format("{0}.{1}", o.GetType().Name, o.ToString() );
+            }
             if (o is DateTime)
             {
                 var date = o.To<DateTime>();
