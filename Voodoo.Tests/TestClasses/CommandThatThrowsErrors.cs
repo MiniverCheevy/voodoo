@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Xunit;
 using Voodoo.Logging;
 using Voodoo.Messages;
 using Voodoo.Operations;
+using Xunit;
 
 namespace Voodoo.Tests.TestClasses
 {

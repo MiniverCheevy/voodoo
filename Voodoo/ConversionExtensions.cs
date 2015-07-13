@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Diagnostics;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using Voodoo.Operations;
-using System.Reflection;
 
 namespace Voodoo
 {
@@ -80,13 +79,15 @@ namespace Voodoo
             catch
             {
             }
-            
+
             TypeCode? typeCode = null;
-            var convertable = default(T) as IConvertible;
-            if (convertable != null)
-                typeCode = convertable.GetTypeCode();
             try
             {
+#if PCL
+                typeCode = typeof (T).GetTypeCode();
+#else
+                typeCode = ((IConvertible)default(T)).GetTypeCode();
+#endif            
                 if (typeCode.HasValue && convertObject(value, typeCode.Value, out converted))
                     return true;
             }
@@ -101,7 +102,7 @@ namespace Voodoo
             catch
             {
             }
-
+#if !PCL
             try
             {
                 value = getCustomMappedValue<T>(value);
@@ -112,7 +113,20 @@ namespace Voodoo
             catch
             {
             }
-
+#else
+            try
+            {
+                value = getCustomMappedValue<T>(value);
+                if (value != null)
+                {
+                    converted = (T) value;
+                    return true;
+                }
+            }
+            catch
+            {
+            }
+#endif
             try
             {
                 converted = (T) value;
@@ -130,11 +144,16 @@ namespace Voodoo
         {
             if (type.GetTypeInfo().BaseType == typeof (Enum))
             {
+#if (!PCL)
+                
                 var obj = Enum.Parse(type, value.ToString());
-                {
-                    converted = (T) obj;
-                    return true;
-                }
+                converted = (T) obj;
+                return true;
+#else
+                var obj = typeof (T).ParseEnum(value.ToString());
+                converted = (T)obj;
+                return true;
+#endif
             }
             converted = default(T);
             return false;
@@ -256,7 +275,6 @@ namespace Voodoo
             return response.Message;
         }
 
-        
         public static string ToFriendlyString(this object o)
         {
             var val = To<string>(o);
@@ -304,9 +322,9 @@ namespace Voodoo
 
         private class CustomMapping
         {
-            public Object ReturnValue { get; set; }
+            public object ReturnValue { get; set; }
             public Type Type { get; set; }
-            public Object[] Values { get; set; }
+            public object[] Values { get; set; }
         }
     }
 }

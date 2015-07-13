@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Voodoo.Infrastructure
 {
@@ -18,14 +16,15 @@ namespace Voodoo.Infrastructure
         {
             Verb = verb;
             Resource = resource;
-            Roles=new string[] {};
+            Roles = new string[] {};
         }
+
         public RestAttribute(Verb verb, string resource, bool allowAnonymous)
         {
             Verb = verb;
             Resource = resource;
             AllowAnonymous = allowAnonymous;
-            Roles = new string[] { };
+            Roles = new string[] {};
         }
 
         public RestAttribute(Verb verb, string resource, params string[] roles)
@@ -37,9 +36,7 @@ namespace Voodoo.Infrastructure
         }
 
         public string[] Roles { get; set; }
-
         public bool AllowAnonymous { get; set; }
-
         public Verb Verb { get; set; }
         public string Resource { get; set; }
     }

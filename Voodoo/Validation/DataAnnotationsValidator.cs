@@ -36,7 +36,11 @@ namespace Voodoo.Validation
 
         private bool tryValidate(object @object, out ICollection<ValidationResult> results)
         {
+#if (DNXCORE50)
+            var context = new ValidationContext(@object);
+#else
             var context = new ValidationContext(@object, null, null);
+#endif
             results = new List<ValidationResult>();
             return Validator.TryValidateObject(@object, context, results, true);
         }

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Voodoo.Infrastructure.Notations;
+﻿using Voodoo.Infrastructure.Notations;
 
 namespace Voodoo.Logging
 {

@@ -1,4 +1,5 @@
-﻿#if !DNXCORE50
+﻿
+#if !DNXCORE50 && !PCL
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -24,11 +25,23 @@ namespace Voodoo.Tests
             }
         }
 
+        private FileInfo PCLProjectPath
+        {
+            get { return new FileInfo(System.Configuration.ConfigurationManager.AppSettings["pclCsprojPath"]); }
+        }
+        
         public MultiTargetedBuilds()
         {
             
         }
+        [Fact]
+        public void Build_PCL_IsOk()
+        {
 
+            var properties = new Dictionary<string, string> { { "Configuration", "Release PCL" } };
+            build(PCLProjectPath, new string[] { "Build" }, properties);
+
+        }
 
         [Fact]
         public void Build_Net4_IsOk()

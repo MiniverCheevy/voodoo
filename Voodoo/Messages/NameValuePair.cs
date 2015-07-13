@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace Voodoo.Messages
+﻿namespace Voodoo.Messages
 {
     public class NameValuePair : INameValuePair
     {
@@ -18,7 +14,6 @@ namespace Voodoo.Messages
 
         public string Name { get; set; }
         public string Value { get; set; }
-
 
         public override string ToString()
         {

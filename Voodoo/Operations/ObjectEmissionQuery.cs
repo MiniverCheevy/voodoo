@@ -72,16 +72,27 @@ namespace Voodoo.Operations
 
         private void readPropertiesFromObject(object element)
         {
+#if !PCL
             var members =
                 element.GetType()
                     .GetMembers(BindingFlags.Public | BindingFlags.Instance)
                     .OrderBy(OrderProperties)
                     .ThenBy(c => c.Name)
                     .ToArray();
+#else
+            var members =
+                element.GetType().GetTypeInfo().DeclaredProperties
+                    .OrderBy(OrderProperties)
+                    .ThenBy(c => c.Name)
+                    .ToArray();
+#endif
             foreach (var memberInfo in members)
             {
+#if PCL
+                var propertyInfo = memberInfo;
+#else
                 var propertyInfo = memberInfo as PropertyInfo;
-
+#endif
                 if (propertyInfo == null || !propertyInfo.CanWrite)
                     continue;
 
@@ -91,8 +102,8 @@ namespace Voodoo.Operations
                 {
                     value = propertyInfo.GetValue(element, null);
                 }
-                catch 
-                {                    
+                catch
+                {
                 }
                 if (type.IsScalar())
                 {
@@ -208,9 +219,8 @@ namespace Voodoo.Operations
             {
                 var value = o.ToString();
                 if (value == "0")
-                    return string.Format("({0})0",o.GetType().Name);
-                else
-                    return string.Format("{0}.{1}", o.GetType().Name, o.ToString() );
+                    return string.Format("({0})0", o.GetType().Name);
+                return string.Format("{0}.{1}", o.GetType().Name, o);
             }
             if (o is DateTime)
             {
@@ -218,7 +228,7 @@ namespace Voodoo.Operations
                 return string.Format("new DateTime({0}, {1}, {2}, {3}, {4}, {5})", date.Year, date.Month, date.Day,
                     date.Hour, date.Minute, date.Millisecond);
             }
-            if (o is Decimal)
+            if (o is decimal)
             {
                 return string.Format("{0}m", o);
             }
@@ -230,7 +240,7 @@ namespace Voodoo.Operations
                 return string.Empty;
             if (o is bool)
                 return o.ToString().ToLower();
-            if (o.GetType() == typeof(bool?) && o.To<bool?>().HasValue)
+            if (o.GetType() == typeof (bool?) && o.To<bool?>().HasValue)
                 return o.To<bool?>().ToString().ToLower();
 
             if (o is ValueType)

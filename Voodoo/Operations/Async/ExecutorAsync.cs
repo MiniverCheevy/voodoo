@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
 using System.Threading.Tasks;
 using Voodoo.Messages;
 using Voodoo.Validation.Infrastructure;
 
-#if ! DNX40 
+#if ! DNX40
 
 namespace Voodoo.Operations.Async
 {
@@ -21,7 +18,6 @@ namespace Voodoo.Operations.Async
             this.request = request;
         }
 
-        
         public virtual async Task<TResponse> ExecuteAsync()
         {
             response = new TResponse {IsOk = true};

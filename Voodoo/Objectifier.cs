@@ -1,30 +1,30 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
-using System.Linq;
 using System.Reflection;
 using System.Runtime.Serialization;
 using System.Text;
-#if !DNXCORE50
+using Voodoo.Infrastructure.Notations;
+#if !DNXCORE50 && !PCL
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Xml;
 using System.Xml.Serialization;
 #endif
-using Voodoo.Infrastructure.Notations;
 
 namespace Voodoo
 {
     public static class Objectifyer
     {
+#if !PCL
         public static TObject ShallowCopy<TObject>(TObject o) where TObject : class
         {
-            var info = o.GetType().GetMethod("MemberwiseClone", BindingFlags.Instance | BindingFlags.NonPublic);
+            const string methodName = "MemberwiseClone";
+
+            var info = o.GetType().GetMethod(methodName, BindingFlags.Instance | BindingFlags.NonPublic);
             var clone = (TObject)info.Invoke(o, new object[] { });
             return clone;
-        }
-
-#if !DNXCORE50
+    }
+#endif
+#if !DNXCORE50 && !PCL
         [FullDotNetOnly]
         public static TObject DeepCopy<TObject>(TObject o) where TObject : class
         {
@@ -37,6 +37,7 @@ namespace Voodoo
             }
         }
 #endif
+
         public static string Base64Encode(string data)
         {
             var byteData = Encoding.UTF8.GetBytes(data);
@@ -53,11 +54,11 @@ namespace Voodoo
             var charCount = utf8Decode.GetCharCount(toDecodeBytes, 0, toDecodeBytes.Length);
             var decodedChar = new char[charCount];
             utf8Decode.GetChars(toDecodeBytes, 0, toDecodeBytes.Length, decodedChar, 0);
-            var result = new String(decodedChar);
+            var result = new string(decodedChar);
             return result;
         }
 
-#if !DNXCORE50
+#if !DNXCORE50 && !PCL
         [FullDotNetOnly]
         public static T FromXml<T>(string xml) where T : class, new()
         {

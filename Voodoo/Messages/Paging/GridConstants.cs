@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace Voodoo.Messages.Paging
+﻿namespace Voodoo.Messages.Paging
 {
     public struct GridConstants
     {
@@ -15,14 +11,12 @@ namespace Voodoo.Messages.Paging
             public static readonly string PrevBlockClass = "prevBlock";
             public static readonly string FirstClass = "first";
             public static readonly string LastClass = "last";
-
             public static readonly string PrevClassDisabled = "prev disabled ";
             public static readonly string NextClassDisabled = "next disabled ";
             public static readonly string NextBlockClassDisabled = "nextBlock disabled ";
             public static readonly string PrevBlockClassDisabled = "prevBlock disabled ";
             public static readonly string FirstClassDisabled = "first disabled ";
             public static readonly string LastClassDisabled = "last disabled ";
-
             public static readonly string PageClassActive = "page active ";
         }
 
@@ -34,7 +28,5 @@ namespace Voodoo.Messages.Paging
             public static readonly string NextPage = ">";
             public static readonly string LastPage = ">>";
         }
-
-       
     }
 }

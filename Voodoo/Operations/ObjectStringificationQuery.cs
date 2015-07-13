@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text;
-using Voodoo;
 using Voodoo.Messages;
 
 namespace Voodoo.Operations
@@ -49,7 +48,7 @@ namespace Voodoo.Operations
             else
             {
                 var objectType = element.GetType();
-                if (!typeof(IEnumerable).IsAssignableFrom(objectType))
+                if (!typeof (IEnumerable).IsAssignableFrom(objectType))
                 {
                     write("{{{0}}}", objectType.FullName);
                     hashes.Add(element.GetHashCode());
@@ -83,16 +82,30 @@ namespace Voodoo.Operations
                 }
                 else
                 {
+#if !PCL
                     var members =
                         element.GetType()
                             .GetMembers(BindingFlags.Public | BindingFlags.Instance)
                             .OrderBy(OrderProperties)
                             .ThenBy(c => c.Name)
                             .ToArray();
+#else
+                    var members =
+                        element.GetType().GetTypeInfo().DeclaredProperties
+                            .OrderBy(OrderProperties)
+                            .ThenBy(c => c.Name)
+                            .ToArray();
+#endif
                     foreach (var memberInfo in members)
                     {
+#if PCL
+                        FieldInfo fieldInfo = null;
+                        var propertyInfo = memberInfo;
+#else
                         var fieldInfo = memberInfo as FieldInfo;
                         var propertyInfo = memberInfo as PropertyInfo;
+#endif
+
 
                         if (fieldInfo == null && propertyInfo == null)
                             continue;
@@ -115,7 +128,7 @@ namespace Voodoo.Operations
                         }
                         else
                         {
-                            var isEnumerable = typeof(IEnumerable).IsAssignableFrom(type);
+                            var isEnumerable = typeof (IEnumerable).IsAssignableFrom(type);
                             var isScalar = type.IsScalar();
                             write("{0}: {1}", memberInfo.Name, isEnumerable ? "..." : "{ }");
 
@@ -130,7 +143,7 @@ namespace Voodoo.Operations
                     }
                 }
 
-                if (!typeof(IEnumerable).IsAssignableFrom(objectType))
+                if (!typeof (IEnumerable).IsAssignableFrom(objectType))
                 {
                     depth--;
                 }

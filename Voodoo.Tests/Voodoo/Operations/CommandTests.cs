@@ -1,20 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Xunit;
+﻿using System.Linq;
 using Voodoo.Messages;
 using Voodoo.Tests.TestClasses;
 using Voodoo.Validation.Infrastructure;
+using Xunit;
+
 namespace Voodoo.Tests.Voodoo.Operations
 {
-    
     public class CommandTests
     {
         [Fact]
         public void Execute_ExceptionIsThrown_IsNotOk()
         {
             VoodooGlobalConfiguration.RemoveExceptionFromResponseAfterLogging = false;
-            
+
             var result = new CommandThatThrowsErrors(new EmptyRequest()).Execute();
             Assert.Equal(false, result.IsOk);
             VoodooGlobalConfiguration.RemoveExceptionFromResponseAfterLogging = true;
@@ -39,6 +37,7 @@ namespace Voodoo.Tests.Voodoo.Operations
             Assert.Equal(true, result.IsOk);
         }
 
+#if (!PCL)
         [Fact]
         public void Execute_RequestIsInvalidDataAnnotationsValidatorWithFirstErrorAsMessage_IsNotOk()
         {
@@ -64,5 +63,6 @@ namespace Voodoo.Tests.Voodoo.Operations
             Assert.NotEqual(true, result.IsOk);
 
         }
+#endif
     }
 }

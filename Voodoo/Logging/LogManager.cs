@@ -1,6 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+#if (PCL)
+using Voodoo.Logging;
+#endif
 
 namespace Voodoo.Logging
 {
@@ -10,8 +11,17 @@ namespace Voodoo.Logging
 
         public static ILogger Logger
         {
-            get { return logger ?? (logger = new FallbackLogger()); }
+            get { return logger ?? (logger = getDefaultLogger()); }
             set { logger = value; }
+        }
+
+        private static ILogger getDefaultLogger()
+        {
+#if PCL
+            return new DebugLogger();
+#else
+            return new FallbackLogger();
+#endif
         }
 
         public static void Log(string message)
@@ -22,7 +32,7 @@ namespace Voodoo.Logging
         public static void Log(Exception ex)
         {
             if (Logger == null)
-                Logger = new FallbackLogger();
+                Logger = getDefaultLogger();
 
             Logger.Log(ex);
         }

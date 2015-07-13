@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-#if !DNXCORE50
+﻿using System.Threading.Tasks;
+using Voodoo.Messages;
+#if !DNXCORE50 && !PCL
 using System.Transactions;
 #endif
-using Voodoo.Messages;
 
 #if ! DNX40 && ! DNX45
 
@@ -20,7 +17,7 @@ namespace Voodoo.Operations.Async
 
         public override async Task<TResponse> ExecuteAsync()
         {
-#if !DNXCORE50
+#if !DNXCORE50 && !PCL
 
 
             var transactionOptions = new TransactionOptions {IsolationLevel = IsolationLevel.ReadCommitted};
@@ -31,15 +28,17 @@ namespace Voodoo.Operations.Async
                     TransactionScopeAsyncFlowOption.Enabled))
             {
 #endif
-                response = await base.ExecuteAsync();
-                if (response.IsOk){
-#if !DNXCORE50
+            response = await base.ExecuteAsync();
+            if (response.IsOk)
+            {
+#if !DNXCORE50 && !PCL
                     transaction.Complete();
 #endif
-}
-                return response;
             }
-#if !DNXCORE50
+            return response;
+        }
+
+#if !DNXCORE50 && !PCL
         }
 #endif
     }

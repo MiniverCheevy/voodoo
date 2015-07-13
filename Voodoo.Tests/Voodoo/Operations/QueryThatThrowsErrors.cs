@@ -1,13 +1,10 @@
-﻿using Xunit;
-using Voodoo;
-using System.Linq;
-using System.Collections.Generic;
-using System;
+﻿using System;
 using Voodoo.Infrastructure;
 using Voodoo.Logging;
 using Voodoo.Messages;
 using Voodoo.Operations;
 using Voodoo.Tests.TestClasses;
+using Xunit;
 
 namespace Voodoo.Tests.Voodoo.Operations
 {

@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Linq;
-using System.Collections.Generic;
-using Xunit;
 using Voodoo.Tests.TestClasses;
-
+using Xunit;
 
 namespace Voodoo.Tests.Voodoo
 {
-    
     public class ConversionExtensionTests
     {
         [Fact]
@@ -96,8 +92,8 @@ namespace Voodoo.Tests.Voodoo
         [Fact]
         public void To_NullLong_Returns0()
         {
-            Int64? test = null;
-            var converted = test.To<Int64>();
+            long? test = null;
+            var converted = test.To<long>();
             Assert.Equal(0, converted);
         }
 
@@ -120,32 +116,32 @@ namespace Voodoo.Tests.Voodoo
         [Fact]
         public void To_NullDecimal_Returns0()
         {
-            Decimal? test = null;
-            var converted = test.To<Decimal>();
+            decimal? test = null;
+            var converted = test.To<decimal>();
             Assert.Equal(0, converted);
         }
 
         [Fact]
         public void To_NullDouble_Returns0()
         {
-            Double? test = null;
-            var converted = test.To<Double>();
+            double? test = null;
+            var converted = test.To<double>();
             Assert.Equal(0, converted);
         }
 
         [Fact]
         public void To_NullInt16_Returns0()
         {
-            Int16? test = null;
-            var converted = test.To<Int16>();
+            short? test = null;
+            var converted = test.To<short>();
             Assert.Equal(0, converted);
         }
 
         [Fact]
         public void To_NullInt64_Returns0()
         {
-            Int64? test = null;
-            var converted = test.To<Int64>();
+            long? test = null;
+            var converted = test.To<long>();
             Assert.Equal(0, converted);
         }
 
@@ -160,34 +156,33 @@ namespace Voodoo.Tests.Voodoo
         [Fact]
         public void To_NullSingle_Returns0()
         {
-            Single? test = null;
-            var converted = test.To<Single>();
+            float? test = null;
+            var converted = test.To<float>();
             Assert.Equal(0, converted);
         }
-
 
         [Fact]
         public void To_NullUInt16_Returns0()
         {
-            UInt16? test = null;
-            var converted = test.To<UInt16>();
+            ushort? test = null;
+            var converted = test.To<ushort>();
             Assert.Equal(0, converted);
         }
 
         [Fact]
         public void To_NullUInt32_Returns0()
         {
-            UInt32? test = null;
-            var converted = test.To<UInt32>();
-            Assert.Equal((UInt32) 0, converted);
+            uint? test = null;
+            var converted = test.To<uint>();
+            Assert.Equal((uint) 0, converted);
         }
 
         [Fact]
         public void To_NullUInt64_Returns0()
         {
-            UInt64? test = null;
-            var converted = test.To<UInt64>();
-            Assert.Equal((UInt64) 0, converted);
+            ulong? test = null;
+            var converted = test.To<ulong>();
+            Assert.Equal((ulong) 0, converted);
         }
 
         [Fact]
@@ -210,7 +205,7 @@ namespace Voodoo.Tests.Voodoo
         public void To_NullObjectLong_Returns0()
         {
             object test = null;
-            var converted = test.To<Int64>();
+            var converted = test.To<long>();
             Assert.Equal(0, converted);
         }
 
@@ -234,7 +229,7 @@ namespace Voodoo.Tests.Voodoo
         public void To_NullObjectDecimal_Returns0()
         {
             object test = null;
-            var converted = test.To<Decimal>();
+            var converted = test.To<decimal>();
             Assert.Equal(0, converted);
         }
 
@@ -242,7 +237,7 @@ namespace Voodoo.Tests.Voodoo
         public void To_NullObjectDouble_Returns0()
         {
             object test = null;
-            var converted = test.To<Double>();
+            var converted = test.To<double>();
             Assert.Equal(0, converted);
         }
 
@@ -250,7 +245,7 @@ namespace Voodoo.Tests.Voodoo
         public void To_NullObjectInt16_Returns0()
         {
             object test = null;
-            var converted = test.To<Int16>();
+            var converted = test.To<short>();
             Assert.Equal(0, converted);
         }
 
@@ -258,7 +253,7 @@ namespace Voodoo.Tests.Voodoo
         public void To_NullObjectInt64_Returns0()
         {
             object test = null;
-            var converted = test.To<Int64>();
+            var converted = test.To<long>();
             Assert.Equal(0, converted);
         }
 
@@ -274,16 +269,15 @@ namespace Voodoo.Tests.Voodoo
         public void To_NullObjectSingle_Returns0()
         {
             object test = null;
-            var converted = test.To<Single>();
+            var converted = test.To<float>();
             Assert.Equal(0, converted);
         }
-
 
         [Fact]
         public void To_NullObjectUInt16_Returns0()
         {
             object test = null;
-            var converted = test.To<UInt16>();
+            var converted = test.To<ushort>();
             Assert.Equal(0, converted);
         }
 
@@ -291,30 +285,30 @@ namespace Voodoo.Tests.Voodoo
         public void To_NullObjectUInt32_Returns0()
         {
             object test = null;
-            var converted = test.To<UInt32>();
-            Assert.Equal((UInt32) 0, converted);
+            var converted = test.To<uint>();
+            Assert.Equal((uint) 0, converted);
         }
 
         [Fact]
         public void To_NullObjectUInt64_Returns0()
         {
             object test = null;
-            var converted = test.To<UInt64>();
-            Assert.Equal((UInt64) 0, converted);
+            var converted = test.To<ulong>();
+            Assert.Equal((ulong) 0, converted);
         }
 
         [Fact]
         public void To_EmptyStringLong_Returns0()
         {
-            var test = String.Empty;
-            var converted = test.To<Int64>();
+            var test = string.Empty;
+            var converted = test.To<long>();
             Assert.Equal(0, converted);
         }
 
         [Fact]
         public void To_EmptyStringbyte_Returns0()
         {
-            var test = String.Empty;
+            var test = string.Empty;
             var converted = test.To<byte>();
             Assert.Equal(0, converted);
         }
@@ -322,7 +316,7 @@ namespace Voodoo.Tests.Voodoo
         [Fact]
         public void To_EmptyStringchar_ReturnsNonNullChar()
         {
-            var test = String.Empty;
+            var test = string.Empty;
             var converted = test.To<char>();
             Assert.NotNull(converted);
         }
@@ -330,39 +324,39 @@ namespace Voodoo.Tests.Voodoo
         [Fact]
         public void To_EmptyStringDecimal_Returns0()
         {
-            var test = String.Empty;
-            var converted = test.To<Decimal>();
+            var test = string.Empty;
+            var converted = test.To<decimal>();
             Assert.Equal(0, converted);
         }
 
         [Fact]
         public void To_EmptyStringDouble_Returns0()
         {
-            var test = String.Empty;
-            var converted = test.To<Double>();
+            var test = string.Empty;
+            var converted = test.To<double>();
             Assert.Equal(0, converted);
         }
 
         [Fact]
         public void To_EmptyStringInt16_Returns0()
         {
-            var test = String.Empty;
-            var converted = test.To<Int16>();
+            var test = string.Empty;
+            var converted = test.To<short>();
             Assert.Equal(0, converted);
         }
 
         [Fact]
         public void To_EmptyStringInt64_Returns0()
         {
-            var test = String.Empty;
-            var converted = test.To<Int64>();
+            var test = string.Empty;
+            var converted = test.To<long>();
             Assert.Equal(0, converted);
         }
 
         [Fact]
         public void To_EmptyStringsbyte_Returns0()
         {
-            var test = String.Empty;
+            var test = string.Empty;
             var converted = test.To<sbyte>();
             Assert.Equal(0, converted);
         }
@@ -370,82 +364,80 @@ namespace Voodoo.Tests.Voodoo
         [Fact]
         public void To_EmptyStringSingle_Returns0()
         {
-            var test = String.Empty;
-            var converted = test.To<Single>();
+            var test = string.Empty;
+            var converted = test.To<float>();
             Assert.Equal(0, converted);
         }
-
 
         [Fact]
         public void To_EmptyStringUInt16_Returns0()
         {
-            var test = String.Empty;
-            var converted = test.To<UInt16>();
+            var test = string.Empty;
+            var converted = test.To<ushort>();
             Assert.Equal(0, converted);
         }
 
         [Fact]
         public void To_EmptyStringUInt32_Returns0()
         {
-            var test = String.Empty;
-            var converted = test.To<UInt32>();
-            Assert.Equal((UInt32) 0, converted);
+            var test = string.Empty;
+            var converted = test.To<uint>();
+            Assert.Equal((uint) 0, converted);
         }
 
         [Fact]
         public void To_EmptyStringUInt64_Returns0()
         {
-            var test = String.Empty;
-            var converted = test.To<UInt64>();
-            Assert.Equal((UInt64) 0, converted);
+            var test = string.Empty;
+            var converted = test.To<ulong>();
+            Assert.Equal((ulong) 0, converted);
         }
 
         [Fact]
         public void To_AnyNumeric_Converts()
         {
-            Assert.Equal((Byte) 7, 7.To<Byte>());
-            Assert.Equal(7, 7.To<Decimal>());
-            Assert.Equal(7, 7.To<Double>());
-            Assert.Equal((Int16) 7, 7.To<Int16>());
-            Assert.Equal(7, 7.To<Int32>());
-            Assert.Equal(7, 7.To<Int64>());
-            Assert.Equal((SByte) 7, 7.To<SByte>());
-            Assert.Equal(7, 7.To<Single>());
-            Assert.Equal((UInt16) 7, 7.To<UInt16>());
-            Assert.Equal((UInt32) 7, 7.To<UInt32>());
-            Assert.Equal((UInt64) 7, 7.To<UInt64>());
+            Assert.Equal((byte) 7, 7.To<byte>());
+            Assert.Equal(7, 7.To<decimal>());
+            Assert.Equal(7, 7.To<double>());
+            Assert.Equal((short) 7, 7.To<short>());
+            Assert.Equal(7, 7.To<int>());
+            Assert.Equal(7, 7.To<long>());
+            Assert.Equal((sbyte) 7, 7.To<sbyte>());
+            Assert.Equal(7, 7.To<float>());
+            Assert.Equal((ushort) 7, 7.To<ushort>());
+            Assert.Equal((uint) 7, 7.To<uint>());
+            Assert.Equal((ulong) 7, 7.To<ulong>());
         }
-
 
         [Fact]
         public void As_StringDouble_ReturnsNull()
         {
-            string test = "testString";
-            var converted = test.As<Double?>();
+            var test = "testString";
+            var converted = test.As<double?>();
             Assert.Equal(null, converted);
         }
 
         [Fact]
         public void As_NullDouble_ReturnsNull()
         {
-            Double? test = null;
-            var converted = test.As<Double?>();
+            double? test = null;
+            var converted = test.As<double?>();
             Assert.Equal(null, converted);
         }
 
         [Fact]
         public void As_NullInt16_ReturnsNull()
         {
-            Int16? test = null;
-            var converted = test.As<Int16?>();
+            short? test = null;
+            var converted = test.As<short?>();
             Assert.Equal(null, converted);
         }
 
         [Fact]
         public void As_NullInt64_ReturnsNull()
         {
-            Int64? test = null;
-            var converted = test.As<Int64?>();
+            long? test = null;
+            var converted = test.As<long?>();
             Assert.Equal(null, converted);
         }
 
@@ -460,33 +452,32 @@ namespace Voodoo.Tests.Voodoo
         [Fact]
         public void As_NullSingle_ReturnsNull()
         {
-            Single? test = null;
-            var converted = test.As<Single?>();
+            float? test = null;
+            var converted = test.As<float?>();
             Assert.Equal(null, converted);
         }
-
 
         [Fact]
         public void As_NullUInt16_ReturnsNull()
         {
-            UInt16? test = null;
-            var converted = test.As<UInt16?>();
+            ushort? test = null;
+            var converted = test.As<ushort?>();
             Assert.Equal(null, converted);
         }
 
         [Fact]
         public void As_NullUInt32_ReturnsNull()
         {
-            UInt32? test = null;
-            var converted = test.As<UInt32?>();
+            uint? test = null;
+            var converted = test.As<uint?>();
             Assert.Equal(null, converted);
         }
 
         [Fact]
         public void As_NullUInt64_ReturnsNull()
         {
-            UInt64? test = null;
-            var converted = test.As<UInt64?>();
+            ulong? test = null;
+            var converted = test.As<ulong?>();
             Assert.Equal(null, converted);
         }
 
@@ -510,7 +501,7 @@ namespace Voodoo.Tests.Voodoo
         public void As_NullObjectLong_ReturnsNull()
         {
             object test = null;
-            var converted = test.As<Int64?>();
+            var converted = test.As<long?>();
             Assert.Equal(null, converted);
         }
 
@@ -534,7 +525,7 @@ namespace Voodoo.Tests.Voodoo
         public void As_NullObjectDecimal_ReturnsNull()
         {
             object test = null;
-            var converted = test.As<Decimal?>();
+            var converted = test.As<decimal?>();
             Assert.Equal(null, converted);
         }
 
@@ -542,7 +533,7 @@ namespace Voodoo.Tests.Voodoo
         public void As_NullObjectDouble_ReturnsNull()
         {
             object test = null;
-            var converted = test.As<Double?>();
+            var converted = test.As<double?>();
             Assert.Equal(null, converted);
         }
 
@@ -550,7 +541,7 @@ namespace Voodoo.Tests.Voodoo
         public void As_NullObjectInt16_ReturnsNull()
         {
             object test = null;
-            var converted = test.As<Int16?>();
+            var converted = test.As<short?>();
             Assert.Equal(null, converted);
         }
 
@@ -558,7 +549,7 @@ namespace Voodoo.Tests.Voodoo
         public void As_NullObjectInt64_ReturnsNull()
         {
             object test = null;
-            var converted = test.As<Int64?>();
+            var converted = test.As<long?>();
             Assert.Equal(null, converted);
         }
 
@@ -574,16 +565,15 @@ namespace Voodoo.Tests.Voodoo
         public void As_NullObjectSingle_ReturnsNull()
         {
             object test = null;
-            var converted = test.As<Single?>();
+            var converted = test.As<float?>();
             Assert.Equal(null, converted);
         }
-
 
         [Fact]
         public void As_NullObjectUInt16_ReturnsNull()
         {
             object test = null;
-            var converted = test.As<UInt16?>();
+            var converted = test.As<ushort?>();
             Assert.Equal(null, converted);
         }
 
@@ -591,7 +581,7 @@ namespace Voodoo.Tests.Voodoo
         public void As_NullObjectUInt32_ReturnsNull()
         {
             object test = null;
-            var converted = test.As<UInt32?>();
+            var converted = test.As<uint?>();
             Assert.Equal(null, converted);
         }
 
@@ -599,22 +589,22 @@ namespace Voodoo.Tests.Voodoo
         public void As_NullObjectUInt64_ReturnsNull()
         {
             object test = null;
-            var converted = test.As<UInt64?>();
+            var converted = test.As<ulong?>();
             Assert.Equal(null, converted);
         }
 
         [Fact]
         public void As_EmptyStringLong_ReturnsNull()
         {
-            var test = String.Empty;
-            var converted = test.As<Int64?>();
+            var test = string.Empty;
+            var converted = test.As<long?>();
             Assert.Equal(null, converted);
         }
 
         [Fact]
         public void As_EmptyStringbyte_ReturnsNull()
         {
-            var test = String.Empty;
+            var test = string.Empty;
             var converted = test.As<byte?>();
             Assert.Equal(null, converted);
         }
@@ -622,7 +612,7 @@ namespace Voodoo.Tests.Voodoo
         [Fact]
         public void As_EmptyStringchar_ReturnsNonNullChar()
         {
-            var test = String.Empty;
+            var test = string.Empty;
             var converted = test.As<char>();
             Assert.NotNull(converted);
         }
@@ -630,39 +620,39 @@ namespace Voodoo.Tests.Voodoo
         [Fact]
         public void As_EmptyStringDecimal_ReturnsNull()
         {
-            var test = String.Empty;
-            var converted = test.As<Decimal?>();
+            var test = string.Empty;
+            var converted = test.As<decimal?>();
             Assert.Equal(null, converted);
         }
 
         [Fact]
         public void As_EmptyStringDouble_ReturnsNull()
         {
-            var test = String.Empty;
-            var converted = test.As<Double?>();
+            var test = string.Empty;
+            var converted = test.As<double?>();
             Assert.Equal(null, converted);
         }
 
         [Fact]
         public void As_EmptyStringInt16_ReturnsNull()
         {
-            var test = String.Empty;
-            var converted = test.As<Int16?>();
+            var test = string.Empty;
+            var converted = test.As<short?>();
             Assert.Equal(null, converted);
         }
 
         [Fact]
         public void As_EmptyStringInt64_ReturnsNull()
         {
-            var test = String.Empty;
-            var converted = test.As<Int64?>();
+            var test = string.Empty;
+            var converted = test.As<long?>();
             Assert.Equal(null, converted);
         }
 
         [Fact]
         public void As_EmptyStringsbyte_ReturnsNull()
         {
-            var test = String.Empty;
+            var test = string.Empty;
             var converted = test.As<sbyte?>();
             Assert.Equal(null, converted);
         }
@@ -670,27 +660,27 @@ namespace Voodoo.Tests.Voodoo
         [Fact]
         public void As_EmptyStringSingle_ReturnsNull()
         {
-            var test = String.Empty;
-            var converted = test.As<Single?>();
+            var test = string.Empty;
+            var converted = test.As<float?>();
             Assert.Equal(null, converted);
         }
-
 
         [Fact]
         public void As_EmptyStringUInt16_ReturnsNull()
         {
-            var test = String.Empty;
-            var converted = test.As<UInt16?>();
+            var test = string.Empty;
+            var converted = test.As<ushort?>();
             Assert.Equal(null, converted);
         }
 
         [Fact]
         public void As_EmptyStringUInt32_ReturnsNull()
         {
-            var test = String.Empty;
-            var converted = test.As<UInt32?>();
+            var test = string.Empty;
+            var converted = test.As<uint?>();
             Assert.Equal(null, converted);
         }
+
         [Fact]
         public void To_DecimalAsStringToInt_ReturnsInt()
         {
@@ -699,6 +689,7 @@ namespace Voodoo.Tests.Voodoo
             var converted = test.To<int>();
             Assert.Equal(expected, converted);
         }
+
         [Fact]
         public void To_DecimalToInt_ReturnsInt()
         {

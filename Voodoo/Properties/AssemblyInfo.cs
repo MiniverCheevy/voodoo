@@ -1,7 +1,4 @@
 ﻿#if !DNXCORE50
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices;
 
@@ -9,8 +6,8 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 
-[assembly: AssemblyVersion("2.0.3")]
-[assembly: AssemblyFileVersion("2.0.3")]
+[assembly: AssemblyVersion("2.0.4")]
+[assembly: AssemblyFileVersion("2.0.4")]
 [assembly: AssemblyTitle("Voodoo")]
 [assembly: AssemblyDescription("docs at http://minivercheevy.github.io/voodoo/")]
 [assembly: AssemblyConfiguration("")]
@@ -28,8 +25,9 @@ using System.Runtime.InteropServices;
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
 
+#if (!PCL)
 [assembly: Guid("e4fcd9f4-6148-497e-a93a-11baa2d161fa")]
-
+#endif
 // Version information for an assembly consists of the following four values:
 //
 //      Major Version

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Voodoo.Validation;
+﻿using Voodoo.Validation.Infrastructure;
 
 namespace Voodoo
 {
@@ -11,9 +8,16 @@ namespace Voodoo
         {
             if (request == null)
                 return true;
-
-            var validator = new DataAnnotationsValidator(request);
-            return validator.IsValid;
+            try
+            {
+                var validator = ValidationManager.GetDefaultValidatitor();
+                validator.Validate(request);
+                return validator.IsValid;
+            }
+            catch
+            {
+                return false;
+            }
         }
     }
 }

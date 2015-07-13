@@ -1,16 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Xunit;
 using Voodoo.Messages;
 using Voodoo.Tests.TestClasses;
+using Xunit;
 
 namespace Voodoo.Tests.Voodoo
 {
-    
     public class NameValuePairExtensionTests
     {
         private const string name = "name";
@@ -18,10 +14,11 @@ namespace Voodoo.Tests.Voodoo
 
         private IList<INameValuePair> getList()
         {
-            return new List<INameValuePair>() { 
-                new NameValuePair{Name="foo", Value="bar"},
-                new NameValuePair{Name="green", Value="red"},
-                new NameValuePair{Name="day", Value="night"},
+            return new List<INameValuePair>
+            {
+                new NameValuePair {Name = "foo", Value = "bar"},
+                new NameValuePair {Name = "green", Value = "red"},
+                new NameValuePair {Name = "day", Value = "night"}
             };
         }
 
@@ -31,7 +28,7 @@ namespace Voodoo.Tests.Voodoo
         {
             var list = new List<INameValuePair>();
             list.Add(name, value);
-            Assert.Equal(1,list.Count() );
+            Assert.Equal(1, list.Count());
             Assert.Equal(true, list.ContainsName(name));
             Assert.Equal(true, list.ContainsValue(value));
         }
@@ -50,17 +47,17 @@ namespace Voodoo.Tests.Voodoo
 
         [Fact]
         public void RemoveByName_Value_ValueIsRemoved()
-        {            
-            var list = new List<INameValuePair> { new NameValuePair(name, value) };
+        {
+            var list = new List<INameValuePair> {new NameValuePair(name, value)};
             list.RemoveByName(name);
-            Assert.Equal(0, list.Count());            
+            Assert.Equal(0, list.Count());
         }
 
         [Fact]
         public void RemoveByValue_Value_ValueIsRemoved()
         {
             var item = new NameValuePair(name, value);
-            var list = new List<INameValuePair> { item, item };
+            var list = new List<INameValuePair> {item, item};
             list.RemoveByValue(value);
             Assert.Equal(0, list.Count());
         }
@@ -69,19 +66,20 @@ namespace Voodoo.Tests.Voodoo
         public void GetValue_Value_ValueIsReturned()
         {
             var item = new NameValuePair(name, value);
-            var list = new List<INameValuePair> { item, item };
-            var returnedValue=list.GetValue(name);
+            var list = new List<INameValuePair> {item, item};
+            var returnedValue = list.GetValue(name);
             Assert.Equal(value, returnedValue);
         }
 
         [Fact]
         public void Contains_Value_ValueIsReturned()
         {
-            var list = getList();            
-            var test = new NameValuePair(name,value);
+            var list = getList();
+            var test = new NameValuePair(name, value);
             list.Add(test);
-            Assert.Equal(true, list.ContainsItem(name,value));
+            Assert.Equal(true, list.ContainsItem(name, value));
         }
+
         [Fact]
         public void Contains_ValueNotPresent_ValueIsNotReturned()
         {
@@ -106,11 +104,11 @@ namespace Voodoo.Tests.Voodoo
         [Fact]
         public void ToINameValuePairList_ValueIsDictionary_ReturnesList()
         {
-            var items = new Dictionary<int, string>()
-                {
-                    {1, "A"},
-                    {2, "B"}
-                };
+            var items = new Dictionary<int, string>
+            {
+                {1, "A"},
+                {2, "B"}
+            };
             var list = items.ToINameValuePairList();
             Assert.Equal(2, list.Count);
             Assert.Equal(true, list.ContainsName("1"));
@@ -122,12 +120,11 @@ namespace Voodoo.Tests.Voodoo
         [Fact]
         public void ToINameValuePairList_ValueIsEnum_ReturnesList()
         {
-
             var list = typeof (TestEnum).ToINameValuePairList();
             Assert.Equal(3, list.Count);
             Assert.Equal(true, list.ContainsName(TestEnum.Red.ToString()));
             Assert.Equal(true, list.ContainsName(TestEnum.Blue.ToString()));
-            Assert.Equal(true, list.ContainsName("Red Orange Yellow"));            
+            Assert.Equal(true, list.ContainsName("Red Orange Yellow"));
             Assert.Equal(true, list.ContainsValue("1"));
             Assert.Equal(true, list.ContainsValue("2"));
             Assert.Equal(true, list.ContainsValue("3"));
@@ -136,8 +133,7 @@ namespace Voodoo.Tests.Voodoo
         [Fact]
         public void ToINameValuePairListWithUnfriendlyNames_ValueIsEnum_ReturnesList()
         {
-
-            var list = typeof(TestEnum).ToINameValuePairListWithUnfriendlyNames();
+            var list = typeof (TestEnum).ToINameValuePairListWithUnfriendlyNames();
             Assert.Equal(3, list.Count);
             Assert.Equal(true, list.ContainsName(TestEnum.Red.ToString()));
             Assert.Equal(true, list.ContainsName(TestEnum.Blue.ToString()));
@@ -147,6 +143,7 @@ namespace Voodoo.Tests.Voodoo
             Assert.Equal(true, list.ContainsValue("3"));
         }
 
+#if (!PCL)
         [Fact]
         public void AsEnumerable_NameValueCollection_ReturnsList()
         {
@@ -158,6 +155,6 @@ namespace Voodoo.Tests.Voodoo
             Assert.Equal(true, list.ContainsValue(value));
             
         }
-
+#endif
     }
 }

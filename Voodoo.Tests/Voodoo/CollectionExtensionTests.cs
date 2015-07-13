@@ -1,21 +1,17 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using Xunit;
 
 namespace Voodoo.Tests.Voodoo
 {
-    
     public class CollectionExtensionTests
     {
-
         [Fact]
         public void ForEeach_Collection_EnumeratesProperly()
         {
-            var items = new[] { "A", "B", "C" };
+            var items = new[] {"A", "B", "C"};
             var count = 0;
-            items.ForEach( c => count++);
+            items.ForEach(c => count++);
             Assert.Equal(3, count);
         }
 
@@ -45,11 +41,12 @@ namespace Voodoo.Tests.Voodoo
             var result = source.ContainsAll(target);
             Assert.Equal(true, result);
         }
+
         [Fact]
         public void ContainsAll_EmptyList_ReturnsFalse()
         {
             var source = new string[] {};
-            var target = new[] { "A", "B", "C" };
+            var target = new[] {"A", "B", "C"};
             var result = source.ContainsAll(target);
             Assert.Equal(false, result);
         }

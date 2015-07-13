@@ -4,7 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using Voodoo.Logging;
-
+#if (DNXCore)
+using System.Reflection.IntrospectionExtensions;
+#endif
 namespace Voodoo
 {
     public static class ReflectionExtensions
@@ -14,7 +16,13 @@ namespace Voodoo
         {
             return t;
         }
+
+        public static PropertyInfo GetDeclaredProperty(this Type type,string name)
+        {
+        return type.GetProperty(name);
+        }
 #endif
+
         public static bool IsEnumerable(this Type t)
         {
             return typeof (IEnumerable).IsAssignableFrom(t);
@@ -38,11 +46,13 @@ namespace Voodoo
             return false;
         }
 
+#if !PCL
         public static Type[] GetTypesSafetly(this Assembly assembly)
         {
             try
             {
                 return assembly.GetTypes();
+
             }
             catch (ReflectionTypeLoadException rtl)
             {
@@ -50,6 +60,7 @@ namespace Voodoo
                 return rtl.Types;
             }
         }
+#endif
 
         public static string GetTypeNameWithoutGenericArguments(this Type type)
         {
@@ -78,12 +89,18 @@ namespace Voodoo
             testedTypeName = testedTypeName.Substring(0, index);
             return testedTypeName;
         }
-
-        public static bool IsGenericTypeDirectlyInheritedFromOtherGenericType(this Type testedType,
+#if (!PCL)
+        private static bool IsGenericTypeDirectlyInheritedFromOtherGenericType(this Type testedType,
             Type possibleBaseType)
         {
-            if (testedType == null || possibleBaseType == null || testedType.GetTypeInfo().BaseType == null ||
-                !testedType.GetTypeInfo().BaseType.GetGenericArguments().Any() || !possibleBaseType.GetGenericArguments().Any())
+            var testedTypeIsNull = testedType == null;
+            var possibleBaseTypeIsNull = possibleBaseType == null;
+            var testTypeHasBaseType =  testedType.GetTypeInfo().BaseType != null ;
+            var testedTypeHasGenericArguments = testedType.GetTypeInfo().BaseType.GetGenericArguments().Any() ;
+            var possibleBaseTypeHasGenericArguments = possibleBaseType.GetGenericArguments().Any();
+
+            if (testedTypeIsNull || possibleBaseTypeIsNull || !testTypeHasBaseType || ! testedTypeHasGenericArguments || 
+                !possibleBaseTypeHasGenericArguments)                
                 return false;
 
             var left = testedType.GetTypeInfo().BaseType;
@@ -134,7 +151,7 @@ namespace Voodoo
             //    }
             //    return true;            
         }
-
+#endif
         public static List<KeyValuePair<Type, string>> GetParameterDictionary(this MethodInfo methodInfo)
         {
             var result = new List<KeyValuePair<Type, string>>();

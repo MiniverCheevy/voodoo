@@ -1,6 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿#if (PCL)
+using Voodoo.PCL.Validation.Infrastructure;
+#endif
 
 namespace Voodoo.Validation.Infrastructure
 {
@@ -10,8 +10,17 @@ namespace Voodoo.Validation.Infrastructure
 
         public static IValidator Validator
         {
-            get { return validator ?? (validator = new DataAnnotationsValidatorWithGenericMessage()); }
+            get { return validator ?? (validator = GetDefaultValidatitor()); }
             set { validator = value; }
+        }
+
+        public static IValidator GetDefaultValidatitor()
+        {
+#if PCL
+            return new EmptyValidator();
+#else
+            return     new DataAnnotationsValidatorWithGenericMessage();
+#endif
         }
 
         public static void Validate(object @object)

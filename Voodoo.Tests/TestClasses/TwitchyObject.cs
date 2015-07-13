@@ -8,5 +8,9 @@ namespace Voodoo.Tests.TestClasses
         {
             get { throw new NotImplementedException(); }
         }
+
+        public void MethodThatReturnsNothing()
+        {
+        }
     }
 }

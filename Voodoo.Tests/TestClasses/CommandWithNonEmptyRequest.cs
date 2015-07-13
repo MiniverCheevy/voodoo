@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Voodoo.Operations;
+﻿using Voodoo.Operations;
 
 namespace Voodoo.Tests.TestClasses
 {

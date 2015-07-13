@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using Xunit;
 using Voodoo.Operations;
 using Voodoo.Tests.TestClasses;
+using Xunit;
 
 namespace Voodoo.Tests.Voodoo.Operations
 {
-    
     public class ObjectEmissionTests
     {
         [Fact]
@@ -20,6 +18,7 @@ namespace Voodoo.Tests.Voodoo.Operations
             Assert.Equal(true, response.IsOk);
             Debug.WriteLine(response.Text);
         }
+
         public void foo()
         {
             var request = new ClassToStringify
@@ -32,9 +31,7 @@ namespace Voodoo.Tests.Voodoo.Operations
                 NullableInt = 7,
                 Number = 7,
                 TestEnum = TestEnum.Blue,
-                AnObnoxiousObjectWhosePropertiesThrowExceptions = new TwitchyObject
-                {
-                },
+                AnObnoxiousObjectWhosePropertiesThrowExceptions = new TwitchyObject(),
                 AnotherNestedObject = new ClassToStringify
                 {
                     AString = null,
@@ -44,75 +41,83 @@ namespace Voodoo.Tests.Voodoo.Operations
                     NullableBoolean = null,
                     NullableInt = null,
                     Number = 99,
-                    TestEnum = (TestEnum)0,
+                    TestEnum = 0,
                     AnObnoxiousObjectWhosePropertiesThrowExceptions = null,
                     AnotherNestedObject = null,
                     NestedObject = null,
                     NullObject = null,
-                    Items = new List<String> {
-               "goo",
-               "goo",
-               "gachoo",
-          },
+                    Items = new List<string>
+                    {
+                        "goo",
+                        "goo",
+                        "gachoo"
+                    },
                     ListOfObjects = null,
-                    NestedLists = new List<List<String>> {
- new List<String> {
-                    "blue",
-               },
-          },
+                    NestedLists = new List<List<string>>
+                    {
+                        new List<string>
+                        {
+                            "blue"
+                        }
+                    }
                 },
                 //NestedObject = new ClassToStringify() <-- bidirectional reference found
                 NullObject = null,
-                Items = new List<String> {
-          "foo",
-          "bar",
-     },
-                ListOfObjects = new List<ClassToStringify> {
- new ClassToStringify {
-               AString="First",
-               Boolean=false,
-               Date=new DateTime(2015, 6, 21, 7, 36, 891),
-               Decimal=0m,
-               NullableBoolean=null,
-               NullableInt=null,
-               Number=0,
-               TestEnum=(TestEnum)0,
-               AnObnoxiousObjectWhosePropertiesThrowExceptions=null,
-               AnotherNestedObject=null,
-               NestedObject=null,
-               NullObject=null,
-               Items=null,
-               ListOfObjects=null,
-               NestedLists=null,
-          },
- new ClassToStringify {
-               AString="Second",
-               Boolean=false,
-               Date=new DateTime(2014, 6, 21, 7, 36, 891),
-               Decimal=0m,
-               NullableBoolean=null,
-               NullableInt=null,
-               Number=0,
-               TestEnum=(TestEnum)0,
-               AnObnoxiousObjectWhosePropertiesThrowExceptions=null,
-               AnotherNestedObject=null,
-               NestedObject=null,
-               NullObject=null,
-               Items=null,
-               ListOfObjects=null,
-               NestedLists=null,
-          },
-     },
-                NestedLists = new List<List<String>> {
- new List<String> {
-               "foo",
-          },
-     },
+                Items = new List<string>
+                {
+                    "foo",
+                    "bar"
+                },
+                ListOfObjects = new List<ClassToStringify>
+                {
+                    new ClassToStringify
+                    {
+                        AString = "First",
+                        Boolean = false,
+                        Date = new DateTime(2015, 6, 21, 7, 36, 891),
+                        Decimal = 0m,
+                        NullableBoolean = null,
+                        NullableInt = null,
+                        Number = 0,
+                        TestEnum = 0,
+                        AnObnoxiousObjectWhosePropertiesThrowExceptions = null,
+                        AnotherNestedObject = null,
+                        NestedObject = null,
+                        NullObject = null,
+                        Items = null,
+                        ListOfObjects = null,
+                        NestedLists = null
+                    },
+                    new ClassToStringify
+                    {
+                        AString = "Second",
+                        Boolean = false,
+                        Date = new DateTime(2014, 6, 21, 7, 36, 891),
+                        Decimal = 0m,
+                        NullableBoolean = null,
+                        NullableInt = null,
+                        Number = 0,
+                        TestEnum = 0,
+                        AnObnoxiousObjectWhosePropertiesThrowExceptions = null,
+                        AnotherNestedObject = null,
+                        NestedObject = null,
+                        NullObject = null,
+                        Items = null,
+                        ListOfObjects = null,
+                        NestedLists = null
+                    }
+                },
+                NestedLists = new List<List<string>>
+                {
+                    new List<string>
+                    {
+                        "foo"
+                    }
+                }
             };
-;
-
-
+            ;
         }
+
         public ClassToStringify GetValidRequest()
         {
             var request = new ClassToStringify

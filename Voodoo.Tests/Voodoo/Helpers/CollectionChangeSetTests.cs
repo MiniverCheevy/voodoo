@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using Xunit;
-using Voodoo;
 using Voodoo.Helpers;
 using Voodoo.Tests.TestClasses;
+using Xunit;
 
 namespace Voodoo.Tests.Voodoo.Helpers
 {
-    
     public class CollectionChangeSetTests
     {
         [Fact]
@@ -30,7 +27,7 @@ namespace Voodoo.Tests.Voodoo.Helpers
         public void ctor_0Added1Deleted_0Added1Deleted()
         {
             var source = new List<DataObject> {new DataObject {Id = 1}, new DataObject {Id = 2}};
-            var modified = new List<DataObject> {new DataObject {Id = 1},};
+            var modified = new List<DataObject> {new DataObject {Id = 1}};
             var helper = new CollectionChangeSet(source.Select(c => c.Id), modified.Select(c => c.Id));
             Assert.Equal(0, helper.Added.Count());
             Assert.Equal(1, helper.Edited.Count());
@@ -66,7 +63,7 @@ namespace Voodoo.Tests.Voodoo.Helpers
             {
                 new DataObject {Id = 1},
                 new DataObject {Id = 0},
-                new DataObject {Id = 0},
+                new DataObject {Id = 0}
             };
             var helper = new CollectionChangeSet(source.Select(c => c.Id), modified.Select(c => c.Id));
             Assert.Equal(2, helper.Added.Count());

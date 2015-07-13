@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Voodoo.Messages;
+﻿using Voodoo.Messages;
 
-#if ! DNX40 
+#if ! DNX40
 
 namespace Voodoo.Operations.Async
 {

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace Voodoo.Infrastructure
+﻿namespace Voodoo.Infrastructure
 {
     public interface IStorageProvider
     {

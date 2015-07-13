@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-
 namespace Voodoo.Tests.TestClasses
 {
     public class Person

@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Xunit;
-using Voodoo.Messages;
+﻿using Voodoo.Messages;
 using Voodoo.Tests.TestClasses;
+using Xunit;
 
 namespace Voodoo.Tests.Voodoo.Operations
 {
-    
     public class QueryTests
     {
         [Fact]
@@ -25,7 +21,7 @@ namespace Voodoo.Tests.Voodoo.Operations
             VoodooGlobalConfiguration.RemoveExceptionFromResponseAfterLogging = false;
             var result = new QueryThatThrowsErrors(new EmptyRequest()).Execute();
             Assert.Equal(false, result.IsOk);
-            var response = new Response() {IsOk = true};
+            var response = new Response {IsOk = true};
             response.AppendResponse(result);
             Assert.Equal(false, response.IsOk);
 

@@ -1,6 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Voodoo.Messages.Paging
 {
@@ -32,8 +30,8 @@ namespace Voodoo.Messages.Paging
                 return;
 
             DefaultSortMember = sorting.DefaultSortMember;
-            SortMember = String.IsNullOrEmpty(sorting.SortMember) ? sorting.DefaultSortMember : sorting.SortMember;
-            SortDirection = String.IsNullOrEmpty(sorting.SortDirection)
+            SortMember = string.IsNullOrEmpty(sorting.SortMember) ? sorting.DefaultSortMember : sorting.SortMember;
+            SortDirection = string.IsNullOrEmpty(sorting.SortDirection)
                 ? Strings.SortDirection.Ascending
                 : sorting.SortDirection;
         }

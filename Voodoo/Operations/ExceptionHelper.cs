@@ -1,6 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using Voodoo.Infrastructure;
 using Voodoo.Logging;
@@ -16,7 +14,7 @@ namespace Voodoo.Operations
                 LogManager.Logger.Log(ex);
 
                 var builder = new StringBuilder();
-                builder.AppendFormat("Details for '{0}' exception:", ex.Message);              
+                builder.AppendFormat("Details for '{0}' exception:", ex.Message);
                 builder.AppendLine(string.Empty);
                 builder.AppendLine("Code to reproduce error:");
                 builder.AppendLine(string.Empty);

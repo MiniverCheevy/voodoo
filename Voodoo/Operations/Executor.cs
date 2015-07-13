@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
 using Voodoo.Messages;
 using Voodoo.Validation.Infrastructure;
 
@@ -17,7 +14,6 @@ namespace Voodoo.Operations
             this.request = request;
         }
 
-        
         public virtual TResponse Execute()
         {
             response = new TResponse {IsOk = true};

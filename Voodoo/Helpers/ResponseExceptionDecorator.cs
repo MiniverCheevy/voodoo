@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using Voodoo.Infrastructure;
 using Voodoo.Messages;
 
@@ -8,8 +6,8 @@ namespace Voodoo.Helpers
 {
     public class ResponseExceptionDecorator
     {
+        private readonly IResponse response;
         private Exception exception;
-        private IResponse response;
 
         public ResponseExceptionDecorator(IResponse response, Exception exception)
         {

@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 using Xunit;
 
 namespace Voodoo.Tests.Voodoo
 {
-    
     public class ConvertionExtensionsDateParsingTests
     {
         [Fact]
@@ -38,7 +35,6 @@ namespace Voodoo.Tests.Voodoo
 
             To_DateString_CompareToParse(test);
         }
-
 
         [Fact]
         public void To_DateWithnoSpaces_CompareToParse()

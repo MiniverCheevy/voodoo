@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
-using Voodoo;
 using Voodoo.Linq;
 using Voodoo.Messages;
 using Voodoo.Messages.Paging;
@@ -30,7 +28,7 @@ namespace Voodoo
         {
             return query.OrderByDynamic(string.Format("{0} {1}", sortExpression, Strings.SortDirection.Descending));
         }
-        
+
         public static PagedResponse<TObject> ToPagedResponse<TObject>(this IQueryable<TObject> source, IGridState paging)
             where TObject : class, new()
         {
@@ -51,7 +49,6 @@ namespace Voodoo
             return result;
         }
 
-       
         private static IGridState buildPagedQuery<TIn, TOut>(IQueryable<TIn> source, IGridState paging,
             Expression<Func<TIn, TOut>> expression, out IQueryable page) where TIn : class where TOut : class, new()
         {
@@ -95,7 +92,6 @@ namespace Voodoo
             return ((MemberExpression) op).Member.Name;
         }
 
-        
         public static Expression<T> Compose<T>(this Expression<T> first, Expression<T> second,
             Func<Expression, Expression, Expression> merge)
         {
@@ -105,7 +101,6 @@ namespace Voodoo
             return Expression.Lambda<T>(merge(first.Body, secondBody), first.Parameters);
         }
 
-        
         public static Expression<Func<T, bool>> AndAlso<T>(this Expression<Func<T, bool>> first,
             Expression<Func<T, bool>> second)
         {
@@ -114,7 +109,6 @@ namespace Voodoo
             return first.Compose(second, Expression.And);
         }
 
-        
         public static Expression<Func<T, bool>> OrElse<T>(this Expression<Func<T, bool>> first,
             Expression<Func<T, bool>> second)
         {

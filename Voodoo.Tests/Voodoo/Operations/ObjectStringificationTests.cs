@@ -1,15 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Diagnostics;
-using System.IO;
 using System.Linq;
-using Xunit;
 using Voodoo.Operations;
 using Voodoo.Tests.TestClasses;
+using Xunit;
 
 namespace Voodoo.Tests.Voodoo.Operations
 {
-    
     public class ObjectStringificationTests
     {
         [Fact]
@@ -21,6 +18,7 @@ namespace Voodoo.Tests.Voodoo.Operations
             Assert.Equal(true, response.IsOk);
             Debug.WriteLine(response.Text);
         }
+
         [Fact]
         public void Execute_ClassWithCollection_DoesNotExceedMaximumItemsInGraph()
         {
@@ -35,7 +33,7 @@ namespace Voodoo.Tests.Voodoo.Operations
             var response = new ObjectStringificationQuery(request).Execute();
             Assert.Equal(null, response.Message);
             Assert.Equal(true, response.IsOk);
-            var rows = response.Text.Split((char)13);
+            var rows = response.Text.Split((char) 13);
             Assert.Equal(13, rows.Count());
             Debug.WriteLine(response.Text);
             VoodooGlobalConfiguration.LogMaximumNumberOfItemsInCollection = current;
@@ -44,21 +42,21 @@ namespace Voodoo.Tests.Voodoo.Operations
         public ClassToStringify GetValidRequest()
         {
             var response = new ClassToStringify
-                {
-                    Decimal = 1.1M,
-                    Items = new List<string> {"foo", "bar"},
-                    NestedLists = new List<List<string>>() {new List<string>() {"foo"}},
-                    Number = 7
-                };
+            {
+                Decimal = 1.1M,
+                Items = new List<string> {"foo", "bar"},
+                NestedLists = new List<List<string>> {new List<string> {"foo"}},
+                Number = 7
+            };
             response.NestedObject = response;
             response.AnotherNestedObject = new ClassToStringify
             {
                 Decimal = 2.2M,
                 Items = new List<string> {"goo", "goo", "gachoo"},
-                NestedLists = new List<List<string>>() {new List<string>() {"blue"}},
+                NestedLists = new List<List<string>> {new List<string> {"blue"}},
                 Number = 99
             };
-            
+
             response.AString = "String";
             response.AnObnoxiousObjectWhosePropertiesThrowExceptions = new TwitchyObject();
             return response;

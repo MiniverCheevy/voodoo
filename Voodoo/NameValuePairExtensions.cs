@@ -115,6 +115,7 @@ namespace Voodoo
             return ret;
         }
 
+#if !PCL
         public static IEnumerable<INameValuePair> AsEnumerable(this NameValueCollection nvc)
         {
             var result = new List<INameValuePair>();
@@ -124,5 +125,6 @@ namespace Voodoo
             }
             return result.AsEnumerable();
         }
+#endif
     }
 }

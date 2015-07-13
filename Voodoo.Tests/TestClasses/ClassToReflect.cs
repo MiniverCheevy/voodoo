@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Voodoo.Tests.TestClasses
 {
@@ -18,9 +15,9 @@ namespace Voodoo.Tests.TestClasses
         public DateTime DateAndTime { get; set; }
         public DateTime? NullableDateAndTime { get; set; }
         public TestEnum TestEnum { get; set; }
-        public Decimal Decimal { get; set; }
+        public decimal Decimal { get; set; }
 
-        public void Method(string @string, int @int, int? nullableInt, List<string> list )
+        public void Method(string @string, int @int, int? nullableInt, List<string> list)
         {
         }
     }

@@ -1,16 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Xunit;
 using Voodoo.Tests.TestClasses;
+using Xunit;
 
 namespace Voodoo.Tests.Voodoo
 {
-    
     public class ObjectifierTests
     {
+#if !PCL
         [Fact]
         public void ShallowCopy_Object_ObjectsAndScalarsAreTheSame()
         {
@@ -19,7 +15,8 @@ namespace Voodoo.Tests.Voodoo
             Assert.Equal(source.ComplexObject, target.ComplexObject);
             comparePrimitives(source, target);
         }
-#if !DNXCORE50
+#endif
+#if !DNXCORE50 && !PCL
         [Fact]
         public void DeepCopy_Object_ObjectsAreDifferentScalarsAreTheSame()
         {
@@ -73,6 +70,7 @@ namespace Voodoo.Tests.Voodoo
             var xml = Objectifyer.ToDataContractXml(source);         
         }
 #endif
+
         private static void comparePrimitives(ClassWithDate source, ClassWithDate target)
         {
             Assert.Equal(source.DateAndTime, target.DateAndTime);
@@ -90,17 +88,18 @@ namespace Voodoo.Tests.Voodoo
 
         public ClassWithDate GetSimpleClass()
         {
-            var response = new ClassWithDate()
+            var response = new ClassWithDate
             {
-                DateAndTime = DateTime.Now.AddDays(2),
+                DateAndTime = DateTime.Now.AddDays(2)
             };
             return response;
         }
+
         public ClassToReflect GetComplexClass()
         {
-            var response = new ClassToReflect()
+            var response = new ClassToReflect
             {
-                ComplexObject = new ClassWithDate() { DateAndTime = DateTime.Now },
+                ComplexObject = new ClassWithDate {DateAndTime = DateTime.Now},
                 DateAndTime = DateTime.Now.AddDays(1),
                 Int = 32,
                 NullableDateAndTime = null,
