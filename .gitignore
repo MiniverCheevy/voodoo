@@ -12,6 +12,7 @@ Thumbs.db
 *.so
 *.nupkg
 
+_NCrunch*
 _ReSharper.*
 *.user
 *.vspscc

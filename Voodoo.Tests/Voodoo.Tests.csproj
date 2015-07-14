@@ -73,6 +73,15 @@
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release PCL|AnyCPU'">
+    <OutputPath>bin\Release PCL\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Build" />
     <Reference Include="Microsoft.Build.Engine" />
@@ -187,6 +196,7 @@
     <Compile Include="Voodoo\Validation\DataAnnotationsValidatorTests.cs" />
     <Compile Include="Voodoo\Validation\EnumIsRequiredTests.cs" />
     <Compile Include="Voodoo\Validation\GreaterThanZeroIntegerIsRequiredTests.cs" />
+    <Compile Include="Voodoo\Validation\NamespaceStub.cs" />
     <Compile Include="Voodoo\Validation\RequiredDateTimeTests.cs" />
     <Compile Include="Voodoo\Validation\RequiredGuidTests.cs" />
     <Compile Include="Voodoo\Validation\RequiredIntTests.cs" />
