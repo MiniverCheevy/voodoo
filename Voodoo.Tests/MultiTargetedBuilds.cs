@@ -102,7 +102,7 @@ namespace Voodoo.Tests
                                   string.Join(",", properties),
                                   Environment.CurrentDirectory);
             ProjectCollection.GlobalProjectCollection.UnloadAllProjects();
-            var project = new Project(msbuildFile.FullName, properties, "4.0");
+            var project = new Project(msbuildFile.FullName, properties, "14.0");
 
             return project.Build(targets, new ILogger[] { new BuildLogger() });
         }

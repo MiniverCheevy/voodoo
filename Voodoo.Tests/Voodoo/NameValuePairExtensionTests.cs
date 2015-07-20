@@ -143,7 +143,7 @@ namespace Voodoo.Tests.Voodoo
             Assert.Equal(true, list.ContainsValue("3"));
         }
 
-#if (!PCL)
+#if (!PCL  && !DNXCORE50)
         [Fact]
         public void AsEnumerable_NameValueCollection_ReturnsList()
         {

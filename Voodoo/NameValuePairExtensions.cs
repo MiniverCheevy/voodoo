@@ -115,7 +115,7 @@ namespace Voodoo
             return ret;
         }
 
-#if !PCL
+#if !PCL && !DNXCORE50
         public static IEnumerable<INameValuePair> AsEnumerable(this NameValueCollection nvc)
         {
             var result = new List<INameValuePair>();
