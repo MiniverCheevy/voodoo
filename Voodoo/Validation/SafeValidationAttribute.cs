@@ -1,7 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿#if(!PCL)
+using System;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
+
+
 
 namespace Voodoo.Validation
 {
@@ -22,3 +23,5 @@ namespace Voodoo.Validation
         public abstract bool IsValueValid(object value);
     }
 }
+
+#endif

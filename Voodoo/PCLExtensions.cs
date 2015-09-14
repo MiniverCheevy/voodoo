@@ -27,10 +27,12 @@ namespace Voodoo
         DateTime = 16,
         String = 18
     }
+
 #endif
+#if (PCL)
     public static class PCLExtensions
     {
-#if (PCL)
+
         public static object ParseEnum(this Type enumType, string value)
         {
             if (enumType == null)
@@ -119,7 +121,7 @@ namespace Voodoo
             return type.GetTypeInfo().ImplementedInterfaces.ToArray();
         }
 
-#endif
-    }
 
+}
+#endif
 }

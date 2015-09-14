@@ -1,13 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Voodoo.Infrastructure;
+﻿using Voodoo.Infrastructure;
+
+#if (!PCL)
 
 namespace Voodoo.Validation.Infrastructure
 {
     public class DataAnnotationsValidatorWithGenericMessage : IValidator
     {
         public bool IsValid { get; protected set; }
+
         public void Validate(object request)
         {
             IsValid = false;
@@ -21,9 +21,11 @@ namespace Voodoo.Validation.Infrastructure
                 IsValid = true;
                 return;
             }
-            string message = Strings.Validation.validationErrorsOccurred;
+            var message = Strings.Validation.validationErrorsOccurred;
             var exception = new LogicException(message) {Details = validator.ValidationResultsAsNameValuePair};
             throw exception;
         }
     }
 }
+
+#endif

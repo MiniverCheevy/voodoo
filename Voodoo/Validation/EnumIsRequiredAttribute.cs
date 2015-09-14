@@ -1,7 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
+
+#if (!PCL)
 
 namespace Voodoo.Validation
 {
@@ -31,3 +31,5 @@ namespace Voodoo.Validation
         }
     }
 }
+
+#endif

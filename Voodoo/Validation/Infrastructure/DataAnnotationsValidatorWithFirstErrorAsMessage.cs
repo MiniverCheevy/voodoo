@@ -1,7 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using Voodoo.Infrastructure;
+
+#if (!PCL)
 
 namespace Voodoo.Validation.Infrastructure
 {
@@ -9,6 +9,7 @@ namespace Voodoo.Validation.Infrastructure
 
     {
         public bool IsValid { get; protected set; }
+
         public void Validate(object request)
         {
             IsValid = false;
@@ -19,7 +20,7 @@ namespace Voodoo.Validation.Infrastructure
             if (validator.IsValid)
             {
                 IsValid = true;
-                return;                
+                return;
             }
             var firstMessage = validator.ValidationResultsAsNameValuePair.First();
             var exception = new LogicException(firstMessage.Value);
@@ -28,3 +29,5 @@ namespace Voodoo.Validation.Infrastructure
         }
     }
 }
+
+#endif

@@ -4,6 +4,9 @@ using Voodoo.Logging;
 
 namespace Voodoo.Logging
 {
+
+#if !DNXCORE50
+
     public class DebugLogger : ILogger
     {
         public void Log(string message)
@@ -15,5 +18,7 @@ namespace Voodoo.Logging
         {
             Debug.WriteLine(ex.ToString());
         }
+
     }
+#endif
 }

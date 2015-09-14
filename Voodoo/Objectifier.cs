@@ -1,10 +1,11 @@
 ﻿using System;
 using System.IO;
 using System.Reflection;
-using System.Runtime.Serialization;
+
 using System.Text;
 using Voodoo.Infrastructure.Notations;
 #if !DNXCORE50 && !PCL
+using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Xml;
 using System.Xml.Serialization;
@@ -23,22 +24,7 @@ namespace Voodoo
             var clone = (TObject)info.Invoke(o, new object[] { });
             return clone;
     }
-#endif
-#if !DNXCORE50 && !PCL
-        [FullDotNetOnly]
-        public static TObject DeepCopy<TObject>(TObject o) where TObject : class
-        {
-            using (var stream = new MemoryStream())
-            {
-                var formatter = new BinaryFormatter();
-                formatter.Serialize(stream, o);
-                stream.Position = 0;
-                return (TObject)formatter.Deserialize(stream);
-            }
-        }
-#endif
-
-        public static string Base64Encode(string data)
+            public static string Base64Encode(string data)
         {
             var byteData = Encoding.UTF8.GetBytes(data);
             var encodedData = Convert.ToBase64String(byteData);
@@ -57,6 +43,22 @@ namespace Voodoo
             var result = new string(decodedChar);
             return result;
         }
+#endif
+#if !DNXCORE50 && !PCL
+        [FullDotNetOnly]
+        public static TObject DeepCopy<TObject>(TObject o) where TObject : class
+        {
+            using (var stream = new MemoryStream())
+            {
+                var formatter = new BinaryFormatter();
+                formatter.Serialize(stream, o);
+                stream.Position = 0;
+                return (TObject)formatter.Deserialize(stream);
+            }
+        }
+#endif
+
+
 
 #if !DNXCORE50 && !PCL
         [FullDotNetOnly]

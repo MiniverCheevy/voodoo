@@ -6,7 +6,7 @@ using System.Linq;
 using System.Reflection;
 using Voodoo.Infrastructure;
 using Voodoo.Infrastructure.Notations;
-
+#if (!PCL)
 namespace Voodoo.Logging
 {
     public class FallbackLogger : ILogger
@@ -129,22 +129,28 @@ namespace Voodoo.Logging
                 appName = VoodooGlobalConfiguration.ApplicationName;
                 if (string.IsNullOrEmpty(appName))
                 {
-#if !DNXCORE50
+#if !DNXCORE50 && !PCL
                     var assembly = Assembly.GetCallingAssembly() == null
                         ? AppDomain.CurrentDomain.FriendlyName
                         : Assembly.GetCallingAssembly().FullName;
                     appName = assembly.Split(',')[0];
                     appName="DotNetCoreApp";
 #endif
-#if !DNXCORE50
+#if DNXCORE50
                      appName="Unnamed DotNetCoreApp";
 #endif
+#if PCL
+                     appName="Unnamed PortableApp";
+#endif
+
                 }
             }
             catch
             {
+                appName = "Unname App";
             }
             return appName;
         }
     }
 }
+#endif

@@ -1,4 +1,5 @@
-﻿#if (PCL)
+﻿
+#if (PCL)
 using Voodoo.PCL.Validation.Infrastructure;
 #endif
 
@@ -19,7 +20,7 @@ namespace Voodoo.Validation.Infrastructure
 #if PCL
             return new EmptyValidator();
 #else
-            return     new DataAnnotationsValidatorWithGenericMessage();
+            return new DataAnnotationsValidatorWithGenericMessage();
 #endif
         }
 

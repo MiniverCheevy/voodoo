@@ -9,8 +9,10 @@ using System.Reflection;
 //using Microsoft.AspNet.Http;
 #endif
 
+#if (!PCL)
 namespace Voodoo
 {
+
     public static class IoNic
     {
         public static bool IsWebHosted
@@ -178,3 +180,4 @@ namespace Voodoo
         }
     }
 }
+#endif

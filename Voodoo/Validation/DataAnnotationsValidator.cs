@@ -1,4 +1,4 @@
-﻿using System;
+﻿#if (!PCL)
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -46,3 +46,5 @@ namespace Voodoo.Validation
         }
     }
 }
+
+#endif
