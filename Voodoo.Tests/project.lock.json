@@ -1586,6 +1586,9 @@
         "runtime": {
           "lib/dotnet/xunit.runner.utility.dotnet.dll": {}
         }
+      },
+      "xunit.runner.visualstudio/2.1.0-rc1-build1124": {
+        "type": "package"
       }
     }
   },
@@ -3688,13 +3691,46 @@
         "xunit.runner.utility.2.1.0-rc1-build3168.nupkg.sha512",
         "xunit.runner.utility.nuspec"
       ]
+    },
+    "xunit.runner.visualstudio/2.1.0-rc1-build1124": {
+      "type": "package",
+      "sha512": "4m6iGj99F92STIfhg/h+t3sWL42JE29UfCAQShdxQxSz7CpTxZScoxlDpanmroYaMD0riTFTZ7fr9Brsd0ABig==",
+      "files": [
+        "build/_common/xunit.abstractions.dll",
+        "build/_common/xunit.runner.utility.desktop.dll",
+        "build/_common/xunit.runner.utility.dotnet.dll",
+        "build/_common/xunit.runner.visualstudio.testadapter.dll",
+        "build/monoandroid/_._",
+        "build/monotouch/_._",
+        "build/net20/xunit.runner.visualstudio.props",
+        "build/portable-net45+win8+wp8+wpa81/xunit.runner.visualstudio.props",
+        "build/uap10.0/xunit.runner.visualstudio.props",
+        "build/uap10.0/xunit.runner.visualstudio.targets",
+        "build/uap10.0/xunit.runner.visualstudio.uwp.dll",
+        "build/uap10.0/xunit.runner.visualstudio.uwp.pri",
+        "build/win8/_._",
+        "build/win81/xunit.runner.visualstudio.props",
+        "build/win81/xunit.runner.visualstudio.targets",
+        "build/win81/xunit.runner.visualstudio.win81.dll",
+        "build/win81/xunit.runner.visualstudio.win81.pri",
+        "build/wp8/_._",
+        "build/wpa81/xunit.runner.visualstudio.props",
+        "build/wpa81/xunit.runner.visualstudio.targets",
+        "build/wpa81/xunit.runner.visualstudio.wpa81.dll",
+        "build/wpa81/xunit.runner.visualstudio.wpa81.pri",
+        "build/xamarinios/_._",
+        "xunit.runner.visualstudio.2.1.0-rc1-build1124.nupkg",
+        "xunit.runner.visualstudio.2.1.0-rc1-build1124.nupkg.sha512",
+        "xunit.runner.visualstudio.nuspec"
+      ]
     }
   },
   "projectFileDependencyGroups": {
     "": [
       "Voodoo >= 2.0.5",
       "xunit >= 2.1.0-rc1-build3168",
-      "xunit.runner.dnx >= 2.1.0-beta5-build169"
+      "xunit.runner.dnx >= 2.1.0-beta5-build169",
+      "xunit.runner.visualstudio >= 2.1.0-rc1-build1124"
     ],
     "DNXCore,Version=v5.0": []
   }

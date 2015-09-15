@@ -14,12 +14,15 @@ namespace Voodoo.Tests.TestClasses
 
         protected override async Task Validate()
         {
-            throw new LogicException("Boom");
+            await Task.Run(() => { throw new LogicException("Boom"); });
         }
 
         protected override async Task<TestResponse> ProcessRequestAsync()
         {
-            response.ExecuteFinished = true;
+            await Task.Run(() =>
+            {
+                response.ExecuteFinished = true;
+            });
             return response;
         }
     }
