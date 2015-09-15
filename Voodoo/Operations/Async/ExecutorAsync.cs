@@ -39,7 +39,7 @@ namespace Voodoo.Operations.Async
 
         protected virtual async Task Validate()
         {
-            ValidationManager.Validate(request);
+            await Task.Run(()=>ValidationManager.Validate(request));
         }
 
         protected virtual void CustomErrorBehavior(Exception ex)

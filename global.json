@@ -1,6 +1,6 @@
 {
   "projects": [
-    "voodoo"
+    "voodoo","voodoo.tests"
   ],
   
   "sdk": {
