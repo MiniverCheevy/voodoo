@@ -1,5 +1,9 @@
 ﻿{
-  "version": "2.0.5",
+  "id": "Voodoo.Patterns",  
+  
+  "name" : "Voodoo.Patterns", 
+  "title": "Voodoo Patterns",
+  "version": "2.0.6",
   "description": "docs at http://minivercheevy.github.io/voodoo/",
   "authors": [ "Shawn Doucet" ],
   "tags": [ "cqrs utility extension" ],
@@ -7,34 +11,34 @@
   "licenseUrl": "http://opensource.org/licenses/MIT",
 
   "dependencies": {
-    
+
 
   },
 
   "frameworks": {
     "dnxcore50": {
       "dependencies": {
-        
-          "Microsoft.CSharp": "4.0.1-beta-23225",
-    "System.Collections.Specialized": "4.0.1-beta-23225",
-    "System.ComponentModel.Annotations": "4.0.10-beta-23019",
-    "System.ComponentModel.TypeConverter": "4.0.1-beta-23225",
-    "System.Diagnostics.Process": "4.0.0-beta-23225",
-    "System.IO.FileSystem": "4.0.1-beta-23225",
-    "System.Linq": "4.0.1-beta-23225",
-    "System.Linq.Expressions": "4.0.11-beta-23225",
-    "System.Linq.Queryable": "4.0.1-beta-23225",
-    "System.Reflection": "4.1.0-beta-23225",
-    "System.Runtime": "4.0.21-beta-23225",
-    "System.Runtime.Extensions": "4.0.11-beta-23225",
-    "System.Reflection.TypeExtensions": "4.0.1-beta-23225",
-    "System.Runtime.Serialization.Xml": "4.0.11-beta-23225",
-    "System.Runtime.Serialization.Primitives": "4.0.11-beta-23225",
-    "System.Text.RegularExpressions": "4.0.11-beta-23225",
-    "System.Text.Encoding.Extensions": "4.0.10-beta-23225",
+
+        "Microsoft.CSharp": "4.0.1-beta-23225",
+        "System.Collections.Specialized": "4.0.1-beta-23225",
+        "System.ComponentModel.Annotations": "4.0.10-beta-23019",
+        "System.ComponentModel.TypeConverter": "4.0.1-beta-23225",
+        "System.Diagnostics.Process": "4.0.0-beta-23225",
+        "System.IO.FileSystem": "4.0.1-beta-23225",
+        "System.Linq": "4.0.1-beta-23225",
+        "System.Linq.Expressions": "4.0.11-beta-23225",
+        "System.Linq.Queryable": "4.0.1-beta-23225",
+        "System.Reflection": "4.1.0-beta-23225",
+        "System.Runtime": "4.0.21-beta-23225",
+        "System.Runtime.Extensions": "4.0.11-beta-23225",
+        "System.Reflection.TypeExtensions": "4.0.1-beta-23225",
+        "System.Runtime.Serialization.Xml": "4.0.11-beta-23225",
+        "System.Runtime.Serialization.Primitives": "4.0.11-beta-23225",
+        "System.Text.RegularExpressions": "4.0.11-beta-23225",
+        "System.Text.Encoding.Extensions": "4.0.10-beta-23225",
         "System.Diagnostics.Debug": "4.0.10-beta-23019"
-        
- 
+
+
 
       },
       "compilationOptions": {
@@ -45,21 +49,21 @@
       "compilationOptions": {
         "define": [ "DNX40" ]
       },
-       "frameworkAssemblies": {
+      "frameworkAssemblies": {
         "System.Xml": "",
         "System.ComponentModel.DataAnnotations": "",
         "System.Runtime.Serialization": "",
         "System.Transactions": "",
         "System.Web": ""
-        
+
       }
     },
     "net45": {
       "compilationOptions": {
         "define": [ "DNX45" ]
       },
-       "frameworkAssemblies": {
-              "System.Xml": "",
+      "frameworkAssemblies": {
+        "System.Xml": "",
         "System.ComponentModel.DataAnnotations": "",
         "System.Runtime.Serialization": "",
         "System.Transactions": "",
@@ -71,8 +75,8 @@
       "compilationOptions": {
         "define": [ "DNX451" ]
       },
-       "frameworkAssemblies": {
-              "System.Xml": "",
+      "frameworkAssemblies": {
+        "System.Xml": "",
         "System.ComponentModel.DataAnnotations": "",
         "System.Runtime.Serialization": "",
         "System.Transactions": "",
@@ -84,8 +88,8 @@
       "compilationOptions": {
         "define": [ "DNX452" ]
       },
-       "frameworkAssemblies": {
-               "System.Xml": "",
+      "frameworkAssemblies": {
+        "System.Xml": "",
         "System.ComponentModel.DataAnnotations": "",
         "System.Runtime.Serialization": "",
         "System.Transactions": "",
@@ -97,8 +101,8 @@
       "compilationOptions": {
         "define": [ "DNX46" ]
       },
-       "frameworkAssemblies": {
-               "System.Xml": "",
+      "frameworkAssemblies": {
+        "System.Xml": "",
         "System.ComponentModel.DataAnnotations": "",
         "System.Runtime.Serialization": "",
         "System.Transactions": "",
@@ -122,7 +126,7 @@
         "System.Runtime.Extensions": "",
         "System.Threading": "",
         "System.Threading.Tasks": ""
-        
+
       },
       "compilationOptions": { "define": [ "PCL" ] }
     }
