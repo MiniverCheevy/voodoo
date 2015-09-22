@@ -17,6 +17,7 @@ namespace Voodoo.Tests.Voodoo.Operations
             Assert.Equal(null, response.Message);
             Assert.Equal(true, response.IsOk);
             Debug.WriteLine(response.Text);
+            Assert.True(!response.Text.Contains("SecretProperty"));
         }
 
         [Fact]

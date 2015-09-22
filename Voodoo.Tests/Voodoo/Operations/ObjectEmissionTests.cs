@@ -17,107 +17,10 @@ namespace Voodoo.Tests.Voodoo.Operations
             Assert.Equal(null, response.Message);
             Assert.Equal(true, response.IsOk);
             Debug.WriteLine(response.Text);
+            Assert.True(!response.Text.Contains("SecretProperty"));
         }
 
-        public void foo()
-        {
-            var request = new ClassToStringify
-            {
-                AString = "String",
-                Boolean = true,
-                Date = new DateTime(1970, 1, 1, 0, 0, 0),
-                Decimal = 1.1m,
-                NullableBoolean = false,
-                NullableInt = 7,
-                Number = 7,
-                TestEnum = TestEnum.Blue,
-                AnObnoxiousObjectWhosePropertiesThrowExceptions = new TwitchyObject(),
-                AnotherNestedObject = new ClassToStringify
-                {
-                    AString = null,
-                    Boolean = false,
-                    Date = new DateTime(1, 1, 1, 0, 0, 0),
-                    Decimal = 2.2m,
-                    NullableBoolean = null,
-                    NullableInt = null,
-                    Number = 99,
-                    TestEnum = 0,
-                    AnObnoxiousObjectWhosePropertiesThrowExceptions = null,
-                    AnotherNestedObject = null,
-                    NestedObject = null,
-                    NullObject = null,
-                    Items = new List<string>
-                    {
-                        "goo",
-                        "goo",
-                        "gachoo"
-                    },
-                    ListOfObjects = null,
-                    NestedLists = new List<List<string>>
-                    {
-                        new List<string>
-                        {
-                            "blue"
-                        }
-                    }
-                },
-                //NestedObject = new ClassToStringify() <-- bidirectional reference found
-                NullObject = null,
-                Items = new List<string>
-                {
-                    "foo",
-                    "bar"
-                },
-                ListOfObjects = new List<ClassToStringify>
-                {
-                    new ClassToStringify
-                    {
-                        AString = "First",
-                        Boolean = false,
-                        Date = new DateTime(2015, 6, 21, 7, 36, 891),
-                        Decimal = 0m,
-                        NullableBoolean = null,
-                        NullableInt = null,
-                        Number = 0,
-                        TestEnum = 0,
-                        AnObnoxiousObjectWhosePropertiesThrowExceptions = null,
-                        AnotherNestedObject = null,
-                        NestedObject = null,
-                        NullObject = null,
-                        Items = null,
-                        ListOfObjects = null,
-                        NestedLists = null
-                    },
-                    new ClassToStringify
-                    {
-                        AString = "Second",
-                        Boolean = false,
-                        Date = new DateTime(2014, 6, 21, 7, 36, 891),
-                        Decimal = 0m,
-                        NullableBoolean = null,
-                        NullableInt = null,
-                        Number = 0,
-                        TestEnum = 0,
-                        AnObnoxiousObjectWhosePropertiesThrowExceptions = null,
-                        AnotherNestedObject = null,
-                        NestedObject = null,
-                        NullObject = null,
-                        Items = null,
-                        ListOfObjects = null,
-                        NestedLists = null
-                    }
-                },
-                NestedLists = new List<List<string>>
-                {
-                    new List<string>
-                    {
-                        "foo"
-                    }
-                }
-            };
-            ;
-        }
-
+  
         public ClassToStringify GetValidRequest()
         {
             var request = new ClassToStringify

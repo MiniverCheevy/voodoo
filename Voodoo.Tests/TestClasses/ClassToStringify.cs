@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Voodoo.Infrastructure.Notations;
 
 namespace Voodoo.Tests.TestClasses
 {
@@ -20,5 +21,13 @@ namespace Voodoo.Tests.TestClasses
         public bool Boolean { get; set; }
         public bool? NullableBoolean { get; set; }
         public int? NullableInt { get; set; }
+
+        [Secret]
+        public string SecretProperty { get; set; }
+
+        public ClassToStringify()
+        {
+            SecretProperty = "Shhhh!";
+        }
     }
 }

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using Voodoo.Infrastructure.Notations;
 using Voodoo.Messages;
 
 namespace Voodoo.Operations
@@ -97,6 +98,9 @@ namespace Voodoo.Operations
                     continue;
 
                 var type = propertyInfo.PropertyType;
+                if (propertyInfo.GetCustomAttributes(typeof(SecretAttribute),false).Any())
+                    return;
+
                 object value = null;
                 try
                 {

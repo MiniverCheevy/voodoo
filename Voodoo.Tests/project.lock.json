@@ -3,6 +3,9 @@
   "version": 1,
   "targets": {
     "DNXCore,Version=v5.0": {
+      "coveralls.io/1.3.2": {
+        "type": "package"
+      },
       "Microsoft.CodeAnalysis.Analyzers/1.1.0-beta1-20150812-01": {
         "type": "package"
       },
@@ -274,6 +277,12 @@
         "runtime": {
           "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
         }
+      },
+      "OpenCover/4.5.3809-rc94": {
+        "type": "package"
+      },
+      "ReportGenerator/2.1.4.0": {
+        "type": "package"
       },
       "System.AppContext/4.0.1-beta-23225": {
         "type": "package",
@@ -1597,6 +1606,30 @@
       "type": "project",
       "path": "../Voodoo/project.json"
     },
+    "coveralls.io/1.3.2": {
+      "type": "package",
+      "sha512": "S+BZcps/FoVwIAYb6TK6Dw5Cid0YQJBpQlCUG3lozFWyBbxcQbStStKOlkTR9zybJiaiZTtvreJtLUpispTdKA==",
+      "files": [
+        "coveralls.io.1.3.2.nupkg",
+        "coveralls.io.1.3.2.nupkg.sha512",
+        "coveralls.io.nuspec",
+        "tools/CommandLine.dll",
+        "tools/CommandLine.xml",
+        "tools/Coveralls.dll",
+        "tools/coveralls.net.exe",
+        "tools/coveralls.net.exe.config",
+        "tools/coveralls.net.pdb",
+        "tools/Coveralls.pdb",
+        "tools/LibGit2Sharp.dll",
+        "tools/LibGit2Sharp.xml",
+        "tools/NativeBinaries/amd64/git2-e0902fb.dll",
+        "tools/NativeBinaries/amd64/git2-e0902fb.pdb",
+        "tools/NativeBinaries/x86/git2-e0902fb.dll",
+        "tools/NativeBinaries/x86/git2-e0902fb.pdb",
+        "tools/Newtonsoft.Json.dll",
+        "tools/Newtonsoft.Json.xml"
+      ]
+    },
     "Microsoft.CodeAnalysis.Analyzers/1.1.0-beta1-20150812-01": {
       "type": "package",
       "sha512": "lIhWRroF8XRQZ/czkqDjiEsXb3ZKUNPhKZTCN1gybgNvMJ0K4k+SnbCbCTA5Ag7WoB9tiC13gHhX8M4kGR4ZEQ==",
@@ -1875,6 +1908,74 @@
         "Newtonsoft.Json.7.0.1.nupkg.sha512",
         "Newtonsoft.Json.nuspec",
         "tools/install.ps1"
+      ]
+    },
+    "OpenCover/4.5.3809-rc94": {
+      "type": "package",
+      "sha512": "29ZLK+wVnufa5e2Y5Nhkk+D+oySkjipbPrS05N7w3TgWnluxEnNS6i8zpYecSrzTBS018Q6RzXR2FlhE26njgQ==",
+      "files": [
+        "Autofac.Configuration.dll",
+        "Autofac.dll",
+        "docs/ReleaseNotes.txt",
+        "docs/Usage.rtf",
+        "Gendarme.Framework.dll",
+        "Gendarme.Rules.Maintainability.dll",
+        "License.rtf",
+        "log4net.config",
+        "log4net.dll",
+        "Mono.Cecil.dll",
+        "Mono.Cecil.Mdb.dll",
+        "Mono.Cecil.Pdb.dll",
+        "MSBuild/OpenCover.MSBuild.dll",
+        "MSBuild/OpenCover.targets",
+        "OpenCover.4.5.3809-rc94.nupkg",
+        "OpenCover.4.5.3809-rc94.nupkg.sha512",
+        "OpenCover.Console.exe",
+        "OpenCover.Console.exe.config",
+        "OpenCover.Console.pdb",
+        "OpenCover.Extensions.dll",
+        "OpenCover.Extensions.pdb",
+        "OpenCover.Framework.dll",
+        "OpenCover.Framework.pdb",
+        "OpenCover.nuspec",
+        "readme.txt",
+        "Samples/x64/OpenCover.Simple.Target.exe",
+        "Samples/x64/OpenCover.Simple.Target.pdb",
+        "Samples/x86/OpenCover.Simple.Target.exe",
+        "Samples/x86/OpenCover.Simple.Target.pdb",
+        "SampleSln/.nuget/packages.config",
+        "SampleSln/Bom/Bom.csproj",
+        "SampleSln/Bom/BomManager.cs",
+        "SampleSln/Bom/Properties/AssemblyInfo.cs",
+        "SampleSln/BomSample.sln",
+        "SampleSln/BomTest/BomManagerTests.cs",
+        "SampleSln/BomTest/BomTest.csproj",
+        "SampleSln/BomTest/packages.config",
+        "SampleSln/BomTest/Properties/AssemblyInfo.cs",
+        "SampleSln/coverage.bat",
+        "SampleSln/packages/repositories.config",
+        "transform/simple_report.xslt",
+        "transform/transform.ps1",
+        "x64/OpenCover.Profiler.dll",
+        "x86/OpenCover.Profiler.dll"
+      ]
+    },
+    "ReportGenerator/2.1.4.0": {
+      "type": "package",
+      "sha512": "0CpMs3p5zlSy2MeyapHqePTOQkDvwNqmbfKkHkGeNaMwbJCcJVuOFb3jBmgTsuq7zqpwI+Mr9bl3ATdfLR5VIA==",
+      "files": [
+        "ICSharpCode.NRefactory.CSharp.dll",
+        "ICSharpCode.NRefactory.dll",
+        "LICENSE.txt",
+        "log4net.dll",
+        "Readme.txt",
+        "ReportGenerator.2.1.4.nupkg",
+        "ReportGenerator.2.1.4.nupkg.sha512",
+        "ReportGenerator.exe",
+        "ReportGenerator.nuspec",
+        "ReportGenerator.Reporting.dll",
+        "ReportGenerator.Reporting.XML",
+        "ReportGenerator.XML"
       ]
     },
     "System.AppContext/4.0.1-beta-23225": {
@@ -3730,7 +3831,10 @@
       "Voodoo >= 2.0.5",
       "xunit >= 2.1.0-rc1-build3168",
       "xunit.runner.dnx >= 2.1.0-beta5-build169",
-      "xunit.runner.visualstudio >= 2.1.0-rc1-build1124"
+      "xunit.runner.visualstudio >= 2.1.0-rc1-build1124",
+      "OpenCover >= 4.5.3809-rc94",
+      "coveralls.io >= 1.3.2.0",
+      "ReportGenerator >= 2.1.4.0"
     ],
     "DNXCore,Version=v5.0": []
   }

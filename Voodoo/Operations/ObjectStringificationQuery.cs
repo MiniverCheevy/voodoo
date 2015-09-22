@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using Voodoo.Infrastructure.Notations;
 using Voodoo.Messages;
 
 namespace Voodoo.Operations
@@ -108,6 +109,8 @@ namespace Voodoo.Operations
 
 
                         if (fieldInfo == null && propertyInfo == null)
+                            continue;
+                        if (propertyInfo != null && propertyInfo.GetCustomAttributes(typeof(SecretAttribute), false).Any())
                             continue;
 
                         var type = fieldInfo != null ? fieldInfo.FieldType : propertyInfo.PropertyType;
