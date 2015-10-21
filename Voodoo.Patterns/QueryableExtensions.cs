@@ -28,7 +28,11 @@ namespace Voodoo
         {
             return query.OrderByDynamic(string.Format("{0} {1}", sortExpression, Strings.SortDirection.Descending));
         }
-
+        public static IQueryable<TQueryResult> OrderBy<TQueryResult>(this IQueryable<TQueryResult> query,
+           string sortExpression) where TQueryResult : class
+        {
+            return query.OrderByDynamic(string.Format("{0} {1}", sortExpression, Strings.SortDirection.Ascending));
+        }
         public static PagedResponse<TObject> ToPagedResponse<TObject>(this IQueryable<TObject> source, IGridState paging)
             where TObject : class, new()
         {

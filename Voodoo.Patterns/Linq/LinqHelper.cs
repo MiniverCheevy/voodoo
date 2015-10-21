@@ -12,8 +12,8 @@ namespace Voodoo.Linq
     {
         public static IQueryable<T> OrderByDynamic<T>(this IQueryable<T> source, string ordering)
         {
-            if (source == null) throw new ArgumentNullException("source");
-            if (ordering == null) throw new ArgumentNullException("ordering");
+            if (source == null) throw new ArgumentNullException(nameof(source));
+            if (ordering == null) throw new ArgumentNullException(nameof(ordering));
             var parameters = new[] {Expression.Parameter(source.ElementType, "")};
             var orderings = ordering.Split(',');
             var methodAsc = "OrderBy";
@@ -25,7 +25,7 @@ namespace Voodoo.Linq
             {
                 var ascending = true;
                 var expr = o.Split(new[] {' '}, StringSplitOptions.RemoveEmptyEntries);
-                if (expr.Count() > 1 && expr[1].ToUpper() == "DESC")
+                if (expr.Count() > 1 && expr[1].ToUpper() == Strings.SortDirection.Descending)
                     ascending = false;
 
                 var sort = expr[0];
