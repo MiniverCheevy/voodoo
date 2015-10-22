@@ -1,134 +1,137 @@
-﻿{
-  "id": "Voodoo.Patterns",  
-  
-  "name" : "Voodoo.Patterns", 
-  "title": "Voodoo Patterns",
-  "version": "2.0.6",
-  "description": "docs at http://minivercheevy.github.io/voodoo/",
-  "authors": [ "Shawn Doucet" ],
-  "tags": [ "cqrs utility extension" ],
-  "projectUrl": "http://minivercheevy.github.io/voodoo/",
-  "licenseUrl": "http://opensource.org/licenses/MIT",
+{
+    "id": "Voodoo.Patterns",
 
-  "dependencies": {
+    "name": "Voodoo.Patterns",
+    "title": "Voodoo Patterns",
+    "version": "2.0.7",
+    "description": "docs at http://minivercheevy.github.io/voodoo/",
+    "authors": [ "Shawn Doucet" ],
+    "tags": [ "cqrs utility extension" ],
+    "projectUrl": "http://minivercheevy.github.io/voodoo/",
+    "licenseUrl": "http://opensource.org/licenses/MIT",
 
-
-  },
-
-  "frameworks": {
-    "dnxcore50": {
-      "dependencies": {
-
-        "Microsoft.CSharp": "4.0.1-beta-23225",
-        "System.Collections.Specialized": "4.0.1-beta-23225",
-        "System.ComponentModel.Annotations": "4.0.10-beta-23019",
-        "System.ComponentModel.TypeConverter": "4.0.1-beta-23225",
-        "System.Diagnostics.Process": "4.0.0-beta-23225",
-        "System.IO.FileSystem": "4.0.1-beta-23225",
-        "System.Linq": "4.0.1-beta-23225",
-        "System.Linq.Expressions": "4.0.11-beta-23225",
-        "System.Linq.Queryable": "4.0.1-beta-23225",
-        "System.Reflection": "4.1.0-beta-23225",
-        "System.Runtime": "4.0.21-beta-23225",
-        "System.Runtime.Extensions": "4.0.11-beta-23225",
-        "System.Reflection.TypeExtensions": "4.0.1-beta-23225",
-        "System.Runtime.Serialization.Xml": "4.0.11-beta-23225",
-        "System.Runtime.Serialization.Primitives": "4.0.11-beta-23225",
-        "System.Text.RegularExpressions": "4.0.11-beta-23225",
-        "System.Text.Encoding.Extensions": "4.0.10-beta-23225",
-        "System.Diagnostics.Debug": "4.0.10-beta-23019"
-
-
-
-      },
-      "compilationOptions": {
-        "define": [ "DNXCORE50" ]
-      }
-    },
-    "net40": {
-      "compilationOptions": {
-        "define": [ "DNX40" ]
-      },
-      "frameworkAssemblies": {
-        "System.Xml": "",
-        "System.ComponentModel.DataAnnotations": "",
-        "System.Runtime.Serialization": "",
-        "System.Transactions": "",
-        "System.Web": ""
-
-      }
-    },
-    "net45": {
-      "compilationOptions": {
-        "define": [ "DNX45" ]
-      },
-      "frameworkAssemblies": {
-        "System.Xml": "",
-        "System.ComponentModel.DataAnnotations": "",
-        "System.Runtime.Serialization": "",
-        "System.Transactions": "",
-        "System.Web": ""
-
-      }
-    },
-    "net451": {
-      "compilationOptions": {
-        "define": [ "DNX451" ]
-      },
-      "frameworkAssemblies": {
-        "System.Xml": "",
-        "System.ComponentModel.DataAnnotations": "",
-        "System.Runtime.Serialization": "",
-        "System.Transactions": "",
-        "System.Web": ""
-
-      }
-    },
-    "net452": {
-      "compilationOptions": {
-        "define": [ "DNX452" ]
-      },
-      "frameworkAssemblies": {
-        "System.Xml": "",
-        "System.ComponentModel.DataAnnotations": "",
-        "System.Runtime.Serialization": "",
-        "System.Transactions": "",
-        "System.Web": ""
-
-      }
-    },
-    "net46": {
-      "compilationOptions": {
-        "define": [ "DNX46" ]
-      },
-      "frameworkAssemblies": {
-        "System.Xml": "",
-        "System.ComponentModel.DataAnnotations": "",
-        "System.Runtime.Serialization": "",
-        "System.Transactions": "",
-        "System.Web": ""
-
-      }
+    "dependencies": {        
+      
     },
 
-    ".NETPortable,Version=v4.5,Profile=Profile78": {
-      "frameworkAssemblies": {
-        "System.Collections": "",
-        "System.Runtime": "",
-        "System.Linq": "",
-        "System.Linq.Expressions": "",
-        "System.Linq.Queryable": "",
-        "System.Text.RegularExpressions": "",
-        "System.Reflection": "",
-        "System.Reflection.Extensions": "",
-        "System.Diagnostics.Debug": "",
-        "System.ObjectModel": "",
-        "System.Runtime.Extensions": "",
-        "System.Threading": "",
-        "System.Threading.Tasks": ""
+    "frameworks": {
+        "dnxcore50": {
+            "dependencies": {
+              "Microsoft.CSharp": "4.0.1-beta-23409",
+              "System.Collections.Specialized": "4.0.1-beta-23409",
+              "System.ComponentModel.Annotations": "4.0.11-beta-23409",
+              "System.ComponentModel.TypeConverter": "4.0.1-beta-23409",
+                "System.Diagnostics.Process": "4.0.0-beta-23225",
+                "System.IO.FileSystem": "4.0.1-beta-23225",
+              "System.Linq": "4.0.1-beta-23409",
+              "System.Linq.Expressions": "4.0.11-beta-23409",
+              "System.Linq.Queryable": "4.0.1-beta-23409",
+              "System.Reflection": "4.1.0-beta-23409",
+              "System.Runtime": "4.0.21-beta-23409",
+                "System.Runtime.Extensions": "4.0.11-beta-23225",
+              "System.Reflection.TypeExtensions": "4.0.1-beta-23409",
+              "System.Runtime.Serialization.Xml": "4.0.11-beta-23409",
+              "System.Runtime.Serialization.Primitives": "4.0.11-beta-23409",
+              "System.Text.RegularExpressions": "4.0.11-beta-23409",
+                "System.Text.Encoding.Extensions": "4.0.10-beta-23225",
+                "System.Diagnostics.Debug": "4.0.10-beta-23019"
+            },
+            "compilationOptions": {
+                "define": [ "DNXCORE50" ]
+            }
+        },
+        "net40": {
+            "compilationOptions": {
+                "define": [ "DNX40" ]
+            },
+            "frameworkAssemblies": {
+                "System.Xml": "",
+                "System.ComponentModel.DataAnnotations": "",
+                "System.Runtime.Serialization": "",
+                "System.Transactions": "",
+                "System.Web": ""
 
-      },
-      "compilationOptions": { "define": [ "PCL" ] }
+            }
+        },
+        "net45": {
+            "compilationOptions": {
+                "define": [ "DNX45" ]
+            },
+          "frameworkAssemblies": {
+            "System.Xml": "",
+            "System.ComponentModel.DataAnnotations": "",
+            "System.Runtime.Serialization": "",
+            "System.Transactions": "",
+            "System.Web": ""
+          },
+          "dependencies": {
+            
+          }
+        },
+        "net451": {
+            "compilationOptions": {
+                "define": [ "DNX451" ]
+            },
+          "frameworkAssemblies": {
+            "System.Xml": "",
+            "System.ComponentModel.DataAnnotations": "",
+            "System.Runtime.Serialization": "",
+            "System.Transactions": "",
+            "System.Web": ""
+          },
+          "dependencies": {
+          
+          }
+        },
+        "net452": {
+            "compilationOptions": {
+                "define": [ "DNX452" ]
+            },
+          "frameworkAssemblies": {
+            "System.Xml": "",
+            "System.ComponentModel.DataAnnotations": "",
+            "System.Runtime.Serialization": "",
+            "System.Transactions": "",
+            "System.Web": ""
+          },
+          "dependencies": {
+            
+          }
+        },
+        "net46": {
+            "compilationOptions": {
+                "define": [ "DNX46" ]
+            },
+          "frameworkAssemblies": {
+            "System.Xml": "",
+            "System.ComponentModel.DataAnnotations": "",
+            "System.Runtime.Serialization": "",
+            "System.Transactions": "",
+            "System.Web": ""
+          },
+          "dependencies": {
+           
+          }
+        },
+
+        ".NETPortable,Version=v4.5,Profile=Profile78": {
+            "frameworkAssemblies": {
+                "System.Collections": "",
+                "System.Runtime": "",
+                "System.Linq": "",
+                "System.Linq.Expressions": "",
+                "System.Linq.Queryable": "",
+                "System.Text.RegularExpressions": "",
+                "System.Reflection": "",
+                "System.Reflection.Extensions": "",
+                "System.Diagnostics.Debug": "",
+                "System.ObjectModel": "",
+                "System.Runtime.Extensions": "",
+                "System.Threading": "",
+                "System.Threading.Tasks": ""
+
+            },
+            "compilationOptions": { "define": [ "PCL" ] }
+        }
     }
-  }
 }
