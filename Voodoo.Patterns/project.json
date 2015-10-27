@@ -13,7 +13,10 @@
     "dependencies": {        
       
     },
-
+  "commands": {
+    "test": "xunit.runner.dnx -xml -testresults.xml",
+    "publish" : "dnu pack"
+  },
     "frameworks": {
         "dnxcore50": {
             "dependencies": {
