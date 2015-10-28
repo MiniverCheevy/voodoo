@@ -6,7 +6,7 @@
       "coveralls.io/1.3.2": {
         "type": "package"
       },
-      "Microsoft.CSharp/4.0.0": {
+      "Microsoft.CSharp/4.0.1-beta-23409": {
         "type": "package",
         "dependencies": {
           "System.Collections": "4.0.10",
@@ -1262,7 +1262,7 @@
       "coveralls.io/1.3.2": {
         "type": "package"
       },
-      "Microsoft.CSharp/4.0.0": {
+      "Microsoft.CSharp/4.0.1-beta-23409": {
         "type": "package",
         "dependencies": {
           "System.Collections": "4.0.10",
@@ -2772,7 +2772,7 @@
       "coveralls.io/1.3.2": {
         "type": "package"
       },
-      "Microsoft.CSharp/4.0.0": {
+      "Microsoft.CSharp/4.0.1-beta-23409": {
         "type": "package",
         "dependencies": {
           "System.Collections": "4.0.10",
@@ -4308,40 +4308,40 @@
         "tools/Newtonsoft.Json.xml"
       ]
     },
-    "Microsoft.CSharp/4.0.0": {
+    "Microsoft.CSharp/4.0.1-beta-23409": {
       "type": "package",
       "serviceable": true,
-      "sha512": "oWqeKUxHXdK6dL2CFjgMcaBISbkk+AqEg+yvJHE4DElNzS4QaTsCflgkkqZwVlWby1Dg9zo9n+iCAMFefFdJ/A==",
+      "sha512": "I1jsSsyK89VfNebrnx2eiBD5YT6zp+DcX2v6AxZ/IosS38QYmA9YKVmssMd5yhRkXwr1f8MfgZTxF1Cli90JEQ==",
       "files": [
+        "lib/dotnet/de/Microsoft.CSharp.xml",
+        "lib/dotnet/es/Microsoft.CSharp.xml",
+        "lib/dotnet/fr/Microsoft.CSharp.xml",
+        "lib/dotnet/it/Microsoft.CSharp.xml",
+        "lib/dotnet/ja/Microsoft.CSharp.xml",
+        "lib/dotnet/ko/Microsoft.CSharp.xml",
         "lib/dotnet/Microsoft.CSharp.dll",
+        "lib/dotnet/Microsoft.CSharp.xml",
+        "lib/dotnet/ru/Microsoft.CSharp.xml",
+        "lib/dotnet/zh-hans/Microsoft.CSharp.xml",
+        "lib/dotnet/zh-hant/Microsoft.CSharp.xml",
         "lib/MonoAndroid10/_._",
         "lib/MonoTouch10/_._",
         "lib/net45/_._",
         "lib/netcore50/Microsoft.CSharp.dll",
+        "lib/netcore50/Microsoft.CSharp.xml",
         "lib/win8/_._",
         "lib/wp80/_._",
         "lib/wpa81/_._",
         "lib/xamarinios10/_._",
         "lib/xamarinmac20/_._",
-        "Microsoft.CSharp.4.0.0.nupkg",
-        "Microsoft.CSharp.4.0.0.nupkg.sha512",
+        "Microsoft.CSharp.4.0.1-beta-23409.nupkg",
+        "Microsoft.CSharp.4.0.1-beta-23409.nupkg.sha512",
         "Microsoft.CSharp.nuspec",
-        "ref/dotnet/de/Microsoft.CSharp.xml",
-        "ref/dotnet/es/Microsoft.CSharp.xml",
-        "ref/dotnet/fr/Microsoft.CSharp.xml",
-        "ref/dotnet/it/Microsoft.CSharp.xml",
-        "ref/dotnet/ja/Microsoft.CSharp.xml",
-        "ref/dotnet/ko/Microsoft.CSharp.xml",
         "ref/dotnet/Microsoft.CSharp.dll",
-        "ref/dotnet/Microsoft.CSharp.xml",
-        "ref/dotnet/ru/Microsoft.CSharp.xml",
-        "ref/dotnet/zh-hans/Microsoft.CSharp.xml",
-        "ref/dotnet/zh-hant/Microsoft.CSharp.xml",
         "ref/MonoAndroid10/_._",
         "ref/MonoTouch10/_._",
         "ref/net45/_._",
         "ref/netcore50/Microsoft.CSharp.dll",
-        "ref/netcore50/Microsoft.CSharp.xml",
         "ref/win8/_._",
         "ref/wp80/_._",
         "ref/wpa81/_._",
@@ -7107,14 +7107,14 @@
   },
   "projectFileDependencyGroups": {
     "": [
+      "coveralls.io >= 1.3.2",
+      "Microsoft.CSharp >= 4.0.1-beta-23409",
+      "OpenCover >= 4.5.3809-rc94",
+      "ReportGenerator >= 2.1.4",
+      "Voodoo.Patterns >= 2.0.7",
       "xunit >= 2.1.0",
       "xunit.runner.dnx >= 2.1.0-beta6-build191",
-      "xunit.runner.visualstudio >= 2.1.0",
-      "OpenCover >= 4.5.3809-rc94",
-      "coveralls.io >= 1.3.2",
-      "ReportGenerator >= 2.1.4",
-      "Voodoo.Patterns >= 2.0.5",
-      "Microsoft.CSharp >= 4.0.0"
+      "xunit.runner.visualstudio >= 2.1.0"
     ],
     "DNXCore,Version=v5.0": []
   }
