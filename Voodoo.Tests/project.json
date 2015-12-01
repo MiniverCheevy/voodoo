@@ -13,8 +13,8 @@
     "ReportGenerator": "2.1.4.0",
     "Voodoo.Patterns": "2.0.7",
     "xunit": "2.1.0",
-    "xunit.runner.dnx": "2.1.0-beta6-build191",
-    "xunit.runner.visualstudio": "2.1.0"
+    "xunit.runner.dnx": "2.1.0-rc1-build204"
+
   },
   "commands": {
     "test": "xunit.runner.dnx"
@@ -25,6 +25,23 @@
       "dependencies": {
 
       }
-    }
+    },
+     "dnx451": {
+            "compilationOptions": {
+                "define": [ "DNX451" ]
+            },
+          "frameworkAssemblies": {
+            "System.Xml": "",
+            "System.ComponentModel.DataAnnotations": "",
+            "System.Runtime.Serialization": "",
+            "System.Transactions": "",
+            "System.Web": "",
+            "System.Runtime": ""
+          },
+          "dependencies": {
+          
+          }
+        }
+
   }
 }

@@ -86,7 +86,9 @@ namespace Voodoo
 #if PCL
                 typeCode = typeof (T).GetTypeCode();
 #else
-                typeCode = ((IConvertible)default(T)).GetTypeCode();
+                var defaultValue = default(T);
+                if (defaultValue != null)
+                    typeCode = ((IConvertible)default(T)).GetTypeCode();
 #endif            
                 if (typeCode.HasValue && convertObject(value, typeCode.Value, out converted))
                     return true;

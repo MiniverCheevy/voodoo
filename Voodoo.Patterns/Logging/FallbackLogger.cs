@@ -53,7 +53,7 @@ namespace Voodoo.Logging
         [FullDotNetOnly]
         private static void handleFileWriteFailure(string actualError, Exception ex, string appName, string path)
         {
-//Handle max event log message size is 32766
+            //Handle max event log message size is 32766
 #if !DNXCORE50
             var failedToWriteMessage = "Fallback Logger Failed to write log file: " + path;
             var source = appName ?? "Application";
@@ -79,17 +79,19 @@ namespace Voodoo.Logging
                 EventLog.WriteEntry(source, eventSourceDoesNotExistMessage, EventLogEntryType.Warning);
             }
 
-
+            var actualMessage = string.Format("{0} {1}", actualError, ex);
+            if (actualMessage.Length > 62000)
+                actualMessage = actualMessage.Substring(0,62000);
             EventLog.WriteEntry(source, failedToWriteMessage, EventLogEntryType.Warning);
 
-            EventLog.WriteEntry(source, string.Format("{0} {1}", actualError, ex), EventLogEntryType.Error);
+            EventLog.WriteEntry(source, actualMessage, EventLogEntryType.Error);
 #endif
         }
 
         private static void deleteFileIfNeeded(string path)
         {
             if (File.Exists(path))
-            {
+            { 
                 var now = DateTime.Now;
                 var lastWrite = File.GetLastWriteTime(path);
                 if (lastWrite.Year == now.Year && lastWrite.Month == now.Month && lastWrite.Day == now.Day)
@@ -134,7 +136,7 @@ namespace Voodoo.Logging
                         ? AppDomain.CurrentDomain.FriendlyName
                         : Assembly.GetCallingAssembly().FullName;
                     appName = assembly.Split(',')[0];
-                    appName="DotNetCoreApp";
+                    appName="Unname App";
 #endif
 #if DNXCORE50
                      appName="Unnamed DotNetCoreApp";

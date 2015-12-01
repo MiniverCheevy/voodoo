@@ -10,6 +10,24 @@ namespace Voodoo.Linq
     /// </summary>
     public static class LinqHelper
     {
+        private static  MemberExpression GetNestedExpressionProperty(Expression expression, string propertyName)
+        {
+            var parts = propertyName.Split('.');
+            var length = parts.Length;
+
+            return (length > 1)
+                ?
+                Expression.Property(
+                    GetNestedExpressionProperty(
+                        expression,
+                        parts.Take(length - 1)
+                            .Aggregate((a, i) => a + "." + i)
+                    ),
+                    parts[length - 1])
+                :
+                Expression.Property(expression, propertyName);
+        }
+
         public static IQueryable<T> OrderByDynamic<T>(this IQueryable<T> source, string ordering)
         {
             if (source == null) throw new ArgumentNullException(nameof(source));
@@ -27,17 +45,32 @@ namespace Voodoo.Linq
                 var expr = o.Split(new[] {' '}, StringSplitOptions.RemoveEmptyEntries);
                 if (expr.Count() > 1 && expr[1].ToUpper() == Strings.SortDirection.Descending)
                     ascending = false;
+                PropertyInfo property = null;
 
                 var sort = expr[0];
-                
-                var property = type.GetTypeInfo().GetDeclaredProperty(sort);
+                if (sort.Contains("."))
+                {
+                    var nestedProperties = sort.Split(new[] {'.'}, StringSplitOptions.RemoveEmptyEntries);
+                    var nestedType = type;
+                    foreach (var prop in nestedProperties)
+                    {
+                        property = nestedType.GetTypeInfo().GetDeclaredProperty(prop);
+                        if (property == null)
+                            throw new ArgumentException(string.Format("Could not find property {0} on type {1} for expression {2}", prop,
+                                nestedType.Name, ordering));
+                        nestedType = property.PropertyType;
+                    }
+                }
+                else
+                    property = type.GetTypeInfo().GetDeclaredProperty(sort);
+
                 if (property == null)
                     throw new Exception(
                         string.Format("Could not sort on property {0} on type {1}, check the case perhaps.", sort,
                             type.Name)
                         );
                 var parameter = Expression.Parameter(type, "p");
-                var propertyAccess = Expression.MakeMemberAccess(parameter, property);
+                var propertyAccess = GetNestedExpressionProperty(parameter, sort);
                 var orderByExp = Expression.Lambda(propertyAccess, parameter);
                 var method = ascending ? methodAsc : methodDesc;
                 query = Expression.Call(typeof (Queryable), method, new[] {type, property.PropertyType}, query,

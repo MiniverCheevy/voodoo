@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Voodoo.Linq;
 using Voodoo.Messages;
 using Voodoo.Tests.TestClasses;
 using Xunit;
@@ -137,6 +139,29 @@ namespace Voodoo.Tests.Voodoo.Linq
 
             Assert.Equal(1, pagedResult.State.TotalPages);
             Assert.Equal(4, pagedResult.State.TotalRecords);
+        }
+        [Fact]
+        public void SortOnNestedProperties_IsOk()
+        {
+            var list = GetComplexList();
+            var sorted = list.AsQueryable().OrderByDynamic("ComplexObject.DateAndTime");
+            Assert.True(sorted.First().ComplexObject.DateAndTime < sorted.Last().ComplexObject.DateAndTime);
+            Assert.True(sorted.Count() == 2);
+        }
+        [Fact]
+        public void SortOnNonExistantNestedProperties_IsNotOk()
+        {
+            Exception ex = Assert.Throws<ArgumentException>(() => GetComplexList().AsQueryable().OrderByDynamic("ComplexObject.DateTime"));
+        }
+
+        public  List<ClassToReflect> GetComplexList()
+        {
+            return new List<ClassToReflect>()
+            {
+                new ClassToReflect {ComplexObject = new ClassWithDate {DateAndTime = DateTime.Now.AddDays(2)}},
+                new ClassToReflect {ComplexObject = new ClassWithDate {DateAndTime = DateTime.Now.AddDays(1)}},
+
+            };
         }
 
         public List<Person> GetTestList()
