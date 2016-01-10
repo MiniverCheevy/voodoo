@@ -54,7 +54,11 @@ namespace Voodoo.Linq
                     var nestedType = type;
                     foreach (var prop in nestedProperties)
                     {
+#if (!PCL && !DNXCORE50)
+                        property = nestedType.GetTypeInfo().GetProperty(prop);
+#else
                         property = nestedType.GetTypeInfo().GetDeclaredProperty(prop);
+#endif                    
                         if (property == null)
                             throw new ArgumentException(string.Format("Could not find property {0} on type {1} for expression {2}", prop,
                                 nestedType.Name, ordering));
@@ -62,8 +66,11 @@ namespace Voodoo.Linq
                     }
                 }
                 else
-                    property = type.GetTypeInfo().GetDeclaredProperty(sort);
-
+#if (!PCL && !DNXCORE50)
+                    property = type.GetTypeInfo().GetProperty(sort);
+#else
+                property = type.GetTypeInfo().GetDeclaredProperty(sort);
+#endif 
                 if (property == null)
                     throw new Exception(
                         string.Format("Could not sort on property {0} on type {1}, check the case perhaps.", sort,

@@ -21,4 +21,9 @@ namespace Voodoo.Tests.TestClasses
         {
         }
     }
+
+    public class ClassWithAncestor : ClassToReflect
+    {
+    }
+
 }

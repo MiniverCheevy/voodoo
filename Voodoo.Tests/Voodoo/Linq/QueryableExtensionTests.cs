@@ -149,6 +149,14 @@ namespace Voodoo.Tests.Voodoo.Linq
             Assert.True(sorted.Count() == 2);
         }
         [Fact]
+        public void SortOnInheritedProperties_IsOk()
+        {          
+            var list = GetListWithInheritedObjects();
+            var sorted = list.AsQueryable().OrderByDynamic("ComplexObject.DateAndTime");
+            Assert.True(sorted.First().ComplexObject.DateAndTime < sorted.Last().ComplexObject.DateAndTime);
+            Assert.True(sorted.Count() == 2);
+        }
+        [Fact]
         public void SortOnNonExistantNestedProperties_IsNotOk()
         {
             Exception ex = Assert.Throws<ArgumentException>(() => GetComplexList().AsQueryable().OrderByDynamic("ComplexObject.DateTime"));
@@ -160,6 +168,15 @@ namespace Voodoo.Tests.Voodoo.Linq
             {
                 new ClassToReflect {ComplexObject = new ClassWithDate {DateAndTime = DateTime.Now.AddDays(2)}},
                 new ClassToReflect {ComplexObject = new ClassWithDate {DateAndTime = DateTime.Now.AddDays(1)}},
+
+            };
+        }
+        public List<ClassWithAncestor> GetListWithInheritedObjects()
+        {
+            return new List<ClassWithAncestor>()
+            {
+                new ClassWithAncestor {ComplexObject = new ClassWithDate {DateAndTime = DateTime.Now.AddDays(2)}},
+                new ClassWithAncestor {ComplexObject = new ClassWithDate {DateAndTime = DateTime.Now.AddDays(1)}},
 
             };
         }

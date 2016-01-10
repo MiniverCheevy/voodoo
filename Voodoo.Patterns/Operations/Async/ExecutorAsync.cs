@@ -21,7 +21,6 @@ namespace Voodoo.Operations.Async
         public virtual async Task<TResponse> ExecuteAsync()
         {
             response = new TResponse {IsOk = true};
-
             try
             {
                 await Validate();
@@ -30,8 +29,8 @@ namespace Voodoo.Operations.Async
             catch (Exception ex)
             {
                 response = BuildResponseWithException(ex);
+                
             }
-
             return response;
         }
 
