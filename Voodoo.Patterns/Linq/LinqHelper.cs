@@ -38,14 +38,14 @@ namespace Voodoo.Linq
             var methodDesc = "OrderByDescending";
             var type = typeof (T);
             var query = source.Expression;
-
+            PropertyInfo property = null;
             foreach (var o in orderings)
             {
                 var ascending = true;
                 var expr = o.Split(new[] {' '}, StringSplitOptions.RemoveEmptyEntries);
                 if (expr.Count() > 1 && expr[1].ToUpper() == Strings.SortDirection.Descending)
                     ascending = false;
-                PropertyInfo property = null;
+                
 
                 var sort = expr[0];
                 if (sort.Contains("."))
@@ -54,11 +54,20 @@ namespace Voodoo.Linq
                     var nestedType = type;
                     foreach (var prop in nestedProperties)
                     {
-#if (!PCL && !DNXCORE50)
-                        property = nestedType.GetTypeInfo().GetProperty(prop);
-#else
+                       
+#if (PCL)
                         property = nestedType.GetTypeInfo().GetDeclaredProperty(prop);
-#endif                    
+#else
+                         foreach (var propertyInfo in nestedType.GetProperties())
+                        {
+                            if (propertyInfo.Name == prop)
+                            {
+                                property=propertyInfo;
+                                break;
+                            }
+
+                        }
+#endif
                         if (property == null)
                             throw new ArgumentException(string.Format("Could not find property {0} on type {1} for expression {2}", prop,
                                 nestedType.Name, ordering));
@@ -66,11 +75,20 @@ namespace Voodoo.Linq
                     }
                 }
                 else
-#if (!PCL && !DNXCORE50)
-                    property = type.GetTypeInfo().GetProperty(sort);
+#if (PCL)
+                    property = type.GetTypeInfo().GetDeclaredProperty(sort);
 #else
-                property = type.GetTypeInfo().GetDeclaredProperty(sort);
-#endif 
+                    foreach (var propertyInfo in type.GetProperties())
+                    {
+                        if (propertyInfo.Name == sort)
+                        {
+                            property = propertyInfo;
+                            break;
+                        }
+
+                    }
+#endif
+
                 if (property == null)
                     throw new Exception(
                         string.Format("Could not sort on property {0} on type {1}, check the case perhaps.", sort,

@@ -1005,7 +1005,7 @@
           "lib/DNXCore50/System.Xml.XmlSerializer.dll": {}
         }
       },
-      "Voodoo.Patterns/2.0.8": {
+      "Voodoo.Patterns/2.0.9": {
         "type": "project",
         "framework": "DNXCore,Version=v5.0",
         "dependencies": {
@@ -1344,7 +1344,7 @@
       "ReportGenerator/2.1.4": {
         "type": "package"
       },
-      "Voodoo.Patterns/2.0.8": {
+      "Voodoo.Patterns/2.0.9": {
         "type": "project",
         "framework": ".NETFramework,Version=v4.5.1",
         "frameworkAssemblies": [
@@ -2781,7 +2781,7 @@
           "lib/DNXCore50/System.Xml.XmlSerializer.dll": {}
         }
       },
-      "Voodoo.Patterns/2.0.8": {
+      "Voodoo.Patterns/2.0.9": {
         "type": "project",
         "framework": "DNXCore,Version=v5.0",
         "dependencies": {
@@ -4284,7 +4284,7 @@
           "lib/DNXCore50/System.Xml.XmlSerializer.dll": {}
         }
       },
-      "Voodoo.Patterns/2.0.8": {
+      "Voodoo.Patterns/2.0.9": {
         "type": "project",
         "framework": "DNXCore,Version=v5.0",
         "dependencies": {
@@ -4623,7 +4623,7 @@
       "ReportGenerator/2.1.4": {
         "type": "package"
       },
-      "Voodoo.Patterns/2.0.8": {
+      "Voodoo.Patterns/2.0.9": {
         "type": "project",
         "framework": ".NETFramework,Version=v4.5.1",
         "frameworkAssemblies": [
@@ -4896,7 +4896,7 @@
       "ReportGenerator/2.1.4": {
         "type": "package"
       },
-      "Voodoo.Patterns/2.0.8": {
+      "Voodoo.Patterns/2.0.9": {
         "type": "project",
         "framework": ".NETFramework,Version=v4.5.1",
         "frameworkAssemblies": [
@@ -5019,7 +5019,7 @@
     }
   },
   "libraries": {
-    "Voodoo.Patterns/2.0.8": {
+    "Voodoo.Patterns/2.0.9": {
       "type": "project",
       "path": "../Voodoo.Patterns/project.json"
     },
@@ -8115,7 +8115,7 @@
       "Microsoft.CSharp >= 4.0.1-beta-23409",
       "OpenCover >= 4.5.3809-rc94",
       "ReportGenerator >= 2.1.4",
-      "Voodoo.Patterns >= 2.0.7",
+      "Voodoo.Patterns >= 2.1.0",
       "xunit >= 2.1.0",
       "xunit.runner.dnx >= 2.1.0-rc1-build204"
     ],

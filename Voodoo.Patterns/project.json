@@ -3,7 +3,7 @@
 
     "name": "Voodoo.Patterns",
     "title": "Voodoo Patterns",
-    "version": "2.0.9",
+    "version": "2.1.0",
     "description": "docs at http://minivercheevy.github.io/voodoo/",
     "authors": [ "Shawn Doucet" ],
     "tags": [ "cqrs utility extension" ],
