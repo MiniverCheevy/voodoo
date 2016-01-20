@@ -43,16 +43,17 @@ namespace Voodoo.Operations.Async
 
         protected virtual void CustomErrorBehavior(Exception ex)
         {
-            ExceptionHelper.HandleException(ex, GetType(), request);
-            if (VoodooGlobalConfiguration.RemoveExceptionFromResponseAfterLogging)
-                response.Exception = null;
+            
         }
 
         protected TResponse BuildResponseWithException(Exception ex)
         {
             response = new TResponse {IsOk = false};
-            response.SetExceptions(ex);
             CustomErrorBehavior(ex);
+            ExceptionHelper.HandleException(ex, GetType(), request);            
+            response.SetExceptions(ex);
+            if (VoodooGlobalConfiguration.RemoveExceptionFromResponseAfterLogging)
+                response.Exception = null;
             return response;
         }
     }

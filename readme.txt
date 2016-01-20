@@ -1,5 +1,5 @@
 dnu restore fixes everything
-dnu pack for nuget publish
+dnu pack  --configuration Release  for nuget publish
 
 
 dnvm install latest -r coreclr

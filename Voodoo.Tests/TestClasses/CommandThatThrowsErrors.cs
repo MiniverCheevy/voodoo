@@ -21,8 +21,6 @@ namespace Voodoo.Tests.TestClasses
         {
             base.CustomErrorBehavior(ex);
             response.TestingData = TestingResponse.CustomErrorBehavior;
-            Assert.NotNull(response.Exception);
-            LogManager.Log(response.Exception);
         }
     }
 }

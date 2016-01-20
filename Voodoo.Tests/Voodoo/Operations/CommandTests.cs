@@ -6,6 +6,7 @@ using Xunit;
 
 namespace Voodoo.Tests.Voodoo.Operations
 {
+    
     public class CommandTests
     {
         [Fact]
@@ -18,7 +19,7 @@ namespace Voodoo.Tests.Voodoo.Operations
             VoodooGlobalConfiguration.RemoveExceptionFromResponseAfterLogging = true;
         }
 
-        [Fact]
+        [Fact]        
         public void Execute_ExceptionIsThrown_ExceptionIsBubbled()
         {
             VoodooGlobalConfiguration.RemoveExceptionFromResponseAfterLogging = false;

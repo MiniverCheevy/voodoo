@@ -19,6 +19,9 @@ namespace Voodoo.Helpers
         {
             var mapper = VoodooGlobalConfiguration.ExceptionTranslator;
             response.IsOk = false;
+            response.Message = exception.Message;
+            response.Exception = exception;
+
             var logicException = exception as LogicException;
             if (logicException != null)
             {

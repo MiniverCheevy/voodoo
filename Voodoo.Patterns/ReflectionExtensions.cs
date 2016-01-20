@@ -51,13 +51,13 @@ namespace Voodoo
         {
             try
             {
-                return assembly.GetTypes();
+                return assembly.GetTypes().Where(c=>c != null).ToArray();
 
             }
             catch (ReflectionTypeLoadException rtl)
             {
                 LogManager.Log(string.Format("error loading types from {0}", assembly.FullName));
-                return rtl.Types;
+                return rtl.Types.Where(c => c != null).ToArray();
             }
         }
 #endif

@@ -1005,7 +1005,7 @@
           "lib/DNXCore50/System.Xml.XmlSerializer.dll": {}
         }
       },
-      "Voodoo.Patterns/2.1.0": {
+      "Voodoo.Patterns/2.1.1": {
         "type": "project",
         "framework": "DNXCore,Version=v5.0",
         "dependencies": {
@@ -1344,7 +1344,7 @@
       "ReportGenerator/2.1.4": {
         "type": "package"
       },
-      "Voodoo.Patterns/2.1.0": {
+      "Voodoo.Patterns/2.1.1": {
         "type": "project",
         "framework": ".NETFramework,Version=v4.5.1",
         "frameworkAssemblies": [
@@ -2781,7 +2781,7 @@
           "lib/DNXCore50/System.Xml.XmlSerializer.dll": {}
         }
       },
-      "Voodoo.Patterns/2.1.0": {
+      "Voodoo.Patterns/2.1.1": {
         "type": "project",
         "framework": "DNXCore,Version=v5.0",
         "dependencies": {
@@ -4284,7 +4284,7 @@
           "lib/DNXCore50/System.Xml.XmlSerializer.dll": {}
         }
       },
-      "Voodoo.Patterns/2.1.0": {
+      "Voodoo.Patterns/2.1.1": {
         "type": "project",
         "framework": "DNXCore,Version=v5.0",
         "dependencies": {
@@ -4623,7 +4623,7 @@
       "ReportGenerator/2.1.4": {
         "type": "package"
       },
-      "Voodoo.Patterns/2.1.0": {
+      "Voodoo.Patterns/2.1.1": {
         "type": "project",
         "framework": ".NETFramework,Version=v4.5.1",
         "frameworkAssemblies": [
@@ -4896,7 +4896,7 @@
       "ReportGenerator/2.1.4": {
         "type": "package"
       },
-      "Voodoo.Patterns/2.1.0": {
+      "Voodoo.Patterns/2.1.1": {
         "type": "project",
         "framework": ".NETFramework,Version=v4.5.1",
         "frameworkAssemblies": [
@@ -5019,7 +5019,7 @@
     }
   },
   "libraries": {
-    "Voodoo.Patterns/2.1.0": {
+    "Voodoo.Patterns/2.1.1": {
       "type": "project",
       "path": "../Voodoo.Patterns/project.json"
     },
@@ -5050,7 +5050,7 @@
     "Microsoft.CSharp/4.0.1-beta-23409": {
       "type": "package",
       "serviceable": true,
-      "sha512": "I1jsSsyK89VfNebrnx2eiBD5YT6zp+DcX2v6AxZ/IosS38QYmA9YKVmssMd5yhRkXwr1f8MfgZTxF1Cli90JEQ==",
+      "sha512": "GGOOJF47WzXZoka0JHCToQxzSguIy1UeXZywUjA1NPqvKAWVwbSbZ2VxyeIL3jyTV1BHEbBX8FPL6vweUON2aw==",
       "files": [
         "lib/dotnet/de/Microsoft.CSharp.xml",
         "lib/dotnet/es/Microsoft.CSharp.xml",
@@ -5447,7 +5447,7 @@
     "runtime.win7.System.Private.Uri/4.0.1-beta-23409": {
       "type": "package",
       "serviceable": true,
-      "sha512": "DuShsPp9slm2buJjxbBeKycZbs0nP0KWlm/ZGRDDFcfwgbAXp1ncd7e0dqHPSRl8P0Gg0aj8WYHIIKBJbIfbAg==",
+      "sha512": "9mcAednoAbDrL5t/GBPYFCfrxYaGxfvpkSkAt3LWQeCH0rp4PlJpOQNtIALcyCfG4lD+z0YBAXEQsZmMVs6C+Q==",
       "files": [
         "ref/dotnet/_._",
         "runtime.win7.System.Private.Uri.4.0.1-beta-23409.nupkg",
@@ -5655,7 +5655,7 @@
     "System.Collections.Specialized/4.0.1-beta-23409": {
       "type": "package",
       "serviceable": true,
-      "sha512": "gnWorYpPI9j6qHCMSHjGGanMCm6Ac02re8JQgHYcnwM1TLUs1PB/jULq9jcFDL6iuqz1jULjZazPVwgykRXcYQ==",
+      "sha512": "rlslS1wyCZQJX44BO68zGA4XxQR+hp17DsbQTOL1C10EGGjburqloSyHlkf9fWEU9okB5luOcQUkDxgok4iIgA==",
       "files": [
         "lib/dotnet/de/System.Collections.Specialized.xml",
         "lib/dotnet/es/System.Collections.Specialized.xml",
@@ -5729,7 +5729,7 @@
     "System.ComponentModel.Annotations/4.0.11-beta-23409": {
       "type": "package",
       "serviceable": true,
-      "sha512": "PBlpLDBkf2nUH/msGaSTFOHNMeJGFMAEfMYjC2DTHUoBpA2t3aygbRbIkT9TDr7ivYsXdidPdLKAWZYerpxZ0Q==",
+      "sha512": "LlfH0lHE3qdNiwpqZY9fN2wy25V+JObBTKRy9Lj0efbqPYrwxqS9CJZoGD1dz06xCtvwh3nLpVrJrhEYYSaAZw==",
       "files": [
         "lib/dotnet/de/System.ComponentModel.Annotations.xml",
         "lib/dotnet/es/System.ComponentModel.Annotations.xml",
@@ -5825,7 +5825,7 @@
     "System.ComponentModel.TypeConverter/4.0.1-beta-23409": {
       "type": "package",
       "serviceable": true,
-      "sha512": "xZeWPGIho3SC93yRXMwyR+BsFfQLdLuzDy42pySd44u7GAp4FZgxaduqGhNi64R0OM3XG5cRbcgPihNDEXbvmg==",
+      "sha512": "TBQngXy9JugrGm2btaGlRiXDS/pJtLKeMEp2YS0wk6OgPs1dhnEO3jjwEbx44pr3R5DQjrQg0CNvns8AQmJOcA==",
       "files": [
         "lib/dotnet/de/System.ComponentModel.TypeConverter.xml",
         "lib/dotnet/es/System.ComponentModel.TypeConverter.xml",
@@ -6558,7 +6558,7 @@
     "System.Linq.Queryable/4.0.1-beta-23409": {
       "type": "package",
       "serviceable": true,
-      "sha512": "EpdlrlJ3xKNQ2gqyFx2XxP655spL2wmlvIWuelrVs1rVsA5QB3m5LQvHdLlI0gNMgz8b3RETT0movuXPa/xrDw==",
+      "sha512": "OPR/L19WOPcykLFxxRsH1wCDBwFK04lyudvvOOLqVmmK68LgXx/VqjLPcCsalJxEq0XiRIcGXxxx6gPTgzpgaw==",
       "files": [
         "lib/dotnet/de/System.Linq.Queryable.xml",
         "lib/dotnet/es/System.Linq.Queryable.xml",
@@ -6768,7 +6768,7 @@
     "System.Private.DataContractSerialization/4.0.1-beta-23409": {
       "type": "package",
       "serviceable": true,
-      "sha512": "w+dhDXiIr5h30w0E433eNW2NDzmOTeyhtBri4fy6XyLWSnQ3Ldl6VIrdtpE0Fyh4yXiWJfoxIt5vUUNrbj1xwQ==",
+      "sha512": "VYmey0kK0rVX7DCpQJb9VH7nvviB1IqkgE9w6uCFvZ0VWJWcOYJDhZaqoLdg9t+xJePjqc6WxJwa2+dw8q2HuQ==",
       "files": [
         "lib/DNXCore50/System.Private.DataContractSerialization.dll",
         "lib/netcore50/System.Private.DataContractSerialization.dll",
@@ -6810,7 +6810,7 @@
     "System.Reflection/4.1.0-beta-23409": {
       "type": "package",
       "serviceable": true,
-      "sha512": "wsou1TLHRyTJ/wqznHoxIS/jPX2bW52HzbLos8l09svN0I6OytlUz7pWENAd23wt3Gjo2Gap80H2zN64YNgiBg==",
+      "sha512": "99kWOYZ+JsDAFUbmgprOUNZqFvKQPb8iOyWJuDNyo7dzhmtOmhMgGosGfNpiY9vAwq/q7fPLivzwEE2rdj+jkg==",
       "files": [
         "lib/DNXCore50/System.Reflection.dll",
         "lib/MonoAndroid10/_._",
@@ -6991,7 +6991,7 @@
     "System.Reflection.TypeExtensions/4.0.1-beta-23409": {
       "type": "package",
       "serviceable": true,
-      "sha512": "n8m144jjCwhN/qtLih35a2sO33fLWm1U3eg51KxqAcAjJcw0nq1zWie8FZognBTPv7BXdW/G8xGbbvDGFoJwZA==",
+      "sha512": "Q3FiCsJ/4s2nuyhOHAFhc0Te10LzPjv6QzVcywA3oWI1msfDg583RIXQ9YifDfOuig+wg+SX0p133qV71HVfyw==",
       "files": [
         "lib/DNXCore50/de/System.Reflection.TypeExtensions.xml",
         "lib/DNXCore50/es/System.Reflection.TypeExtensions.xml",
@@ -7346,7 +7346,7 @@
     "System.Runtime.Serialization.Primitives/4.0.11-beta-23409": {
       "type": "package",
       "serviceable": true,
-      "sha512": "AQywM01eG8EgYde/RRrJDVdHmOOI3KkgK9GEjLQqvTLsrWsamNHN/j7Pxwa3XX7klSSrfDpvTNfUl40855idVg==",
+      "sha512": "0JLo0iSVWtuVwNo51/ArH+WtTTriWs80roj32aBMDiFBtSMoNbBDQ5BxzqbbDjLw17mtLFHMBqIjeUVsGeRMlQ==",
       "files": [
         "lib/dotnet/de/System.Runtime.Serialization.Primitives.xml",
         "lib/dotnet/es/System.Runtime.Serialization.Primitives.xml",
@@ -7378,7 +7378,7 @@
     "System.Runtime.Serialization.Xml/4.0.11-beta-23409": {
       "type": "package",
       "serviceable": true,
-      "sha512": "gKg6nrHzj4aSj8zOatyTzOGI4+dNqhPLm6o0DOW+iW/sEwUTf5SOswxG1P7VFJcRUhyn7ZGw7LVEQ1ky9Ni0fA==",
+      "sha512": "QGM6tKR8EBSCv4ZGBYWxtfcTTkxBzcEm9gM5WH5/UHoaQwmcZ72uNBeJeM8SktEao3wRjA9PqxZ50OjGThP9+A==",
       "files": [
         "lib/DNXCore50/System.Runtime.Serialization.Xml.dll",
         "lib/MonoAndroid10/_._",
@@ -7545,7 +7545,7 @@
     "System.Text.RegularExpressions/4.0.11-beta-23409": {
       "type": "package",
       "serviceable": true,
-      "sha512": "Bp80XEvjed3pklTkyz6vla7coDXrTU5ijizcAwhfb3eTrtyJ79NboOpCn4DHhOcAWi3zXCkhpQT+3R7glmyHdQ==",
+      "sha512": "qWUv3QOCOhMNeDA00DYEWfibwvEtlRqAGgYljWCJYzt1NunCQCH9z7LBi7Yt8MmUXTlEZVzQoVlT3w1dTv8zbQ==",
       "files": [
         "lib/dotnet/de/System.Text.RegularExpressions.xml",
         "lib/dotnet/es/System.Text.RegularExpressions.xml",

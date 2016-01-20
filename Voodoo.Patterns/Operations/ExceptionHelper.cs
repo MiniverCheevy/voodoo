@@ -11,7 +11,7 @@ namespace Voodoo.Operations
         {
             if (!(ex is LogicException))
             {
-                LogManager.Logger.Log(ex);
+               
 
                 var builder = new StringBuilder();
                 builder.AppendFormat("Details for '{0}' exception:", ex.Message);
@@ -32,7 +32,12 @@ namespace Voodoo.Operations
                 }
                 builder.AppendLine(string.Empty);
                 builder.AppendLine("Assert.AreEqual(true, response.IsOk);");
-                LogManager.Log(builder.ToString());
+
+
+
+                ex.Data["Test"] = builder.ToString();
+
+                LogManager.Logger.Log(ex);
             }
         }
     }
