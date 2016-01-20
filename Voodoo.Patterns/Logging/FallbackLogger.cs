@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Text;
 using Voodoo.Infrastructure;
 using Voodoo.Infrastructure.Notations;
 #if (!PCL)
@@ -15,6 +16,15 @@ namespace Voodoo.Logging
 
         public void Log(Exception ex)
         {
+            var log = new StringBuilder();
+            log.Append(ex.ToString());
+            foreach (var item in ex.Data)
+            {
+                log.AppendLine("");
+                log.AppendLine(item.ToString());
+                log.AppendLine(ex.Data[item].ToString());
+            }
+
             Log(ex.ToString(), null);
         }
 
@@ -53,7 +63,7 @@ namespace Voodoo.Logging
         [FullDotNetOnly]
         private static void handleFileWriteFailure(string actualError, Exception ex, string appName, string path)
         {
-            //Handle max event log message size is 32766
+            
 #if !DNXCORE50
             var failedToWriteMessage = "Fallback Logger Failed to write log file: " + path;
             var source = appName ?? "Application";
@@ -80,8 +90,8 @@ namespace Voodoo.Logging
             }
 
             var actualMessage = string.Format("{0} {1}", actualError, ex);
-            if (actualMessage.Length > 62000)
-                actualMessage = actualMessage.Substring(0,62000);
+            if (actualMessage.Length > 32000)
+                actualMessage = actualMessage.Substring(0,32000);
             EventLog.WriteEntry(source, failedToWriteMessage, EventLogEntryType.Warning);
 
             EventLog.WriteEntry(source, actualMessage, EventLogEntryType.Error);

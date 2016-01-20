@@ -35,9 +35,14 @@ namespace Voodoo.Operations
 
 
 
-                ex.Data["Test"] = builder.ToString();
+                if (VoodooGlobalConfiguration.ErrorDetailLoggingMethodology == ErrorDetailLoggingMethodology.LogInExceptionData)
+                    ex.Data["Test"] = builder.ToString();
 
                 LogManager.Logger.Log(ex);
+
+                if (VoodooGlobalConfiguration.ErrorDetailLoggingMethodology == ErrorDetailLoggingMethodology.LogAsSecondException)
+                    LogManager.Logger.Log(builder.ToString());
+
             }
         }
     }

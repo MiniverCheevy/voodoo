@@ -14,8 +14,9 @@ namespace Voodoo
             ExceptionTranslator = new ExceptionTranslater();
             RegisterExceptionMapping<ReflectionTypeLoadException>(new ReflectionTypeLoaderExceptionTranslation());
             LogMaximumNumberOfItemsInCollection = 100;
+            ErrorDetailLoggingMethodology = ErrorDetailLoggingMethodology.LogAsSecondException;
         }
-
+        public static ErrorDetailLoggingMethodology ErrorDetailLoggingMethodology { get; set; }
         internal static ExceptionTranslater ExceptionTranslator { get; set; }
         public static int LogMaximumNumberOfItemsInCollection { get; set; }
         public static string LogFilePath { get; set; }
