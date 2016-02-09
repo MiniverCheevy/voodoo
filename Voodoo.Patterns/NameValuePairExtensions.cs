@@ -1,6 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
+using System.ComponentModel;
+#if !PCL
+using System.ComponentModel.DataAnnotations;
+#endif
 using System.Linq;
 using System.Reflection;
 using Voodoo.Messages;
@@ -41,14 +45,8 @@ namespace Voodoo
 
         public static string GetValue(this IEnumerable<INameValuePair> list, string name)
         {
-            if (list == null)
-                return null;
-
-            var result = list.FirstOrDefault(e => e.Name == name);
-            if (result != null)
-                return result.Value;
-
-            return null;
+	        var result = list?.FirstOrDefault(e => e.Name == name);
+	        return result?.Value;
         }
 
         public static bool ContainsValue(this IEnumerable<INameValuePair> list, string value)
@@ -102,7 +100,31 @@ namespace Voodoo
             return result;
         }
 
-        public static IList<INameValuePair> ToINameValuePairListWithUnfriendlyNames(this Type enumeration)
+	    public static string GetEnumFriendlyName<T>(object source)
+	    {
+			if (source == null || source.To<int>() == 0)
+				return string.Empty;
+#if !DNXCORE50 && !PCL
+			var type = typeof(T);
+			var memberInfos = type.GetMember(source.ToString());
+			if (memberInfos.Any())
+			{				
+				var display = memberInfos.First().GetCustomAttributes(typeof(DisplayAttribute),
+					false).FirstOrDefault();
+				if (display != null)
+					return ((DisplayAttribute) display).Name;
+
+				var description = memberInfos.First().GetCustomAttributes(typeof(DescriptionAttribute),
+					false).FirstOrDefault();
+				if (description != null)
+					return ((DescriptionAttribute)description).Description;
+
+			}
+#endif
+			return source.To<string>().ToFriendlyString();
+	    }
+
+	    public static IList<INameValuePair> ToINameValuePairListWithUnfriendlyNames(this Type enumeration)
         {
             if (enumeration.GetTypeInfo().BaseType != typeof (Enum))
             {

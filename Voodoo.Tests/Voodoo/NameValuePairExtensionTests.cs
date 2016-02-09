@@ -5,6 +5,7 @@ using Voodoo.Messages;
 using Voodoo.Tests.TestClasses;
 using Xunit;
 
+
 namespace Voodoo.Tests.Voodoo
 {
     public class NameValuePairExtensionTests
@@ -143,7 +144,20 @@ namespace Voodoo.Tests.Voodoo
             Assert.Equal(true, list.ContainsValue("3"));
         }
 
-#if (!PCL  && !DNXCORE50)
+#if (!PCL && !DNXCORE50)
+
+		public void ToINameValuePairList_ValueIsEnumWithDescriptionAndDisplayAttributes_ReturnesList()
+        {
+            var list = typeof (TestEnum).ToINameValuePairList();
+            Assert.Equal(3, list.Count);
+            Assert.Equal(true, list.ContainsName("Crimson"));
+            Assert.Equal(true, list.ContainsName("Azure"));
+            Assert.Equal(true, list.ContainsName("Red Orange Yellow"));
+            Assert.Equal(true, list.ContainsValue("1"));
+            Assert.Equal(true, list.ContainsValue("2"));
+            Assert.Equal(true, list.ContainsValue("3"));
+        }
+
         [Fact]
         public void AsEnumerable_NameValueCollection_ReturnsList()
         {
@@ -156,5 +170,5 @@ namespace Voodoo.Tests.Voodoo
             
         }
 #endif
-    }
+	}
 }

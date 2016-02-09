@@ -7,8 +7,8 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 
-[assembly: AssemblyVersion("2.1.12")]
-[assembly: AssemblyFileVersion("2.1.12")]
+[assembly: AssemblyVersion("2.1.13")]
+[assembly: AssemblyFileVersion("2.1.13")]
 [assembly: AssemblyTitle("Voodoo")]
 [assembly: AssemblyDescription("docs at http://minivercheevy.github.io/voodoo/")]
 [assembly: AssemblyConfiguration("")]
