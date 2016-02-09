@@ -95,12 +95,33 @@ namespace Voodoo
                     .Select(
                         e =>
                             (INameValuePair)
-                                new NameValuePair(e.ToFriendlyString(), ((int) Enum.Parse(enumeration, e)).ToString()))
+                                new NameValuePair(GetEnumFriendlyName(enumeration,Enum.Parse(enumeration, e)), ((int) Enum.Parse(enumeration, e)).ToString()))
                     .ToList();
             return result;
         }
+		public static string GetEnumFriendlyName(Type type,object source)
+		{
+			if (source == null || source.To<int>() == 0)
+				return string.Empty;
+#if !DNXCORE50 && !PCL
+			var memberInfos = type.GetMember(source.ToString());
+			if (memberInfos.Any())
+			{				
+				var display = memberInfos.First().GetCustomAttributes(typeof(DisplayAttribute),
+					false).FirstOrDefault();
+				if (display != null)
+					return ((DisplayAttribute) display).Name;
 
-	    public static string GetEnumFriendlyName<T>(object source)
+				var description = memberInfos.First().GetCustomAttributes(typeof(DescriptionAttribute),
+					false).FirstOrDefault();
+				if (description != null)
+					return ((DescriptionAttribute)description).Description;
+
+			}
+#endif
+			return source.To<string>().ToFriendlyString();
+		}
+		public static string GetEnumFriendlyName<T>(object source)
 	    {
 			if (source == null || source.To<int>() == 0)
 				return string.Empty;

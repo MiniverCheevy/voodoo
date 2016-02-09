@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using FluentAssertions;
+using System.Collections.Generic;
 using System.Collections.Specialized;
+using System.Diagnostics;
 using System.Linq;
 using Voodoo.Messages;
 using Voodoo.Tests.TestClasses;
@@ -122,7 +124,8 @@ namespace Voodoo.Tests.Voodoo
         public void ToINameValuePairList_ValueIsEnum_ReturnesList()
         {
             var list = typeof (TestEnum).ToINameValuePairList();
-            Assert.Equal(3, list.Count);
+			Debug.WriteLine(list.Count());
+			list.Count().Should().Be(3);
             Assert.Equal(true, list.ContainsName(TestEnum.Red.ToString()));
             Assert.Equal(true, list.ContainsName(TestEnum.Blue.ToString()));
             Assert.Equal(true, list.ContainsName("Red Orange Yellow"));
@@ -146,6 +149,7 @@ namespace Voodoo.Tests.Voodoo
 
 #if (!PCL && !DNXCORE50)
 
+		[Fact]
 		public void ToINameValuePairList_ValueIsEnumWithDescriptionAndDisplayAttributes_ReturnesList()
         {
             var list = typeof (TestEnum).ToINameValuePairList();
@@ -158,7 +162,16 @@ namespace Voodoo.Tests.Voodoo
             Assert.Equal(true, list.ContainsValue("3"));
         }
 
-        [Fact]
+		[Fact]
+		public void ToINameValuePairList_ValueIsEnumWithDescription_ReturnesList()
+		{
+			var list = typeof(MeasurementType).ToINameValuePairList();
+			Assert.Equal(3, list.Count);
+			Assert.Equal(true, list.ContainsName("Numerator/Denominator - Lowest Common Multiple"));
+			
+		}
+
+		[Fact]
         public void AsEnumerable_NameValueCollection_ReturnsList()
         {
             var collection = new NameValueCollection {{name, value}};

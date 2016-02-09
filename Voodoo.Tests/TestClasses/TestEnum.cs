@@ -12,7 +12,22 @@ namespace Voodoo.Tests.TestClasses
         RedOrangeYellow = 3
     }
 
+
+
 #if !DNXCORE50 && !PCL
+
+	public enum MeasurementType
+	{
+		[Description("Whole Number")]
+		WholeNumber = 1,
+		[Description("Numerator/Denominator - Lowest Common Multiple")]
+		NumDenomLCM = 2,
+		[Description("Numerator/Denominator - Sum Method")]
+		NumDenomSum = 3,
+		[Description("Numerator/Denominator - Sum Method multiplied by 100")]
+		NumDenomSumX100 = 4
+	}
+
 	public enum TestEnumWithDescriptionAndDisplay
 	{
 		[Description("Crimson")]
