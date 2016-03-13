@@ -11,7 +11,27 @@ namespace Voodoo
 {
     public static class ActionHandler
     {
-        public static T Execute<T>(Func<T> action) where T : IResponse, new()
+
+		public static Response Try<T>(Action action) 
+		{
+			var response = new Response();
+			try
+			{
+				 action();
+			}
+			catch (Exception ex)
+			{
+				
+				response.SetExceptions(ex);
+				LogManager.Log(ex);
+				if (VoodooGlobalConfiguration.RemoveExceptionFromResponseAfterLogging)
+					response.Exception = null;
+				return response;
+			}
+			return response;
+		}
+
+		public static T Execute<T>(Func<T> action) where T : IResponse, new()
         {
             var response = new T();
             try
