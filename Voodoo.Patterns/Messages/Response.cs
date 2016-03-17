@@ -39,8 +39,7 @@ namespace Voodoo.Messages
             else
                 Details.Add(new NameValuePair("", response.Message));
 
-            if (response.Details != null)
-                response.Details.ForEach(c => Details.Add(c));
+	        response.Details?.ForEach(c => Details.Add(c));
         }
     }
 }

@@ -11,7 +11,7 @@ namespace Voodoo.Operations
 {
     public class ObjectEmissionQuery : Query<object, TextResponse>
     {
-        private const int maxItemsInGraph = 1000;
+        private const int MaxItemsInGraph = 1000;
         private readonly List<int> hashes = new List<int>();
         private readonly StringBuilder result = new StringBuilder();
         private int currentItemsInGraph;
@@ -43,7 +43,7 @@ namespace Voodoo.Operations
 
         private string read(object element)
         {
-            if (currentItemsInGraph > maxItemsInGraph)
+            if (currentItemsInGraph > MaxItemsInGraph)
                 return string.Empty;
 
 

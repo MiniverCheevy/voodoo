@@ -2,13 +2,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Voodoo.Helpers;
 using Voodoo.Messages;
+using Voodoo.Validation;
 
 namespace Voodoo
 {
     public static class CollectionExtensions
     {
-        public static void AddIfNotNull<T>(this ICollection<T> collection, T item) where T : class
+		public static CollectionReconciler<TExisting, TModified, TKey> Reconcile<TExisting, TModified, TKey>(ICollection<TExisting> existing, ICollection<TModified> modified,
+            Func<TExisting, TKey> existingKey, Func<TModified, TKey> modifiedKey)
+	    {
+			return new CollectionReconciler<TExisting, TModified, TKey>(existing, modified, existingKey, modifiedKey);
+	    }
+
+	    public static void AddIfNotNull<T>(this ICollection<T> collection, T item) where T : class
         {
             if (item != null)
                 collection.Add(item);
@@ -16,7 +24,7 @@ namespace Voodoo
 
         public static void AddIfNotNullOrWhiteSpace(this ICollection<string> collection, object item)
         {
-            if (item != null && !string.IsNullOrWhiteSpace(item.ToString()))
+            if (!string.IsNullOrWhiteSpace(item?.ToString()))
                 collection.Add(item.ToString());
         }
 
@@ -27,7 +35,12 @@ namespace Voodoo
             return result;
         }
 
-        public static T[] ToArray<T>(this IEnumerable source)
+	    public static T[] ToArray<T>(this Array source)
+	    {
+		    return source.Cast<T>().ToArray();
+	    }
+		
+		public static T[] ToArray<T>(this IEnumerable source)
         {
             var response = new List<T>();
             foreach (var item in source)
@@ -40,7 +53,7 @@ namespace Voodoo
         public static IEnumerable<T> ForEach<T>(this IEnumerable<T> source, Action<T> action)
         {
             if (action == null)
-                throw new ArgumentNullException("action");
+                throw new ArgumentNullException(nameof(action));
 
             foreach (var item in source.ToArray())
                 action(item);

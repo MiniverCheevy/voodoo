@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Voodoo.Logging;
 
 namespace Voodoo
 {
+	[Obsolete("Intended for use in the immediate or watch windows.")]
 	public static class _
 	{
 		public static string ToDebugString(object @object)
@@ -29,5 +31,12 @@ namespace Voodoo
 		{
 			LogManager.Log(@string);
 		}
+#if !PCL && !DNXCORE50
+		public static void ToFile(string @string, string fileName= "logfile.txt",string path=@"c:\logs\")
+		{
+			var fullPath = Path.Combine(path, fileName);
+			IoNic.WriteFile(@string, fullPath);
+		}
+#endif
 	}
 }
