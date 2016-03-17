@@ -10,7 +10,7 @@ namespace Voodoo
 {
     public static class CollectionExtensions
     {
-		public static CollectionReconciler<TExisting, TModified, TKey> Reconcile<TExisting, TModified, TKey>(ICollection<TExisting> existing, ICollection<TModified> modified,
+		public static CollectionReconciler<TExisting, TModified, TKey> Reconcile<TExisting, TModified, TKey>(this ICollection<TExisting> existing, ICollection<TModified> modified,
             Func<TExisting, TKey> existingKey, Func<TModified, TKey> modifiedKey)
 	    {
 			return new CollectionReconciler<TExisting, TModified, TKey>(existing, modified, existingKey, modifiedKey);
