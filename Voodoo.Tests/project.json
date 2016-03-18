@@ -12,21 +12,21 @@
 		"Microsoft.CSharp": "4.0.1-beta-23409",
 		"OpenCover": "4.5.3809-rc94",
 		"ReportGenerator": "2.1.4.0",
-		"Voodoo.Patterns": "2.1.0",
+		"Voodoo.Patterns": "2.1.16",
 		"xunit": "2.1.0",
-		"xunit.runner.dnx": "2.1.0-rc1-build204"
+		"xunit.runners": "2.0.0"
 	},
   "commands": {
     "test": "xunit.runner.dnx"
   },
   "frameworks": {
 
-    "dnxcore50": {
+    "dotnet5.4": {
       "dependencies": {
 
       }
     },
-     "dnx451": {
+     "net451": {
             "compilationOptions": {
                 "define": [ "DNX451" ]
             },

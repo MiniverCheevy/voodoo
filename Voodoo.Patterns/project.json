@@ -17,7 +17,7 @@
 		"publish": "dnu pack"
 	},
 	"frameworks": {
-		"dnxcore50": {
+		"dotnet5.4": {
 			"dependencies": {
 				"Microsoft.CSharp": "4.0.1-beta-23409",
 				"System.Collections.Specialized": "4.0.1-beta-23409",
@@ -71,21 +71,6 @@
 			}
 		},
 		"dnx451": {
-			"compilationOptions": {
-				"define": [ "DNX451" ]
-			},
-			"frameworkAssemblies": {
-				"System.Xml": "",
-				"System.ComponentModel.DataAnnotations": "",
-				"System.Runtime.Serialization": "",
-				"System.Transactions": "",
-				"System.Web": ""
-			},
-			"dependencies": {
-
-			}
-		},
-		"net451": {
 			"compilationOptions": {
 				"define": [ "DNX451" ]
 			},
