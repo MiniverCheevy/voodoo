@@ -1,12 +1,12 @@
 ﻿using System;
 using Voodoo.Tests.TestClasses;
 using Xunit;
-
+#if !DNXCORE50 && !PCL
 namespace Voodoo.Tests.Voodoo
 {
     public class ObjectifierTests
     {
-#if !PCL
+
         [Fact]
         public void ShallowCopy_Object_ObjectsAndScalarsAreTheSame()
         {
@@ -15,8 +15,7 @@ namespace Voodoo.Tests.Voodoo
             Assert.Equal(source.ComplexObject, target.ComplexObject);
             comparePrimitives(source, target);
         }
-#endif
-#if !DNXCORE50 && !PCL
+
         [Fact]
         public void DeepCopy_Object_ObjectsAreDifferentScalarsAreTheSame()
         {
@@ -69,9 +68,9 @@ namespace Voodoo.Tests.Voodoo
             var source = GetSimpleClass();
             var xml = Objectifyer.ToDataContractXml(source);         
         }
-#endif
 
-        private static void comparePrimitives(ClassWithDate source, ClassWithDate target)
+
+		private static void comparePrimitives(ClassWithDate source, ClassWithDate target)
         {
             Assert.Equal(source.DateAndTime, target.DateAndTime);
         }
@@ -111,3 +110,4 @@ namespace Voodoo.Tests.Voodoo
         }
     }
 }
+#endif

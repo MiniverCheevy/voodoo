@@ -70,7 +70,7 @@
 
 			}
 		},
-		"dnx451": {
+		"net451": {
 			"compilationOptions": {
 				"define": [ "DNX451" ]
 			},

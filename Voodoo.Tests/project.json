@@ -9,7 +9,6 @@
 	"dependencies": {
 		"coveralls.io": "1.3.2.0",
 		"FluentAssertions": "4.2.2",
-		"Microsoft.CSharp": "4.0.1-beta-23409",
 		"OpenCover": "4.5.3809-rc94",
 		"ReportGenerator": "2.1.4.0",
 		"Voodoo.Patterns": "2.1.16",
@@ -19,29 +18,26 @@
   "commands": {
     "test": "xunit.runner.dnx"
   },
-  "frameworks": {
+	"frameworks": {					
+			"net451": {
+				"compilationOptions": {
+					"define": [ "DNX451" ]
+				},
+				"frameworkAssemblies": {
+					"System.Xml": "",
+					"System.ComponentModel.DataAnnotations": "",
+					"System.Runtime": "",
+					"System.Runtime.Serialization": "",
+					"System.Transactions": "",
+					"System.Threading.Tasks": "",
+					"System.Web": "",
+					"mscorlib": ""
+				},
+				"dependencies": {
 
-    "dotnet5.4": {
-      "dependencies": {
+				}
+			}
 
-      }
-    },
-     "net451": {
-            "compilationOptions": {
-                "define": [ "DNX451" ]
-            },
-          "frameworkAssemblies": {
-            "System.Xml": "",
-            "System.ComponentModel.DataAnnotations": "",
-            "System.Runtime.Serialization": "",
-            "System.Transactions": "",
-            "System.Web": "",
-            "System.Runtime": ""
-          },
-          "dependencies": {
-          
-          }
-        }
 
-  }
-}
+		}
+	}

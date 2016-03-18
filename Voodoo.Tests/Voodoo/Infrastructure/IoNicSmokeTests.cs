@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Xunit;
-
+#if !DNXCORE50 && !PCL
 namespace Voodoo.Tests.Voodoo.Infrastructure
 {
     
@@ -65,3 +65,4 @@ namespace Voodoo.Tests.Voodoo.Infrastructure
         }
     }
 }
+#endif
