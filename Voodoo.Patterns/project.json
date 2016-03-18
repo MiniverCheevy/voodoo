@@ -14,7 +14,6 @@
 
 	},
 	"commands": {
-		"test": "xunit.runner.dnx -xml -testresults.xml",
 		"publish": "dnu pack"
 	},
 	"frameworks": {
@@ -59,6 +58,21 @@
 		"net45": {
 			"compilationOptions": {
 				"define": [ "DNX45" ]
+			},
+			"frameworkAssemblies": {
+				"System.Xml": "",
+				"System.ComponentModel.DataAnnotations": "",
+				"System.Runtime.Serialization": "",
+				"System.Transactions": "",
+				"System.Web": ""
+			},
+			"dependencies": {
+
+			}
+		},
+		"dnx451": {
+			"compilationOptions": {
+				"define": [ "DNX451" ]
 			},
 			"frameworkAssemblies": {
 				"System.Xml": "",
