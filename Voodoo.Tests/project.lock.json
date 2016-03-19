@@ -157,9 +157,9 @@
       "ReportGenerator/2.1.4": {
         "type": "package"
       },
-      "Voodoo.Patterns/2.2.1": {
+      "Voodoo.Patterns/2.2.2": {
         "type": "project",
-        "framework": "DNX,Version=v4.6",
+        "framework": ".NETFramework,Version=v4.6",
         "frameworkAssemblies": [
           "System.ComponentModel.DataAnnotations",
           "System.Runtime.Serialization",
@@ -436,9 +436,9 @@
       "ReportGenerator/2.1.4": {
         "type": "package"
       },
-      "Voodoo.Patterns/2.2.1": {
+      "Voodoo.Patterns/2.2.2": {
         "type": "project",
-        "framework": "DNX,Version=v4.6",
+        "framework": ".NETFramework,Version=v4.6",
         "frameworkAssemblies": [
           "System.ComponentModel.DataAnnotations",
           "System.Runtime.Serialization",
@@ -715,9 +715,9 @@
       "ReportGenerator/2.1.4": {
         "type": "package"
       },
-      "Voodoo.Patterns/2.2.1": {
+      "Voodoo.Patterns/2.2.2": {
         "type": "project",
-        "framework": "DNX,Version=v4.6",
+        "framework": ".NETFramework,Version=v4.6",
         "frameworkAssemblies": [
           "System.ComponentModel.DataAnnotations",
           "System.Runtime.Serialization",
@@ -841,7 +841,7 @@
     }
   },
   "libraries": {
-    "Voodoo.Patterns/2.2.1": {
+    "Voodoo.Patterns/2.2.2": {
       "type": "project",
       "path": "../Voodoo.Patterns/project.json"
     },
