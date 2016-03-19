@@ -157,7 +157,7 @@
       "ReportGenerator/2.1.4": {
         "type": "package"
       },
-      "Voodoo.Patterns/2.1.1": {
+      "Voodoo.Patterns/2.2.0": {
         "type": "project",
         "framework": "DNX,Version=v4.6",
         "frameworkAssemblies": [
@@ -436,7 +436,7 @@
       "ReportGenerator/2.1.4": {
         "type": "package"
       },
-      "Voodoo.Patterns/2.1.1": {
+      "Voodoo.Patterns/2.2.0": {
         "type": "project",
         "framework": "DNX,Version=v4.6",
         "frameworkAssemblies": [
@@ -715,7 +715,7 @@
       "ReportGenerator/2.1.4": {
         "type": "package"
       },
-      "Voodoo.Patterns/2.1.1": {
+      "Voodoo.Patterns/2.2.0": {
         "type": "project",
         "framework": "DNX,Version=v4.6",
         "frameworkAssemblies": [
@@ -841,7 +841,7 @@
     }
   },
   "libraries": {
-    "Voodoo.Patterns/2.1.1": {
+    "Voodoo.Patterns/2.2.0": {
       "type": "project",
       "path": "../Voodoo.Patterns/project.json"
     },
