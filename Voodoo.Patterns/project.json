@@ -42,7 +42,7 @@
 				"define": [ "DNXCORE50" ]
 			}
 		},
-		"net40": {
+		"dnx40": {
 			"compilationOptions": {
 				"define": [ "DNX40" ]
 			},
@@ -55,7 +55,7 @@
 
 			}
 		},
-		"net45": {
+		"dnx45": {
 			"compilationOptions": {
 				"define": [ "DNX45" ]
 			},
@@ -70,7 +70,7 @@
 
 			}
 		},
-		"net451": {
+		"dnx451": {
 			"compilationOptions": {
 				"define": [ "DNX451" ]
 			},
@@ -85,7 +85,7 @@
 
 			}
 		},
-		"net452": {
+		"dnx452": {
 			"compilationOptions": {
 				"define": [ "DNX452" ]
 			},
@@ -100,7 +100,7 @@
 
 			}
 		},
-		"net46": {
+		"dnx46": {
 			"compilationOptions": {
 				"define": [ "DNX46" ]
 			},

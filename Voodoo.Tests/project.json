@@ -13,30 +13,31 @@
 		"ReportGenerator": "2.1.4.0",
 		"Voodoo.Patterns": "2.1.16",
 		"xunit": "2.1.0",
-		"xunit.runners": "2.0.0"
+		"xunit.runner.visualstudio": "2.1.0",
+		"xunit.runner.dnx": "2.1.0-rc1-build204"
 	},
   "commands": {
     "test": "xunit.runner.dnx"
   },
-	"frameworks": {					
-			"net451": {
-				"compilationOptions": {
-					"define": [ "DNX451" ]
-				},
-				"frameworkAssemblies": {
-					"System.Xml": "",
-					"System.ComponentModel.DataAnnotations": "",
-					"System.Runtime": "",
-					"System.Runtime.Serialization": "",
-					"System.Transactions": "",
-					"System.Threading.Tasks": "",
-					"System.Web": "",
-					"mscorlib": ""
-				},
-				"dependencies": {
+	"frameworks": {
+		"dnx451": {
+			"compilationOptions": {
+				"define": [ "DNX451" ]
+			},
+			"frameworkAssemblies": {
+				"System.Xml": "",
+				"System.ComponentModel.DataAnnotations": "",
+				"System.Runtime": "",
+				"System.Runtime.Serialization": "",
+				"System.Transactions": "",
+				"System.Threading.Tasks": "",
+				"System.Web": "",
+				"mscorlib": ""
+			},
+			"dependencies": {
 
-				}
 			}
+		}
 
 
 		}

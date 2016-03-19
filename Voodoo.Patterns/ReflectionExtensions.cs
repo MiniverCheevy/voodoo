@@ -89,69 +89,7 @@ namespace Voodoo
             testedTypeName = testedTypeName.Substring(0, index);
             return testedTypeName;
         }
-#if (!PCL)
-        private static bool IsGenericTypeDirectlyInheritedFromOtherGenericType(this Type testedType,
-            Type possibleBaseType)
-        {
-            var testedTypeIsNull = testedType == null;
-            var possibleBaseTypeIsNull = possibleBaseType == null;
-            var testTypeHasBaseType =  testedType.GetTypeInfo().BaseType != null ;
-            var testedTypeHasGenericArguments = testedType.GetTypeInfo().BaseType.GetGenericArguments().Any() ;
-            var possibleBaseTypeHasGenericArguments = possibleBaseType.GetGenericArguments().Any();
 
-            if (testedTypeIsNull || possibleBaseTypeIsNull || !testTypeHasBaseType || ! testedTypeHasGenericArguments || 
-                !possibleBaseTypeHasGenericArguments)                
-                return false;
-
-            var left = testedType.GetTypeInfo().BaseType;
-            var right = possibleBaseType;
-
-            return left.Name == right.Name && left.Namespace == right.Namespace &&
-                   left.GetGenericArguments().Count() == right.GetGenericArguments().Count();
-
-            //TODO: move to shares common anscestor
-            //var baseTypeName = possibleBaseType.GetTypeFullNameWithoutGenericArguments();
-
-            //var match = false;
-
-            //while (testedType != null)
-            //{
-            //    var typeName = testedType.GetTypeFullNameWithoutGenericArguments();
-            //    if (baseTypeName == typeName)
-            //    {
-            //        match = true;
-            //        break;
-            //    }
-            //    testedType = testedType.BaseType;
-            //}
-
-            //return match;
-
-            //if (!match)
-            //    return false;
-
-            //    var baseTypes = possibleBaseType.GetGenericArguments();
-            //    var testTypes = testedType.GetGenericArguments();
-
-            //    if (baseTypes.Count() != testTypes.Count())
-            //        return false;
-
-            //    var index = 0;
-            //    foreach (var type in testTypes)
-            //    {
-            //        var testedChild = type;
-            //        var testedBase = baseTypes[0];
-            //        while (testedChild != null)
-            //        {
-            //            if (testedChild == testedBase)
-            //                break;
-            //            testedChild = testedChild.BaseType;
-            //        }
-            //        return false;
-            //    }
-            //    return true;            
-        }
-#endif
         public static List<KeyValuePair<Type, string>> GetParameterDictionary(this MethodInfo methodInfo)
         {
             var result = new List<KeyValuePair<Type, string>>();

@@ -152,7 +152,7 @@ namespace Voodoo.Tests.Voodoo
 		[Fact]
 		public void ToINameValuePairList_ValueIsEnumWithDescriptionAndDisplayAttributes_ReturnesList()
         {
-            var list = typeof (TestEnum).ToINameValuePairList();
+            var list = typeof (TestEnumWithDescriptionAndDisplay).ToINameValuePairList();
             Assert.Equal(3, list.Count);
             Assert.Equal(true, list.ContainsName("Crimson"));
             Assert.Equal(true, list.ContainsName("Azure"));
@@ -166,7 +166,7 @@ namespace Voodoo.Tests.Voodoo
 		public void ToINameValuePairList_ValueIsEnumWithDescription_ReturnesList()
 		{
 			var list = typeof(MeasurementType).ToINameValuePairList();
-			Assert.Equal(3, list.Count);
+			Assert.Equal(4, list.Count);
 			Assert.Equal(true, list.ContainsName("Numerator/Denominator - Lowest Common Multiple"));
 			
 		}

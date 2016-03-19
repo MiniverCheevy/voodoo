@@ -489,11 +489,11 @@
         }
       }
     },
-    ".NETFramework,Version=v4.0": {},
-    ".NETFramework,Version=v4.5": {},
-    ".NETFramework,Version=v4.5.1": {},
-    ".NETFramework,Version=v4.5.2": {},
-    ".NETFramework,Version=v4.6": {},
+    "DNX,Version=v4.0": {},
+    "DNX,Version=v4.5": {},
+    "DNX,Version=v4.5.1": {},
+    "DNX,Version=v4.5.2": {},
+    "DNX,Version=v4.6": {},
     ".NETPortable,Version=v4.5,Profile=Profile78": {},
     ".NETPlatform,Version=v5.4/win7-x86": {
       "Microsoft.CSharp/4.0.1-beta-23409": {
@@ -1515,16 +1515,16 @@
         }
       }
     },
-    ".NETFramework,Version=v4.0/win7-x86": {},
-    ".NETFramework,Version=v4.0/win7-x64": {},
-    ".NETFramework,Version=v4.5/win7-x86": {},
-    ".NETFramework,Version=v4.5/win7-x64": {},
-    ".NETFramework,Version=v4.5.1/win7-x86": {},
-    ".NETFramework,Version=v4.5.1/win7-x64": {},
-    ".NETFramework,Version=v4.5.2/win7-x86": {},
-    ".NETFramework,Version=v4.5.2/win7-x64": {},
-    ".NETFramework,Version=v4.6/win7-x86": {},
-    ".NETFramework,Version=v4.6/win7-x64": {},
+    "DNX,Version=v4.0/win7-x86": {},
+    "DNX,Version=v4.0/win7-x64": {},
+    "DNX,Version=v4.5/win7-x86": {},
+    "DNX,Version=v4.5/win7-x64": {},
+    "DNX,Version=v4.5.1/win7-x86": {},
+    "DNX,Version=v4.5.1/win7-x64": {},
+    "DNX,Version=v4.5.2/win7-x86": {},
+    "DNX,Version=v4.5.2/win7-x64": {},
+    "DNX,Version=v4.6/win7-x86": {},
+    "DNX,Version=v4.6/win7-x64": {},
     ".NETPortable,Version=v4.5,Profile=Profile78/win7-x86": {},
     ".NETPortable,Version=v4.5,Profile=Profile78/win7-x64": {}
   },
@@ -1572,7 +1572,6 @@
     },
     "System.Collections/4.0.10": {
       "type": "package",
-      "serviceable": true,
       "sha512": "ux6ilcZZjV/Gp7JEZpe+2V1eTueq6NuoGRM3eZCFuPM25hLVVgCRuea6STW8hvqreIOE59irJk5/ovpA5xQipw==",
       "files": [
         "lib/DNXCore50/System.Collections.dll",
@@ -1606,7 +1605,6 @@
     },
     "System.Collections.NonGeneric/4.0.0": {
       "type": "package",
-      "serviceable": true,
       "sha512": "rVgwrFBMkmp8LI6GhAYd6Bx+2uLIXjRfNg6Ie+ASfX8ESuh9e2HNxFy2yh1MPIXZq3OAYa+0mmULVwpnEC6UDA==",
       "files": [
         "lib/dotnet/System.Collections.NonGeneric.dll",
@@ -1670,7 +1668,6 @@
     },
     "System.ComponentModel/4.0.0": {
       "type": "package",
-      "serviceable": true,
       "sha512": "BzpLdSi++ld7rJLOOt5f/G9GxujP202bBgKORsHcGV36rLB0mfSA2h8chTMoBzFhgN7TE14TmJ2J7Q1RyNCTAw==",
       "files": [
         "lib/dotnet/System.ComponentModel.dll",
@@ -1735,7 +1732,6 @@
     },
     "System.ComponentModel.Primitives/4.0.0": {
       "type": "package",
-      "serviceable": true,
       "sha512": "8xElzEmEH5G6XK7qqxRLQ/2r1IuhXlkz0ZdgKNp6ViDD1ukadd+5hccqg1G/L4AYRy96ddMdvgyJjFW87Cegbw==",
       "files": [
         "lib/dotnet/System.ComponentModel.Primitives.dll",
@@ -1814,7 +1810,6 @@
     },
     "System.Diagnostics.Process/4.0.0-beta-23225": {
       "type": "package",
-      "serviceable": true,
       "sha512": "Pt6QAiXPNKIobDWHcNqX/wz6+YaTqqxw7f245sX1lz4rZxCmGwlUI0yhV/fXXvT7iPJRDLXSEXTnS3F8GsxK9g==",
       "files": [
         "lib/DNXCore50/System.Diagnostics.Process.dll",
@@ -1917,7 +1912,6 @@
     },
     "System.Globalization.Extensions/4.0.0": {
       "type": "package",
-      "serviceable": true,
       "sha512": "rqbUXiwpBCvJ18ySCsjh20zleazO+6fr3s5GihC2sVwhyS0MUl6+oc5Rzk0z6CKkS4kmxbZQSeZLsK7cFSO0ng==",
       "files": [
         "lib/dotnet/System.Globalization.Extensions.dll",
@@ -1997,7 +1991,6 @@
     },
     "System.IO.FileSystem/4.0.1-beta-23225": {
       "type": "package",
-      "serviceable": true,
       "sha512": "gr+pQbKusONE54GQCoD7jVLJ+ylboO+eK5p1ZJ3/ZSWhA2ReXk5jLwrd0p8G4nEwPb3I+9CKlVME/Wx1Ux5iHA==",
       "files": [
         "lib/DNXCore50/System.IO.FileSystem.dll",
@@ -2020,7 +2013,6 @@
     },
     "System.IO.FileSystem.Primitives/4.0.0": {
       "type": "package",
-      "serviceable": true,
       "sha512": "7pJUvYi/Yq3A5nagqCCiOw3+aJp3xXc/Cjr8dnJDnER3/6kX3LEencfqmXUcPl9+7OvRNyPMNhqsLAcMK6K/KA==",
       "files": [
         "lib/dotnet/System.IO.FileSystem.Primitives.dll",
@@ -2173,7 +2165,6 @@
     },
     "System.ObjectModel/4.0.10": {
       "type": "package",
-      "serviceable": true,
       "sha512": "Djn1wb0vP662zxbe+c3mOhvC4vkQGicsFs1Wi0/GJJpp3Eqp+oxbJ+p2Sx3O0efYueggAI5SW+BqEoczjfr1cA==",
       "files": [
         "lib/dotnet/System.ObjectModel.dll",
@@ -2281,7 +2272,6 @@
     },
     "System.Reflection.Extensions/4.0.0": {
       "type": "package",
-      "serviceable": true,
       "sha512": "dbYaZWCyFAu1TGYUqR2n+Q+1casSHPR2vVW0WVNkXpZbrd2BXcZ7cpvpu9C98CTHtNmyfMWCLpCclDqly23t6A==",
       "files": [
         "lib/DNXCore50/System.Reflection.Extensions.dll",
@@ -2315,7 +2305,6 @@
     },
     "System.Reflection.Primitives/4.0.0": {
       "type": "package",
-      "serviceable": true,
       "sha512": "n9S0XpKv2ruc17FSnaiX6nV47VfHTZ1wLjKZlAirUZCvDQCH71mVp+Ohabn0xXLh5pK2PKp45HCxkqu5Fxn/lA==",
       "files": [
         "lib/DNXCore50/System.Reflection.Primitives.dll",
@@ -2423,7 +2412,6 @@
     },
     "System.Resources.ResourceManager/4.0.0": {
       "type": "package",
-      "serviceable": true,
       "sha512": "qmqeZ4BJgjfU+G2JbrZt4Dk1LsMxO4t+f/9HarNY6w8pBgweO6jT+cknUH7c3qIrGvyUqraBhU45Eo6UtA0fAw==",
       "files": [
         "lib/DNXCore50/System.Resources.ResourceManager.dll",
@@ -2511,7 +2499,6 @@
     },
     "System.Runtime.Extensions/4.0.11-beta-23225": {
       "type": "package",
-      "serviceable": true,
       "sha512": "Dgqglr6Xq3FYrJRPOzIEfACJBxAYfrzzuv4i2vVEwS8LhvA0oSBCM4OwlrPQTNOhFL+VKvogcHKs6O53DnAvZw==",
       "files": [
         "lib/DNXCore50/System.Runtime.Extensions.dll",
@@ -2535,7 +2522,6 @@
     },
     "System.Runtime.Handles/4.0.0": {
       "type": "package",
-      "serviceable": true,
       "sha512": "638VhpRq63tVcQ6HDb3um3R/J2BtR1Sa96toHo6PcJGPXEPEsleCuqhBgX2gFCz0y0qkutANwW6VPPY5wQu1XQ==",
       "files": [
         "lib/DNXCore50/System.Runtime.Handles.dll",
@@ -2569,7 +2555,6 @@
     },
     "System.Runtime.InteropServices/4.0.20": {
       "type": "package",
-      "serviceable": true,
       "sha512": "ZgDyBYfEnjWoz/viS6VOswA6XOkDSH2DzgbpczbW50RywhnCgTl+w3JEvtAiOGyIh8cyx1NJq80jsNBSUr8Pig==",
       "files": [
         "lib/DNXCore50/System.Runtime.InteropServices.dll",
@@ -2809,7 +2794,6 @@
     },
     "System.Threading/4.0.10": {
       "type": "package",
-      "serviceable": true,
       "sha512": "0w6pRxIEE7wuiOJeKabkDgeIKmqf4ER1VNrs6qFwHnooEE78yHwi/bKkg5Jo8/pzGLm0xQJw0nEmPXt1QBAIUA==",
       "files": [
         "lib/DNXCore50/System.Threading.dll",
@@ -2960,35 +2944,35 @@
       "System.Text.Encoding.Extensions >= 4.0.10-beta-23225",
       "System.Diagnostics.Debug >= 4.0.10-beta-23019"
     ],
-    ".NETFramework,Version=v4.0": [
+    "DNX,Version=v4.0": [
       "fx/System.Xml ",
       "fx/System.ComponentModel.DataAnnotations ",
       "fx/System.Runtime.Serialization ",
       "fx/System.Transactions ",
       "fx/System.Web "
     ],
-    ".NETFramework,Version=v4.5": [
+    "DNX,Version=v4.5": [
       "fx/System.Xml ",
       "fx/System.ComponentModel.DataAnnotations ",
       "fx/System.Runtime.Serialization ",
       "fx/System.Transactions ",
       "fx/System.Web "
     ],
-    ".NETFramework,Version=v4.5.1": [
+    "DNX,Version=v4.5.1": [
       "fx/System.Xml ",
       "fx/System.ComponentModel.DataAnnotations ",
       "fx/System.Runtime.Serialization ",
       "fx/System.Transactions ",
       "fx/System.Web "
     ],
-    ".NETFramework,Version=v4.5.2": [
+    "DNX,Version=v4.5.2": [
       "fx/System.Xml ",
       "fx/System.ComponentModel.DataAnnotations ",
       "fx/System.Runtime.Serialization ",
       "fx/System.Transactions ",
       "fx/System.Web "
     ],
-    ".NETFramework,Version=v4.6": [
+    "DNX,Version=v4.6": [
       "fx/System.Xml ",
       "fx/System.ComponentModel.DataAnnotations ",
       "fx/System.Runtime.Serialization ",
