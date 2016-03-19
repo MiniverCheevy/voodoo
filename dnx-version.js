@@ -1,19 +1,15 @@
 //http://help.appveyor.com/discussions/problems/3289-aspnet-5-version-patching
 var jsonfile = require('jsonfile');
-var semver = require('semver');
 
+debugger;
 var file = './voodoo.patterns/project.json';
-var buildVersion = process.env.APPVEYOR_BUILD_VERSION.substring(1);
+var buildVersion = process.env.APPVEYOR_BUILD_VERSION;
 
-var findPoint = buildVersion.lastIndexOf(".");
-var basePackageVer = buildVersion.substring(0, findPoint);
-var buildNumber = buildVersion.substring(findPoint + 1, buildVersion.length);
-var semversion = semver.valid(basePackageVer + buildNumber);
-
+console.log(buildVersion);
 jsonfile.readFile(file, function(err, project) {
-	project.version = semversion;
+	project.version = buildVersion;
 	jsonfile.writeFile(file, project, { spaces: 2 }, function (err) {
-		Console.log(file);
+		console.log(file);
 		console.error(err);
 	});
 });
