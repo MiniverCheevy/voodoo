@@ -20,9 +20,9 @@
     "test": "xunit.runner.dnx"
   },
 	"frameworks": {
-		"dnx451": {
+		"dnx46": {
 			"compilationOptions": {
-				"define": [ "DNX451" ]
+				"define": [ "DNX46" ]
 			},
 			"frameworkAssemblies": {
 				"System.Xml": "",

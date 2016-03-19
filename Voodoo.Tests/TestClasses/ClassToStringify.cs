@@ -22,6 +22,8 @@ namespace Voodoo.Tests.TestClasses
         public bool? NullableBoolean { get; set; }
         public int? NullableInt { get; set; }
 
+		public char AChar { get; set; }
+
         [Secret]
         public string SecretProperty { get; set; }
 
