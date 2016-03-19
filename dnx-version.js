@@ -2,17 +2,19 @@
 var jsonfile = require('jsonfile');
 var semver = require('semver');
 
-var file = '../voodoo.patterns/project.json';
+var file = './voodoo.patterns/project.json';
 var buildVersion = process.env.APPVEYOR_BUILD_VERSION.substring(1);
 
 var findPoint = buildVersion.lastIndexOf(".");
 var basePackageVer = buildVersion.substring(0, findPoint);
 var buildNumber = buildVersion.substring(findPoint + 1, buildVersion.length);
-var semversion = semver.valid(basePackageVer + '-alpha-' + buildNumber);
+var semversion = semver.valid(basePackageVer + buildNumber);
 
-jsonfile.readFile(file, function (err, project) {
+jsonfile.readFile(file, function(err, project) {
 	project.version = semversion;
 	jsonfile.writeFile(file, project, { spaces: 2 }, function (err) {
+		Console.log(file);
 		console.error(err);
 	});
-})
+});
+
