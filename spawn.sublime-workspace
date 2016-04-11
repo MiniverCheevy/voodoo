@@ -1,0 +1,509 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "Voodoo.Patterns/Messages/PagedResponse.cs",
+			"settings":
+			{
+				"buffer_size": 870,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/E/Dev/RyanTs/Main/AdventureWorks.Web.SiteTS/Scripts/App/Services.ts",
+			"settings":
+			{
+				"buffer_size": 2663,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/E/Dev/Scratch/scratch.Spa/scratch.Spa.csproj",
+			"settings":
+			{
+				"buffer_size": 74247,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/Dropbox/Sparkhound/today.txt",
+			"settings":
+			{
+				"buffer_size": 28,
+				"line_ending": "Windows"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 129.0,
+		"last_filter": "Package Control: install",
+		"selected_items":
+		[
+			[
+				"Package Control: install",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: op",
+				"Package Control: Remove Package"
+			],
+			[
+				"Package Controlinsta",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 549.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/C/Dropbox/Lib/Projects/Voodoo",
+		"/C/Dropbox/Lib/Projects/Voodoo/Voodoo.Patterns",
+		"/C/Dropbox/Lib/Projects/Voodoo/Voodoo.Patterns/Messages"
+	],
+	"file_history":
+	[
+		"/E/Dev/scratch/log.Monday.txt",
+		"/E/Dev/RyanTs/Main/AdventureWorks.Web.SiteTS/Scripts/App/Services.ts",
+		"/E/Dev/RyanTs/Main/AdventureWorks.Web.SiteTS/Scripts/App/App.ts",
+		"/E/Dev/RyanTs/Main/AdventureWorks.Web.SiteTS/Scripts/App/Controllers.ts",
+		"/E/Dev/RyanTs/Main/AdventureWorks.Web.SiteTS/Scripts/App/Controls.ts",
+		"/E/Dev/RyanTs/Main/AdventureWorks.Web.SiteTS/Scripts/App/Directives.ts",
+		"/E/Dev/RyanTs/Main/AdventureWorks.Web.SiteTS/Scripts/App/Entities.ts",
+		"/C/Dropbox/Lib/Projects/Voodoo/Voodoo.Patterns/Messages/Response.cs",
+		"/E/Dev/RyanTs/Main/AdventureWorks.Web.SiteTS/Scripts/App/Enums.ts",
+		"/C/Dropbox/Lib/Projects/Voodoo/Voodoo.Patterns/Messages/DefaultRequest.cs",
+		"/C/Users/Shawn/AppData/Roaming/Sublime Text 3/Packages/User/msbuild.sublime-build",
+		"/C/Users/Shawn/AppData/Roaming/Sublime Text 3/Packages/User/untitled.sublime-build",
+		"/E/Dev/PCE/PCE/Views/Shared/_Layout.cshtml",
+		"/C/Dropbox/Sparkhound/today.txt",
+		"/C/Dropbox/Lib/Projects/angular2/angular2-quickstart/package.json",
+		"/C/Dropbox/Lib/Projects/angular2/angular2-quickstart/tsconfig.json",
+		"/C/Dropbox/Lib/Projects/angular2/angular2-quickstart/app/app.component.ts",
+		"/C/Dropbox/Lib/Projects/angular2/angular2-quickstart/app/boot.ts",
+		"/C/Dropbox/Lib/Projects/spawn-templates/SPA2/Fernweh.Web/Fernweh.Web.csproj",
+		"/C/Users/Shawn/Downloads/AT1P6KM4TT.txt",
+		"/C/Dropbox/Lib/Projects/angular2/angular2-quickstart/index.html",
+		"/C/Dropbox/Lib/Projects/Spawn/Generator/Helpers/Cleaner.cs",
+		"/C/tempreports/RS Scripter Load Log.txt",
+		"/C/Dropbox/Lib/sql/SplitCSV.sql",
+		"/C/Dropbox/Lib/sql/SplitCsv2.sql",
+		"/C/Users/Shawn/Downloads/launch (6).ica",
+		"/C/Users/Shawn/Downloads/launch - Copy.ica",
+		"/C/Users/Shawn/Desktop/ryan.txt",
+		"/C/Dropbox/Sparkhound/StartDate.txt",
+		"/C/Dropbox/blog.txt",
+		"/C/Dropbox/Lib/Projects/Voodoo/l",
+		"/C/Dropbox/Lib/Projects/Voodoo/Voodoo.Tests/open-cover.bat",
+		"/C/Dropbox/Lib/Projects/data-gen/sql.txt",
+		"/C/Dropbox/Lib/Projects/Spawn/ReadMe.md",
+		"/C/Dropbox/Lib/Projects/automapper.project.json.for.reference..txt",
+		"/C/Dropbox/Lib/Projects/api-documentor/README.md",
+		"/C/Users/Shawn/.dnx/alias/default.txt",
+		"/C/CBI2/SH-Code-Starter-V3L12-Domestic/V3L12-Domestic/Stored Procedure Scripts/V13/usp_CableReel_GetPaged.sql",
+		"/C/CBI2/SH-Code-Starter-V3L12-Domestic/V3L12-Domestic/Stored Procedure Scripts/V13/usp_CableReel_GetByProjectId.sql",
+		"/C/CBI2/SH-Code-Starter-V3L12-Domestic/V3L12-Domestic/Stored Procedure Scripts/V13/usp_CableReel_GetByCableReelId.sql",
+		"/C/CBI2/SH-Code-Starter-V3L12-Domestic/V3L12-Domestic/Stored Procedure Scripts/V13/usp_CableReel_GetByCableId.sql",
+		"/C/Users/Shawn/AppData/Local/Microsoft/Windows/INetCache/Content.Outlook/74G7B15Y/data sm1.txt",
+		"/C/CBI2/SH-Code-Starter-V3L12-Domestic/V3L12-Domestic/Stored Procedure Scripts/V13/usp_CableReel_Find.sql",
+		"/C/CBI2/SH-Code-Starter-V3L12-Domestic/V3L12-Domestic/Stored Procedure Scripts/V13/usp_CableReel_Get_List.sql",
+		"/C/Users/Shawn/AppData/Local/Temp/orozaiti.xva.txt",
+		"/E/Dev/CBI2/db-install/go.bat",
+		"/C/Windows/System32/drivers/etc/hosts",
+		"/E/Dev/CBI2/pseg.sql",
+		"/E/Dev/CBI2/db-install/pseg.sql",
+		"/E/Dev/CBI2/db-install/user.sql",
+		"/C/Users/Shawn/Desktop/QBautomation-restore/QBautomation-restore/QB-App/demos/add.pl",
+		"/C/Users/Shawn/Desktop/QBautomation-restore/QBautomation-restore/QB-App/QB/XML/etc.pm",
+		"/C/Users/Shawn/Desktop/QBautomation-restore/QBautomation-restore/QB-App/blib/lib/QB/App.pm",
+		"/C/Users/Shawn/Desktop/QBautomation-restore/QBautomation-restore/QB-App/blib/lib/QB/XML/etc.pm",
+		"/C/Users/Shawn/Desktop/QBautomation-restore/QBautomation-restore/QB-App/QB/App.pm",
+		"/C/Users/Shawn/Downloads/estimates.csv",
+		"/C/Users/Shawn/Desktop/test.udl",
+		"/C/Users/Shawn/Desktop/QBautomation-restore/QBautomation-restore/QB-App/blib/lib/QB/DX.pm",
+		"/C/Users/Shawn/Desktop/QBautomation-restore/QBautomation-restore/QB-App/demos/makeinv.bat",
+		"/C/Users/Shawn/Desktop/Dot/dot.html",
+		"/C/Users/Shawn/Desktop/Dot/dot2.html",
+		"/C/Users/Shawn/Desktop/Dot/email.html",
+		"/C/Users/Shawn/Downloads/EFPowerTools/extension.vsixmanifest",
+		"/C/Users/Shawn/Desktop/Dot/orig.html",
+		"/C/Users/Shawn/Desktop/email.html",
+		"/E/Dev/WatchSystems/xml/test.xml",
+		"/E/Dev/WatchSystems/xml/test.cs",
+		"/C/Users/Shawn/Desktop/QBautomation-restore/QBautomation-restore/QB-App/QB/data.pm",
+		"/C/Users/Shawn/Desktop/QBautomation-restore/QBautomation-restore/QB-App/QB/Debug.pm",
+		"/C/Users/Shawn/Desktop/QBautomation-restore/QBautomation-restore/QB-App/QB/XML/Util.pm",
+		"/C/Users/Shawn/Desktop/QBautomation-restore/QBautomation-restore/QB-App/QB/DX.pm",
+		"/C/Users/Shawn/Desktop/QBautomation-restore/QBautomation-restore/QB-App/QB/Util.pm",
+		"/C/Dropbox/Lib/Projects/ts/app.ts",
+		"/C/Dropbox/Lib/Projects/ts/node_modules/angular2/angular2.d.ts",
+		"/C/Dropbox/Lib/Projects/ts/index.html",
+		"/C/Dropbox/Lib/Projects/ts/app.js",
+		"/C/Users/Shawn/Desktop/QBautomation-restore/QBautomation-restore/QB-App/demos/unsupported/old/aus.xml",
+		"/C/Users/Shawn/Desktop/QBautomation-restore/QBautomation-restore/QB-App/MANIFEST",
+		"/C/Users/Shawn/AppData/Local/Temp/VsProjectFault_760bd865-3dfc-44ac-a742-4dc55c0e22db.failure.txt",
+		"/C/Dropbox/cmd/config.ra",
+		"/C/Users/Shawn/Downloads/angular2-seed-master/angular2-seed-master/package.json",
+		"/C/Dropbox/Lib/Projects/Voodoo/Voodoo.Tests/Voodoo.Tests.DotNetCore.xproj",
+		"/C/Dropbox/Lib/Projects/Voodoo/_NCrunch_Voodoo.Patterns.CoreOnly/Voodoo.Patterns.CoreOnly.crunchsolution.cache",
+		"/C/Users/Shawn/AppData/Roaming/NCrunch/globalconfig.crunch.xml",
+		"/E/Dev/Prime/Sprint 14/Test/Integration/Logic/App.config",
+		"/C/Users/Shawn/Desktop/QBautomation-restore/QBautomation-restore/QB-App/QB.pm~",
+		"/C/Dropbox/Lib/random/evernote_clearly-10.2.1.7-fx/chrome/content/browser.js",
+		"/C/Dropbox/Lib/random/evernote_clearly-10.2.1.7-fx/chrome/content/js_in_page/launch.js",
+		"/C/Dropbox/Lib/random/evernote_clearly-10.2.1.7-fx/chrome/content/js_in_page/init.js",
+		"/E/Dev/CBI/E1 Engineering Interface/DEV/EngineeringInterface/JDE.Sql/ENG_GETMAXF55FB01ID.spsql",
+		"/E/Dev/CBI/E1 Engineering Interface/DEV/EngineeringInterface/JDE.Sql/ENG_INSERTF55FB01.spsql",
+		"/C/Users/Shawn/Desktop/cent/technical notes",
+		"/C/Dropbox/Lib/Projects/Voodoo/Voodoo/Voodoo.PCL.csproj",
+		"/C/Dropbox/Lib/Projects/Voodoo/Voodoo/Voodoo.nuspec",
+		"/C/Dropbox/Lib/random/evernote_clearly-10.2.1.7-fx/chrome/content/global.js",
+		"/C/Users/Shawn/Desktop/Voodoo.PCL/Voodoo.PCL.csproj"
+	],
+	"find":
+	{
+		"height": 43.0
+	},
+	"find_in_files":
+	{
+		"height": 117.0,
+		"where_history":
+		[
+			"C:\\Users\\Shawn\\Desktop\\QBautomation-restore\\QBautomation-restore"
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			".ts",
+			"spawn",
+			"7",
+			"error",
+			"projectName",
+			"{",
+			"CableManufactor",
+			"}",
+			"{",
+			"CableManufactor",
+			"\"",
+			"55213  ",
+			"makeInvoice",
+			"genInvoice",
+			"select_estimates_by_agency",
+			"countEstimates",
+			"_aid2rec",
+			"getAccts",
+			"53924",
+			"touch_payment",
+			"touchPayment",
+			"genInvoice",
+			"_build_lookups",
+			"lookup",
+			"getRec",
+			"makeInvoice",
+			"genInvoice",
+			"\"",
+			"ADD_INV_MULTI",
+			"\"",
+			"ADD_INV_LINE",
+			"makeInvoice",
+			"genInvoice",
+			"_fixp",
+			"makeInvoice",
+			"genInvoice",
+			"select_estimates_by_agency",
+			"selectEstimates",
+			"_aid2rec",
+			"getRec",
+			" ",
+			"\"",
+			"GET_CUST_ALL",
+			"getRec",
+			"makeInvoice",
+			"genInvoice",
+			"getRec",
+			"makeInvoice",
+			"genInvoice",
+			"http://demo2.sparkhound.net/dot/",
+			"'",
+			"/\"",
+			"\\\"",
+			"\"",
+			"process_template",
+			"GET_INV_BY_REF",
+			"ping",
+			"munge",
+			"process_template",
+			"makeInvoice",
+			"QueryTests"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": true,
+		"replace_history":
+		[
+			"{{",
+			"{0}",
+			"}}",
+			"{{",
+			"{0}",
+			"'",
+			"\\r\\n",
+			"/r/n",
+			"'",
+			"http://www.treasury.state.la.us/Site%20Documents/",
+			"\"",
+			"'",
+			"/\"",
+			"\\\""
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 3,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "Voodoo.Patterns/Messages/PagedResponse.cs",
+					"semi_transient": true,
+					"settings":
+					{
+						"buffer_size": 870,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								279,
+								279
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C#/C#.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "/E/Dev/RyanTs/Main/AdventureWorks.Web.SiteTS/Scripts/App/Services.ts",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2663,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1630,
+								1889
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 600.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "/E/Dev/Scratch/scratch.Spa/scratch.Spa.csproj",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 74247,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								73745,
+								73748
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/XML/XML.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 2210.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "/C/Dropbox/Sparkhound/today.txt",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 28,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								27,
+								27
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 28.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 130.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "Packages/User/msbuild.sublime-build",
+	"project": "spawn.sublime-project",
+	"replace":
+	{
+		"height": 52.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 625.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 475.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 426.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

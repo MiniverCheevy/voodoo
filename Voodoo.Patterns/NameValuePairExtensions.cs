@@ -71,7 +71,7 @@ namespace Voodoo
 
         public static IList<INameValuePair> Without(this IEnumerable<INameValuePair> list, string name)
         {
-            return list.To<List<INameValuePair>>().Where(e => e.Name != name).ToList();
+            return list.ToList().Where(e => e.Name != name).ToList();
         }
 
         public static IList<INameValuePair> ToINameValuePairList<TKey, TValue>(this Dictionary<TKey, TValue> items)

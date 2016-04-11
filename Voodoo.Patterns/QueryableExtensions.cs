@@ -23,15 +23,32 @@ namespace Voodoo
             return target;
         }
 
-        public static IQueryable<TQueryResult> OrderByDescending<TQueryResult>(this IQueryable<TQueryResult> query,
-            string sortExpression) where TQueryResult : class
-        {
-            return query.OrderByDynamic(string.Format("{0} {1}", sortExpression, Strings.SortDirection.Descending));
-        }
-        public static IQueryable<TQueryResult> OrderBy<TQueryResult>(this IQueryable<TQueryResult> query,
+		public static IQueryable<TQueryResult> OrderByDescending<TQueryResult>(this IQueryable<TQueryResult> query,
+			string sortExpression) where TQueryResult : class
+		{
+			return buildSortExpression(query, sortExpression, Strings.SortDirection.Descending);
+		}
+
+	    private static IQueryable<TQueryResult> buildSortExpression<TQueryResult>(IQueryable<TQueryResult> query, string sortExpression, string sortDirection)
+		    where TQueryResult : class
+	    {
+		    if (!sortExpression.Contains(","))
+			    return query.OrderByDynamic(string.Format("{0} {1}", sortExpression, Strings.SortDirection.Descending));
+		    else
+		    {
+				var sortElements = sortExpression.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
+					.ToArray()
+					.Select(c => $"{c} {sortDirection}");
+				sortExpression = String.Join(",", sortElements);
+				return query.OrderByDynamic(sortExpression);
+		    }
+		    
+	    }
+
+	    public static IQueryable<TQueryResult> OrderBy<TQueryResult>(this IQueryable<TQueryResult> query,
            string sortExpression) where TQueryResult : class
         {
-            return query.OrderByDynamic(string.Format("{0} {1}", sortExpression, Strings.SortDirection.Ascending));
+			return buildSortExpression(query, sortExpression, Strings.SortDirection.Ascending);
         }
         public static PagedResponse<TObject> ToPagedResponse<TObject>(this IQueryable<TObject> source, IGridState paging)
             where TObject : class, new()

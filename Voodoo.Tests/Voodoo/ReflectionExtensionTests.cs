@@ -196,15 +196,15 @@ namespace Voodoo.Tests.Voodoo
         //{
         //    var query =
         //        typeof (Response).GetTypeInfo().Assembly.GetTypes()
-        //            .First(c => c.Namespace == "Voodoo.Operations" && c.Name.StartsWith("Query"));
+        //            .First(c => c.Namespace == "Voodoo.Operations" && c.UserName.StartsWith("Query"));
 
         //    var command =
         //        typeof (Response).GetTypeInfo().Assembly.GetTypes()
-        //            .First(c => c.Namespace == "Voodoo.Operations" && c.Name.StartsWith("Command"));
+        //            .First(c => c.Namespace == "Voodoo.Operations" && c.UserName.StartsWith("Command"));
 
         //    var executor =
         //        typeof (Response).GetTypeInfo().Assembly.GetTypes()
-        //            .First(c => c.Namespace == "Voodoo.Operations" && c.Name.StartsWith("Executor"));
+        //            .First(c => c.Namespace == "Voodoo.Operations" && c.UserName.StartsWith("Executor"));
 
         //    Assert.Equal(false,
         //        typeof (ObjectStringificationQuery).IsGenericTypeDirectlyInheritedFromOtherGenericType(executor));
