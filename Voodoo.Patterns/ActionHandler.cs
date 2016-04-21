@@ -12,7 +12,7 @@ namespace Voodoo
     public static class ActionHandler
     {
 
-		public static Response Try<T>(Action action) 
+		public static Response Try(Action action) 
 		{
 			var response = new Response();
 			try

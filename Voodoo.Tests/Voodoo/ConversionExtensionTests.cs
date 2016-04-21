@@ -16,8 +16,29 @@ namespace Voodoo.Tests.Voodoo
             friendly = test.ToFriendlyString();
             Assert.Equal("NASA", friendly);
         }
+		[Fact]
+		public void ToFriendlyString_Enum_UsesDescriptionThenDisplayThenAddsSpaces()
+		{
+			var test = TestEnumWithDescriptionAndDisplay.Red;
+			var friendly = test.ToFriendlyString();
+			Assert.Equal("Crimson", friendly);
+			test = TestEnumWithDescriptionAndDisplay.Blue;
+			friendly = test.ToFriendlyString();
+			Assert.Equal("Azure", friendly);
+			test = TestEnumWithDescriptionAndDisplay.RedOrangeYellow;
+			friendly = test.ToFriendlyString();
+			Assert.Equal("Red Orange Yellow", friendly);
+		}
 
-        [Fact]
+		[Fact]
+		public void ToFriendlyString_Null_DoesNotThrow()
+		{
+			var defaultTest = default(TestEnumWithDescriptionAndDisplay).ToFriendlyString();
+			var nullableTest = default(TestEnumWithDescriptionAndDisplay?).ToFriendlyString();
+			var stringTest = default(string).ToFriendlyString();
+		}
+
+		[Fact]
         public void ToStartOfDay_Date_TimeStripped()
         {
             var date = "1/1/1900 12:36:54:123".As<DateTime>();

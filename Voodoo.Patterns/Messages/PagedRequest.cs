@@ -2,7 +2,7 @@ using Voodoo.Messages.Paging;
 
 namespace Voodoo.Messages
 {
-    public abstract class PagedRequest : Request, IGridState
+    public abstract class PagedRequest : EmptyRequest, IGridState
     {
         protected PagedRequest()
         {
