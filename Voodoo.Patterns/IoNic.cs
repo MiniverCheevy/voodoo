@@ -47,6 +47,25 @@ namespace Voodoo
 
         }
 
+		/// <summary>
+		/// Strips leading slashes from the every path except the first so that combining "C:\" and "\abc\def" yeilds "C:\abc\def", System.IO.Path.Combine would yeild "\abc\def".  
+		/// </summary>
+		public static string PathCombineLocal(params string[] paths)
+        {
+			if (paths.Length <= 1)
+				return string.Empty;
+			var cleanPaths = new List<string> { paths[0] };
+			var rest = paths.Skip(1).ToArray();
+
+			foreach (var p in rest)
+			{
+				var path = p;
+				path = path.TrimStart(Path.DirectorySeparatorChar);
+				path = path.TrimStart(Path.AltDirectorySeparatorChar);
+				cleanPaths.Add(path);
+			}
+			return Path.Combine(cleanPaths.ToArray());
+        }
         public static string ResolveRelativePath(string path, string rootFolder = null)
         {
             rootFolder = rootFolder ?? GetApplicationRootDirectory();
