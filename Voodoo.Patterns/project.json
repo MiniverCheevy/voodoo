@@ -2,7 +2,7 @@
   "id": "Voodoo.Patterns",
   "name": "Voodoo.Patterns",
   "title": "Voodoo Patterns",
-  "version": "2.2.6",
+  "version": "2.2.7",
   "description": "A c# utility library with a light cqrs implementation and a variety of extension methods.  Docs at http://minivercheevy.github.io/voodoo/",
   "authors": [
     "Shawn Doucet"
@@ -23,7 +23,8 @@
         "System.Collections.Specialized": "4.0.1-beta-23409",
         "System.ComponentModel.Annotations": "4.0.11-beta-23409",
         "System.ComponentModel.TypeConverter": "4.0.1-beta-23409",
-        "System.Diagnostics.Process": "4.0.0-beta-23225",
+				"System.Diagnostics.Process": "4.0.0-beta-23225",
+				"System.IO": "4.0.11-beta-23516",
         "System.IO.FileSystem": "4.0.1-beta-23225",
         "System.Linq": "4.0.1-beta-23409",
         "System.Linq.Expressions": "4.0.11-beta-23409",

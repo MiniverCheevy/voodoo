@@ -12,7 +12,6 @@ using System.Reflection;
 #if (!PCL)
 namespace Voodoo
 {
-
     public static class IoNic
     {
         public static bool IsWebHosted
@@ -137,23 +136,45 @@ namespace Voodoo
                 sw.Flush();                
             }
         }
+		
+		public static void WriteFile(string fileContents, string fileName)
+		{
+			StreamWriter sw = null;
 
-        public static void WriteFile(string fileContents, string fileName)
-        {
-            var directory = Path.GetDirectoryName(fileName);
-            if (!Directory.Exists(directory)) 
-                MakeDir(directory);
+			verifyDirectory(fileName);
+			var exists = File.Exists(fileName);
+#if !DNXCORE50
+			if (exists)
+			{
+				KillFile(fileName);
+				sw = File.CreateText(fileName);
+				File.SetAttributes(fileName, FileAttributes.Archive);
+				sw = new StreamWriter(fileName);
+			}
+#endif
+#if DNXCORE50
+			exists = false;
+#endif
+			if (!exists)
+				sw = File.CreateText(fileName);
 
-            if (!File.Exists(fileName))
-                KillFile(fileName);
-            using (var sw = File.CreateText(fileName))
+			using (sw)
             {
                 sw.Write(fileContents);
                 sw.Flush();
             }
-        }
 
-        public static void MakeDir(string path)
+
+		}
+
+	    private static void verifyDirectory(string fileName)
+	    {
+		    var directory = Path.GetDirectoryName(fileName);
+		    if (!Directory.Exists(directory))
+			    MakeDir(directory);
+	    }
+
+	    public static void MakeDir(string path)
         {
             if (Directory.Exists(path)) return;
 
