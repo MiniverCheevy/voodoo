@@ -25,9 +25,10 @@ namespace Voodoo
                 //return string.IsNullOrWhiteSpace(HostingEnvironment.WebRootPath)
                 //    ? Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)
                 //    : HostingEnvironment.Virtual;
-                throw new NotImplementedException();
-#endif                
-            }
+               
+#endif
+				throw new NotImplementedException();
+			}
         }
             public static string GetApplicationRootDirectory()
         {
