@@ -37,14 +37,14 @@ namespace Voodoo
                 : System.Web.HttpContext.Current.Server.MapPath(".");
 
 #elif DNXCORE50
-            throw new NotImplementedException();
+            
             //return string.IsNullOrWhiteSpace(HostingEnvironment.WebRootPath)
             //    ? Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)
             //    : HostingEnvironment.Virtual;
 #endif
-            
 
-        }
+			throw new NotImplementedException();
+		}
 
 		/// <summary>
 		/// Strips leading slashes from the every path except the first so that combining "C:\" and "\abc\def" yeilds "C:\abc\def", System.IO.Path.Combine would yeild "\abc\def".  
