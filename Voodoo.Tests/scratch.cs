@@ -12,8 +12,8 @@ namespace Voodoo.Tests
 		[Fact]
 		public void test()
 		{
-			IoNic.WriteFile("blah",
-				@"Z:\Dropbox\Lib\Projects\spawn-templates\SPAv2\Fernweh.Core\Operations\Users\Extras\UserExtensions.generated.cs");
+			
+			
 		}
 	}
 }

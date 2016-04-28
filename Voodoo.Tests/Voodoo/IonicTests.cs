@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.IO;
+using FluentAssertions;
 using Voodoo.Tests.TestClasses;
 using Xunit;
 
@@ -8,6 +9,18 @@ namespace Voodoo.Tests.Voodoo
 {
 	public class IonicTests
 	{
+
+		[Fact]
+		public void WriteFile_FileExists_IsOk()
+		{
+			var path = IoNic.GetTempFileNameAndPath(".txt");
+
+			IoNic.WriteFile("test1",path);
+			IoNic.WriteFile("test2", path);
+
+			IoNic.ReadFile(path).Should().Be("test2");
+		}
+
 		[Fact]
 		public void PathCombineLocal_PathStartsWithSlash_ReturnsCombinedPath()
 		{
