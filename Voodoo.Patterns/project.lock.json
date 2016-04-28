@@ -2537,7 +2537,6 @@
     },
     "Microsoft.Win32.Primitives/4.0.0": {
       "type": "package",
-      "serviceable": true,
       "sha512": "CypEz9/lLOup8CEhiAmvr7aLs1zKPYyEU1sxQeEr6G0Ci8/F0Y6pYR1zzkROjM8j8Mq0typmbu676oYyvErQvg==",
       "files": [
         "lib/dotnet/Microsoft.Win32.Primitives.dll",
@@ -2569,7 +2568,6 @@
     },
     "Microsoft.Win32.Registry/4.0.0-beta-23225": {
       "type": "package",
-      "serviceable": true,
       "sha512": "ONgTqiQHecY/CYaf1RF79mGCDv4gd8vFGWtVXpA/9VBFUf164s5XdEMO3/OeFARnS230xnlujpLGep3pFW9F3g==",
       "files": [
         "lib/DNXCore50/Microsoft.Win32.Registry.dll",
@@ -3944,7 +3942,6 @@
     },
     "System.Threading.Overlapped/4.0.0": {
       "type": "package",
-      "serviceable": true,
       "sha512": "X5LuQFhM5FTqaez3eXKJ9CbfSGZ7wj6j4hSVtxct3zmwQXLqG95qoWdvILcgN7xtrDOBIFtpiyDg0vmoI0jE2A==",
       "files": [
         "lib/DNXCore50/System.Threading.Overlapped.dll",
@@ -3969,7 +3966,6 @@
     },
     "System.Threading.Tasks/4.0.10": {
       "type": "package",
-      "serviceable": true,
       "sha512": "NOwJGDfk79jR0bnzosbXLVD/PdI8KzBeESoa3CofEM5v9R5EBfcI0Jyf18stx+0IYV9okmDIDxVtxq9TbnR9bQ==",
       "files": [
         "lib/DNXCore50/System.Threading.Tasks.dll",
@@ -4003,7 +3999,6 @@
     },
     "System.Threading.Thread/4.0.0-beta-23225": {
       "type": "package",
-      "serviceable": true,
       "sha512": "bT6etm8UPPzO1J1Hf3PsafbG8UN8B0/ku0v8b0/q75X6EIQFnxajuKKe8CXtrjGEDQZv+hPnyZMqvp42rXo0yA==",
       "files": [
         "lib/DNXCore50/System.Threading.Thread.dll",
@@ -4025,7 +4020,6 @@
     },
     "System.Threading.ThreadPool/4.0.10-beta-23225": {
       "type": "package",
-      "serviceable": true,
       "sha512": "QX+0t6MbaSJ+NedX9HhT8inVFkuaCM3OQioPw6+Ma6SVS9kJoWY4K8H280wssZSjVB7+tv5qUqTYtJ/wodvSTg==",
       "files": [
         "lib/DNXCore50/System.Threading.ThreadPool.dll",
@@ -4047,7 +4041,6 @@
     },
     "System.Xml.ReaderWriter/4.0.10": {
       "type": "package",
-      "serviceable": true,
       "sha512": "VdmWWMH7otrYV7D+cviUo7XjX0jzDnD/lTGSZTlZqfIQ5PhXk85j+6P0TK9od3PnOd5ZIM+pOk01G/J+3nh9/w==",
       "files": [
         "lib/dotnet/System.Xml.ReaderWriter.dll",
@@ -4079,7 +4072,6 @@
     },
     "System.Xml.XmlDocument/4.0.0": {
       "type": "package",
-      "serviceable": true,
       "sha512": "H5qTx2+AXgaKE5wehU1ZYeYPFpp/rfFh69/937NvwCrDqbIkvJRmIFyKKpkoMI6gl9hGfuVizfIudVTMyowCXw==",
       "files": [
         "lib/dotnet/System.Xml.XmlDocument.dll",
@@ -4111,7 +4103,6 @@
     },
     "System.Xml.XmlSerializer/4.0.10": {
       "type": "package",
-      "serviceable": true,
       "sha512": "OKhE6vruk88z/hl0lmfrMvXteTASgJUagu6PT6S10i9uLbvDR3pTwB6jVgiwa2D2qtTB+eneZbS9jljhPXhTtg==",
       "files": [
         "lib/DNXCore50/System.Xml.XmlSerializer.dll",

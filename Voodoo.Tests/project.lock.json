@@ -157,7 +157,7 @@
       "ReportGenerator/2.1.4": {
         "type": "package"
       },
-      "Voodoo.Patterns/2.2.8": {
+      "Voodoo.Patterns/2.2.9": {
         "type": "project",
         "framework": ".NETFramework,Version=v4.6",
         "frameworkAssemblies": [
@@ -436,7 +436,7 @@
       "ReportGenerator/2.1.4": {
         "type": "package"
       },
-      "Voodoo.Patterns/2.2.8": {
+      "Voodoo.Patterns/2.2.9": {
         "type": "project",
         "framework": ".NETFramework,Version=v4.6",
         "frameworkAssemblies": [
@@ -715,7 +715,7 @@
       "ReportGenerator/2.1.4": {
         "type": "package"
       },
-      "Voodoo.Patterns/2.2.8": {
+      "Voodoo.Patterns/2.2.9": {
         "type": "project",
         "framework": ".NETFramework,Version=v4.6",
         "frameworkAssemblies": [
@@ -841,7 +841,7 @@
     }
   },
   "libraries": {
-    "Voodoo.Patterns/2.2.8": {
+    "Voodoo.Patterns/2.2.9": {
       "type": "project",
       "path": "../Voodoo.Patterns/project.json"
     },
@@ -972,7 +972,6 @@
     },
     "Microsoft.Dnx.Compilation.Abstractions/1.0.0-rc1-final": {
       "type": "package",
-      "serviceable": true,
       "sha512": "kg3kR7H12Bs46TiuF7YT8A3SNXehhBcwsArIMQIH2ecXGkg5MPWDl2OR6bnQu6k0OMu9QUiv1oiwC9yU7rHWfw==",
       "files": [
         "lib/dotnet5.4/Microsoft.Dnx.Compilation.Abstractions.dll",
@@ -986,7 +985,6 @@
     },
     "Microsoft.Dnx.TestHost/1.0.0-rc1-final": {
       "type": "package",
-      "serviceable": true,
       "sha512": "f5lDXCh4tLXXWHcuNpiyQLiOuV8HB+UjWeL70hrHyaBcssA6Oxa7KB3R/arddVwXuaXeBuGm+HVheuyhQCYGig==",
       "files": [
         "app/project.json",
@@ -1001,7 +999,6 @@
     },
     "Microsoft.Dnx.Testing.Abstractions/1.0.0-rc1-final": {
       "type": "package",
-      "serviceable": true,
       "sha512": "AKeTdr5IdJQaXWw5jMyFOmmWicXt6V6WNQ7l67yBpSLsrJwYjtPg++XMmDGZVTd2CHcjzgMwz3iQfhCtMR76NQ==",
       "files": [
         "lib/dotnet5.4/Microsoft.Dnx.Testing.Abstractions.dll",
@@ -1015,7 +1012,6 @@
     },
     "Microsoft.Extensions.DependencyInjection.Abstractions/1.0.0-rc1-final": {
       "type": "package",
-      "serviceable": true,
       "sha512": "MUKexXAsRZ55C7YZ26ShePZgBeW+6FbasxeIVmZ/BZIgiG4uw6yPOdfl9WvTaUL9SFK2sEPcYLatWmLfTpsOAA==",
       "files": [
         "lib/dotnet5.4/Microsoft.Extensions.DependencyInjection.Abstractions.dll",
@@ -1031,7 +1027,6 @@
     },
     "Microsoft.Extensions.Logging/1.0.0-rc1-final": {
       "type": "package",
-      "serviceable": true,
       "sha512": "anegHH4XHjaCmC557A0uvnJzprT44MOKr669yfiQLtITA+lQrM3aMijxjjdCREnxE8ftXuSz+6wViCvkgcAOhA==",
       "files": [
         "lib/dotnet5.4/Microsoft.Extensions.Logging.dll",
@@ -1047,7 +1042,6 @@
     },
     "Microsoft.Extensions.Logging.Abstractions/1.0.0-rc1-final": {
       "type": "package",
-      "serviceable": true,
       "sha512": "ejGO1JhPXMsCCSyH12xwkOYsb9oBv2gHc3LLaT2jevrD//xuQizWaxpVk0/rHGdORkWdp+kT2Qmuz/sLyNWW/g==",
       "files": [
         "lib/dotnet5.4/Microsoft.Extensions.Logging.Abstractions.dll",
@@ -1063,7 +1057,6 @@
     },
     "Microsoft.Extensions.PlatformAbstractions/1.0.0-rc1-final": {
       "type": "package",
-      "serviceable": true,
       "sha512": "26HS4c6MBisN+D7XUr8HObOI/JJvSJQYQR//Bfw/hi9UqhqK3lFpNKjOuYHI+gTxYdXT46HqZiz4D+k7d+ob3A==",
       "files": [
         "lib/dotnet5.4/Microsoft.Extensions.PlatformAbstractions.dll",
