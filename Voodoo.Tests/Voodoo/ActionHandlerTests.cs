@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Web.Caching;
 using Xunit;
 using Voodoo.Messages;
 
@@ -34,8 +33,9 @@ namespace Voodoo.Tests.Voodoo
 		[Fact]
 		public void Execute_Exception_DoesNotThrow()
 		{
-			var response = ActionHandler.Execute(() => { throw new Exception(error);
-				                                           return new Response();
+			var response = ActionHandler.Execute(() => {
+				throw new Exception(error);
+				return new Response();
 			});
 			Assert.Equal(error, response.Message);
 			Assert.Equal(false, response.IsOk);

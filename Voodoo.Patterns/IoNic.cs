@@ -99,7 +99,7 @@ namespace Voodoo
             return output;
         }
 
-        public static void ShellExecute(string path)
+        public static void ShellExecute(string path, bool asAdmin = false)
         {
             var p = new Process
             {
@@ -142,21 +142,23 @@ namespace Voodoo
 			StreamWriter sw = null;
 
 			verifyDirectory(fileName);
+			
 			var exists = File.Exists(fileName);
+#if DNXCORE50
+			exists = false;
+#endif
 #if !DNXCORE50
 			if (exists)
 			{
-				KillFile(fileName);
-				sw = File.CreateText(fileName);
 				File.SetAttributes(fileName, FileAttributes.Archive);
 				sw = new StreamWriter(fileName);
 			}
 #endif
-#if DNXCORE50
-			exists = false;
-#endif
 			if (!exists)
+			{
+				KillFile(fileName);
 				sw = File.CreateText(fileName);
+			}
 
 			using (sw)
             {

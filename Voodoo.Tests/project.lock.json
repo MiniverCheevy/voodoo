@@ -157,7 +157,7 @@
       "ReportGenerator/2.1.4": {
         "type": "package"
       },
-      "Voodoo.Patterns/2.2.7": {
+      "Voodoo.Patterns/2.2.8": {
         "type": "project",
         "framework": ".NETFramework,Version=v4.6",
         "frameworkAssemblies": [
@@ -436,7 +436,7 @@
       "ReportGenerator/2.1.4": {
         "type": "package"
       },
-      "Voodoo.Patterns/2.2.7": {
+      "Voodoo.Patterns/2.2.8": {
         "type": "project",
         "framework": ".NETFramework,Version=v4.6",
         "frameworkAssemblies": [
@@ -715,7 +715,7 @@
       "ReportGenerator/2.1.4": {
         "type": "package"
       },
-      "Voodoo.Patterns/2.2.7": {
+      "Voodoo.Patterns/2.2.8": {
         "type": "project",
         "framework": ".NETFramework,Version=v4.6",
         "frameworkAssemblies": [
@@ -841,7 +841,7 @@
     }
   },
   "libraries": {
-    "Voodoo.Patterns/2.2.7": {
+    "Voodoo.Patterns/2.2.8": {
       "type": "project",
       "path": "../Voodoo.Patterns/project.json"
     },
@@ -1367,7 +1367,7 @@
       "FluentAssertions >= 4.2.2",
       "OpenCover >= 4.5.3809-rc94",
       "ReportGenerator >= 2.1.4",
-      "Voodoo.Patterns >= 2.1.16",
+      "Voodoo.Patterns >= 2.2.8",
       "xunit >= 2.1.0",
       "xunit.runner.visualstudio >= 2.1.0",
       "xunit.runner.dnx >= 2.1.0-rc1-build204"
