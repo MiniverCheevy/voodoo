@@ -5,9 +5,9 @@ using Voodoo.Logging;
 
 namespace Voodoo.Operations
 {
-    internal class ExceptionHelper
+    public static class ExceptionHelper
     {
-        internal static void HandleException(Exception ex, Type type, object request)
+        public static void HandleException(Exception ex, Type type, object request)
         {
             if (!(ex is LogicException))
             {
