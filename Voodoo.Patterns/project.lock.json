@@ -596,32 +596,29 @@
           "lib/DNXCore50/System.Runtime.Serialization.Xml.dll": {}
         }
       },
-      "System.Security.Cryptography.Primitives/4.0.0-beta-23409": {
+      "System.Security.Cryptography.Primitives/4.0.0-beta-23225": {
         "type": "package",
         "dependencies": {
-          "System.Diagnostics.Debug": "4.0.0",
           "System.Globalization": "4.0.0",
           "System.IO": "4.0.10",
           "System.Resources.ResourceManager": "4.0.0",
-          "System.Runtime": "4.0.20",
-          "System.Threading": "4.0.0",
-          "System.Threading.Tasks": "4.0.0"
+          "System.Runtime": "4.0.20"
         },
         "compile": {
           "ref/dotnet/System.Security.Cryptography.Primitives.dll": {}
         },
         "runtime": {
-          "lib/dotnet/System.Security.Cryptography.Primitives.dll": {}
+          "lib/DNXCore50/System.Security.Cryptography.Primitives.dll": {}
         }
       },
-      "System.Security.SecureString/4.0.0-beta-23409": {
+      "System.Security.SecureString/4.0.0-beta-23225": {
         "type": "package",
         "dependencies": {
           "System.Resources.ResourceManager": "4.0.0",
           "System.Runtime": "4.0.20",
           "System.Runtime.Handles": "4.0.0",
           "System.Runtime.InteropServices": "4.0.20",
-          "System.Security.Cryptography.Primitives": "4.0.0-beta-23409",
+          "System.Security.Cryptography.Primitives": "4.0.0-beta-23225",
           "System.Threading": "4.0.10"
         },
         "compile": {
@@ -1434,32 +1431,29 @@
           "lib/DNXCore50/System.Runtime.Serialization.Xml.dll": {}
         }
       },
-      "System.Security.Cryptography.Primitives/4.0.0-beta-23409": {
+      "System.Security.Cryptography.Primitives/4.0.0-beta-23225": {
         "type": "package",
         "dependencies": {
-          "System.Diagnostics.Debug": "4.0.0",
           "System.Globalization": "4.0.0",
           "System.IO": "4.0.10",
           "System.Resources.ResourceManager": "4.0.0",
-          "System.Runtime": "4.0.20",
-          "System.Threading": "4.0.0",
-          "System.Threading.Tasks": "4.0.0"
+          "System.Runtime": "4.0.20"
         },
         "compile": {
           "ref/dotnet/System.Security.Cryptography.Primitives.dll": {}
         },
         "runtime": {
-          "lib/dotnet/System.Security.Cryptography.Primitives.dll": {}
+          "lib/DNXCore50/System.Security.Cryptography.Primitives.dll": {}
         }
       },
-      "System.Security.SecureString/4.0.0-beta-23409": {
+      "System.Security.SecureString/4.0.0-beta-23225": {
         "type": "package",
         "dependencies": {
           "System.Resources.ResourceManager": "4.0.0",
           "System.Runtime": "4.0.20",
           "System.Runtime.Handles": "4.0.0",
           "System.Runtime.InteropServices": "4.0.20",
-          "System.Security.Cryptography.Primitives": "4.0.0-beta-23409",
+          "System.Security.Cryptography.Primitives": "4.0.0-beta-23225",
           "System.Threading": "4.0.10"
         },
         "compile": {
@@ -2266,32 +2260,29 @@
           "lib/DNXCore50/System.Runtime.Serialization.Xml.dll": {}
         }
       },
-      "System.Security.Cryptography.Primitives/4.0.0-beta-23409": {
+      "System.Security.Cryptography.Primitives/4.0.0-beta-23225": {
         "type": "package",
         "dependencies": {
-          "System.Diagnostics.Debug": "4.0.0",
           "System.Globalization": "4.0.0",
           "System.IO": "4.0.10",
           "System.Resources.ResourceManager": "4.0.0",
-          "System.Runtime": "4.0.20",
-          "System.Threading": "4.0.0",
-          "System.Threading.Tasks": "4.0.0"
+          "System.Runtime": "4.0.20"
         },
         "compile": {
           "ref/dotnet/System.Security.Cryptography.Primitives.dll": {}
         },
         "runtime": {
-          "lib/dotnet/System.Security.Cryptography.Primitives.dll": {}
+          "lib/DNXCore50/System.Security.Cryptography.Primitives.dll": {}
         }
       },
-      "System.Security.SecureString/4.0.0-beta-23409": {
+      "System.Security.SecureString/4.0.0-beta-23225": {
         "type": "package",
         "dependencies": {
           "System.Resources.ResourceManager": "4.0.0",
           "System.Runtime": "4.0.20",
           "System.Runtime.Handles": "4.0.0",
           "System.Runtime.InteropServices": "4.0.20",
-          "System.Security.Cryptography.Primitives": "4.0.0-beta-23409",
+          "System.Security.Cryptography.Primitives": "4.0.0-beta-23225",
           "System.Threading": "4.0.10"
         },
         "compile": {
@@ -2497,7 +2488,7 @@
     "Microsoft.CSharp/4.0.1-beta-23409": {
       "type": "package",
       "serviceable": true,
-      "sha512": "GGOOJF47WzXZoka0JHCToQxzSguIy1UeXZywUjA1NPqvKAWVwbSbZ2VxyeIL3jyTV1BHEbBX8FPL6vweUON2aw==",
+      "sha512": "I1jsSsyK89VfNebrnx2eiBD5YT6zp+DcX2v6AxZ/IosS38QYmA9YKVmssMd5yhRkXwr1f8MfgZTxF1Cli90JEQ==",
       "files": [
         "lib/dotnet/de/Microsoft.CSharp.xml",
         "lib/dotnet/es/Microsoft.CSharp.xml",
@@ -2582,7 +2573,7 @@
     "runtime.win7.System.Private.Uri/4.0.1-beta-23409": {
       "type": "package",
       "serviceable": true,
-      "sha512": "9mcAednoAbDrL5t/GBPYFCfrxYaGxfvpkSkAt3LWQeCH0rp4PlJpOQNtIALcyCfG4lD+z0YBAXEQsZmMVs6C+Q==",
+      "sha512": "DuShsPp9slm2buJjxbBeKycZbs0nP0KWlm/ZGRDDFcfwgbAXp1ncd7e0dqHPSRl8P0Gg0aj8WYHIIKBJbIfbAg==",
       "files": [
         "ref/dotnet/_._",
         "runtime.win7.System.Private.Uri.4.0.1-beta-23409.nupkg",
@@ -2660,7 +2651,7 @@
     "System.Collections.Specialized/4.0.1-beta-23409": {
       "type": "package",
       "serviceable": true,
-      "sha512": "rlslS1wyCZQJX44BO68zGA4XxQR+hp17DsbQTOL1C10EGGjburqloSyHlkf9fWEU9okB5luOcQUkDxgok4iIgA==",
+      "sha512": "gnWorYpPI9j6qHCMSHjGGanMCm6Ac02re8JQgHYcnwM1TLUs1PB/jULq9jcFDL6iuqz1jULjZazPVwgykRXcYQ==",
       "files": [
         "lib/dotnet/de/System.Collections.Specialized.xml",
         "lib/dotnet/es/System.Collections.Specialized.xml",
@@ -2724,7 +2715,7 @@
     "System.ComponentModel.Annotations/4.0.11-beta-23409": {
       "type": "package",
       "serviceable": true,
-      "sha512": "LlfH0lHE3qdNiwpqZY9fN2wy25V+JObBTKRy9Lj0efbqPYrwxqS9CJZoGD1dz06xCtvwh3nLpVrJrhEYYSaAZw==",
+      "sha512": "PBlpLDBkf2nUH/msGaSTFOHNMeJGFMAEfMYjC2DTHUoBpA2t3aygbRbIkT9TDr7ivYsXdidPdLKAWZYerpxZ0Q==",
       "files": [
         "lib/dotnet/de/System.ComponentModel.Annotations.xml",
         "lib/dotnet/es/System.ComponentModel.Annotations.xml",
@@ -2787,7 +2778,7 @@
     "System.ComponentModel.TypeConverter/4.0.1-beta-23409": {
       "type": "package",
       "serviceable": true,
-      "sha512": "TBQngXy9JugrGm2btaGlRiXDS/pJtLKeMEp2YS0wk6OgPs1dhnEO3jjwEbx44pr3R5DQjrQg0CNvns8AQmJOcA==",
+      "sha512": "xZeWPGIho3SC93yRXMwyR+BsFfQLdLuzDy42pySd44u7GAp4FZgxaduqGhNi64R0OM3XG5cRbcgPihNDEXbvmg==",
       "files": [
         "lib/dotnet/de/System.ComponentModel.TypeConverter.xml",
         "lib/dotnet/es/System.ComponentModel.TypeConverter.xml",
@@ -2818,7 +2809,7 @@
     },
     "System.Diagnostics.Debug/4.0.10-beta-23019": {
       "type": "package",
-      "sha512": "2esspsA/5xUcoZw+pXnzJ+TfztxnZP41yP8ZAtHem7fUN0S9kWMvyABmfkk06mjakgYdaOTmhNKvntVoB2NqZA==",
+      "sha512": "xglZdS0wD8GeImZOnS+R1WGHYj3zcwRc0gpa1OTxb48mT49vgwzr0v3lIuGln7ARIUbj4jCGgQzpLMJf5ip/ag==",
       "files": [
         "lib/DNXCore50/System.Diagnostics.Debug.dll",
         "lib/net46/_._",
@@ -3082,7 +3073,7 @@
     "System.Linq/4.0.1-beta-23409": {
       "type": "package",
       "serviceable": true,
-      "sha512": "PaualgQ0um/Dw8y3iKD5bUNZ4PoJGfmFgKh3U//0VsCj+IEQH3oeKwvrPIlWr/YHKwwmLz0uvWKPWxGG+u5Oag==",
+      "sha512": "VqrieHGgjmtYEPqqVQyw1jOFDVQuo5KvAEXaAavvpefiBBs+n6x3K3GG1qqDCYlA2GOz/8Snh6CSNZ8pl+O2bw==",
       "files": [
         "lib/dotnet/de/System.Linq.xml",
         "lib/dotnet/es/System.Linq.xml",
@@ -3115,7 +3106,7 @@
     "System.Linq.Expressions/4.0.11-beta-23409": {
       "type": "package",
       "serviceable": true,
-      "sha512": "ISOgZYf8k95HBBxCzuUzRLmBu2RF2mWGfaaX3j3tc59p7qJNv1qe8BvLUg1YDvK3wBqcQZq1pkI5qO8ySQBd9w==",
+      "sha512": "CXZPkabv/+t4w8AVb1BEWV8WfqRcY5Nr3SGppiyxcv7BJ33tUbEZ95attbEGguwDlhRYPGOMAXhrUHzi8zbVvg==",
       "files": [
         "lib/DNXCore50/de/System.Linq.Expressions.xml",
         "lib/DNXCore50/es/System.Linq.Expressions.xml",
@@ -3170,7 +3161,7 @@
     "System.Linq.Queryable/4.0.1-beta-23409": {
       "type": "package",
       "serviceable": true,
-      "sha512": "OPR/L19WOPcykLFxxRsH1wCDBwFK04lyudvvOOLqVmmK68LgXx/VqjLPcCsalJxEq0XiRIcGXxxx6gPTgzpgaw==",
+      "sha512": "EpdlrlJ3xKNQ2gqyFx2XxP655spL2wmlvIWuelrVs1rVsA5QB3m5LQvHdLlI0gNMgz8b3RETT0movuXPa/xrDw==",
       "files": [
         "lib/dotnet/de/System.Linq.Queryable.xml",
         "lib/dotnet/es/System.Linq.Queryable.xml",
@@ -3234,7 +3225,7 @@
     "System.Private.DataContractSerialization/4.0.1-beta-23409": {
       "type": "package",
       "serviceable": true,
-      "sha512": "VYmey0kK0rVX7DCpQJb9VH7nvviB1IqkgE9w6uCFvZ0VWJWcOYJDhZaqoLdg9t+xJePjqc6WxJwa2+dw8q2HuQ==",
+      "sha512": "w+dhDXiIr5h30w0E433eNW2NDzmOTeyhtBri4fy6XyLWSnQ3Ldl6VIrdtpE0Fyh4yXiWJfoxIt5vUUNrbj1xwQ==",
       "files": [
         "lib/DNXCore50/System.Private.DataContractSerialization.dll",
         "lib/netcore50/System.Private.DataContractSerialization.dll",
@@ -3249,7 +3240,7 @@
     },
     "System.Private.Uri/4.0.1-beta-23409": {
       "type": "package",
-      "sha512": "CDTFX1023ZLDnJvOH9lnBxZbTlosJhta4ymKSgXU4Yk9BVkO3cTwqdiIV5VRddXqQuJ4ksDHV0UmbPNs15pVvQ==",
+      "sha512": "AFcABskTE3SUyh75bTI3EcmQsqdH9LsEkEE39yeG83bBeu3FQhIcTkJjrmAkgncxP0YYyJohQ1ti/iO8JXtjFg==",
       "files": [
         "ref/dnxcore50/_._",
         "ref/netcore50/_._",
@@ -3262,7 +3253,7 @@
     "System.Reflection/4.1.0-beta-23409": {
       "type": "package",
       "serviceable": true,
-      "sha512": "99kWOYZ+JsDAFUbmgprOUNZqFvKQPb8iOyWJuDNyo7dzhmtOmhMgGosGfNpiY9vAwq/q7fPLivzwEE2rdj+jkg==",
+      "sha512": "wsou1TLHRyTJ/wqznHoxIS/jPX2bW52HzbLos8l09svN0I6OytlUz7pWENAd23wt3Gjo2Gap80H2zN64YNgiBg==",
       "files": [
         "lib/DNXCore50/System.Reflection.dll",
         "lib/MonoAndroid10/_._",
@@ -3432,7 +3423,7 @@
     "System.Reflection.TypeExtensions/4.0.1-beta-23409": {
       "type": "package",
       "serviceable": true,
-      "sha512": "Q3FiCsJ/4s2nuyhOHAFhc0Te10LzPjv6QzVcywA3oWI1msfDg583RIXQ9YifDfOuig+wg+SX0p133qV71HVfyw==",
+      "sha512": "n8m144jjCwhN/qtLih35a2sO33fLWm1U3eg51KxqAcAjJcw0nq1zWie8FZognBTPv7BXdW/G8xGbbvDGFoJwZA==",
       "files": [
         "lib/DNXCore50/de/System.Reflection.TypeExtensions.xml",
         "lib/DNXCore50/es/System.Reflection.TypeExtensions.xml",
@@ -3539,7 +3530,7 @@
     "System.Runtime/4.0.21-beta-23409": {
       "type": "package",
       "serviceable": true,
-      "sha512": "tv8k2UjvoQdk/XQqPpqmL8nayLjYIIqluTN4n/jnZijUI7JLAFoTSUEl/6Ru//mqYhE3c5sGS5d8c+e7aC1hKA==",
+      "sha512": "RMY5vXDu2cCelJmXP5un1HZSzbgRVpT5sgQPvFL2T7cLVinSY4vMWIgnlkh1visiQiy+nUlzeWP0uoMPDDRRJw==",
       "files": [
         "lib/DNXCore50/de/System.Runtime.xml",
         "lib/DNXCore50/es/System.Runtime.xml",
@@ -3682,7 +3673,7 @@
     "System.Runtime.Serialization.Primitives/4.0.11-beta-23409": {
       "type": "package",
       "serviceable": true,
-      "sha512": "0JLo0iSVWtuVwNo51/ArH+WtTTriWs80roj32aBMDiFBtSMoNbBDQ5BxzqbbDjLw17mtLFHMBqIjeUVsGeRMlQ==",
+      "sha512": "AQywM01eG8EgYde/RRrJDVdHmOOI3KkgK9GEjLQqvTLsrWsamNHN/j7Pxwa3XX7klSSrfDpvTNfUl40855idVg==",
       "files": [
         "lib/dotnet/de/System.Runtime.Serialization.Primitives.xml",
         "lib/dotnet/es/System.Runtime.Serialization.Primitives.xml",
@@ -3714,7 +3705,7 @@
     "System.Runtime.Serialization.Xml/4.0.11-beta-23409": {
       "type": "package",
       "serviceable": true,
-      "sha512": "QGM6tKR8EBSCv4ZGBYWxtfcTTkxBzcEm9gM5WH5/UHoaQwmcZ72uNBeJeM8SktEao3wRjA9PqxZ50OjGThP9+A==",
+      "sha512": "gKg6nrHzj4aSj8zOatyTzOGI4+dNqhPLm6o0DOW+iW/sEwUTf5SOswxG1P7VFJcRUhyn7ZGw7LVEQ1ky9Ni0fA==",
       "files": [
         "lib/DNXCore50/System.Runtime.Serialization.Xml.dll",
         "lib/MonoAndroid10/_._",
@@ -3735,12 +3726,12 @@
         "System.Runtime.Serialization.Xml.nuspec"
       ]
     },
-    "System.Security.Cryptography.Primitives/4.0.0-beta-23409": {
+    "System.Security.Cryptography.Primitives/4.0.0-beta-23225": {
       "type": "package",
       "serviceable": true,
-      "sha512": "XVHvqMnsWmPjKn1oKLksqfHVQk+oWxvoY2t4+kL/B5bHSFXBXY8EqNJEoyiRQBU+Z2l+ZR4Dn77KUWSGqLBpnA==",
+      "sha512": "acOPCfkrkOFr/NAnA+hIOnY8yQZr94JzJ02heQDIqE0sFKyBITLbgQBoO+gTBVRxGr1o+oiYbFnXY0Q30+SACg==",
       "files": [
-        "lib/dotnet/System.Security.Cryptography.Primitives.dll",
+        "lib/DNXCore50/System.Security.Cryptography.Primitives.dll",
         "lib/MonoAndroid10/_._",
         "lib/MonoTouch10/_._",
         "lib/net46/System.Security.Cryptography.Primitives.dll",
@@ -3752,60 +3743,30 @@
         "ref/net46/System.Security.Cryptography.Primitives.dll",
         "ref/xamarinios10/_._",
         "ref/xamarinmac20/_._",
-        "System.Security.Cryptography.Primitives.4.0.0-beta-23409.nupkg",
-        "System.Security.Cryptography.Primitives.4.0.0-beta-23409.nupkg.sha512",
+        "System.Security.Cryptography.Primitives.4.0.0-beta-23225.nupkg",
+        "System.Security.Cryptography.Primitives.4.0.0-beta-23225.nupkg.sha512",
         "System.Security.Cryptography.Primitives.nuspec"
       ]
     },
-    "System.Security.SecureString/4.0.0-beta-23409": {
+    "System.Security.SecureString/4.0.0-beta-23225": {
       "type": "package",
       "serviceable": true,
-      "sha512": "KsuDpUcHXQjLeZ64XwvEHzSQJUKu3W0Z/3MtHQZKR+3DF4Qq/FPHXfbCcB/oBuSITfD90f4T7Slz5O9F7U+ORw==",
+      "sha512": "fWZiVly2v05MLJFbtJBwThJmSQAh1slsEUqVxjy/K58RWHN8ar8BNz/1h318eHNd5vcTA7155awMNNMzY/Cbag==",
       "files": [
-        "lib/DNXCore50/de/System.Security.SecureString.xml",
-        "lib/DNXCore50/es/System.Security.SecureString.xml",
-        "lib/DNXCore50/fr/System.Security.SecureString.xml",
-        "lib/DNXCore50/it/System.Security.SecureString.xml",
-        "lib/DNXCore50/ja/System.Security.SecureString.xml",
-        "lib/DNXCore50/ko/System.Security.SecureString.xml",
-        "lib/DNXCore50/ru/System.Security.SecureString.xml",
         "lib/DNXCore50/System.Security.SecureString.dll",
-        "lib/DNXCore50/System.Security.SecureString.xml",
-        "lib/DNXCore50/zh-hans/System.Security.SecureString.xml",
-        "lib/DNXCore50/zh-hant/System.Security.SecureString.xml",
         "lib/MonoAndroid10/_._",
         "lib/MonoTouch10/_._",
-        "lib/net46/de/System.Security.SecureString.xml",
-        "lib/net46/es/System.Security.SecureString.xml",
-        "lib/net46/fr/System.Security.SecureString.xml",
-        "lib/net46/it/System.Security.SecureString.xml",
-        "lib/net46/ja/System.Security.SecureString.xml",
-        "lib/net46/ko/System.Security.SecureString.xml",
-        "lib/net46/ru/System.Security.SecureString.xml",
         "lib/net46/System.Security.SecureString.dll",
-        "lib/net46/System.Security.SecureString.xml",
-        "lib/net46/zh-hans/System.Security.SecureString.xml",
-        "lib/net46/zh-hant/System.Security.SecureString.xml",
         "lib/xamarinios10/_._",
         "lib/xamarinmac20/_._",
         "ref/dotnet/System.Security.SecureString.dll",
         "ref/MonoAndroid10/_._",
         "ref/MonoTouch10/_._",
-        "ref/net46/de/System.Security.SecureString.xml",
-        "ref/net46/es/System.Security.SecureString.xml",
-        "ref/net46/fr/System.Security.SecureString.xml",
-        "ref/net46/it/System.Security.SecureString.xml",
-        "ref/net46/ja/System.Security.SecureString.xml",
-        "ref/net46/ko/System.Security.SecureString.xml",
-        "ref/net46/ru/System.Security.SecureString.xml",
         "ref/net46/System.Security.SecureString.dll",
-        "ref/net46/System.Security.SecureString.xml",
-        "ref/net46/zh-hans/System.Security.SecureString.xml",
-        "ref/net46/zh-hant/System.Security.SecureString.xml",
         "ref/xamarinios10/_._",
         "ref/xamarinmac20/_._",
-        "System.Security.SecureString.4.0.0-beta-23409.nupkg",
-        "System.Security.SecureString.4.0.0-beta-23409.nupkg.sha512",
+        "System.Security.SecureString.4.0.0-beta-23225.nupkg",
+        "System.Security.SecureString.4.0.0-beta-23225.nupkg.sha512",
         "System.Security.SecureString.nuspec"
       ]
     },
@@ -3878,7 +3839,7 @@
     "System.Text.RegularExpressions/4.0.11-beta-23409": {
       "type": "package",
       "serviceable": true,
-      "sha512": "qWUv3QOCOhMNeDA00DYEWfibwvEtlRqAGgYljWCJYzt1NunCQCH9z7LBi7Yt8MmUXTlEZVzQoVlT3w1dTv8zbQ==",
+      "sha512": "Bp80XEvjed3pklTkyz6vla7coDXrTU5ijizcAwhfb3eTrtyJ79NboOpCn4DHhOcAWi3zXCkhpQT+3R7glmyHdQ==",
       "files": [
         "lib/dotnet/de/System.Text.RegularExpressions.xml",
         "lib/dotnet/es/System.Text.RegularExpressions.xml",

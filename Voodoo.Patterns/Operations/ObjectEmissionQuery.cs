@@ -82,7 +82,7 @@ namespace Voodoo.Operations
                     .ToArray();
 #else
             var members =
-                element.GetType().GetTypeInfo().DeclaredProperties
+                  element.GetType().GetTypeInfo().GetAllProperties()
                     .OrderBy(OrderProperties)
                     .ThenBy(c => c.Name)
                     .ToArray();

@@ -4,6 +4,8 @@ using Voodoo.Infrastructure.Notations;
 
 namespace Voodoo.Tests.TestClasses
 {
+    public class ParentClassToStringify : ClassToStringify
+    { }
     public class ClassToStringify
     {
         public int Number { get; set; }

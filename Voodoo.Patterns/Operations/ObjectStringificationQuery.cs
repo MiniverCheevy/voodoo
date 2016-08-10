@@ -6,6 +6,7 @@ using System.Reflection;
 using System.Text;
 using Voodoo.Infrastructure.Notations;
 using Voodoo.Messages;
+using Voodoo;
 
 namespace Voodoo.Operations
 {
@@ -83,7 +84,7 @@ namespace Voodoo.Operations
                 }
                 else
                 {
-#if !PCL
+#if NET40
                     var members =
                         element.GetType()
                             .GetMembers(BindingFlags.Public | BindingFlags.Instance)
@@ -92,19 +93,20 @@ namespace Voodoo.Operations
                             .ToArray();
 #else
                     var members =
-                        element.GetType().GetTypeInfo().DeclaredProperties
+                        element.GetType().GetTypeInfo().GetAllProperties()
                             .OrderBy(OrderProperties)
                             .ThenBy(c => c.Name)
                             .ToArray();
 #endif
                     foreach (var memberInfo in members)
                     {
-#if PCL
-                        FieldInfo fieldInfo = null;
-                        var propertyInfo = memberInfo;
-#else
+#if NET40
                         var fieldInfo = memberInfo as FieldInfo;
                         var propertyInfo = memberInfo as PropertyInfo;
+                        
+#else
+                        FieldInfo fieldInfo = null;
+                        var propertyInfo = memberInfo;
 #endif
 
 

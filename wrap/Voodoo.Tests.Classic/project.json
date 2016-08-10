@@ -1,0 +1,23 @@
+{
+  "version": "1.0.0-*",
+  "frameworks": {
+    "net452": {
+      "wrappedProject": "../../Voodoo.Tests.Classic/Voodoo.Tests.Classic.csproj",
+      "bin": {
+        "assembly": "../../Voodoo.Tests.Classic/obj/{configuration}/Voodoo.Tests.Classic.dll",
+        "pdb": "../../Voodoo.Tests.Classic/obj/{configuration}/Voodoo.Tests.Classic.pdb"
+      },
+      "dependencies": {
+        "FluentAssertions": "4.2.2",
+        "xunit": "2.1.0",
+        "xunit.abstractions": "2.0.0",
+        "xunit.assert": "2.1.0",
+        "xunit.core": "2.1.0",
+        "xunit.extensibility.core": "2.1.0",
+        "xunit.extensibility.execution": "2.1.0",
+        "xunit.runner.visualstudio": "2.1.0",
+        "Voodoo.Patterns.Classic": "1.0.0-*"
+      }
+    }
+  }
+}

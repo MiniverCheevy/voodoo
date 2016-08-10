@@ -42,7 +42,7 @@ namespace Voodoo.Tests.Voodoo.Operations
 
         public ClassToStringify GetValidRequest()
         {
-            var response = new ClassToStringify
+            var response = new ParentClassToStringify
             {
                 Decimal = 1.1M,
                 Items = new List<string> {"foo", "bar"},
