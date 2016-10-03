@@ -45,7 +45,7 @@ namespace Voodoo
         }
 #endif
 #if !DNXCORE50 && !PCL
-        [FullDotNetOnly]
+        
         public static TObject DeepCopy<TObject>(TObject o) where TObject : class
         {
             using (var stream = new MemoryStream())
@@ -61,14 +61,14 @@ namespace Voodoo
 
 
 #if !DNXCORE50 && !PCL
-        [FullDotNetOnly]
+        
         public static T FromXml<T>(string xml) where T : class, new()
         {
             return FromXml<T>(xml, null);
         }
 
 
-        [FullDotNetOnly]
+        
         public static T FromXml<T>(string xml, Type[] extraTypes) where T : class, new()
         {
             var type = typeof(T);
@@ -83,13 +83,13 @@ namespace Voodoo
             }
         }
 
-        [FullDotNetOnly]
+        
         public static string ToDataContractXml<TObject>(TObject @object)
         {
             return ToDataContractXml(@object, null);
         }
 
-        [FullDotNetOnly]
+        
         public static string ToDataContractXml<TObject>(TObject @object, Type[] extraTypes)
         {
             var type = typeof(TObject);
@@ -108,19 +108,19 @@ namespace Voodoo
     }
         }
 
-        [FullDotNetOnly]        
+        
         public static string ToXml<TObject>(TObject @object)
         {
             return ToXml(@object, null, false);
         }
 
-        [FullDotNetOnly]        
+        
         public static string ToXml<TObject>(TObject @object, bool omitNamespaces)
         {
             return ToXml(@object, null, omitNamespaces);
         }
 
-        [FullDotNetOnly]        
+        
         public static string ToXml<TObject>(TObject @object, Type[] extraTypes, bool omitNamespaces)
         {
             var type = typeof (TObject);

@@ -2,21 +2,26 @@
   "id": "Voodoo.Patterns",
   "name": "Voodoo.Patterns",
   "title": "Voodoo Patterns",
-  "version": "2.2.10",
+  "version": "2.2.11",
   "description": "A c# utility library with a light cqrs implementation and a variety of extension methods.  Docs at http://minivercheevy.github.io/voodoo/",
   "authors": [
     "Shawn Doucet"
   ],
-  "tags": [
-    "cqrs utility extension"
-  ],
-  "projectUrl": "http://minivercheevy.github.io/voodoo/",
-  "licenseUrl": "http://opensource.org/licenses/MIT",
-  "dependencies": {},
+  "dependencies": {
+
+  },
+  "packOptions": {
+    "tags": [
+      "cqrs utility extension"
+    ],
+    "projectUrl": "http://minivercheevy.github.io/voodoo/"
+  },
+
   "commands": {
     "publish": "dnu pack"
   },
   "frameworks": {
+  
     "dnxcore50": {
       "dependencies": {
         "Microsoft.CSharp": "4.0.1-beta-23409",
@@ -39,14 +44,14 @@
         "System.Text.Encoding.Extensions": "4.0.10-beta-23225",
         "System.Diagnostics.Debug": "4.0.10-beta-23019"
       },
-      "compilationOptions": {
+      "buildOptions": {
         "define": [
           "DNXCORE50"
         ]
       }
     },
     "net40": {
-      "compilationOptions": {
+      "buildOptions": {
         "define": [
           "DNX40"
         ]
@@ -60,7 +65,7 @@
       }
     },
     "net45": {
-      "compilationOptions": {
+      "buildOptions": {
         "define": [
           "DNX45"
         ]
@@ -75,7 +80,7 @@
       "dependencies": {}
     },
     "net451": {
-      "compilationOptions": {
+      "buildOptions": {
         "define": [
           "DNX451"
         ]
@@ -90,7 +95,7 @@
       "dependencies": {}
     },
     "net452": {
-      "compilationOptions": {
+      "buildOptions": {
         "define": [
           "DNX452"
         ]
@@ -105,7 +110,7 @@
       "dependencies": {}
     },
     "net46": {
-      "compilationOptions": {
+      "buildOptions": {
         "define": [
           "DNX46"
         ]
@@ -135,7 +140,7 @@
         "System.Threading": "",
         "System.Threading.Tasks": ""
       },
-      "compilationOptions": {
+      "buildOptions": {
         "define": [
           "PCL"
         ]

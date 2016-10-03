@@ -42,6 +42,8 @@ namespace Voodoo.Helpers
 
             response.Message = exception.Message;
             response.Exception = exception;
+            if (VoodooGlobalConfiguration.IncludeResponseWithExceptionData)
+                response.Exception.Data.Add("Reponse", response);
         }
     }
 }

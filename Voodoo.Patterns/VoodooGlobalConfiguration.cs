@@ -16,6 +16,7 @@ namespace Voodoo
             LogMaximumNumberOfItemsInCollection = 100;
             ErrorDetailLoggingMethodology = ErrorDetailLoggingMethodology.LogAsSecondException;
         }
+        public static bool IncludeResponseWithExceptionData { get; set; }
         public static ErrorDetailLoggingMethodology ErrorDetailLoggingMethodology { get; set; }
         internal static ExceptionTranslater ExceptionTranslator { get; set; }
         public static int LogMaximumNumberOfItemsInCollection { get; set; }

@@ -60,7 +60,7 @@ namespace Voodoo.Logging
                 handleFileWriteFailure(log, ex, appName, path);
             }
         }
-        [FullDotNetOnly]
+        
         private static void handleFileWriteFailure(string actualError, Exception ex, string appName, string path)
         {
             

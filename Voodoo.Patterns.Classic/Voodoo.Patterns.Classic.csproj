@@ -110,17 +110,11 @@
     <Compile Include="..\Voodoo.Patterns\Infrastructure\Notations\ClientAttribute.cs">
       <Link>Infrastructure\Notations\ClientAttribute.cs</Link>
     </Compile>
-    <Compile Include="..\Voodoo.Patterns\Infrastructure\Notations\FullDotNetOnly.cs">
-      <Link>Infrastructure\Notations\FullDotNetOnly.cs</Link>
-    </Compile>
     <Compile Include="..\Voodoo.Patterns\Infrastructure\Notations\MapsToAttribute.cs">
       <Link>Infrastructure\Notations\MapsToAttribute.cs</Link>
     </Compile>
     <Compile Include="..\Voodoo.Patterns\Infrastructure\Notations\SecretAttribute.cs">
       <Link>Infrastructure\Notations\SecretAttribute.cs</Link>
-    </Compile>
-    <Compile Include="..\Voodoo.Patterns\Infrastructure\Notations\ThridParty.cs">
-      <Link>Infrastructure\Notations\ThridParty.cs</Link>
     </Compile>
     <Compile Include="..\Voodoo.Patterns\Infrastructure\Notations\UnfinishedAttribute.cs">
       <Link>Infrastructure\Notations\UnfinishedAttribute.cs</Link>
@@ -196,9 +190,6 @@
     </Compile>
     <Compile Include="..\Voodoo.Patterns\Messages\Paging\IGridState.cs">
       <Link>Messages\Paging\IGridState.cs</Link>
-    </Compile>
-    <Compile Include="..\Voodoo.Patterns\Messages\Request.cs">
-      <Link>Messages\Request.cs</Link>
     </Compile>
     <Compile Include="..\Voodoo.Patterns\Messages\Response.cs">
       <Link>Messages\Response.cs</Link>
