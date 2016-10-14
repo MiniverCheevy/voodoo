@@ -2,26 +2,22 @@
   "id": "Voodoo.Patterns",
   "name": "Voodoo.Patterns",
   "title": "Voodoo Patterns",
-  "version": "2.2.11",
+  "version": "2.2.12",
   "description": "A c# utility library with a light cqrs implementation and a variety of extension methods.  Docs at http://minivercheevy.github.io/voodoo/",
   "authors": [
     "Shawn Doucet"
   ],
-  "dependencies": {
-
-  },
+  "dependencies": {},
   "packOptions": {
     "tags": [
       "cqrs utility extension"
     ],
     "projectUrl": "http://minivercheevy.github.io/voodoo/"
   },
-
   "commands": {
     "publish": "dnu pack"
   },
   "frameworks": {
-  
     "dnxcore50": {
       "dependencies": {
         "Microsoft.CSharp": "4.0.1-beta-23409",

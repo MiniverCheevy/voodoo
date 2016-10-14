@@ -46,6 +46,7 @@ namespace Voodoo.Operations
             response = new TResponse {IsOk = false};
             
             CustomErrorBehavior(ex);
+            ExceptionHelper.HandleException(ex, GetType(), request);
             response.SetExceptions(ex);
             if (VoodooGlobalConfiguration.RemoveExceptionFromResponseAfterLogging)
                 response.Exception = null;

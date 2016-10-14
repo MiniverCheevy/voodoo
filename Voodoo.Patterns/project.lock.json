@@ -2080,8 +2080,8 @@
     "System.Text.Encoding.Extensions/4.0.10": {
       "sha512": "TZvlwXMxKo3bSRIcsWZLCIzIhLbvlz+mGeKYRZv/zUiSoQzGOwkYeBu6hOw2XPQgKqT0F4Rv8zqKdvmp2fWKYg==",
       "type": "package",
+      "path": "System.Text.Encoding.Extensions/4.0.10",
       "files": [
-        "System.Text.Encoding.Extensions.4.0.10.nupkg",
         "System.Text.Encoding.Extensions.4.0.10.nupkg.sha512",
         "System.Text.Encoding.Extensions.nuspec",
         "lib/DNXCore50/System.Text.Encoding.Extensions.dll",

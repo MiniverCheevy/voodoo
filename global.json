@@ -4,9 +4,9 @@
     "voodoo.tests",
     "wrap"
   ],
-  "sdk": {
-    "version": "1.0.0-preview2-003121",
-    "runtime": "clr",
-    "architecture": "x64"
-  }
+	"sdk": {
+		"version": "1.0.0-preview2-003131",
+		"runtime": "clr",
+		"architecture": "x64"
+	}
 }

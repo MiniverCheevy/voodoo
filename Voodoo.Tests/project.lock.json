@@ -148,12 +148,6 @@
           "lib/net45/Newtonsoft.Json.dll": {}
         }
       },
-      "OpenCover/4.6.519": {
-        "type": "package"
-      },
-      "ReportGenerator/2.4.5": {
-        "type": "package"
-      },
       "xunit/2.1.0": {
         "type": "package",
         "dependencies": {
@@ -264,7 +258,24 @@
       "xunit.runner.visualstudio/2.1.0": {
         "type": "package"
       },
-      "Voodoo.Patterns/2.2.11": {
+      "Voodoo/2.2.12": {
+        "type": "project",
+        "framework": ".NETFramework,Version=v4.6",
+        "frameworkAssemblies": [
+          "System.ComponentModel.DataAnnotations",
+          "System.Runtime.Serialization",
+          "System.Transactions",
+          "System.Web",
+          "System.Xml"
+        ],
+        "compile": {
+          "net46/Voodoo.dll": {}
+        },
+        "runtime": {
+          "net46/Voodoo.dll": {}
+        }
+      },
+      "Voodoo.Patterns/2.2.12": {
         "type": "project",
         "framework": ".NETFramework,Version=v4.6",
         "frameworkAssemblies": [
@@ -494,75 +505,6 @@
         "tools/install.ps1"
       ]
     },
-    "OpenCover/4.6.519": {
-      "sha512": "oReudTijK4ghbd1GNTzl7Su2KzOufj2evTS5PTGAGC5ThfrThcInB/t9w2ISkcEacOsgLQTdG+PO0UUUGZ+zTw==",
-      "type": "package",
-      "path": "OpenCover/4.6.519",
-      "files": [
-        "License.rtf",
-        "MSBuild/OpenCover.MSBuild.dll",
-        "MSBuild/OpenCover.targets",
-        "OpenCover.4.6.519.nupkg.sha512",
-        "OpenCover.nuspec",
-        "SampleSln/.nuget/packages.config",
-        "SampleSln/Bom/Bom.csproj",
-        "SampleSln/Bom/BomManager.cs",
-        "SampleSln/Bom/Properties/AssemblyInfo.cs",
-        "SampleSln/BomSample.sln",
-        "SampleSln/BomTest/BomManagerTests.cs",
-        "SampleSln/BomTest/BomTest.csproj",
-        "SampleSln/BomTest/Properties/AssemblyInfo.cs",
-        "SampleSln/BomTest/packages.config",
-        "SampleSln/coverage.bat",
-        "SampleSln/packages/repositories.config",
-        "Samples/x64/OpenCover.Simple.Target.exe",
-        "Samples/x64/OpenCover.Simple.Target.pdb",
-        "Samples/x86/OpenCover.Simple.Target.exe",
-        "Samples/x86/OpenCover.Simple.Target.pdb",
-        "docs/ReleaseNotes.txt",
-        "docs/Usage.rtf",
-        "readme.txt",
-        "tools/Autofac.Configuration.dll",
-        "tools/Autofac.dll",
-        "tools/CrashReporter.NET.dll",
-        "tools/Gendarme.Framework.dll",
-        "tools/Gendarme.Rules.Maintainability.dll",
-        "tools/Mono.Cecil.Mdb.dll",
-        "tools/Mono.Cecil.Pdb.dll",
-        "tools/Mono.Cecil.dll",
-        "tools/OpenCover.Console.exe",
-        "tools/OpenCover.Console.exe.config",
-        "tools/OpenCover.Console.pdb",
-        "tools/OpenCover.Extensions.dll",
-        "tools/OpenCover.Extensions.pdb",
-        "tools/OpenCover.Framework.dll",
-        "tools/OpenCover.Framework.pdb",
-        "tools/log4net.config",
-        "tools/log4net.dll",
-        "tools/x64/OpenCover.Profiler.dll",
-        "tools/x86/OpenCover.Profiler.dll",
-        "transform/simple_report.xslt",
-        "transform/transform.ps1"
-      ]
-    },
-    "ReportGenerator/2.4.5": {
-      "sha512": "pUr1dlwm+NCovSYJ0rjIKCkgxsxY9LE3kz92OZUtSmJoGPzL2mZwgDE/O5hSEHJlamm32sxY4HZJXNPpCxmEng==",
-      "type": "package",
-      "path": "ReportGenerator/2.4.5",
-      "files": [
-        "LICENSE.txt",
-        "Readme.txt",
-        "ReportGenerator.2.4.5.nupkg.sha512",
-        "ReportGenerator.nuspec",
-        "tools/ICSharpCode.NRefactory.CSharp.dll",
-        "tools/ICSharpCode.NRefactory.dll",
-        "tools/ReportGenerator.Reporting.XML",
-        "tools/ReportGenerator.Reporting.dll",
-        "tools/ReportGenerator.XML",
-        "tools/ReportGenerator.exe",
-        "tools/ReportGenerator.exe.config"
-      ]
-    },
     "xunit/2.1.0": {
       "sha512": "u/7VQSOSXa7kSG4iK6Lcn7RqKZQ3hk7cnyMNVMpXHSP0RI5VQEtc44hvkG3LyWOVsx1dhUDD3rPAHAxyOUDQJw==",
       "type": "package",
@@ -758,7 +700,12 @@
         "xunit.runner.visualstudio.nuspec"
       ]
     },
-    "Voodoo.Patterns/2.2.11": {
+    "Voodoo/2.2.12": {
+      "type": "project",
+      "path": "../Voodoo.Patterns/project.json",
+      "msbuildProject": "../Voodoo.Patterns/Voodoo.xproj"
+    },
+    "Voodoo.Patterns/2.2.12": {
       "type": "project",
       "path": "../Voodoo.Patterns/project.json"
     }
@@ -766,8 +713,6 @@
   "projectFileDependencyGroups": {
     "": [
       "FluentAssertions >= 4.14.0",
-      "OpenCover >= 4.6.519",
-      "ReportGenerator >= 2.4.5",
       "Voodoo.Patterns >= 2.2.11",
       "xunit >= 2.1.0",
       "xunit.runner.dnx >= 2.1.0-rc1-build204",
