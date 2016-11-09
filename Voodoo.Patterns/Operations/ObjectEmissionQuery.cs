@@ -229,8 +229,7 @@ namespace Voodoo.Operations
             if (o is DateTime)
             {
                 var date = o.To<DateTime>();
-                return string.Format("new DateTime({0}, {1}, {2}, {3}, {4}, {5})", date.Year, date.Month, date.Day,
-                    date.Hour, date.Minute, date.Millisecond);
+                return $"new DateTime({date.Year}, {date.Month}, {date.Day}, {date.Hour}, {date.Minute}, {date.Second})";
             }
             if (o is decimal)
             {
