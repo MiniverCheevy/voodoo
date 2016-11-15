@@ -13,7 +13,7 @@ namespace Voodoo.Tests.Voodoo.Validation
         public void IsValid_NullableValueIsNull_ReturnsFalse()
         {
             var item = new TestClasses.ClassWithNullableInt();
-            var isvalid = item.Validate();
+            var isvalid = item.IsValid();
             Assert.Equal(false, isvalid);
         }
 
@@ -23,7 +23,7 @@ namespace Voodoo.Tests.Voodoo.Validation
         {
             var item = new TestClasses.ClassWithNullableInt();
             item.Number = 1;
-            var isvalid = item.Validate();
+            var isvalid = item.IsValid();
             Assert.Equal(true, isvalid);
         }
 
@@ -32,7 +32,7 @@ namespace Voodoo.Tests.Voodoo.Validation
         {
             var item = new TestClasses.ClassWithNullableInt();
             item.Number = 0;
-            var isvalid = item.Validate();
+            var isvalid = item.IsValid();
             Assert.Equal(false, isvalid);
         }
 
@@ -42,7 +42,7 @@ namespace Voodoo.Tests.Voodoo.Validation
         {
             var item = new TestClasses.ClassWithInt();
             item.Number = 1;
-            var isvalid = item.Validate();
+            var isvalid = item.IsValid();
             Assert.Equal(true, isvalid);
         }
 
@@ -51,7 +51,7 @@ namespace Voodoo.Tests.Voodoo.Validation
         {
             var item = new TestClasses.ClassWithInt();
             item.Number = 0;
-            var isvalid = item.Validate();
+            var isvalid = item.IsValid();
             Assert.Equal(false, isvalid);
         }
     }

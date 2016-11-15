@@ -43,7 +43,7 @@ namespace Voodoo.Operations
 
         protected TResponse BuildResponseWithException(Exception ex)
         {
-            response = new TResponse {IsOk = false};
+            response = new TResponse {IsOk = false, Exception = ex};
             
             CustomErrorBehavior(ex);
             ExceptionHelper.HandleException(ex, GetType(), request);

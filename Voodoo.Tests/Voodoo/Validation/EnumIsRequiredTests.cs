@@ -14,7 +14,7 @@ namespace Voodoo.Tests.Voodoo.Validation
         public void IsValid_ValueIsNotSet_ReturnsFalse()
         {
             var item = new ClassWithEnum();
-            var isvalid = item.Validate();
+            var isvalid = item.IsValid();
             Assert.Equal(false, isvalid);
         }
 
@@ -22,7 +22,7 @@ namespace Voodoo.Tests.Voodoo.Validation
         public void IsValid_ValueIsNull_ReturnsFalse()
         {
             var item = new ClassWithNullableEnum();
-            var isvalid = item.Validate();
+            var isvalid = item.IsValid();
             Assert.Equal(false, isvalid);
         }
 
@@ -31,7 +31,7 @@ namespace Voodoo.Tests.Voodoo.Validation
         {
             var item = new ClassWithEnum();
             item.TestEnum = TestEnum.Blue;
-            var isvalid = item.Validate();
+            var isvalid = item.IsValid();
             Assert.Equal(true, isvalid);
         }
 
@@ -40,7 +40,7 @@ namespace Voodoo.Tests.Voodoo.Validation
         {
             var item = new ClassWithNullableEnum();
             item.TestEnum = TestEnum.Blue;
-            var isvalid = item.Validate();
+            var isvalid = item.IsValid();
             Assert.Equal(true, isvalid);
         }
 
@@ -48,7 +48,7 @@ namespace Voodoo.Tests.Voodoo.Validation
         public void IsValid_WrongPropertyType_ReturnsFalse()
         {
             var item = new ClassMismatchedEnumIsRequiredAttribute();
-            var isvalid = item.Validate();
+            var isvalid = item.IsValid();
             Assert.Equal(false, isvalid);
         }
 
@@ -56,7 +56,7 @@ namespace Voodoo.Tests.Voodoo.Validation
         public void IsValid_NullableWrongPropertyType_ReturnsFalse()
         {
             var item = new ClassMismatchedEnumIsRequiredAttribute();
-            var isvalid = item.Validate();
+            var isvalid = item.IsValid();
             Assert.Equal(false, isvalid);
         }
 
@@ -64,7 +64,7 @@ namespace Voodoo.Tests.Voodoo.Validation
         public void IsValid_NullWrongPropertyType_ReturnsFalse()
         {
             var item = new ClassMismatchedEnumIsRequiredAttribute();
-            var isvalid = item.Validate();
+            var isvalid = item.IsValid();
             Assert.Equal(false, isvalid);
         }
 
@@ -73,7 +73,7 @@ namespace Voodoo.Tests.Voodoo.Validation
         {
             var item = new ClassMismatchedEnumIsRequiredAttribute();
             item.SomeProperty = new ClassMismatchedEnumIsRequiredAttribute();
-            var isvalid = item.Validate();
+            var isvalid = item.IsValid();
             Assert.Equal(false, isvalid);
         }
     }

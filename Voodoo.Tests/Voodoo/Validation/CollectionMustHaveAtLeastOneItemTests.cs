@@ -14,7 +14,7 @@ namespace Voodoo.Tests.Voodoo.Validation
         public void IsValid_ValueIsNotSet_ReturnsFalse()
         {
             var item = new ClassWithCollection();
-            var isvalid = item.Validate();
+            var isvalid = item.IsValid();
             Assert.Equal(false, isvalid);
         }
 
@@ -23,7 +23,7 @@ namespace Voodoo.Tests.Voodoo.Validation
         {
             var item = new ClassWithCollection();
             item.Items = new List<string>();
-            var isvalid = item.Validate();
+            var isvalid = item.IsValid();
             Assert.Equal(false, isvalid);
         }
 
@@ -33,7 +33,7 @@ namespace Voodoo.Tests.Voodoo.Validation
             var item = new ClassWithCollection();
             item.Items = new List<string>();
             item.Items.Add("blue");
-            var isvalid = item.Validate();
+            var isvalid = item.IsValid();
             Assert.Equal(true, isvalid);
         }
 
@@ -41,7 +41,7 @@ namespace Voodoo.Tests.Voodoo.Validation
         public void IsValid_WrongPropertyType_ReturnsFalse()
         {
             var item = new ClassMismatchedCollectionMustHaveAtLeastOneItemAttribute();
-            var isvalid = item.Validate();
+            var isvalid = item.IsValid();
             Assert.Equal(false, isvalid);
         }
 
@@ -49,7 +49,7 @@ namespace Voodoo.Tests.Voodoo.Validation
         public void IsValid_NullableWrongPropertyType_ReturnsFalse()
         {
             var item = new ClassMismatchedCollectionMustHaveAtLeastOneItemAttribute();
-            var isvalid = item.Validate();
+            var isvalid = item.IsValid();
             Assert.Equal(false, isvalid);
         }
 
@@ -57,7 +57,7 @@ namespace Voodoo.Tests.Voodoo.Validation
         public void IsValid_NullWrongPropertyType_ReturnsFalse()
         {
             var item = new ClassMismatchedCollectionMustHaveAtLeastOneItemAttribute();
-            var isvalid = item.Validate();
+            var isvalid = item.IsValid();
             Assert.Equal(false, isvalid);
         }
 
@@ -66,7 +66,7 @@ namespace Voodoo.Tests.Voodoo.Validation
         {
             var item = new ClassMismatchedCollectionMustHaveAtLeastOneItemAttribute();
             item.SomeProperty = new ClassMismatchedCollectionMustHaveAtLeastOneItemAttribute();
-            var isvalid = item.Validate();
+            var isvalid = item.IsValid();
             Assert.Equal(false, isvalid);
         }
     }

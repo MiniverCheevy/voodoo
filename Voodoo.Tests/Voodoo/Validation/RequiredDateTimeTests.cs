@@ -14,7 +14,7 @@ namespace Voodoo.Tests.Voodoo.Validation
         public void IsValid_NullableDateIsNull_ReturnsFalse()
         {
             var item = new ClassWithNullableDate();
-            var isValid = item.Validate();
+            var isValid = item.IsValid();
             Assert.Equal(false, isValid);
         }
 
@@ -23,7 +23,7 @@ namespace Voodoo.Tests.Voodoo.Validation
         {
             var item = new ClassWithNullableDate();
             item.DateAndTime = DateTime.MaxValue;
-            var isValid = item.Validate();
+            var isValid = item.IsValid();
             Assert.Equal(false, isValid);
         }
 
@@ -32,7 +32,7 @@ namespace Voodoo.Tests.Voodoo.Validation
         {
             var item = new ClassWithNullableDate();
             item.DateAndTime = DateTime.MinValue;
-            var isValid = item.Validate();
+            var isValid = item.IsValid();
             Assert.Equal(false, isValid);
         }
 
@@ -41,7 +41,7 @@ namespace Voodoo.Tests.Voodoo.Validation
         {
             var item = new ClassWithNullableDate();
             item.DateAndTime = "1/1/1970".To<DateTime>();
-            var isValid = item.Validate();
+            var isValid = item.IsValid();
             Assert.Equal(true, isValid);
         }
     }

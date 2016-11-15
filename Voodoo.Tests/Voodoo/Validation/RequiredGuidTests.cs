@@ -14,7 +14,7 @@ namespace Voodoo.Tests.Voodoo.Validation
         public void IsValid_NullableValueIsNull_ReturnsFalse()
         {
             var item = new ClassWithNullableGuid();
-            var isvalid = item.Validate();
+            var isvalid = item.IsValid();
             Assert.Equal(false, isvalid);
         }
 
@@ -22,7 +22,7 @@ namespace Voodoo.Tests.Voodoo.Validation
         public void IsValid_StringValueIsNull_ReturnsFalse()
         {
             var item = new ClassWithGuidAsString();
-            var isvalid = item.Validate();
+            var isvalid = item.IsValid();
             Assert.Equal(false, isvalid);
         }
 
@@ -31,7 +31,7 @@ namespace Voodoo.Tests.Voodoo.Validation
         {
             var item = new ClassWithGuidAsString();
             item.Guid = Guid.Empty.ToString();
-            var isvalid = item.Validate();
+            var isvalid = item.IsValid();
             Assert.Equal(false, isvalid);
         }
 
@@ -40,7 +40,7 @@ namespace Voodoo.Tests.Voodoo.Validation
         {
             var item = new ClassWithNullableGuid();
             item.Guid = Guid.Empty;
-            var isvalid = item.Validate();
+            var isvalid = item.IsValid();
             Assert.Equal(false, isvalid);
         }
 
@@ -49,7 +49,7 @@ namespace Voodoo.Tests.Voodoo.Validation
         {
             var item = new ClassWithGuid();
             item.Guid = Guid.NewGuid();
-            var isvalid = item.Validate();
+            var isvalid = item.IsValid();
             Assert.Equal(true, isvalid);
         }
 
@@ -58,7 +58,7 @@ namespace Voodoo.Tests.Voodoo.Validation
         {
             var item = new ClassWithNullableGuid();
             item.Guid = Guid.NewGuid();
-            var isvalid = item.Validate();
+            var isvalid = item.IsValid();
             Assert.Equal(true, isvalid);
         }
 
@@ -67,7 +67,7 @@ namespace Voodoo.Tests.Voodoo.Validation
         {
             var item = new ClassWithGuidAsString();
             item.Guid = Guid.NewGuid().ToString();
-            var isvalid = item.Validate();
+            var isvalid = item.IsValid();
             Assert.Equal(true, isvalid);
         }
     }

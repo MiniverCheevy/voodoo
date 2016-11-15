@@ -21,13 +21,12 @@ namespace Voodoo
 			}
 			catch (Exception ex)
 			{
-				
-				response.SetExceptions(ex);
-				LogManager.Log(ex);
-				if (VoodooGlobalConfiguration.RemoveExceptionFromResponseAfterLogging)
-					response.Exception = null;
-				return response;
-			}
+
+                response = new Response { IsOk = false, Exception = ex };
+                response.SetExceptions(ex);
+                if (VoodooGlobalConfiguration.RemoveExceptionFromResponseAfterLogging)
+                    response.Exception = null;
+            }
 			return response;
 		}
 

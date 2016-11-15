@@ -1,12 +1,12 @@
 {
   "version": "1.0.0-*",
-	"dependencies": {
-		"FluentAssertions": "4.14.0",
-		"Voodoo.Patterns": "2.2.11",
-		"xunit": "2.1.0",
-		"xunit.runner.visualstudio": "2.1.0",
-		"xunit.runner.dnx": "2.1.0-rc1-build204"
-	},
+  "dependencies": {
+    "FluentAssertions": "4.14.0",
+    "Voodoo.Patterns": "2.2.11",
+    "xunit": "2.1.0",
+    "xunit.runner.visualstudio": "2.1.0",
+    "xunit.runner.dnx": "2.1.0-rc1-build204"
+  },
   "description": "",
   "authors": [ "" ],
   "commands": {
