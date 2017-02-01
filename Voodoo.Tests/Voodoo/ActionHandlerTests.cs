@@ -33,9 +33,9 @@ namespace Voodoo.Tests.Voodoo
 		[Fact]
 		public void Execute_Exception_DoesNotThrow()
 		{
-			var response = ActionHandler.Execute(() => {
+			var response = ActionHandler.Execute<Response>(() => {
 				throw new Exception(error);
-				return new Response();
+				//return new Response();
 			});
 			Assert.Equal(error, response.Message);
 			Assert.Equal(false, response.IsOk);
