@@ -5,8 +5,7 @@
     "Microsoft.TestPlatform.ObjectModel": "15.0.0-preview-20170125-04",
     "FluentAssertions": "4.14.0",
     "xunit": "2.2.0-beta2-build3300",
-    "xunit.runner.visualstudio": "2.2.0-beta5-build1225",
-    "Voodoo.Patterns": "2.2.14"
+    "xunit.runner.visualstudio": "2.2.0-beta5-build1225"
   },
   "description": "",
   "authors": [ "" ],

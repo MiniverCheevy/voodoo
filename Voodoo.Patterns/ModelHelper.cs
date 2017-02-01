@@ -17,7 +17,7 @@ namespace Voodoo
         }
         public static string UnformatPhone(string phone)
         {
-            return new string(phone.To<string>().Where(char.IsDigit).ToArray());
+            return new string(phone.To<string>().ToArray<char>().Where(char.IsDigit).ToArray());
         }
 #if !PCL && !DNXCORE50
         public static T GetAttributeFromEnumMember<T>(object enumMember)

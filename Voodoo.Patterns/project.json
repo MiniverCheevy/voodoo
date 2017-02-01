@@ -2,7 +2,7 @@
   "id": "Voodoo.Patterns",
   "name": "Voodoo.Patterns",
   "title": "Voodoo Patterns",
-  "version": "2.2.14",
+  "version": "2.2.15",
   "description": "A c# utility library with a light cqrs implementation and a variety of extension methods.  Docs at http://minivercheevy.github.io/voodoo/",
   "authors": [
     "Shawn Doucet"
@@ -31,7 +31,7 @@
         "CoreCompat.System.ComponentModel.DataAnnotations": "4.2.3-r7",
         "System.Diagnostics.Process": "4.1.0"
       }
-    },    
+    },
     "net40": {
       "buildOptions": {
         "define": [
