@@ -18,34 +18,20 @@
     "publish": "dnu pack"
   },
   "frameworks": {
-    "dnxcore50": {
-      "dependencies": {
-        "Microsoft.CSharp": "4.0.1",
-        "System.Collections.Specialized": "4.0.1",
-        "System.ComponentModel.Annotations": "4.1.0",
-        "System.ComponentModel.TypeConverter": "4.1.0",
-        "System.Diagnostics.Process": "4.1.0",
-        "System.IO": "4.1.0",
-        "System.IO.FileSystem": "4.0.1",
-        "System.Linq": "4.1.0",
-        "System.Linq.Expressions": "4.1.0",
-        "System.Linq.Queryable": "4.0.1",
-        "System.Reflection": "4.1.0",
-        "System.Runtime": "4.1.0",
-        "System.Runtime.Extensions": "4.1.0",
-        "System.Reflection.TypeExtensions": "4.1.0",
-        "System.Runtime.Serialization.Xml": "4.0.11",
-        "System.Runtime.Serialization.Primitives": "4.1.0",
-        "System.Text.RegularExpressions": "4.1.0",
-        "System.Text.Encoding.Extensions": "4.0.11",
-        "System.Diagnostics.Debug": "4.0.11"
-      },
+    "netstandard1.6": {
+      "imports": "dnxcore50",
       "buildOptions": {
         "define": [
           "DNXCORE50"
         ]
+      },
+      "dependencies": {
+        "NETStandard.Library": "1.6.1",
+        "System.Linq.Queryable": "4.3.0",
+        "CoreCompat.System.ComponentModel.DataAnnotations": "4.2.3-r7",
+        "System.Diagnostics.Process": "4.1.0"
       }
-    },
+    },    
     "net40": {
       "buildOptions": {
         "define": [
@@ -118,7 +104,9 @@
         "System.Transactions": "",
         "System.Web": ""
       },
-      "dependencies": {}
+      "dependencies": {
+        "System.Diagnostics.Process": "4.3.0"
+      }
     },
     ".NETPortable,Version=v4.5,Profile=Profile78": {
       "frameworkAssemblies": {

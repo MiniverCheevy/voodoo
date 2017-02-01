@@ -147,7 +147,7 @@ namespace Voodoo.Tests.Voodoo
             Assert.Equal(true, list.ContainsValue("3"));
         }
 
-#if (!PCL && !DNXCORE50)
+#if (!PCL && !DNX46)
 
 		[Fact]
 		public void ToINameValuePairList_ValueIsEnumWithDescriptionAndDisplayAttributes_ReturnesList()
