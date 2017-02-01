@@ -3,7 +3,7 @@ using Voodoo.Validation;
 
 namespace Voodoo.Tests.TestClasses
 {
-#if !DNXCORE50
+#if !DNX46
     [Serializable]
 #endif
     public class ClassWithDate

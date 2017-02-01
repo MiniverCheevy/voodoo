@@ -1,7 +1,7 @@
 ﻿using System;
 using Voodoo.Tests.TestClasses;
 using Xunit;
-#if !DNXCORE50 && !PCL
+#if !DNX46 && !PCL
 namespace Voodoo.Tests.Voodoo
 {
     public class ObjectifierTests
