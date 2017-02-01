@@ -148,10 +148,13 @@ namespace Voodoo
 		{
 			if (type.GetTypeInfo().BaseType == typeof(Enum))
 			{
-#if (!PCL)
 
-				var obj = Enum.Parse(type, value.ToString());
-				converted = (T)obj;
+#if (!PCL)
+                object obj = null;
+                var friendlyValue = typeof(Enum).ToINameValuePairList().FirstOrDefault(c=>c.Name == value.ToString ());
+			    obj = Enum.Parse(type, friendlyValue != null ? 
+                    friendlyValue.Value : value.ToString());
+			    converted = (T)obj;
 				return true;
 #else
                 var obj = typeof (T).ParseEnum(value.ToString());
@@ -280,7 +283,7 @@ namespace Voodoo
 		}
 		private static string getEnumFriendlyName(object source)
 		{
-			if (source == null || source.To<int>() == 0)
+			if (source == null)
 				return string.Empty;
 #if !DNXCORE50 && !PCL
 			var type = source.GetType();

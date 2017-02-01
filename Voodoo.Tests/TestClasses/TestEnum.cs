@@ -10,6 +10,7 @@ namespace Voodoo.Tests.TestClasses
         Red = 1,
         Blue = 2,
         RedOrangeYellow = 3
+        
     }
 
 

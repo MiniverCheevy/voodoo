@@ -10,7 +10,7 @@ namespace Voodoo.Tests.Voodoo.Validation
     
     public class EnumIsRequiredTests
     {
-        [Fact]
+        [Fact] 
         public void IsValid_ValueIsNotSet_ReturnsFalse()
         {
             var item = new ClassWithEnum();

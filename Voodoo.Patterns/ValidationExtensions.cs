@@ -6,6 +6,13 @@ namespace Voodoo
 {
     public static class ValidationExtensions
     {
+
+        public static void ThrowIfNull(this object @object, string message)
+        {
+            if(@object == null)
+            throw new Exception(message);
+        }
+        
         [Obsolete("This was poorly named, use IsValid or GetValidationResponse")]
         public static bool Validate(this object request)
         {

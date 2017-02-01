@@ -258,6 +258,23 @@
       "xunit.runner.visualstudio/2.1.0": {
         "type": "package"
       },
+      "Voodoo/2.2.14": {
+        "type": "project",
+        "framework": ".NETFramework,Version=v4.6",
+        "frameworkAssemblies": [
+          "System.ComponentModel.DataAnnotations",
+          "System.Runtime.Serialization",
+          "System.Transactions",
+          "System.Web",
+          "System.Xml"
+        ],
+        "compile": {
+          "net46/Voodoo.dll": {}
+        },
+        "runtime": {
+          "net46/Voodoo.dll": {}
+        }
+      },
       "Voodoo.Patterns/2.2.14": {
         "type": "project",
         "framework": ".NETFramework,Version=v4.6",
@@ -682,6 +699,11 @@
         "xunit.runner.visualstudio.2.1.0.nupkg.sha512",
         "xunit.runner.visualstudio.nuspec"
       ]
+    },
+    "Voodoo/2.2.14": {
+      "type": "project",
+      "path": "../Voodoo.Patterns/project.json",
+      "msbuildProject": "../Voodoo.Patterns/Voodoo.xproj"
     },
     "Voodoo.Patterns/2.2.14": {
       "type": "project",

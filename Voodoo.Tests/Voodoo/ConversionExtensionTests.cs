@@ -16,7 +16,9 @@ namespace Voodoo.Tests.Voodoo
             friendly = test.ToFriendlyString();
             Assert.Equal("NASA", friendly);
         }
-		[Fact]
+
+       
+        [Fact]
 		public void ToFriendlyString_Enum_UsesDescriptionThenDisplayThenAddsSpaces()
 		{
 			var test = TestEnumWithDescriptionAndDisplay.Red;
