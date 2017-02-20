@@ -1,116 +1,117 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using Xunit;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Voodoo.Tests.Voodoo
 {
+    [TestClass]
     public class CollectionExtensionTests
     {
-        [Fact]
+        [TestMethod]
         public void ForEeach_Collection_EnumeratesProperly()
         {
             var items = new[] {"A", "B", "C"};
             var count = 0;
             items.ForEach(c => count++);
-            Assert.Equal(3, count);
+            Assert.AreEqual(3, count);
         }
 
-        [Fact]
+        [TestMethod]
         public void ContainsAny_Contained_ReturnsTrue()
         {
             var source = new[] {"A", "B", "C"};
             var target = new[] {"C", "D"};
             var result = source.ContainsAny(target);
-            Assert.Equal(true, result);
+            Assert.AreEqual(true, result);
         }
 
-        [Fact]
+        [TestMethod]
         public void ContainsAny_NotContained_ReturnsFalse()
         {
             var source = new[] {"A", "B", "C"};
             var target = new[] {"D", "E"};
             var result = source.ContainsAny(target);
-            Assert.Equal(false, result);
+            Assert.AreEqual(false, result);
         }
 
-        [Fact]
+        [TestMethod]
         public void ContainsAll_ContainsAll_ReturnsTrue()
         {
             var source = new[] {"A", "B", "C"};
             var target = new[] {"A", "B", "C"};
             var result = source.ContainsAll(target);
-            Assert.Equal(true, result);
+            Assert.AreEqual(true, result);
         }
 
-        [Fact]
+        [TestMethod]
         public void ContainsAll_EmptyList_ReturnsFalse()
         {
             var source = new string[] {};
             var target = new[] {"A", "B", "C"};
             var result = source.ContainsAll(target);
-            Assert.Equal(false, result);
+            Assert.AreEqual(false, result);
         }
 
-        [Fact]
+        [TestMethod]
         public void ContainsAll_ContainsAllExcept1_ReturnsFalse()
         {
             var source = new[] {"A", "B", "C"};
             var target = new[] {"A", "B", "C", "D"};
             var result = source.ContainsAll(target);
-            Assert.Equal(false, result);
+            Assert.AreEqual(false, result);
         }
 
-        [Fact]
+        [TestMethod]
         public void ToArray_CollectionOfStrings_ConvertedToArray()
         {
             ICollection source = new[] {"A", "B", "C"};
             var converted = source.ToArray<string>();
-            Assert.Equal(converted.GetType(), typeof (string[]));
+            Assert.AreEqual(converted.GetType(), typeof (string[]));
         }
 
-        [Fact]
+        [TestMethod]
         public void AddIfNotNull_NullObjet_NotAdded()
         {
             var list = new List<string>();
             string nullString = null;
             list.AddIfNotNull(nullString);
-            Assert.Equal(0, list.Count);
+            Assert.AreEqual(0, list.Count);
         }
 
-        [Fact]
+        [TestMethod]
         public void AddIfNotNull_NotNullObjet_Added()
         {
             var list = new List<string>();
             var nonNullString = "string";
             list.AddIfNotNull(nonNullString);
-            Assert.Equal(1, list.Count);
+            Assert.AreEqual(1, list.Count);
         }
 
-        [Fact]
+        [TestMethod]
         public void AddIfNotNullOrWhiteSpace_NullObjet_NotAdded()
         {
             var list = new List<string>();
             string nullString = null;
             list.AddIfNotNullOrWhiteSpace(nullString);
-            Assert.Equal(0, list.Count);
+            Assert.AreEqual(0, list.Count);
         }
 
-        [Fact]
+        [TestMethod]
         public void AddIfNotNullOrWhiteSpace_WhitepsaceObjet_NotAdded()
         {
             var list = new List<string>();
             var spacedString = "    ";
             list.AddIfNotNullOrWhiteSpace(spacedString);
-            Assert.Equal(0, list.Count);
+            Assert.AreEqual(0, list.Count);
         }
 
-        [Fact]
+        [TestMethod]
         public void AddIfNotNullOrWhiteSpace_NotNullObjet_NotAdded()
         {
             var list = new List<string>();
             var stringString = "string";
             list.AddIfNotNull(stringString);
-            Assert.Equal(1, list.Count);
+            Assert.AreEqual(1, list.Count);
         }
     }
 }

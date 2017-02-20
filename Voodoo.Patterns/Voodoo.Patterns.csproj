@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{7080A7C7-B5C8-41A4-9A1A-AEC8DA71AAAB}</ProjectGuid>
+    <ProjectGuid>{A11E882C-4F6A-4F2F-A16C-ED0B2B8F1921}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Voodoo</RootNamespace>
@@ -54,6 +54,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ActionHandler.cs" />
+    <Compile Include="CodeGeneration\CodeHelper.cs" />
     <Compile Include="CollectionExtensions.cs" />
     <Compile Include="ConversionExtensions.cs" />
     <Compile Include="ErrorDetailLoggingMethodology.cs" />
@@ -128,6 +129,9 @@
     <Compile Include="Validation\SafeValidationAttribute.cs" />
     <Compile Include="VoodooGlobalConfiguration.cs" />
     <Compile Include="_.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="CommandLine\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

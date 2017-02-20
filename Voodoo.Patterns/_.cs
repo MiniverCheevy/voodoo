@@ -10,11 +10,13 @@ namespace Voodoo
 	[Obsolete("Intended for use in the immediate or watch windows.")]
 	public static class _
 	{
-		public static string ToDebugString(object @object)
+
+        public static string ToDebugString(object @object)
 		{
 			return @object.ToDebugString();
 		}
-		public static string ToCode(object @object)
+
+        public static string ToCode(object @object)
 		{
 			return @object.ToCode();
 		}
@@ -31,7 +33,7 @@ namespace Voodoo
 		{
 			LogManager.Log(@string);
 		}
-#if !PCL && !DNXCORE50
+#if !PCL && !NETCOREAPP1_0
 		public static void ToFile(string @string, string fileName= "logfile.txt",string path=@"c:\logs\")
 		{
 			var fullPath = Path.Combine(path, fileName);

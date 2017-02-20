@@ -3,9 +3,9 @@ using Voodoo.Validation;
 
 namespace Voodoo.Tests.TestClasses
 {
-#if !DNX46
+
     [Serializable]
-#endif
+
     public class ClassWithDate
     {
 #if (!PCL)

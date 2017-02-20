@@ -84,44 +84,37 @@ namespace Voodoo.Operations
                 }
                 else
                 {
-#if NET40
+
                     var members =
                         element.GetType()
-                            .GetMembers(BindingFlags.Public | BindingFlags.Instance)
+                        .GetProperties(BindingFlags.Public | BindingFlags.Instance)
                             .OrderBy(OrderProperties)
                             .ThenBy(c => c.Name)
                             .ToArray();
-#else
-                    var members =
-                        element.GetType().GetTypeInfo().GetAllProperties()
-                            .OrderBy(OrderProperties)
-                            .ThenBy(c => c.Name)
-                            .ToArray();
-#endif
+
+                    //var members =
+                    //    element.GetType().GetTypeInfo().GetAllProperties()
+                    //        .OrderBy(OrderProperties)
+                    //        .ThenBy(c => c.Name)
+                    //        .ToArray();
+
                     foreach (var memberInfo in members)
                     {
-#if NET40
-                        var fieldInfo = memberInfo as FieldInfo;
+
+
                         var propertyInfo = memberInfo as PropertyInfo;
                         
-#else
-                        FieldInfo fieldInfo = null;
-                        var propertyInfo = memberInfo;
-#endif
 
-
-                        if (fieldInfo == null && propertyInfo == null)
+                        if (propertyInfo == null)
                             continue;
                         if (propertyInfo != null && propertyInfo.GetCustomAttributes(typeof(SecretAttribute), false).Any())
                             continue;
 
-                        var type = fieldInfo != null ? fieldInfo.FieldType : propertyInfo.PropertyType;
+                        var type = propertyInfo.PropertyType;
                         object value = null;
                         try
                         {
-                            value = fieldInfo != null
-                                ? fieldInfo.GetValue(element)
-                                : propertyInfo.GetValue(element, null);
+                            value = propertyInfo.GetValue(element, null);
                         }
                         catch (Exception ex)
                         {

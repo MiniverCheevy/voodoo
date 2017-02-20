@@ -5,7 +5,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using Voodoo.Operations;
-#if !PCL && !DNXCORE50
+#if !PCL && !NETCOREAPP1_0
 using System.ComponentModel.DataAnnotations;
 #endif
 namespace Voodoo
@@ -106,7 +106,7 @@ namespace Voodoo
 			catch
 			{
 			}
-#if !PCL
+#if !PCL && !NETCOREAPP1_0
 			try
 			{
 				value = getCustomMappedValue<T>(value);
@@ -246,7 +246,7 @@ namespace Voodoo
 						valueToConvert = (T)(object)Convert.ToUInt64(value);
 						return true;
 					}
-#if !DNXCORE50
+#if !NETCOREAPP1_0
                 case TypeCode.DBNull:
 #endif
 				case TypeCode.Empty:
@@ -266,7 +266,7 @@ namespace Voodoo
 			return new DateTime(date.Year, date.Month, date.Day, 23, 59, 59, 999);
 		}
 
-		public static string ToDebugString(this object o)
+        public static string ToDebugString(this object o)
 		{
 			var response = new ObjectStringificationQuery(o).Execute();
 			if (response.IsOk)
@@ -285,7 +285,7 @@ namespace Voodoo
 		{
 			if (source == null)
 				return string.Empty;
-#if !DNXCORE50 && !PCL
+#if !NETCOREAPP1_0 && !PCL
 			var type = source.GetType();
 			var memberInfos = type.GetMember(source.ToString());
 			if (memberInfos.Any())

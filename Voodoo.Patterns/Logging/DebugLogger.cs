@@ -5,7 +5,7 @@ using Voodoo.Logging;
 namespace Voodoo.Logging
 {
 
-#if !DNXCORE50
+#if !NETCOREAPP1_0
 
     public class DebugLogger : ILogger
     {

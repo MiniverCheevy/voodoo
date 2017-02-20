@@ -1,7 +1,0 @@
-﻿the following items flagged with the Obsolete Attribute have been removed
-IKeyValuePair ("Use INameValuePair instead")
-KeyValuePair ("Name causes cognitive dissonance, use NameValuePair instead.")
-Voodoo.Validation.Infrastructure.Messages ("Use Voodoo.Strings.Validation instead")
-Voodoo.Constants ("Use Voodoo.Strings instead")
-Voodoo.Constants.SortDirection ("Use Voodoo.Strings.SortDirection instead")
-QueryableExtensions.PagedResponse ("Use ToPagedResponse")

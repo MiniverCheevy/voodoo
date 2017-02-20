@@ -3,21 +3,22 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using Voodoo.Operations;
 using Voodoo.Tests.TestClasses;
-using Xunit;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Voodoo.Tests.Voodoo.Operations
 {
+    [TestClass]
     public class ObjectEmissionTests
     {
-        [Fact]
+        [TestMethod]
         public void SmokeTest()
         {
             var request = GetValidRequest();
             var response = new ObjectEmissionQuery(request).Execute();
-            Assert.Equal(null, response.Message);
-            Assert.Equal(true, response.IsOk);
+            Assert.AreEqual(null, response.Message);
+            Assert.AreEqual(true, response.IsOk);
             Debug.WriteLine(response.Text);
-            Assert.True(!response.Text.Contains("SecretProperty"));
+            Assert.IsTrue(!response.Text.Contains("SecretProperty"));
         }
 
   

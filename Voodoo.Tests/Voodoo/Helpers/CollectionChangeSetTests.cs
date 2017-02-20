@@ -2,13 +2,14 @@
 using System.Linq;
 using Voodoo.Helpers;
 using Voodoo.Tests.TestClasses;
-using Xunit;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Voodoo.Tests.Voodoo.Helpers
 {
+    [TestClass]
     public class CollectionChangeSetTests
     {
-        [Fact]
+        [TestMethod]
         public void ctor_0AddedOr0Deleted_0AddedOr0Deleted()
         {
             var source = new List<DataObject> {new DataObject {Id = 1}, new DataObject {Id = 2}};
@@ -17,25 +18,25 @@ namespace Voodoo.Tests.Voodoo.Helpers
             var helper = new CollectionChangeSet(source.Select(c => c.Id), modified.Select(c => c.Id));
 
 
-            Assert.Equal(0, helper.Added.Count());
-            Assert.Equal(2, helper.Edited.Count());
-            Assert.Equal(0, helper.Deleted.Count());
-            Assert.False(helper.AreDifferent());
+            Assert.AreEqual(0, helper.Added.Count());
+            Assert.AreEqual(2, helper.Edited.Count());
+            Assert.AreEqual(0, helper.Deleted.Count());
+            Assert.IsFalse(helper.AreDifferent());
         }
 
-        [Fact]
+        [TestMethod]
         public void ctor_0Added1Deleted_0Added1Deleted()
         {
             var source = new List<DataObject> {new DataObject {Id = 1}, new DataObject {Id = 2}};
             var modified = new List<DataObject> {new DataObject {Id = 1}};
             var helper = new CollectionChangeSet(source.Select(c => c.Id), modified.Select(c => c.Id));
-            Assert.Equal(0, helper.Added.Count());
-            Assert.Equal(1, helper.Edited.Count());
-            Assert.Equal(1, helper.Deleted.Count());
-            Assert.True(helper.AreDifferent());
+            Assert.AreEqual(0, helper.Added.Count());
+            Assert.AreEqual(1, helper.Edited.Count());
+            Assert.AreEqual(1, helper.Deleted.Count());
+            Assert.IsTrue(helper.AreDifferent());
         }
 
-        [Fact]
+        [TestMethod]
         public void ctor_1Added0Deleted_1Added0Deleted()
         {
             var source = new List<DataObject> {new DataObject {Id = 1}, new DataObject {Id = 2}};
@@ -48,13 +49,13 @@ namespace Voodoo.Tests.Voodoo.Helpers
             };
 
             var helper = new CollectionChangeSet(source.Select(c => c.Id), modified.Select(c => c.Id));
-            Assert.Equal(1, helper.Added.Count());
-            Assert.Equal(2, helper.Edited.Count());
-            Assert.Equal(0, helper.Deleted.Count());
-            Assert.True(helper.AreDifferent());
+            Assert.AreEqual(1, helper.Added.Count());
+            Assert.AreEqual(2, helper.Edited.Count());
+            Assert.AreEqual(0, helper.Deleted.Count());
+            Assert.IsTrue(helper.AreDifferent());
         }
 
-        [Fact]
+        [TestMethod]
         public void ctor_2Added1Deleted_2Added1Deleted()
         {
             var source = new List<DataObject> {new DataObject {Id = 1}, new DataObject {Id = 2}};
@@ -66,10 +67,10 @@ namespace Voodoo.Tests.Voodoo.Helpers
                 new DataObject {Id = 0}
             };
             var helper = new CollectionChangeSet(source.Select(c => c.Id), modified.Select(c => c.Id));
-            Assert.Equal(2, helper.Added.Count());
-            Assert.Equal(1, helper.Edited.Count());
-            Assert.Equal(1, helper.Deleted.Count());
-            Assert.True(helper.AreDifferent());
+            Assert.AreEqual(2, helper.Added.Count());
+            Assert.AreEqual(1, helper.Edited.Count());
+            Assert.AreEqual(1, helper.Deleted.Count());
+            Assert.IsTrue(helper.AreDifferent());
         }
     }
 }

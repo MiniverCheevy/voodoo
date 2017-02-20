@@ -5,11 +5,12 @@ using System.Diagnostics;
 using System.Linq;
 using Voodoo.Messages;
 using Voodoo.Tests.TestClasses;
-using Xunit;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 
 namespace Voodoo.Tests.Voodoo
 {
+    [TestClass]
     public class NameValuePairExtensionTests
     {
         private const string name = "name";
@@ -26,85 +27,85 @@ namespace Voodoo.Tests.Voodoo
         }
 
 
-        [Fact]
+        [TestMethod]
         public void Add_ValidRequest_IsAdded()
         {
             var list = new List<INameValuePair>();
             list.Add(name, value);
-            Assert.Equal(1, list.Count());
-            Assert.Equal(true, list.ContainsName(name));
-            Assert.Equal(true, list.ContainsValue(value));
+            Assert.AreEqual(1, list.Count());
+            Assert.AreEqual(true, list.ContainsName(name));
+            Assert.AreEqual(true, list.ContainsValue(value));
         }
 
-        [Fact]
+        [TestMethod]
         public void SetValue_Value_ValueIsSet()
         {
             const string newValue = "newValue";
             var list = new List<INameValuePair> {new NameValuePair(name, value)};
             list.SetValue(name, newValue);
-            Assert.Equal(1, list.Count());
-            Assert.Equal(true, list.ContainsName(name));
-            Assert.Equal(false, list.ContainsValue(value));
-            Assert.Equal(true, list.ContainsValue(newValue));
+            Assert.AreEqual(1, list.Count());
+            Assert.AreEqual(true, list.ContainsName(name));
+            Assert.AreEqual(false, list.ContainsValue(value));
+            Assert.AreEqual(true, list.ContainsValue(newValue));
         }
 
-        [Fact]
+        [TestMethod]
         public void RemoveByName_Value_ValueIsRemoved()
         {
             var list = new List<INameValuePair> {new NameValuePair(name, value)};
             list.RemoveByName(name);
-            Assert.Equal(0, list.Count());
+            Assert.AreEqual(0, list.Count());
         }
 
-        [Fact]
+        [TestMethod]
         public void RemoveByValue_Value_ValueIsRemoved()
         {
             var item = new NameValuePair(name, value);
             var list = new List<INameValuePair> {item, item};
             list.RemoveByValue(value);
-            Assert.Equal(0, list.Count());
+            Assert.AreEqual(0, list.Count());
         }
 
-        [Fact]
+        [TestMethod]
         public void GetValue_Value_ValueIsReturned()
         {
             var item = new NameValuePair(name, value);
             var list = new List<INameValuePair> {item, item};
             var returnedValue = list.GetValue(name);
-            Assert.Equal(value, returnedValue);
+            Assert.AreEqual(value, returnedValue);
         }
 
-        [Fact]
+        [TestMethod]
         public void Contains_Value_ValueIsReturned()
         {
             var list = getList();
             var test = new NameValuePair(name, value);
             list.Add(test);
-            Assert.Equal(true, list.ContainsItem(name, value));
+            Assert.AreEqual(true, list.ContainsItem(name, value));
         }
 
-        [Fact]
+        [TestMethod]
         public void Contains_ValueNotPresent_ValueIsNotReturned()
         {
             var list = getList();
             var test = new NameValuePair(name, value);
             list.Add(test);
-            Assert.Equal(false, list.ContainsItem(name, "green"));
+            Assert.AreEqual(false, list.ContainsItem(name, "green"));
         }
 
-        [Fact]
+        [TestMethod]
         public void Without_Value_ReturnedWithoutValue()
         {
             var list = getList();
             var test = new NameValuePair(name, value);
             list.Add(test);
             var newList = list.Without(name);
-            Assert.Equal(3, newList.Count);
-            Assert.Equal(true, !newList.ContainsName(name));
-            Assert.Equal(true, !newList.ContainsValue(value));
+            Assert.AreEqual(3, newList.Count);
+            Assert.AreEqual(true, !newList.ContainsName(name));
+            Assert.AreEqual(true, !newList.ContainsValue(value));
         }
 
-        [Fact]
+        [TestMethod]
         public void ToINameValuePairList_ValueIsDictionary_ReturnesList()
         {
             var items = new Dictionary<int, string>
@@ -113,73 +114,73 @@ namespace Voodoo.Tests.Voodoo
                 {2, "B"}
             };
             var list = items.ToINameValuePairList();
-            Assert.Equal(2, list.Count);
-            Assert.Equal(true, list.ContainsName("1"));
-            Assert.Equal(true, list.ContainsName("2"));
-            Assert.Equal(true, list.ContainsValue("A"));
-            Assert.Equal(true, list.ContainsValue("B"));
+            Assert.AreEqual(2, list.Count);
+            Assert.AreEqual(true, list.ContainsName("1"));
+            Assert.AreEqual(true, list.ContainsName("2"));
+            Assert.AreEqual(true, list.ContainsValue("A"));
+            Assert.AreEqual(true, list.ContainsValue("B"));
         }
 
-        [Fact]
+        [TestMethod]
         public void ToINameValuePairList_ValueIsEnum_ReturnesList()
         {
             var list = typeof (TestEnum).ToINameValuePairList();
 			Debug.WriteLine(list.Count());
 			list.Count().Should().Be(3);
-            Assert.Equal(true, list.ContainsName(TestEnum.Red.ToString()));
-            Assert.Equal(true, list.ContainsName(TestEnum.Blue.ToString()));
-            Assert.Equal(true, list.ContainsName("Red Orange Yellow"));
-            Assert.Equal(true, list.ContainsValue("1"));
-            Assert.Equal(true, list.ContainsValue("2"));
-            Assert.Equal(true, list.ContainsValue("3"));
+            Assert.AreEqual(true, list.ContainsName(TestEnum.Red.ToString()));
+            Assert.AreEqual(true, list.ContainsName(TestEnum.Blue.ToString()));
+            Assert.AreEqual(true, list.ContainsName("Red Orange Yellow"));
+            Assert.AreEqual(true, list.ContainsValue("1"));
+            Assert.AreEqual(true, list.ContainsValue("2"));
+            Assert.AreEqual(true, list.ContainsValue("3"));
         }
 
-        [Fact]
+        [TestMethod]
         public void ToINameValuePairListWithUnfriendlyNames_ValueIsEnum_ReturnesList()
         {
             var list = typeof (TestEnum).ToINameValuePairListWithUnfriendlyNames();
-            Assert.Equal(3, list.Count);
-            Assert.Equal(true, list.ContainsName(TestEnum.Red.ToString()));
-            Assert.Equal(true, list.ContainsName(TestEnum.Blue.ToString()));
-            Assert.Equal(true, list.ContainsName(TestEnum.RedOrangeYellow.ToString()));
-            Assert.Equal(true, list.ContainsValue("1"));
-            Assert.Equal(true, list.ContainsValue("2"));
-            Assert.Equal(true, list.ContainsValue("3"));
+            Assert.AreEqual(3, list.Count);
+            Assert.AreEqual(true, list.ContainsName(TestEnum.Red.ToString()));
+            Assert.AreEqual(true, list.ContainsName(TestEnum.Blue.ToString()));
+            Assert.AreEqual(true, list.ContainsName(TestEnum.RedOrangeYellow.ToString()));
+            Assert.AreEqual(true, list.ContainsValue("1"));
+            Assert.AreEqual(true, list.ContainsValue("2"));
+            Assert.AreEqual(true, list.ContainsValue("3"));
         }
 
-#if (!PCL && !DNX46)
+#if (!PCL)
 
-		[Fact]
+		[TestMethod]
 		public void ToINameValuePairList_ValueIsEnumWithDescriptionAndDisplayAttributes_ReturnesList()
         {
             var list = typeof (TestEnumWithDescriptionAndDisplay).ToINameValuePairList();
-            Assert.Equal(3, list.Count);
-            Assert.Equal(true, list.ContainsName("Crimson"));
-            Assert.Equal(true, list.ContainsName("Azure"));
-            Assert.Equal(true, list.ContainsName("Red Orange Yellow"));
-            Assert.Equal(true, list.ContainsValue("1"));
-            Assert.Equal(true, list.ContainsValue("2"));
-            Assert.Equal(true, list.ContainsValue("3"));
+            Assert.AreEqual(3, list.Count);
+            Assert.AreEqual(true, list.ContainsName("Crimson"));
+            Assert.AreEqual(true, list.ContainsName("Azure"));
+            Assert.AreEqual(true, list.ContainsName("Red Orange Yellow"));
+            Assert.AreEqual(true, list.ContainsValue("1"));
+            Assert.AreEqual(true, list.ContainsValue("2"));
+            Assert.AreEqual(true, list.ContainsValue("3"));
         }
 
-		[Fact]
+		[TestMethod]
 		public void ToINameValuePairList_ValueIsEnumWithDescription_ReturnesList()
 		{
 			var list = typeof(MeasurementType).ToINameValuePairList();
-			Assert.Equal(4, list.Count);
-			Assert.Equal(true, list.ContainsName("Numerator/Denominator - Lowest Common Multiple"));
+			Assert.AreEqual(4, list.Count);
+			Assert.AreEqual(true, list.ContainsName("Numerator/Denominator - Lowest Common Multiple"));
 			
 		}
 
-		[Fact]
+		[TestMethod]
         public void AsEnumerable_NameValueCollection_ReturnsList()
         {
             var collection = new NameValueCollection {{name, value}};
             var list = collection.AsEnumerable().ToArray();
             
-            Assert.Equal(1, list.Count());            
-            Assert.Equal(true, list.ContainsName(name));
-            Assert.Equal(true, list.ContainsValue(value));
+            Assert.AreEqual(1, list.Count());            
+            Assert.AreEqual(true, list.ContainsName(name));
+            Assert.AreEqual(true, list.ContainsValue(value));
             
         }
 #endif

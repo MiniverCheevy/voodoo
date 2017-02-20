@@ -1,6 +1,6 @@
 ﻿using Voodoo.Messages;
 
-#if ! DNX40
+#if ! NET40
 
 namespace Voodoo.Operations.Async
 {

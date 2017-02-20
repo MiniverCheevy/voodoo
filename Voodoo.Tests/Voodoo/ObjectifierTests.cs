@@ -1,31 +1,32 @@
 ﻿using System;
 using Voodoo.Tests.TestClasses;
-using Xunit;
-#if !DNX46 && !PCL
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+#if  !PCL && !NETCOREAPP1_0
 namespace Voodoo.Tests.Voodoo
 {
+    [TestClass]
     public class ObjectifierTests
     {
 
-        [Fact]
+        [TestMethod]
         public void ShallowCopy_Object_ObjectsAndScalarsAreTheSame()
         {
             var source = GetComplexClass();
             var target = Objectifyer.ShallowCopy(source);
-            Assert.Equal(source.ComplexObject, target.ComplexObject);
+            Assert.AreEqual(source.ComplexObject, target.ComplexObject);
             comparePrimitives(source, target);
         }
 
-        [Fact]
+        [TestMethod]
         public void DeepCopy_Object_ObjectsAreDifferentScalarsAreTheSame()
         {
             var source = GetComplexClass();
             var target = Objectifyer.DeepCopy(source);
-            Assert.NotEqual(source.ComplexObject, target.ComplexObject);
+            Assert.AreNotEqual(source.ComplexObject, target.ComplexObject);
             comparePrimitives(source, target);
         }
 
-        [Fact]
+        [TestMethod]
         public void ToXml_Object_PrimitivesMatchOnDeserializedObject()
         {
             var source = GetComplexClass();
@@ -33,7 +34,7 @@ namespace Voodoo.Tests.Voodoo
             var target = Objectifyer.FromXml<ClassToReflect>(xml, new Type[] {typeof (ClassWithDate)});
         }
 
-        [Fact]
+        [TestMethod]
         public void Base64Encode_Object_DecodedPrimitivesMatchOnDeserializedObject()
         {
             var source = GetComplexClass();
@@ -44,7 +45,7 @@ namespace Voodoo.Tests.Voodoo
             comparePrimitives(source, target);
         }
 
-        [Fact]
+        [TestMethod]
         public void ToXml_SimpleObject_PrimitivesMatchOnDeserializedObject()
         {
             var source = GetSimpleClass();
@@ -53,7 +54,7 @@ namespace Voodoo.Tests.Voodoo
             comparePrimitives(source, target);
         }
 
-        [Fact]
+        [TestMethod]
         public void ToXml_SimpleObjectNoNamespaces_PrimitivesMatchOnDeserializedObject()
         {
             var source = GetSimpleClass();
@@ -62,7 +63,7 @@ namespace Voodoo.Tests.Voodoo
             comparePrimitives(source, target);
         }
 
-        [Fact]
+        [TestMethod]
         public void ToDataContractXml_SimpleObject_PrimitivesMatchOnDeserializedObject()
         {
             var source = GetSimpleClass();
@@ -72,17 +73,17 @@ namespace Voodoo.Tests.Voodoo
 
 		private static void comparePrimitives(ClassWithDate source, ClassWithDate target)
         {
-            Assert.Equal(source.DateAndTime, target.DateAndTime);
+            Assert.AreEqual(source.DateAndTime, target.DateAndTime);
         }
 
         private static void comparePrimitives(ClassToReflect source, ClassToReflect target)
         {
-            Assert.Equal(source.DateAndTime, target.DateAndTime);
-            Assert.Equal(source.Int, target.Int);
-            Assert.Equal(source.NullableDateAndTime, target.NullableDateAndTime);
-            Assert.Equal(source.NullableInt, target.NullableInt);
-            Assert.Equal(source.String, target.String);
-            Assert.Equal(source.TestEnum, target.TestEnum);
+            Assert.AreEqual(source.DateAndTime, target.DateAndTime);
+            Assert.AreEqual(source.Int, target.Int);
+            Assert.AreEqual(source.NullableDateAndTime, target.NullableDateAndTime);
+            Assert.AreEqual(source.NullableInt, target.NullableInt);
+            Assert.AreEqual(source.String, target.String);
+            Assert.AreEqual(source.TestEnum, target.TestEnum);
         }
 
         public ClassWithDate GetSimpleClass()

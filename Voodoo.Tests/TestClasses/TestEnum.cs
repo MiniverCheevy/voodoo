@@ -15,7 +15,7 @@ namespace Voodoo.Tests.TestClasses
 
 
 
-#if !DNXCORE50 && !PCL
+#if  !PCL
 
 	public enum MeasurementType
 	{

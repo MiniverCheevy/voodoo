@@ -1,10 +1,10 @@
 ﻿using System.Threading.Tasks;
 using Voodoo.Messages;
-#if !DNXCORE50 && !PCL
+#if !NETCOREAPP1_0 && !PCL
 using System.Transactions;
 #endif
 
-#if ! DNX40 && ! DNX45
+#if ! NET40 && ! NET45
 
 namespace Voodoo.Operations.Async
 {
@@ -17,7 +17,7 @@ namespace Voodoo.Operations.Async
 
         public override async Task<TResponse> ExecuteAsync()
         {
-#if !DNXCORE50 && !PCL
+#if !NETCOREAPP1_0 && !PCL
 
 
             var transactionOptions = new TransactionOptions {IsolationLevel = IsolationLevel.ReadCommitted};
@@ -31,14 +31,14 @@ namespace Voodoo.Operations.Async
             response = await base.ExecuteAsync();
             if (response.IsOk)
             {
-#if !DNXCORE50 && !PCL
+#if !NETCOREAPP1_0 && !PCL
                     transaction.Complete();
 #endif
             }
             return response;
         }
 
-#if !DNXCORE50 && !PCL
+#if !NETCOREAPP1_0 && !PCL
         }
 #endif
     }

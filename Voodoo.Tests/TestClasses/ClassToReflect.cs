@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace Voodoo.Tests.TestClasses
 {
-#if !DNX46
+
     [Serializable]
-#endif
+
     public class ClassToReflect
     {
         public ClassWithDate ComplexObject { get; set; }

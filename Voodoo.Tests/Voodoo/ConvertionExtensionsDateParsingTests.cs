@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Diagnostics;
-using Xunit;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Voodoo.Tests.Voodoo
 {
+    [TestClass]
     public class ConvertionExtensionsDateParsingTests
     {
-        [Fact]
+        [TestMethod]
         public void To_ValidDate_CompareToParseAndConvert()
         {
             const string test = "2009/10/10";
@@ -28,7 +29,7 @@ namespace Voodoo.Tests.Voodoo
             Debug.WriteLine("Convert = " + stopwatch.Elapsed);
         }
 
-        [Fact]
+        [TestMethod]
         public void To_DateStringWithSpaces_CompareToParse()
         {
             const string test = "  2009/10/10        ";
@@ -36,7 +37,7 @@ namespace Voodoo.Tests.Voodoo
             To_DateString_CompareToParse(test);
         }
 
-        [Fact]
+        [TestMethod]
         public void To_DateWithnoSpaces_CompareToParse()
         {
             const string test = "2009/10/10";
@@ -44,7 +45,7 @@ namespace Voodoo.Tests.Voodoo
             To_DateString_CompareToParse(test);
         }
 
-        [Fact]
+        [TestMethod]
         public void To_InvalidDateString_CompareToParse()
         {
             const string test = "asdf";

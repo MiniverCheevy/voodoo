@@ -1,4 +1,4 @@
-﻿#if !DNXCORE50
+﻿#if !NETCOREAPP1_0
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
@@ -7,8 +7,8 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 
-[assembly: AssemblyVersion("2.1.16")]
-[assembly: AssemblyFileVersion("2.1.16")]
+[assembly: AssemblyVersion("2.2.16")]
+[assembly: AssemblyFileVersion("2.0.0")]
 [assembly: AssemblyTitle("Voodoo")]
 [assembly: AssemblyDescription("docs at http://minivercheevy.github.io/voodoo/")]
 [assembly: AssemblyConfiguration("")]
@@ -26,7 +26,7 @@ using System.Runtime.InteropServices;
 #endif
 // The following GUID is for the ID of the typelib if this project is exposed to COM
 
-#if (!PCL  && !DNXCORE50)
+#if (!PCL  && !NETCOREAPP1_0)
 [assembly: Guid("e4fcd9f4-6148-497e-a93a-11baa2d161fa")]
 #endif
 // Version information for an assembly consists of the following four values:

@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using Voodoo.Messages;
 using Voodoo.Validation.Infrastructure;
 
-#if ! DNX40
+#if ! NET40
 
 namespace Voodoo.Operations.Async
 {

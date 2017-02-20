@@ -4,7 +4,7 @@ using System.Reflection;
 
 using System.Text;
 using Voodoo.Infrastructure.Notations;
-#if !DNXCORE50 && !PCL
+#if !NETCOREAPP1_0 && !PCL
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Xml;
@@ -44,7 +44,7 @@ namespace Voodoo
             return result;
         }
 #endif
-#if !DNXCORE50 && !PCL
+#if !NETCOREAPP1_0 && !PCL
         
         public static TObject DeepCopy<TObject>(TObject o) where TObject : class
         {
@@ -60,7 +60,7 @@ namespace Voodoo
 
 
 
-#if !DNXCORE50 && !PCL
+#if !NETCOREAPP1_0 && !PCL
         
         public static T FromXml<T>(string xml) where T : class, new()
         {

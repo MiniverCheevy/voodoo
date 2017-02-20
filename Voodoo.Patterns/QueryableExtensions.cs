@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
-using Voodoo.Linq;
 using Voodoo.Messages;
 using Voodoo.Messages.Paging;
+
+using Voodoo.Linq;
 
 namespace Voodoo
 {
@@ -23,7 +24,8 @@ namespace Voodoo
             return target;
         }
 
-		public static IQueryable<TQueryResult> OrderByDescending<TQueryResult>(this IQueryable<TQueryResult> query,
+
+        public static IQueryable<TQueryResult> OrderByDescending<TQueryResult>(this IQueryable<TQueryResult> query,
 			string sortExpression) where TQueryResult : class
 		{
 			return buildSortExpression(query, sortExpression, Strings.SortDirection.Descending);
@@ -167,7 +169,7 @@ namespace Voodoo
             }
         }
 
-#if ! DNX40
+#if ! NET40 
         public static async Task<PagedResponse<TObject>> ToPagedResponseAsync<TObject>(this IQueryable<TObject> source,
             IGridState paging) where TObject : class, new()
         {

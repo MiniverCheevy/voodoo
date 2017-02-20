@@ -1,28 +1,30 @@
 ﻿using System.Threading.Tasks;
 using Voodoo.Messages;
 using Voodoo.Tests.TestClasses;
-using Xunit;
-
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+#if !NET40
 namespace Voodoo.Tests.Voodoo.Operations.Async
 {
+    [TestClass]
     public class ExecutorTests
     {
-        [Fact]
+        [TestMethod]
         public async Task Execute_ThrowsException_IsNotOk()
         {
             var response = await new ExecutorAsyncThatThrowsExceptions(new EmptyRequest()).ExecuteAsync();
-            Assert.Equal("Boom", response.Message);
-            Assert.Equal(false, response.IsOk);
-            Assert.Equal(false, response.ExecuteFinished);
+            Assert.AreEqual("Boom", response.Message);
+            Assert.AreEqual(false, response.IsOk);
+            Assert.AreEqual(false, response.ExecuteFinished);
         }
 
-        [Fact]
+        [TestMethod]
         public async Task Execute_FailsValidation_IsNotOk()
         {
             var response = await new ExecutorAsyncThatFailsValidation(new EmptyRequest()).ExecuteAsync();
-            Assert.Equal("Boom", response.Message);
-            Assert.Equal(false, response.IsOk);
-            Assert.Equal(false, response.ExecuteFinished);
+            Assert.AreEqual("Boom", response.Message);
+            Assert.AreEqual(false, response.IsOk);
+            Assert.AreEqual(false, response.ExecuteFinished);
         }
     }
 }
+#endif

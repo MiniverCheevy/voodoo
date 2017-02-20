@@ -19,7 +19,7 @@ namespace Voodoo
         {
             return new string(phone.To<string>().ToArray<char>().Where(char.IsDigit).ToArray());
         }
-#if !PCL && !DNXCORE50
+#if !PCL && !NETCOREAPP1_0
         public static T GetAttributeFromEnumMember<T>(object enumMember)
             where T:Attribute
         {

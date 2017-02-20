@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Voodoo.Messages;
+#if !NET40
 using Voodoo.Operations.Async;
 
 namespace Voodoo.Tests.TestClasses
@@ -21,3 +22,4 @@ namespace Voodoo.Tests.TestClasses
         }
     }
 }
+#endif

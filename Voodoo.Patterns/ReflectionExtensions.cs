@@ -4,14 +4,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using Voodoo.Logging;
-#if (DNXCore)
-using System.Reflection.IntrospectionExtensions;
+#if (NETCOREAPP1_0)
+using System.Reflection;
 #endif
 namespace Voodoo
 {
     public static class ReflectionExtensions
     {
-#if DNX40
+#if NET40
         public static Type GetTypeInfo(this Type t)
         {
             return t;

@@ -4,7 +4,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-#if DNXCORE50
+#if NETCOREAPP1_0
 //using Microsoft.AspNet.Hosting;
 //using Microsoft.AspNet.Http;
 #endif
@@ -18,10 +18,10 @@ namespace Voodoo
         {
             get
             {
-#if DNX40 || DNX45 || DNX451 || DNX452 || DNX46
+#if NET40 || NET45 || NET451 || NET452 || NET46
                 return System.Web.HttpContext.Current == null;
 
-#elif DNXCORE50
+#elif NETCOREAPP1_0
                 //return string.IsNullOrWhiteSpace(HostingEnvironment.WebRootPath)
                 //    ? Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)
                 //    : HostingEnvironment.Virtual;
@@ -32,12 +32,12 @@ namespace Voodoo
         }
             public static string GetApplicationRootDirectory()
         {
-#if DNX40 || DNX45 || DNX451 || DNX452 || DNX46
+#if NET40 || NET45 || NET451 || NET452 || NET46
                 return System.Web.HttpContext.Current == null
                 ? Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)
                 : System.Web.HttpContext.Current.Server.MapPath(".");
 
-#elif DNXCORE50
+#elif NETCOREAPP1_0
             
             //return string.IsNullOrWhiteSpace(HostingEnvironment.WebRootPath)
             //    ? Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)
@@ -145,10 +145,10 @@ namespace Voodoo
 			verifyDirectory(fileName);
 			
 			var exists = File.Exists(fileName);
-#if DNXCORE50
+#if NETCOREAPP1_0
 			exists = false;
 #endif
-#if !DNXCORE50
+#if !NETCOREAPP1_0
 			if (exists)
 			{
 				File.SetAttributes(fileName, FileAttributes.Archive);

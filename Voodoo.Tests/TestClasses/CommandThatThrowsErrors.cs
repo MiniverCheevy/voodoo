@@ -2,7 +2,7 @@
 using Voodoo.Logging;
 using Voodoo.Messages;
 using Voodoo.Operations;
-using Xunit;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Voodoo.Tests.TestClasses
 {

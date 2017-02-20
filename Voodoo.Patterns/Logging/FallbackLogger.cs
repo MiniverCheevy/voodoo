@@ -46,12 +46,12 @@ namespace Voodoo.Logging
                 var text = string.Concat(DateTime.Now.ToString("F"),
                     Environment.NewLine, log, Environment.NewLine,
                     "**********************************************************", Environment.NewLine);
-                #if !DNXCORE50
+                #if !NETCOREAPP1_0
                 lock (locker)
                 {
                 #endif
                     File.AppendAllText(path, text);
-#if !DNXCORE50
+#if !NETCOREAPP1_0
                 }
 #endif
             }
@@ -64,7 +64,7 @@ namespace Voodoo.Logging
         private static void handleFileWriteFailure(string actualError, Exception ex, string appName, string path)
         {
             
-#if !DNXCORE50
+#if !NETCOREAPP1_0
             var failedToWriteMessage = "Fallback Logger Failed to write log file: " + path;
             var source = appName ?? "Application";
             const string logName = "Application";
@@ -141,14 +141,14 @@ namespace Voodoo.Logging
                 appName = VoodooGlobalConfiguration.ApplicationName;
                 if (string.IsNullOrEmpty(appName))
                 {
-#if !DNXCORE50 && !PCL
+#if !NETCOREAPP1_0 && !PCL
                     var assembly = Assembly.GetCallingAssembly() == null
                         ? AppDomain.CurrentDomain.FriendlyName
                         : Assembly.GetCallingAssembly().FullName;
                     appName = assembly.Split(',')[0];
                     appName="Unname App";
 #endif
-#if DNXCORE50
+#if NETCOREAPP1_0
                      appName="Unnamed DotNetCoreApp";
 #endif
 #if PCL

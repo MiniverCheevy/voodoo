@@ -1,5 +1,5 @@
 ﻿using Voodoo.Messages;
-#if !DNXCORE50 && !PCL
+#if !NETCOREAPP1_0 && !PCL
 using System.Transactions;
 #endif
 
@@ -14,7 +14,7 @@ namespace Voodoo.Operations
 
         public override TResponse Execute()
         {
-#if !DNXCORE50 && !PCL
+#if !NETCOREAPP1_0 && !PCL
             var transactionOptions = new TransactionOptions {IsolationLevel = IsolationLevel.ReadCommitted};
 
             using (var transaction = new TransactionScope(TransactionScopeOption.Required, transactionOptions))
@@ -23,11 +23,11 @@ namespace Voodoo.Operations
             response = base.Execute();
             if (response.IsOk)
             {
-#if !DNXCORE50 && !PCL
+#if !NETCOREAPP1_0 && !PCL
                     transaction.Complete();
 #endif
             }
-#if !DNXCORE50 && !PCL
+#if !NETCOREAPP1_0 && !PCL
         }
 #endif
             return response;
