@@ -80,7 +80,7 @@ namespace Voodoo
                 return new List<INameValuePair>();
 
             var result =
-                items.Select(e => (INameValuePair) new NameValuePair(e.Key.To<string>(), e.Value.To<string>())).ToList();
+                items.Select(e => (INameValuePair) new NameValuePair(e.Key.ToString(), e.Value.To<string>())).ToList();
             return result;
         }
 
@@ -112,6 +112,18 @@ namespace Voodoo
                     .Select(e => (INameValuePair) new NameValuePair(e, ((int) Enum.Parse(enumeration, e)).ToString()))
                     .ToList();
             return ret;
+        }
+
+        public static Dictionary<string, string> ToDictionary(this IList<INameValuePair> list, bool throwForDuplicateKeys = false)
+        {
+            var result = new Dictionary<string, string>();
+            foreach (var item in list)
+            {
+                if ((result.ContainsKey(item.Value) && throwForDuplicateKeys) || !result.ContainsKey(item.Value))
+                    result.Add(item.Value, item.Name);
+                
+            }
+            return result;
         }
 
 #if !PCL 

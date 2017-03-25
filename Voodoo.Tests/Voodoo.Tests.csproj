@@ -121,6 +121,7 @@
     <Compile Include="Voodoo\IonicTests.cs" />
     <Compile Include="Voodoo\Linq\QueryableExtensionTests.cs" />
     <Compile Include="Voodoo\Logging\FallbackLoggerTests.cs" />
+    <Compile Include="Voodoo\NameIdExtensionTests.cs" />
     <Compile Include="Voodoo\NameValuePairExtensionTests.cs" />
     <Compile Include="Voodoo\ObjectifierTests.cs" />
     <Compile Include="Voodoo\Operations\Async\ExecutorAsyncTests.cs" />

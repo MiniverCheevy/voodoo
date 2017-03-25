@@ -35,7 +35,9 @@ _ReSharper.*
 *.tar
 *.zip
  
-
+/.vs
 /packages
 /TestResults
 /node_modules
+/.vs/Voodoo.Patterns/4708/i
+/.vs/Voodoo.Patterns/4708/i

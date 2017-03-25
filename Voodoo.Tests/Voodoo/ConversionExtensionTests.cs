@@ -31,9 +31,39 @@ namespace Voodoo.Tests.Voodoo
 			test = TestEnumWithDescriptionAndDisplay.RedOrangeYellow;
 			friendly = test.ToFriendlyString();
 			Assert.AreEqual("Red Orange Yellow", friendly);
+
 		}
 
-		[TestMethod]
+        [TestMethod]
+        public void FromFriendlyString_ToEnum_HandlesValuesFromDescriptionDisplayAndFriendlyfied()
+        {
+            var test = TestEnumWithDescriptionAndDisplay.Red;
+            var friendly = test.ToFriendlyString();
+            Assert.AreEqual(test, friendly.To<TestEnumWithDescriptionAndDisplay>());
+
+            test = TestEnumWithDescriptionAndDisplay.Blue;
+            friendly = test.ToFriendlyString();
+            Assert.AreEqual(test, friendly.To<TestEnumWithDescriptionAndDisplay>());
+
+            test = TestEnumWithDescriptionAndDisplay.RedOrangeYellow;
+            friendly = test.ToFriendlyString();
+            Assert.AreEqual(test, friendly.To<TestEnumWithDescriptionAndDisplay>());
+
+        }
+
+        [TestMethod]
+        public void Values_ToEnum_HandlesValuesFromDescriptionDisplayAndFriendlyfied()
+        {
+            var test = TestEnumWithDescriptionAndDisplay.Red;            
+            Assert.AreEqual(test, 1.To<TestEnumWithDescriptionAndDisplay>());
+
+            test = TestEnumWithDescriptionAndDisplay.Blue;
+            Assert.AreEqual(test, "2".To<TestEnumWithDescriptionAndDisplay>());
+
+        }
+
+
+        [TestMethod]
 		public void ToFriendlyString_Null_DoesNotThrow()
 		{
 			var defaultTest = default(TestEnumWithDescriptionAndDisplay).ToFriendlyString();

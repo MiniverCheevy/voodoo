@@ -148,6 +148,14 @@ namespace Voodoo.Tests.Voodoo
             Assert.AreEqual(true, list.ContainsValue("3"));
         }
 
+        [TestMethod]
+        public void ToDictionary_ExistingList_IsOk()
+        {
+            var list = typeof(TestEnum).ToINameValuePairListWithUnfriendlyNames();
+            var dictionary = list.ToDictionary();
+
+        }
+
 #if (!PCL)
 
 		[TestMethod]

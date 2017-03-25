@@ -17,7 +17,7 @@
 
         public override string ToString()
         {
-            return string.Format("NameValuePair Name:{0} Value:{1}", Name.To<string>(), Value.To<string>());
+            return $"NameValuePair Name:{Name.To<string>()} Value:{Value.To<string>()}";
         }
     }
 }

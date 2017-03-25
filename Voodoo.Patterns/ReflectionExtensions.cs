@@ -4,9 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using Voodoo.Logging;
-#if (NETCOREAPP1_0)
-using System.Reflection;
-#endif
 namespace Voodoo
 {
     public static class ReflectionExtensions
