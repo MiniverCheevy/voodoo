@@ -4,6 +4,20 @@
     <DefineConstants>PCL</DefineConstants>
     <AssemblyName>Voodoo</AssemblyName>
     <RootNamespace>Voodoo</RootNamespace>
+    <Version>2.2.17</Version>
+    <PackageId>Voodoo.Patterns</PackageId>
+    <Authors>Shawn Doucet</Authors>
+    <Company></Company>
+    <Product>Voodoo.Patterns</Product>
+    <Description>A c# library containing extension methods and reusable base classes for a light cqrs implementation.</Description>
+    <PackageTags>cqrs utility extension</PackageTags>
+    <Copyright>2014</Copyright>
+    <PackageProjectUrl>http://minivercheevy.github.io/voodoo/</PackageProjectUrl>
+    <PackageLicenseUrl>http://opensource.org/licenses/MIT</PackageLicenseUrl>
+    <RepositoryUrl>https://github.com/MiniverCheevy/voodoo</RepositoryUrl>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <OutputPath>bin\Debug</OutputPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <OutputPath>bin\Release\</OutputPath>

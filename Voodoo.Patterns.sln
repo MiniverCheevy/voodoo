@@ -11,7 +11,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		package.json = package.json
 		README.md = README.md
 		readme.txt = readme.txt
-		Voodoo.nuspec = Voodoo.nuspec
+		Voodoo.Patterns.nuspec = Voodoo.Patterns.nuspec
+		Voodoo.Patterns.Symbols.nuspec = Voodoo.Patterns.Symbols.nuspec
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Voodoo.Patterns.net40", "net40\Voodoo.Patterns.net40.csproj", "{7080A7C7-B5C8-41A4-9A1A-AEC8DA71AAAB}"
