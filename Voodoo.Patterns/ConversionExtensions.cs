@@ -341,6 +341,8 @@ namespace Voodoo
                 var enumFriendlyName = getEnumFriendlyName(o);
                 if (enumFriendlyName != null)
                     return enumFriendlyName;
+                if (o.ToString() == "0")
+                    return string.Empty;
 
             }
 

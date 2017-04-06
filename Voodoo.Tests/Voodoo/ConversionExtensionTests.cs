@@ -35,6 +35,14 @@ namespace Voodoo.Tests.Voodoo
 		}
 
         [TestMethod]
+        public void ToFriendlyString_EnumIsInvalid_ReturnsEmptyStringInsteadOfZero()
+        {
+            var test = "Yellow".To<TestEnumWithDescriptionAndDisplay>().ToFriendlyString();            
+            Assert.AreEqual(string.Empty,test);
+
+        }
+
+        [TestMethod]
         public void FromFriendlyString_ToEnum_HandlesValuesFromDescriptionDisplayAndFriendlyfied()
         {
             var test = TestEnumWithDescriptionAndDisplay.Red;
