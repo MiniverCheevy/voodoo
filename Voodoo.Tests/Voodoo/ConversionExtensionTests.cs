@@ -125,9 +125,9 @@ namespace Voodoo.Tests.Voodoo
             Assert.AreEqual(true, test);
             test = "Y".To<bool>();
             Assert.AreEqual(true, test);
-            test = "yes".To<bool>();
+            test = "YES".To<bool>();
             Assert.AreEqual(true, test);
-            test = "true".To<bool>();
+            test = "True".To<bool>();
             Assert.AreEqual(true, test);
             test = "1".To<bool>();
             Assert.AreEqual(true, test);

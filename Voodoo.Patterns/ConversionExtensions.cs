@@ -381,7 +381,10 @@ namespace Voodoo
 
         private static object getCustomMappedValue<T>(object value)
         {
-            var customMapping = customMappings.FirstOrDefault(c => c.Type == typeof(T) && c.Values.Contains(value));
+            if (value == null)
+                return value;
+            var val = value.ToString().ToLower();
+            var customMapping = customMappings.FirstOrDefault(c => c.Type == typeof(T) && c.Values.Contains(val));
 
             if (customMapping != null)
                 value = customMapping.ReturnValue;
