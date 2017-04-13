@@ -99,6 +99,7 @@
     <Compile Include="Messages\Request.cs" />
     <Compile Include="Messages\Response.cs" />
     <Compile Include="Messages\TextResponse.cs" />
+    <Compile Include="ModelHelper.cs" />
     <Compile Include="NameIdPairExtensions.cs" />
     <Compile Include="NameValuePairExtensions.cs" />
     <Compile Include="Objectifier.cs" />

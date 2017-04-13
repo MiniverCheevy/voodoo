@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Globalization;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -47,6 +48,31 @@ namespace Voodoo
             }
         }
 
+#if !PCL && !NETCOREAPP1_0
+        public static bool Is<T>(this object value)
+        {
+            
+            TypeConverter converter = TypeDescriptor.GetConverter(typeof(T));
+            if (converter != null)
+            {
+                if (value.GetType() == typeof(T))
+                    return true;
+                try
+                {
+                    if ((value == null) || converter.CanConvertFrom(null, value.GetType()))
+                    {
+                        converter.ConvertFrom(value);
+                        return true;
+                    }
+                }
+                catch
+                {
+                    return false;
+                }
+            }
+            return false;
+        }
+#endif
         public static T To<T>(this object value)
         {
             if (value == null)
@@ -293,7 +319,7 @@ namespace Voodoo
         {
             return new DateTime(date.Year, date.Month, date.Day, 23, 59, 59, 999);
         }
-
+       
         public static string ToDebugString(this object o)
         {
             var response = new ObjectStringificationQuery(o).Execute();

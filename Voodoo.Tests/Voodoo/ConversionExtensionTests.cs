@@ -1,4 +1,5 @@
 ﻿using System;
+using FluentAssertions;
 using Voodoo.Tests.TestClasses;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -18,27 +19,27 @@ namespace Voodoo.Tests.Voodoo
             Assert.AreEqual("NASA", friendly);
         }
 
-       
-        [TestMethod]
-		public void ToFriendlyString_Enum_UsesDescriptionThenDisplayThenAddsSpaces()
-		{
-			var test = TestEnumWithDescriptionAndDisplay.Red;
-			var friendly = test.ToFriendlyString();
-			Assert.AreEqual("Crimson", friendly);
-			test = TestEnumWithDescriptionAndDisplay.Blue;
-			friendly = test.ToFriendlyString();
-			Assert.AreEqual("Azure", friendly);
-			test = TestEnumWithDescriptionAndDisplay.RedOrangeYellow;
-			friendly = test.ToFriendlyString();
-			Assert.AreEqual("Red Orange Yellow", friendly);
 
-		}
+        [TestMethod]
+        public void ToFriendlyString_Enum_UsesDescriptionThenDisplayThenAddsSpaces()
+        {
+            var test = TestEnumWithDescriptionAndDisplay.Red;
+            var friendly = test.ToFriendlyString();
+            Assert.AreEqual("Crimson", friendly);
+            test = TestEnumWithDescriptionAndDisplay.Blue;
+            friendly = test.ToFriendlyString();
+            Assert.AreEqual("Azure", friendly);
+            test = TestEnumWithDescriptionAndDisplay.RedOrangeYellow;
+            friendly = test.ToFriendlyString();
+            Assert.AreEqual("Red Orange Yellow", friendly);
+
+        }
 
         [TestMethod]
         public void ToFriendlyString_EnumIsInvalid_ReturnsEmptyStringInsteadOfZero()
         {
-            var test = "Yellow".To<TestEnumWithDescriptionAndDisplay>().ToFriendlyString();            
-            Assert.AreEqual(string.Empty,test);
+            var test = "Yellow".To<TestEnumWithDescriptionAndDisplay>().ToFriendlyString();
+            Assert.AreEqual(string.Empty, test);
 
         }
 
@@ -62,7 +63,7 @@ namespace Voodoo.Tests.Voodoo
         [TestMethod]
         public void Values_ToEnum_HandlesValuesFromDescriptionDisplayAndFriendlyfied()
         {
-            var test = TestEnumWithDescriptionAndDisplay.Red;            
+            var test = TestEnumWithDescriptionAndDisplay.Red;
             Assert.AreEqual(test, 1.To<TestEnumWithDescriptionAndDisplay>());
 
             test = TestEnumWithDescriptionAndDisplay.Blue;
@@ -72,14 +73,14 @@ namespace Voodoo.Tests.Voodoo
 
 
         [TestMethod]
-		public void ToFriendlyString_Null_DoesNotThrow()
-		{
-			var defaultTest = default(TestEnumWithDescriptionAndDisplay).ToFriendlyString();
-			var nullableTest = default(TestEnumWithDescriptionAndDisplay?).ToFriendlyString();
-			var stringTest = default(string).ToFriendlyString();
-		}
+        public void ToFriendlyString_Null_DoesNotThrow()
+        {
+            var defaultTest = default(TestEnumWithDescriptionAndDisplay).ToFriendlyString();
+            var nullableTest = default(TestEnumWithDescriptionAndDisplay?).ToFriendlyString();
+            var stringTest = default(string).ToFriendlyString();
+        }
 
-		[TestMethod]
+        [TestMethod]
         public void ToStartOfDay_Date_TimeStripped()
         {
             var date = "1/1/1900 12:36:54:123".As<DateTime>();
@@ -236,7 +237,7 @@ namespace Voodoo.Tests.Voodoo
         {
             uint? test = null;
             var converted = test.To<uint>();
-            Assert.AreEqual((uint) 0, converted);
+            Assert.AreEqual((uint)0, converted);
         }
 
         [TestMethod]
@@ -244,7 +245,7 @@ namespace Voodoo.Tests.Voodoo
         {
             ulong? test = null;
             var converted = test.To<ulong>();
-            Assert.AreEqual((ulong) 0, converted);
+            Assert.AreEqual((ulong)0, converted);
         }
 
         [TestMethod]
@@ -348,7 +349,7 @@ namespace Voodoo.Tests.Voodoo
         {
             object test = null;
             var converted = test.To<uint>();
-            Assert.AreEqual((uint) 0, converted);
+            Assert.AreEqual((uint)0, converted);
         }
 
         [TestMethod]
@@ -356,7 +357,7 @@ namespace Voodoo.Tests.Voodoo
         {
             object test = null;
             var converted = test.To<ulong>();
-            Assert.AreEqual((ulong) 0, converted);
+            Assert.AreEqual((ulong)0, converted);
         }
 
         [TestMethod]
@@ -444,7 +445,7 @@ namespace Voodoo.Tests.Voodoo
         {
             var test = string.Empty;
             var converted = test.To<uint>();
-            Assert.AreEqual((uint) 0, converted);
+            Assert.AreEqual((uint)0, converted);
         }
 
         [TestMethod]
@@ -452,23 +453,23 @@ namespace Voodoo.Tests.Voodoo
         {
             var test = string.Empty;
             var converted = test.To<ulong>();
-            Assert.AreEqual((ulong) 0, converted);
+            Assert.AreEqual((ulong)0, converted);
         }
 
         [TestMethod]
         public void To_AnyNumeric_Converts()
         {
-            Assert.AreEqual((byte) 7, 7.To<byte>());
+            Assert.AreEqual((byte)7, 7.To<byte>());
             Assert.AreEqual(7, 7.To<decimal>());
             Assert.AreEqual(7, 7.To<double>());
-            Assert.AreEqual((short) 7, 7.To<short>());
+            Assert.AreEqual((short)7, 7.To<short>());
             Assert.AreEqual(7, 7.To<int>());
             Assert.AreEqual(7, 7.To<long>());
-            Assert.AreEqual((sbyte) 7, 7.To<sbyte>());
+            Assert.AreEqual((sbyte)7, 7.To<sbyte>());
             Assert.AreEqual(7, 7.To<float>());
-            Assert.AreEqual((ushort) 7, 7.To<ushort>());
-            Assert.AreEqual((uint) 7, 7.To<uint>());
-            Assert.AreEqual((ulong) 7, 7.To<ulong>());
+            Assert.AreEqual((ushort)7, 7.To<ushort>());
+            Assert.AreEqual((uint)7, 7.To<uint>());
+            Assert.AreEqual((ulong)7, 7.To<ulong>());
         }
 
         [TestMethod]
@@ -760,5 +761,40 @@ namespace Voodoo.Tests.Voodoo
             var converted = test.To<int>();
             Assert.AreEqual(expected, converted);
         }
+
+        [TestMethod]
+        public void To_DecimalStringToInt_ReturnsInt()
+        {
+            var test = "5.00";
+            const int expected = 5;
+            var converted = test.To<int>();
+            Assert.AreEqual(expected, converted);
+        }
+
+
+#if !PCL && !NETCOREAPP1_0
+        [TestMethod]
+        public void Is_VariousValues_IsOk()
+        {
+            1.Is<int>().Should().BeTrue();
+            "1".Is<int>().Should().BeTrue();
+            "1.1".Is<int>().Should().BeFalse();
+            "fish".Is<int>().Should().BeFalse();
+
+            1.Is<decimal>().Should().BeFalse();
+            "1".Is<decimal>().Should().BeTrue();
+            "1.1".Is<decimal>().Should().BeTrue();
+            "fish".Is<decimal>().Should().BeFalse();
+
+            "1/1/2017".To<DateTime>().Is<DateTime>().Should().BeTrue();
+            "1/1/2017".Is<DateTime>().Should().BeTrue();
+            "1-1-2017".Is<DateTime>().Should().BeTrue();           
+            "fish".Is<DateTime>().Should().BeFalse();
+
+            true.Is<bool>().Should().BeTrue();
+            "true".Is<bool>().Should().BeTrue();
+            "yes".Is<bool>().Should().BeFalse();
+        }
+#endif
     }
 }
