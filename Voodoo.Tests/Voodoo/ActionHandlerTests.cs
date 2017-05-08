@@ -60,8 +60,7 @@ namespace Voodoo.Tests.Voodoo
         {
             var response = await ActionHandler.ExecuteAsync<Response>(async () =>
             {
-                throw new Exception(error);
-                await Task.Run(() => { return new Response(); });
+                throw new Exception(error);                
             });
             Assert.AreEqual(error, response.Message);
             Assert.AreEqual(false, response.IsOk);

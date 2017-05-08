@@ -54,6 +54,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\Voodoo.Patterns\**\*.cs" Exclude="..\Voodoo.Patterns\**\Temp*.*;..\Voodoo.Patterns\**\dotnet*.*" />
+    <Compile Include="BinaryResponse.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
