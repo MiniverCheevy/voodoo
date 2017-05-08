@@ -6,7 +6,6 @@
     <Compile Include="..\Voodoo.Tests\**\*.cs" Exclude="..\Voodoo.Tests\**\AssemblyInfo*.*;..\Voodoo.Tests\**\Temp*.*;..\Voodoo.Tests\**\dotnet*.*" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="FluentAssertions" Version="4.19.0" />
     <PackageReference Include="MSTest.TestFramework" Version="1.0.8-rc2" />
     <PackageReference Include="System.Collections.Specialized" Version="4.3.0" />
     <PackageReference Include="System.ComponentModel.Annotations" Version="4.3.0" />
