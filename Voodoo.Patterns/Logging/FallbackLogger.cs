@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -18,11 +19,16 @@ namespace Voodoo.Logging
         {
             var log = new StringBuilder();
             log.Append(ex.ToString());
-            foreach (var item in ex.Data)
+            foreach (var i in ex.Data)
             {
-                log.AppendLine("");
-                log.AppendLine(item.ToString());
-                log.AppendLine(ex.Data[item].ToString());
+                if (i is DictionaryEntry)
+                {
+                    var item = i.To<DictionaryEntry>();
+                    log.AppendLine("");
+                    log.AppendLine(item.Key.To<string>());
+                    log.AppendLine(item.Value.To<string>());
+
+                }
             }
 
             Log(ex.ToString(), null);
@@ -46,10 +52,10 @@ namespace Voodoo.Logging
                 var text = string.Concat(DateTime.Now.ToString("F"),
                     Environment.NewLine, log, Environment.NewLine,
                     "**********************************************************", Environment.NewLine);
-                #if !NETCOREAPP1_0
+#if !NETCOREAPP1_0
                 lock (locker)
                 {
-                #endif
+#endif
                     File.AppendAllText(path, text);
 #if !NETCOREAPP1_0
                 }
@@ -60,10 +66,10 @@ namespace Voodoo.Logging
                 handleFileWriteFailure(log, ex, appName, path);
             }
         }
-        
+
         private static void handleFileWriteFailure(string actualError, Exception ex, string appName, string path)
         {
-            
+
 #if !NETCOREAPP1_0
             var failedToWriteMessage = "Fallback Logger Failed to write log file: " + path;
             var source = appName ?? "Application";
@@ -91,7 +97,7 @@ namespace Voodoo.Logging
 
             var actualMessage = string.Format("{0} {1}", actualError, ex);
             if (actualMessage.Length > 32000)
-                actualMessage = actualMessage.Substring(0,32000);
+                actualMessage = actualMessage.Substring(0, 32000);
             EventLog.WriteEntry(source, failedToWriteMessage, EventLogEntryType.Warning);
 
             EventLog.WriteEntry(source, actualMessage, EventLogEntryType.Error);
@@ -101,7 +107,7 @@ namespace Voodoo.Logging
         private static void deleteFileIfNeeded(string path)
         {
             if (File.Exists(path))
-            { 
+            {
                 var now = DateTime.Now;
                 var lastWrite = File.GetLastWriteTime(path);
                 if (lastWrite.Year == now.Year && lastWrite.Month == now.Month && lastWrite.Day == now.Day)
@@ -126,7 +132,7 @@ namespace Voodoo.Logging
 
             if (string.IsNullOrEmpty(logFilePath))
             {
-                logFilePath = IoNic.IsWebHosted ? IoNic.GetApplicationRootDirectory() : @"c:\Logs" ;
+                logFilePath = IoNic.IsWebHosted ? IoNic.GetApplicationRootDirectory() : @"c:\Logs";
             }
             var fileName = string.Format("log.{0}.txt", today);
             var path = Path.Combine(logFilePath, fileName);
@@ -146,7 +152,7 @@ namespace Voodoo.Logging
                         ? AppDomain.CurrentDomain.FriendlyName
                         : Assembly.GetCallingAssembly().FullName;
                     appName = assembly.Split(',')[0];
-                    appName="Unname App";
+                    appName = "Unname App";
 #endif
 #if NETCOREAPP1_0
                      appName="Unnamed DotNetCoreApp";
