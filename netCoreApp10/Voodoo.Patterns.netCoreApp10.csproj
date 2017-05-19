@@ -3,7 +3,7 @@
     <TargetFramework>netcoreapp1.0</TargetFramework>
     <AssemblyName>Voodoo</AssemblyName>
     <RootNamespace>Voodoo</RootNamespace>
-    <Version>2.2.18</Version>
+    <Version>2.2.20</Version>
     <PackageId>Voodoo.Patterns</PackageId>
     <Authors>Shawn Doucet</Authors>
     <Company></Company>
