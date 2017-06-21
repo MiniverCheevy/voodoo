@@ -53,7 +53,7 @@ namespace Voodoo
             }
             catch (ReflectionTypeLoadException rtl)
             {
-                LogManager.Log(string.Format("error loading types from {0}", assembly.FullName));
+                LogManager.Log($"error loading types from {assembly.FullName}");
                 return rtl.Types.Where(c => c != null).ToArray();
             }
         }
@@ -170,7 +170,7 @@ namespace Voodoo
             var result = type.FixUpScalarTypeName();
             if (type.GetTypeInfo().IsGenericType && type.GetGenericTypeDefinition() == typeof (Nullable<>))
             {
-                result = string.Format("{0}?", Nullable.GetUnderlyingType(type).FixUpScalarTypeName());
+                result = $"{Nullable.GetUnderlyingType(type).FixUpScalarTypeName()}?";
             }
 
             else if (type.GetTypeInfo().IsGenericType)

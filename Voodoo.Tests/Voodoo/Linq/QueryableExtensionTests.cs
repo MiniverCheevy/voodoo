@@ -6,6 +6,7 @@ using Voodoo.Linq;
 using Voodoo.Messages;
 using Voodoo.Tests.TestClasses;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Voodoo.Messages.Paging;
 
 namespace Voodoo.Tests.Voodoo.Linq
 {
@@ -142,7 +143,26 @@ namespace Voodoo.Tests.Voodoo.Linq
 			Assert.AreEqual(1, pagedResult.State.TotalPages);
 			Assert.AreEqual(4, pagedResult.State.TotalRecords);
 		}
-		[TestMethod]
+
+	    [TestMethod]
+	    public void PagedResult_RequestIsEmpty_IsOk()
+	    {
+	        var list = GetTestList().AsQueryable();
+	        var pagedResult = list.ToPagedResponse(new PersonPagedRequest());
+
+	        Assert.AreEqual(1, pagedResult.State.TotalPages);
+	        Assert.AreEqual(4, pagedResult.State.TotalRecords);
+	    }
+	    public void PagedResult_PreviousRequestIsEmpty_IsOk()
+	    {
+	        var list = GetTestList().AsQueryable();
+	        var pagedResult = list.ToPagedResponse(new GridState(null));
+
+	        Assert.AreEqual(1, pagedResult.State.TotalPages);
+	        Assert.AreEqual(4, pagedResult.State.TotalRecords);
+	    }
+
+        [TestMethod]
 		public void SortOnNestedProperties_IsOk()
 		{
 			var list = GetComplexList();

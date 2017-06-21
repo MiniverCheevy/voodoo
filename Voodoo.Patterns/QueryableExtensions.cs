@@ -61,7 +61,7 @@ namespace Voodoo
         public static PagedResponse<TOut> ToPagedResponse<TIn, TOut>(this IQueryable<TIn> source, IGridState paging,
             Expression<Func<TIn, TOut>> transform) where TIn : class where TOut : class, new()
         {
-            IQueryable page;
+            IQueryable<TOut> page;
             var state = buildPagedQuery(source, paging, transform, out page);
 
             var list = page.ToArray<TOut>();
@@ -73,12 +73,12 @@ namespace Voodoo
         }
 
         private static IGridState buildPagedQuery<TIn, TOut>(IQueryable<TIn> source, IGridState paging,
-            Expression<Func<TIn, TOut>> expression, out IQueryable page) where TIn : class where TOut : class, new()
+            Expression<Func<TIn, TOut>> expression, out IQueryable<TOut> page) where TIn : class where TOut : class, new()
         {
             var sortMember = paging.SortMember ?? paging.DefaultSortMember;
 
             source = !string.IsNullOrEmpty(sortMember)
-                ? source.OrderByDynamic(string.Format("{0} {1}", sortMember, paging.SortDirection))
+                ? source.OrderByDynamic($"{sortMember} {paging.SortDirection}")
                 : source.OrderBy(c => true);
 
             paging.TotalRecords = LinqHelper.Count(source);
@@ -169,19 +169,36 @@ namespace Voodoo
             }
         }
 
-#if ! NET40 
+#if !NET40
+        //public static async Task<PagedResponse<TObject>> ToPagedResponseAsync<TObject>(this IQueryable<TObject> source,
+        //    IGridState paging) where TObject : class, new()
+        //{
+        //    return await Task.Run(() => ToPagedResponse(source, paging, c => c));
+        //}
+
+        //public static async Task<PagedResponse<TOut>> ToPagedResponseAsync<TIn, TOut>(this IQueryable<TIn> source,
+        //    IGridState paging, Expression<Func<TIn, TOut>> transform) where TIn : class where TOut : class, new()
+        //{
+        //    return await Task.Run(() => ToPagedResponseAsync(source, paging, transform));
+        //}
         public static async Task<PagedResponse<TObject>> ToPagedResponseAsync<TObject>(this IQueryable<TObject> source,
             IGridState paging) where TObject : class, new()
         {
-            return await Task.Run(() => ToPagedResponse(source, paging, c => c));
+            return await Task.Run(() => ToPagedResponseAsync(source, paging, c => c));
         }
-
-        public static async Task<PagedResponse<TOut>> ToPagedResponseAsync<TIn, TOut>(this IQueryable<TIn> source,
-            IGridState paging, Expression<Func<TIn, TOut>> transform) where TIn : class where TOut : class, new()
+        public static async Task<PagedResponse<TOut>> ToPagedResponseAsync<TIn, TOut>(this IQueryable<TIn> source, IGridState paging,
+            Expression<Func<TIn, TOut>> transform) where TIn : class where TOut : class, new()
         {
-            return await Task.Run(() => ToPagedResponse(source, paging, transform));
-        }
+            IQueryable<TOut> page;
+            var state = buildPagedQuery(source, paging, transform, out page);
 
+            var list = await page.ToListAsyncDynamic<TOut>();
+
+            var result = new PagedResponse<TOut>(state);
+
+            result.Data.AddRange(list);
+            return result;
+        }
 #endif
     }
 }

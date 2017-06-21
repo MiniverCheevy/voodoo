@@ -36,7 +36,9 @@ namespace Voodoo.Tests.Voodoo
 		public void Execute_Exception_DoesNotThrow()
 		{
 			var response = ActionHandler.Execute<Response>(() => {
-				throw new Exception(error);
+                var exception = new Exception(error);
+                exception.Data.Add("key", "value");
+                throw exception;
 			});
 			Assert.AreEqual(error, response.Message);
 			Assert.AreEqual(false, response.IsOk);
@@ -46,10 +48,7 @@ namespace Voodoo.Tests.Voodoo
         [TestMethod]
         public void Execute_NoException_IsOk()
         {
-            var response = ActionHandler.Execute(() =>
-            {
-                return new Response() { Message = works };
-            });
+            var response = ActionHandler.Execute(() => new Response() { Message = works });
             Assert.AreEqual(works, response.Message);
             Assert.AreEqual(true, response.IsOk);
 

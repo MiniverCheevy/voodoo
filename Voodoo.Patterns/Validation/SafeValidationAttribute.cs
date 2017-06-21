@@ -19,8 +19,35 @@ namespace Voodoo.Validation
                 return false;
             }
         }
+       
+        protected override ValidationResult IsValid(object value, ValidationContext context)
+        {
+            try
+            {
+                return IsValueValid(value, context);
+            }
+            catch (Exception ex)
+            {
+                return new ValidationResult(ex.Message);
+            }
+        }
 
-        public abstract bool IsValueValid(object value);
+        protected abstract bool IsValueValid(object value);
+        protected virtual ValidationResult IsValueValid(object value, ValidationContext context) {
+            try
+            {
+                if (IsValueValid(value))
+                    return null;
+                else
+                    return new ValidationResult("invalid");
+            }
+            catch (Exception ex)
+            {
+                return new ValidationResult(ex.Message);
+            }
+            return null;
+
+        }
     }
 }
 

@@ -1,7 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
+using System.Threading.Tasks;
+using Voodoo.Infrastructure.Notations;
 
 namespace Voodoo.Linq
 {
@@ -10,7 +13,7 @@ namespace Voodoo.Linq
     /// </summary>
     public static class LinqHelper
     {
-        private static  MemberExpression GetNestedExpressionProperty(Expression expression, string propertyName)
+        private static MemberExpression getNestedExpressionProperty(Expression expression, string propertyName)
         {
             var parts = propertyName.Split('.');
             var length = parts.Length;
@@ -18,7 +21,7 @@ namespace Voodoo.Linq
             return (length > 1)
                 ?
                 Expression.Property(
-                    GetNestedExpressionProperty(
+                    getNestedExpressionProperty(
                         expression,
                         parts.Take(length - 1)
                             .Aggregate((a, i) => a + "." + i)
@@ -28,49 +31,73 @@ namespace Voodoo.Linq
                 Expression.Property(expression, propertyName);
         }
 
+#if !NET40
+        public static bool HasToListAsync {get;private set;}= true;
+        public static async Task<List<T>> ToListAsyncDynamic<T>(this IQueryable<T> source)
+        {
+            if (source == null) throw new ArgumentNullException(nameof(source));
+            if (HasToListAsync)
+        {
+            try
+            {
+                return await (Task<List<T>>)
+                    source.Provider.Execute(Expression.Call(typeof(Queryable), "ToListAsync", new[] { source.ElementType },
+                        source.Expression));
+            }
+            catch (System.InvalidOperationException ex)
+            {
+                if (ex.Message.Contains("ToListAsync"))
+                    HasToListAsync = false;
+                else
+                    throw;
+            }
+        }
+            return await Task.Run(() => source.ToList());
+        }     
+#endif
         public static IQueryable<T> OrderByDynamic<T>(this IQueryable<T> source, string ordering)
         {
             if (source == null) throw new ArgumentNullException(nameof(source));
             if (ordering == null) throw new ArgumentNullException(nameof(ordering));
-            var parameters = new[] {Expression.Parameter(source.ElementType, "")};
+            var parameters = new[] { Expression.Parameter(source.ElementType, "") };
             var orderings = ordering.Split(',');
             var methodAsc = "OrderBy";
             var methodDesc = "OrderByDescending";
-            var type = typeof (T);
+            var type = typeof(T);
             var query = source.Expression;
             PropertyInfo property = null;
             foreach (var o in orderings)
             {
                 var ascending = true;
-                var expr = o.Split(new[] {' '}, StringSplitOptions.RemoveEmptyEntries);
+                var expr = o.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
                 if (expr.Count() > 1 && expr[1].ToUpper() == Strings.SortDirection.Descending)
                     ascending = false;
-                
+
 
                 var sort = expr[0];
                 if (sort.Contains("."))
                 {
-                    var nestedProperties = sort.Split(new[] {'.'}, StringSplitOptions.RemoveEmptyEntries);
+                    var nestedProperties = sort.Split(new[] { '.' }, StringSplitOptions.RemoveEmptyEntries);
                     var nestedType = type;
                     foreach (var prop in nestedProperties)
                     {
-                       
+
 #if (PCL)
                         property = nestedType.GetTypeInfo().GetDeclaredProperty(prop);
 #else
-                         foreach (var propertyInfo in nestedType.GetProperties())
+                        foreach (var propertyInfo in nestedType.GetProperties())
                         {
                             if (propertyInfo.Name == prop)
                             {
-                                property=propertyInfo;
+                                property = propertyInfo;
                                 break;
                             }
 
                         }
 #endif
                         if (property == null)
-                            throw new ArgumentException(string.Format("Could not find property {0} on type {1} for expression {2}", prop,
-                                nestedType.Name, ordering));
+                            throw new ArgumentException(
+                                $"Could not find property {prop} on type {nestedType.Name} for expression {ordering}");
                         nestedType = property.PropertyType;
                     }
                 }
@@ -91,14 +118,13 @@ namespace Voodoo.Linq
 
                 if (property == null)
                     throw new Exception(
-                        string.Format("Could not sort on property {0} on type {1}, check the case perhaps.", sort,
-                            type.Name)
-                        );
+                        $"Could not sort on property {sort} on type {type.Name}, check the case perhaps."
+                    );
                 var parameter = Expression.Parameter(type, "p");
-                var propertyAccess = GetNestedExpressionProperty(parameter, sort);
+                var propertyAccess = getNestedExpressionProperty(parameter, sort);
                 var orderByExp = Expression.Lambda(propertyAccess, parameter);
                 var method = ascending ? methodAsc : methodDesc;
-                query = Expression.Call(typeof (Queryable), method, new[] {type, property.PropertyType}, query,
+                query = Expression.Call(typeof(Queryable), method, new[] { type, property.PropertyType }, query,
                     Expression.Quote(orderByExp));
 
                 methodAsc = "ThenBy";
@@ -109,35 +135,35 @@ namespace Voodoo.Linq
 
         public static IQueryable Take(this IQueryable source, int count)
         {
-            if (source == null) throw new ArgumentNullException("source");
+            if (source == null) throw new ArgumentNullException(nameof(source));
             return
-                source.Provider.CreateQuery(Expression.Call(typeof (Queryable), "Take", new[] {source.ElementType},
+                source.Provider.CreateQuery(Expression.Call(typeof(Queryable), "Take", new[] { source.ElementType },
                     source.Expression, Expression.Constant(count)));
         }
 
         public static IQueryable Skip(this IQueryable source, int count)
         {
-            if (source == null) throw new ArgumentNullException("source");
+            if (source == null) throw new ArgumentNullException(nameof(source));
             return
-                source.Provider.CreateQuery(Expression.Call(typeof (Queryable), "Skip", new[] {source.ElementType},
+                source.Provider.CreateQuery(Expression.Call(typeof(Queryable), "Skip", new[] { source.ElementType },
                     source.Expression, Expression.Constant(count)));
         }
 
         public static bool Any(this IQueryable source)
         {
-            if (source == null) throw new ArgumentNullException("source");
+            if (source == null) throw new ArgumentNullException(nameof(source));
             return
                 (bool)
-                    source.Provider.Execute(Expression.Call(typeof (Queryable), "Any", new[] {source.ElementType},
+                    source.Provider.Execute(Expression.Call(typeof(Queryable), "Any", new[] { source.ElementType },
                         source.Expression));
         }
 
         public static int Count(this IQueryable source)
         {
-            if (source == null) throw new ArgumentNullException("source");
+            if (source == null) throw new ArgumentNullException(nameof(source));
             return
                 (int)
-                    source.Provider.Execute(Expression.Call(typeof (Queryable), "Count", new[] {source.ElementType},
+                    source.Provider.Execute(Expression.Call(typeof(Queryable), "Count", new[] { source.ElementType },
                         source.Expression));
         }
     }

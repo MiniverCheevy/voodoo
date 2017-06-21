@@ -10,8 +10,8 @@ namespace Voodoo.Messages.Paging
 
         public GridState(IGridState state = null)
         {
-            ApplyPaging(state);
-            ApplySorting(state);
+            applyPaging(state);
+            applySorting(state);
             resetPagingIfNeeded(state);
         }
 
@@ -24,7 +24,7 @@ namespace Voodoo.Messages.Paging
         public virtual string DefaultSortMember { get; set; }
         public virtual bool ResetPaging { get; set; }
 
-        protected void ApplySorting(IGridState sorting)
+        private void applySorting(IGridState sorting)
         {
             if (sorting == null)
                 return;
@@ -36,7 +36,7 @@ namespace Voodoo.Messages.Paging
                 : sorting.SortDirection;
         }
 
-        protected void ApplyPaging(IGridState paging)
+        private void applyPaging(IGridState paging)
         {
             if (paging != null)
             {

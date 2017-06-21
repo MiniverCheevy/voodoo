@@ -12,7 +12,7 @@ namespace Voodoo.Validation
             ErrorMessage = "is required";
         }
 
-        public override bool IsValueValid(object value)
+        protected override bool IsValueValid(object value)
         {
             if (value == null)
                 return false;

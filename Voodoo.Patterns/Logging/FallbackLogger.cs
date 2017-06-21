@@ -85,8 +85,7 @@ namespace Voodoo.Logging
                 source = "ASP.NET 4.0.30319.0";
 
                 var command =
-                    string.Format(
-                        "eventcreate /ID 1 /L APPLICATION /T INFORMATION  /SO {0} /D \"Event Source Created\"", appName);
+                    $"eventcreate /ID 1 /L APPLICATION /T INFORMATION  /SO {appName} /D \"Event Source Created\"";
                 var eventSourceDoesNotExistMessage =
                     string.Concat(
                         "Event source does not exist for this application, you can set v:appName in the config file to customize it and/or run the following command ",
@@ -95,7 +94,7 @@ namespace Voodoo.Logging
                 EventLog.WriteEntry(source, eventSourceDoesNotExistMessage, EventLogEntryType.Warning);
             }
 
-            var actualMessage = string.Format("{0} {1}", actualError, ex);
+            var actualMessage = $"{actualError} {ex}";
             if (actualMessage.Length > 32000)
                 actualMessage = actualMessage.Substring(0, 32000);
             EventLog.WriteEntry(source, failedToWriteMessage, EventLogEntryType.Warning);
@@ -134,7 +133,7 @@ namespace Voodoo.Logging
             {
                 logFilePath = IoNic.IsWebHosted ? IoNic.GetApplicationRootDirectory() : @"c:\Logs";
             }
-            var fileName = string.Format("log.{0}.txt", today);
+            var fileName = $"log.{today}.txt";
             var path = Path.Combine(logFilePath, fileName);
             return path;
         }
@@ -152,7 +151,7 @@ namespace Voodoo.Logging
                         ? AppDomain.CurrentDomain.FriendlyName
                         : Assembly.GetCallingAssembly().FullName;
                     appName = assembly.Split(',')[0];
-                    appName = "Unname App";
+                    appName = "Unnamed App";
 #endif
 #if NETCOREAPP1_0
                      appName="Unnamed DotNetCoreApp";

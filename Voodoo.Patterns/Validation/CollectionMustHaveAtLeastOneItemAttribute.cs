@@ -11,18 +11,13 @@ namespace Voodoo.Validation
             ErrorMessage = "is required";
         }
 
-        public override bool IsValueValid(object value)
+        protected override bool IsValueValid(object value)
         {
-            if (value == null)
-                return false;
-
             var collection = value as ICollection;
             if (collection == null)
                 return false;
 
-            if (collection.Count == 0)
-                return false;
-            return true;
+            return collection.Count != 0;
         }
     }
 }

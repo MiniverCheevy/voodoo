@@ -4,7 +4,7 @@
     <DefineConstants>PCL</DefineConstants>
     <AssemblyName>Voodoo</AssemblyName>
     <RootNamespace>Voodoo</RootNamespace>
-    <Version>2.2.20</Version>
+    <Version>2.2.21</Version>
     <PackageId>Voodoo.Patterns</PackageId>
     <Authors>Shawn Doucet</Authors>
     <Company></Company>
@@ -15,6 +15,7 @@
     <PackageProjectUrl>http://minivercheevy.github.io/voodoo/</PackageProjectUrl>
     <PackageLicenseUrl>http://opensource.org/licenses/MIT</PackageLicenseUrl>
     <RepositoryUrl>https://github.com/MiniverCheevy/voodoo</RepositoryUrl>
+    <FileVersion>2.0.0.0</FileVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <OutputPath>bin\Debug</OutputPath>
