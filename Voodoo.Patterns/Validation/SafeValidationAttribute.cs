@@ -21,14 +21,14 @@ namespace Voodoo.Validation
         }
        
         protected override ValidationResult IsValid(object value, ValidationContext context)
-        {
+        {            
             try
             {
                 return IsValueValid(value, context);
             }
             catch (Exception ex)
             {
-                return new ValidationResult(ex.Message);
+                return new ValidationResult(ex.Message, new string[] { context.MemberName});
             }
         }
 
@@ -36,14 +36,16 @@ namespace Voodoo.Validation
         protected virtual ValidationResult IsValueValid(object value, ValidationContext context) {
             try
             {
+                var message = base.ErrorMessage ?? "invalid";
+
                 if (IsValueValid(value))
                     return null;
                 else
-                    return new ValidationResult("invalid",new string[]{ context.MemberName });
+                    return new ValidationResult(message, new string[]{ context.MemberName });
             }
             catch (Exception ex)
             {
-                return new ValidationResult(ex.Message);
+                return new ValidationResult(ex.Message, new string[] { context.MemberName });
             }
             return null;
 
