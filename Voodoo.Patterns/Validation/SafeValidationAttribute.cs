@@ -39,7 +39,7 @@ namespace Voodoo.Validation
                 if (IsValueValid(value))
                     return null;
                 else
-                    return new ValidationResult("invalid");
+                    return new ValidationResult("invalid",new string[]{ context.MemberName });
             }
             catch (Exception ex)
             {

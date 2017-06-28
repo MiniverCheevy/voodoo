@@ -103,6 +103,7 @@
     <Compile Include="TestClasses\DataObject.cs" />
     <Compile Include="TestClasses\ExecutorAsyncThatFailsValidation.cs" />
     <Compile Include="TestClasses\ExecutorAsyncThatThrowsExceptions.cs" />
+    <Compile Include="TestClasses\MemberDetail.cs" />
     <Compile Include="TestClasses\MessageObject.cs" />
     <Compile Include="TestClasses\Person.cs" />
     <Compile Include="TestClasses\PersonPagedRequest.cs" />
@@ -139,11 +140,11 @@
     <Compile Include="Voodoo\Validation\EnumIsRequiredTests.cs" />
     <Compile Include="Voodoo\Validation\GreaterThanTests.cs" />
     <Compile Include="Voodoo\Validation\GreaterThanZeroIntegerIsRequiredTests.cs" />
-    <Compile Include="Voodoo\Validation\NamespaceStub.cs" />
     <Compile Include="Voodoo\Validation\RequiredDateTimeTests.cs" />
     <Compile Include="Voodoo\Validation\RequiredGuidTests.cs" />
     <Compile Include="Voodoo\Validation\RequiredIntTests.cs" />
     <Compile Include="Voodoo\Validation\RequiredNonZeroIntIsRequiredTests.cs" />
+    <Compile Include="Voodoo\Validation\ValidateExtensionMethod.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
