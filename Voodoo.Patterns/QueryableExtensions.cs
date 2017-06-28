@@ -26,31 +26,31 @@ namespace Voodoo
 
 
         public static IQueryable<TQueryResult> OrderByDescending<TQueryResult>(this IQueryable<TQueryResult> query,
-			string sortExpression) where TQueryResult : class
-		{
-			return buildSortExpression(query, sortExpression, Strings.SortDirection.Descending);
-		}
-
-	    private static IQueryable<TQueryResult> buildSortExpression<TQueryResult>(IQueryable<TQueryResult> query, string sortExpression, string sortDirection)
-		    where TQueryResult : class
-	    {
-		    if (!sortExpression.Contains(","))
-			    return query.OrderByDynamic(string.Format("{0} {1}", sortExpression, Strings.SortDirection.Descending));
-		    else
-		    {
-				var sortElements = sortExpression.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
-					.ToArray()
-					.Select(c => $"{c} {sortDirection}");
-				sortExpression = String.Join(",", sortElements);
-				return query.OrderByDynamic(sortExpression);
-		    }
-		    
-	    }
-
-	    public static IQueryable<TQueryResult> OrderBy<TQueryResult>(this IQueryable<TQueryResult> query,
-           string sortExpression) where TQueryResult : class
+            string sortExpression) where TQueryResult : class
         {
-			return buildSortExpression(query, sortExpression, Strings.SortDirection.Ascending);
+            return buildSortExpression(query, sortExpression, Strings.SortDirection.Descending);
+        }
+
+        private static IQueryable<TQueryResult> buildSortExpression<TQueryResult>(IQueryable<TQueryResult> query, string sortExpression, string sortDirection)
+            where TQueryResult : class
+        {
+            if (!sortExpression.Contains(","))
+                return query.OrderByDynamic(string.Format("{0} {1}", sortExpression, Strings.SortDirection.Descending));
+            else
+            {
+                var sortElements = sortExpression.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
+                    .ToArray()
+                    .Select(c => $"{c} {sortDirection}");
+                sortExpression = String.Join(",", sortElements);
+                return query.OrderByDynamic(sortExpression);
+            }
+
+        }
+
+        public static IQueryable<TQueryResult> OrderBy<TQueryResult>(this IQueryable<TQueryResult> query,
+            string sortExpression) where TQueryResult : class
+        {
+            return buildSortExpression(query, sortExpression, Strings.SortDirection.Ascending);
         }
         public static PagedResponse<TObject> ToPagedResponse<TObject>(this IQueryable<TObject> source, IGridState paging)
             where TObject : class, new()
@@ -61,7 +61,7 @@ namespace Voodoo
         public static PagedResponse<TOut> ToPagedResponse<TIn, TOut>(this IQueryable<TIn> source, IGridState paging,
             Expression<Func<TIn, TOut>> transform) where TIn : class where TOut : class, new()
         {
-            IQueryable<TOut> page;
+            IQueryable page;
             var state = buildPagedQuery(source, paging, transform, out page);
 
             var list = page.ToArray<TOut>();
@@ -73,20 +73,20 @@ namespace Voodoo
         }
 
         private static IGridState buildPagedQuery<TIn, TOut>(IQueryable<TIn> source, IGridState paging,
-            Expression<Func<TIn, TOut>> expression, out IQueryable<TOut> page) where TIn : class where TOut : class, new()
+            Expression<Func<TIn, TOut>> expression, out IQueryable page) where TIn : class where TOut : class, new()
         {
             var sortMember = paging.SortMember ?? paging.DefaultSortMember;
 
             source = !string.IsNullOrEmpty(sortMember)
-                ? source.OrderByDynamic($"{sortMember} {paging.SortDirection}")
+                ? source.OrderByDynamic(string.Format("{0} {1}", sortMember, paging.SortDirection))
                 : source.OrderBy(c => true);
 
             paging.TotalRecords = LinqHelper.Count(source);
-            paging.TotalPages = Math.Ceiling(paging.TotalRecords.To<decimal>()/paging.PageSize.To<decimal>()).To<int>();
+            paging.TotalPages = Math.Ceiling(paging.TotalRecords.To<decimal>() / paging.PageSize.To<decimal>()).To<int>();
             var state = paging.Map(new GridState(paging));
 
 
-            var skip = (state.PageNumber - 1)*state.PageSize;
+            var skip = (state.PageNumber - 1) * state.PageSize;
             skip = skip < 0 ? 0 : skip;
             var take = state.PageSize;
             var data = take == int.MaxValue ? source.ToArray() : source.Skip(skip).Take(take).ToArray();
@@ -101,7 +101,7 @@ namespace Voodoo
             var response = new PagedResponse<Grouping<TSource>>(source.State);
             var grouped = source.Data.GroupBy(keySelector);
             response.Data =
-                grouped.Select(c => new Grouping<TSource> {Name = c.Key.To<string>(), Data = c.ToList()}).ToList();
+                grouped.Select(c => new Grouping<TSource> { Name = c.Key.To<string>(), Data = c.ToList() }).ToList();
             return response;
         }
 
@@ -111,14 +111,14 @@ namespace Voodoo
             if (body != null)
                 return body.Member.Name;
 
-            var op = ((UnaryExpression) expression.Body).Operand;
-            return ((MemberExpression) op).Member.Name;
+            var op = ((UnaryExpression)expression.Body).Operand;
+            return ((MemberExpression)op).Member.Name;
         }
 
         public static Expression<T> Compose<T>(this Expression<T> first, Expression<T> second,
             Func<Expression, Expression, Expression> merge)
         {
-            var map = first.Parameters.Select((f, i) => new {f, s = second.Parameters[i]})
+            var map = first.Parameters.Select((f, i) => new { f, s = second.Parameters[i] })
                 .ToDictionary(p => p.s, p => p.f);
             var secondBody = ParameterRebinder.ReplaceParameters(map, second.Body);
             return Expression.Lambda<T>(merge(first.Body, secondBody), first.Parameters);
@@ -169,36 +169,19 @@ namespace Voodoo
             }
         }
 
-#if !NET40
-        //public static async Task<PagedResponse<TObject>> ToPagedResponseAsync<TObject>(this IQueryable<TObject> source,
-        //    IGridState paging) where TObject : class, new()
-        //{
-        //    return await Task.Run(() => ToPagedResponse(source, paging, c => c));
-        //}
-
-        //public static async Task<PagedResponse<TOut>> ToPagedResponseAsync<TIn, TOut>(this IQueryable<TIn> source,
-        //    IGridState paging, Expression<Func<TIn, TOut>> transform) where TIn : class where TOut : class, new()
-        //{
-        //    return await Task.Run(() => ToPagedResponseAsync(source, paging, transform));
-        //}
+#if ! NET40 
         public static async Task<PagedResponse<TObject>> ToPagedResponseAsync<TObject>(this IQueryable<TObject> source,
             IGridState paging) where TObject : class, new()
         {
-            return await Task.Run(() => ToPagedResponseAsync(source, paging, c => c));
+            return await Task.Run(() => ToPagedResponse(source, paging, c => c));
         }
-        public static async Task<PagedResponse<TOut>> ToPagedResponseAsync<TIn, TOut>(this IQueryable<TIn> source, IGridState paging,
-            Expression<Func<TIn, TOut>> transform) where TIn : class where TOut : class, new()
+
+        public static async Task<PagedResponse<TOut>> ToPagedResponseAsync<TIn, TOut>(this IQueryable<TIn> source,
+            IGridState paging, Expression<Func<TIn, TOut>> transform) where TIn : class where TOut : class, new()
         {
-            IQueryable<TOut> page;
-            var state = buildPagedQuery(source, paging, transform, out page);
-
-            var list = await page.ToListAsyncDynamic<TOut>();
-
-            var result = new PagedResponse<TOut>(state);
-
-            result.Data.AddRange(list);
-            return result;
+            return await Task.Run(() => ToPagedResponse(source, paging, transform));
         }
+
 #endif
     }
 }

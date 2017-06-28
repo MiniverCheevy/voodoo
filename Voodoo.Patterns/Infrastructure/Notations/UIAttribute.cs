@@ -13,6 +13,7 @@ namespace Voodoo.Infrastructure.Notations
         public DisplayFormat DisplayFormat { get; set; } = DisplayFormat.Text;
         public string Grouping { get; set; }
         public int GroupOrder { get; set; }
+        public string ListName { get; set; }
     }
     public enum DisplayFormat
     {
@@ -22,6 +23,7 @@ namespace Voodoo.Infrastructure.Notations
         DateTime = 3,
         Currency = 4,
         Decimal = 5,
-        PhoneNumber = 6
+        PhoneNumber = 6,
+        Int =7 
     }
 }

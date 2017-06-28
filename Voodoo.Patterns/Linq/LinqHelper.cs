@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
-using System.Threading.Tasks;
-using Voodoo.Infrastructure.Notations;
 
 namespace Voodoo.Linq
 {
@@ -31,30 +28,6 @@ namespace Voodoo.Linq
                 Expression.Property(expression, propertyName);
         }
 
-#if !NET40
-        public static bool HasToListAsync {get;private set;}= true;
-        public static async Task<List<T>> ToListAsyncDynamic<T>(this IQueryable<T> source)
-        {
-            if (source == null) throw new ArgumentNullException(nameof(source));
-            if (HasToListAsync)
-        {
-            try
-            {
-                return await (Task<List<T>>)
-                    source.Provider.Execute(Expression.Call(typeof(Queryable), "ToListAsync", new[] { source.ElementType },
-                        source.Expression));
-            }
-            catch (System.InvalidOperationException ex)
-            {
-                if (ex.Message.Contains("ToListAsync"))
-                    HasToListAsync = false;
-                else
-                    throw;
-            }
-        }
-            return await Task.Run(() => source.ToList());
-        }     
-#endif
         public static IQueryable<T> OrderByDynamic<T>(this IQueryable<T> source, string ordering)
         {
             if (source == null) throw new ArgumentNullException(nameof(source));
@@ -154,8 +127,8 @@ namespace Voodoo.Linq
             if (source == null) throw new ArgumentNullException(nameof(source));
             return
                 (bool)
-                    source.Provider.Execute(Expression.Call(typeof(Queryable), "Any", new[] { source.ElementType },
-                        source.Expression));
+                source.Provider.Execute(Expression.Call(typeof(Queryable), "Any", new[] { source.ElementType },
+                    source.Expression));
         }
 
         public static int Count(this IQueryable source)
@@ -163,8 +136,8 @@ namespace Voodoo.Linq
             if (source == null) throw new ArgumentNullException(nameof(source));
             return
                 (int)
-                    source.Provider.Execute(Expression.Call(typeof(Queryable), "Count", new[] { source.ElementType },
-                        source.Expression));
+                source.Provider.Execute(Expression.Call(typeof(Queryable), "Count", new[] { source.ElementType },
+                    source.Expression));
         }
     }
 }
