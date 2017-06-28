@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>Voodoo.Patterns</id>
+    <version>2.2.22</version>
+    <title>Voodoo Patterns</title>
+    <authors>Shawn Doucet</authors>
+    <owners>Shawn Doucet</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <licenseUrl>http://opensource.org/licenses/MIT</licenseUrl>
+    <projectUrl>http://minivercheevy.github.io/voodoo/</projectUrl>
+    <description>A c# library containing extension methods and reusable base classes</description>
+    <summary>A c# utility library.</summary>
+    <releaseNotes></releaseNotes>
+    <copyright>2014</copyright>
+    <language>en-US</language>
+    <tags>cqrs utility extension</tags>
+  </metadata>
+    <files>
+    <file src="net40\bin\Debug\Voodoo.dll" target="lib\net40\Voodoo.dll" />
+    <file src="net45\bin\Debug\Voodoo.dll" target="lib\net45\Voodoo.dll" />
+    <file src="net46\bin\Debug\Voodoo.dll" target="lib\net46\Voodoo.dll" />
+    <file src="net451\bin\Debug\Voodoo.dll" target="lib\net451\Voodoo.dll" />
+    <file src="net452\bin\Debug\Voodoo.dll" target="lib\net452\Voodoo.dll" />
+    <file src="netCoreApp10\bin\Debug\netcoreapp1.0\Voodoo.dll" target="lib\netCoreApp10\Voodoo.dll" />
+    <file src="netStandard16\bin\Debug\netstandard1.6\Voodoo.dll" target="lib\netStandard16\Voodoo.dll" />
+    <file src="profile78\bin\Debug\Voodoo.dll" target="lib\portable-net45+win8+wp8\Voodoo.dll" />
+    <file src="profile259\bin\Debug\Voodoo.dll" target="lib\portable-net45+win8+wpa81+wp8\Voodoo.dll" />
+
+      <file src="net40\bin\Debug\Voodoo.pdb" target="lib\net40\Voodoo.pdb" />
+      <file src="net45\bin\Debug\Voodoo.pdb" target="lib\net45\Voodoo.pdb" />
+      <file src="net46\bin\Debug\Voodoo.pdb" target="lib\net46\Voodoo.pdb" />
+      <file src="net451\bin\Debug\Voodoo.pdb" target="lib\net451\Voodoo.pdb" />
+      <file src="net452\bin\Debug\Voodoo.pdb" target="lib\net452\Voodoo.pdb" />
+      <file src="netCoreApp10\bin\Debug\netcoreapp1.0\Voodoo.pdb" target="lib\netCoreApp10\Voodoo.pdb" />
+      <file src="netStandard16\bin\Debug\netstandard1.6\Voodoo.pdb" target="lib\netStandard16\Voodoo.pdb" />
+      <file src="profile78\bin\Debug\Voodoo.pdb" target="lib\portable-net45+win8+wp8\Voodoo.pdb" />
+      <file src="profile259\bin\Debug\Voodoo.pdb" target="lib\portable-net45+win8+wpa81+wp8\Voodoo.pdb" />
+
+    </files>
+</package>
