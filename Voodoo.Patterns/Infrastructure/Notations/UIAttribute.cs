@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Voodoo.Messages;
 
 namespace Voodoo.Infrastructure.Notations
 {
@@ -13,7 +14,9 @@ namespace Voodoo.Infrastructure.Notations
         public DisplayFormat DisplayFormat { get; set; } = DisplayFormat.Text;
         public string Grouping { get; set; }
         public int GroupOrder { get; set; }
-        public string ListName { get; set; }
+        public int? ListId { get; set; }
+        public bool DoNotSort { get; set; }
+        public List<NameValuePair> Metadata { get; set; }
     }
     public enum DisplayFormat
     {
