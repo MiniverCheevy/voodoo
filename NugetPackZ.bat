@@ -6,6 +6,7 @@ msbuild ./net451/Voodoo.Patterns.net451.csproj /t:Build /p:Configuration="Releas
 msbuild ./net452/Voodoo.Patterns.net452.csproj /t:Build /p:Configuration="Release"
 msbuild ./netCoreApp10/Voodoo.Patterns.netCoreApp10.csproj /t:Build /p:Configuration="Release"
 msbuild ./netStandard16/Voodoo.Patterns.netStandard16.csproj /t:Build /p:Configuration="Release"
+msbuild ./netStandard20/Voodoo.Patterns.netStandard20.csproj /t:Build /p:Configuration="Release"
 msbuild ./profile78/Voodoo.Patterns.profile78.csproj /t:Build /p:Configuration="Release"
 msbuild ./profile259/Voodoo.Patterns.profile259.csproj /t:Build /p:Configuration="Release"
 
@@ -18,9 +19,10 @@ msbuild ./net451/Voodoo.Patterns.net451.csproj /t:Build /p:Configuration="Debug"
 msbuild ./net452/Voodoo.Patterns.net452.csproj /t:Build /p:Configuration="Debug"
 msbuild ./netCoreApp10/Voodoo.Patterns.netCoreApp10.csproj /t:Build /p:Configuration="Debug"
 msbuild ./netStandard16/Voodoo.Patterns.netStandard16.csproj /t:Build /p:Configuration="Debug"
+msbuild ./netStandard20/Voodoo.Patterns.netStandard20.csproj /t:Build /p:Configuration="Debug"
 msbuild ./profile78/Voodoo.Patterns.profile78.csproj /t:Build /p:Configuration="Debug"
 msbuild ./profile259/Voodoo.Patterns.profile259.csproj /t:Build /p:Configuration="Debug"
-
+v
 
 nuget pack  voodoo.patterns.symbols.nuspec -Symbols
  

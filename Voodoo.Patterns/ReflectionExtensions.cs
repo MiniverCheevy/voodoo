@@ -27,7 +27,7 @@ namespace Voodoo
 
         public static bool IsScalar(this Type t)
         {
-            const string types = "string,guid,datetime,timespan,decimal";
+            const string types = "string,guid,datetime,timespan,decimal,datetimeoffset";
             if (t.Name.ToLower().Contains("nullable"))
                 return true;
 

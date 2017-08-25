@@ -1,7 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>netcoreapp1.0</TargetFramework>
-    <AssemblyName>Voodoo</AssemblyName>
+  <NetStandardImplicitPackageVersion>2.0.0</NetStandardImplicitPackageVersion>
+    <TargetFramework>netstandard2.0</TargetFramework>
+        <AssemblyName>Voodoo</AssemblyName>
     <RootNamespace>Voodoo</RootNamespace>
     <Version>2.2.25</Version>
     <PackageId>Voodoo.Patterns</PackageId>
@@ -26,9 +27,7 @@
     <Compile Include="..\Voodoo.Patterns\**\*.cs" Exclude="..\Voodoo.Patterns\**\AssemblyInfo*.*;..\Voodoo.Patterns\**\Temp*.*;..\Voodoo.Patterns\**\dotnet*.*" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="System.Collections.Specialized" Version="4.3.0" />
-    <PackageReference Include="System.ComponentModel.Annotations" Version="4.3.0" />
-    <PackageReference Include="System.ComponentModel.Primitives" Version="4.3.0" />
-    <PackageReference Include="System.Runtime.Serialization.Formatters" Version="4.3.0" />
+    <PackageReference Include="System.ComponentModel.Annotations" Version="4.4.0" />
   </ItemGroup>
+  
 </Project>

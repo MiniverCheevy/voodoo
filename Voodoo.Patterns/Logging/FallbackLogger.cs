@@ -70,7 +70,7 @@ namespace Voodoo.Logging
         private static void handleFileWriteFailure(string actualError, Exception ex, string appName, string path)
         {
 
-#if !NETCOREAPP1_0
+#if !NETCOREAPP1_0 && !NETSTANDARD2_0
             var failedToWriteMessage = "Fallback Logger Failed to write log file: " + path;
             var source = appName ?? "Application";
             const string logName = "Application";

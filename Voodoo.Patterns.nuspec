@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
     <id>Voodoo.Patterns</id>
-    <version>2.2.23</version>
+    <version>2.2.25</version>
     <title>Voodoo Patterns</title>
     <authors>Shawn Doucet</authors>
     <owners>Shawn Doucet</owners>
@@ -24,6 +24,7 @@
     <file src="net452\bin\Release\Voodoo.dll" target="lib\net452\Voodoo.dll" />
     <file src="netCoreApp10\bin\Release\netcoreapp1.0\Voodoo.dll" target="lib\netCoreApp10\Voodoo.dll" />
     <file src="netStandard16\bin\Release\netstandard1.6\Voodoo.dll" target="lib\netStandard16\Voodoo.dll" />
+      <file src="netStandard20\bin\Release\netstandard2.0\Voodoo.dll" target="lib\netStandard20\Voodoo.dll" />
     <file src="profile78\bin\Release\Voodoo.dll" target="lib\portable-net45+win8+wp8\Voodoo.dll" />
     <file src="profile259\bin\Release\Voodoo.dll" target="lib\portable-net45+win8+wpa81+wp8\Voodoo.dll" />
   </files>
