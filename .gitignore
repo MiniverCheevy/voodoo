@@ -41,3 +41,4 @@ _ReSharper.*
 /node_modules
 /.vs/Voodoo.Patterns/4708/i
 /.vs/Voodoo.Patterns/4708/i
+/netCoreApp10/nCrunchTemp_90b53ee5-918f-4704-9e41-a6276e58df83.csproj

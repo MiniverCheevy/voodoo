@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Voodoo.Tests.Voodoo
@@ -95,7 +96,42 @@ namespace Voodoo.Tests.Voodoo
             list.AddIfNotNullOrWhiteSpace(nullString);
             Assert.AreEqual(0, list.Count);
         }
-
+        [TestMethod]
+        public void AddIfNotExists_HashSet_Added()
+        {
+            const string test = "test";
+            var collection = new HashSet<string>();
+            collection.AddIfNotExists(test);
+            collection.Count.Should().Be(1);
+        }
+        [TestMethod]
+        public void AddIfNotExists_HashSet_1stOneAdded()
+        {
+            const string test = "test";
+            var collection = new HashSet<string>();
+            collection.AddIfNotExists(test);
+            collection.AddIfNotExists(test);
+            collection.Count.Should().Be(1);
+        }
+        [TestMethod]
+        public void AddIfNotExists_Dictionary_Added()
+        {
+            const string key = "key";
+            const string value = "value";
+            var collection = new Dictionary<string, string>();
+            collection.AddIfNotExists(key, value);
+            collection.Count.Should().Be(1);
+        }
+        [TestMethod]
+        public void AddIfNotExists_Dictionary_1stOneAdded()
+        {
+            const string key = "key";
+            const string value = "value";
+            var collection = new Dictionary<string, string>();
+            collection.AddIfNotExists(key, value);
+            collection.AddIfNotExists(key, value);
+            collection.Count.Should().Be(1);
+        }
         [TestMethod]
         public void AddIfNotNullOrWhiteSpace_WhitepsaceObjet_NotAdded()
         {

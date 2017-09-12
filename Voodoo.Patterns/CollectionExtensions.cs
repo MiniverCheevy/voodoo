@@ -21,7 +21,16 @@ namespace Voodoo
 			if (item != null)
 				collection.Add(item);
 		}
-
+        public static void AddIfNotExists<T>(this HashSet<T> collection, T item)
+        {
+            if (!collection.Contains(item))
+                collection.Add(item);
+        }
+        public static void AddIfNotExists<TKey, TValue>(this IDictionary<TKey, TValue> collection, TKey key, TValue value)
+        {
+            if (!collection.ContainsKey(key))
+                collection.Add(new KeyValuePair<TKey, TValue>(key, value));
+        }
 		public static void AddIfNotNullOrWhiteSpace(this ICollection<string> collection, object item)
 		{
 			if (!string.IsNullOrWhiteSpace(item?.ToString()))
