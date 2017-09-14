@@ -47,8 +47,6 @@ namespace Voodoo.Validation
             {
                 return new ValidationResult(ex.Message, new string[] { context.MemberName });
             }
-            return null;
-
         }
     }
 }
