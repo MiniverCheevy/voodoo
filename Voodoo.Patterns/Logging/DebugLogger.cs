@@ -19,6 +19,12 @@ namespace Voodoo.Logging
             Debug.WriteLine(ex.ToString());
         }
 
+        public void Log(string message, string category)
+        {
+            Debug.WriteLine("****************");
+            Debug.WriteLine(category);
+            Debug.WriteLine(message);
+        }
     }
 #endif
 }
