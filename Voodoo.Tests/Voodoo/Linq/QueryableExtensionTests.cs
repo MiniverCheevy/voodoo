@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using FluentAssertions;
 using Voodoo.Linq;
 using Voodoo.Messages;
 using Voodoo.Tests.TestClasses;
@@ -193,8 +194,35 @@ namespace Voodoo.Tests.Voodoo.Linq
 		{
 			 GetComplexList().AsQueryable().OrderByDynamic("ComplexObject.DateTime");
 		}
-
-		public List<ClassToReflect> GetComplexList()
+	    [TestMethod]
+        public void ApplyTokenizedContainsSearch_Zero_Parameter_IsOk()
+	    {
+	        var list = GetTestList().AsQueryable();
+	        var result = list.ApplyTokenizedContainsSearch(" ", c => c.FirstName, c => c.LastName);
+	        result.Count().Should().Be(4);
+	    }
+        [TestMethod]
+        public void ApplyTokenizedContainsSearch_OneParameter_IsOk()
+        {
+            var list = GetTestList().AsQueryable();
+            var result = list.ApplyTokenizedContainsSearch("Smith", c => c.FirstName, c => c.LastName);
+            result.Count().Should().Be(2);
+        }
+	    [TestMethod]
+        public void ApplyTokenizedContainsSearch_OneParameterAndAdditionalQuery_IsOk()
+	    {
+	        var list = GetTestList().AsQueryable();
+	        var result = list.ApplyTokenizedContainsSearch("Smith", c => c.FirstName, c => c.LastName).Where(c=>c.IsTrue);
+	        result.Count().Should().Be(1);
+	    }
+        [TestMethod]
+        public void ApplyTokenizedContainsSearch_TwoParameter_IsOk()
+	    {
+	        var list = GetTestList().AsQueryable();
+	        var result = list.ApplyTokenizedContainsSearch("Smith Jack", c => c.FirstName, c => c.LastName);
+	        result.Count().Should().Be(1);
+	    }
+        public List<ClassToReflect> GetComplexList()
 		{
 			return new List<ClassToReflect>()
 			{
@@ -219,7 +247,7 @@ namespace Voodoo.Tests.Voodoo.Linq
 			{
 				new Person {Id = 3,FirstName="Bob",LastName="Robertson", UserName = "Orange", IsTrue = true},
 				new Person {Id = 2,FirstName="John",LastName="Johnson", UserName = "Green", IsTrue = true},
-				new Person {Id = 1,FirstName="Jack",LastName="Smith", UserName = "Red", IsTrue = true},
+				new Person {Id = 1,FirstName="Jack",LastName="Smith", UserName = "Red", IsTrue = false},
 				new Person {Id = 4,FirstName="Jill",LastName="Smith", UserName = "Yellow", IsTrue = true}
 			};
 		}
