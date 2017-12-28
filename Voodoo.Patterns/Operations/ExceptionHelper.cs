@@ -22,14 +22,10 @@ namespace Voodoo.Operations
                 builder.Append(request.ToCode());
                 builder.AppendLine(string.Empty);
                 var thisType = type.FixUpTypeName();
-                if (thisType.ToLower().Contains("async"))
-                {
-                    builder.AppendFormat("var response = await new {0}(request).ExecuteAsync();", thisType);
-                }
-                else
-                {
-                    builder.AppendFormat("var response = new {0}(request).Execute();", thisType);
-                }
+                builder.AppendFormat(
+                    thisType.ToLower().Contains("async")
+                        ? "var response = await new {0}(request).ExecuteAsync();"
+                        : "var response = new {0}(request).Execute();", thisType);
                 builder.AppendLine(string.Empty);
                 builder.AppendLine("Assert.AreEqual(true, response.IsOk);");
 
@@ -40,9 +36,22 @@ namespace Voodoo.Operations
 
                 LogManager.Logger.Log(ex);
 
-                if (VoodooGlobalConfiguration.ErrorDetailLoggingMethodology == ErrorDetailLoggingMethodology.LogAsSecondException)
-                    LogManager.Logger.Log(builder.ToString());
+                if (VoodooGlobalConfiguration.ErrorDetailLoggingMethodology !=
+                    ErrorDetailLoggingMethodology.LogAsSecondException) return;
 
+                foreach (var item in ex.Data.Keys)
+                {
+                    try
+                    {
+                        builder.AppendLine();
+                        builder.AppendLine($"{item} {ex.Data[item].ToDebugString()}");
+                    }
+                    catch (Exception e)
+                    {
+                        builder.AppendLine($"Failed to stringify details for {item}, {e.Message}");
+                    }
+                }
+                LogManager.Logger.Log(builder.ToString());
             }
         }
 
