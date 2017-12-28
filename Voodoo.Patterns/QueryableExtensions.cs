@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Reflection;
 using System.Threading.Tasks;
 using Voodoo.Messages;
 using Voodoo.Messages.Paging;
@@ -35,7 +36,7 @@ namespace Voodoo
             where TQueryResult : class
         {
             if (!sortExpression.Contains(","))
-                return query.OrderByDynamic(string.Format("{0} {1}", sortExpression, Strings.SortDirection.Descending));
+                return query.OrderByDynamic($"{sortExpression} {Strings.SortDirection.Descending}");
             else
             {
                 var sortElements = sortExpression.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
@@ -107,8 +108,7 @@ namespace Voodoo
 
         public static string GetName<T>(this T type, Expression<Func<T, object>> expression)
         {
-            var body = expression.Body as MemberExpression;
-            if (body != null)
+            if (expression.Body is MemberExpression body)
                 return body.Member.Name;
 
             var op = ((UnaryExpression)expression.Body).Operand;
@@ -127,19 +127,66 @@ namespace Voodoo
         public static Expression<Func<T, bool>> AndAlso<T>(this Expression<Func<T, bool>> first,
             Expression<Func<T, bool>> second)
         {
-            if (first == null)
-                return second;
-            return first.Compose(second, Expression.And);
+            return first == null ? second : first.Compose(second, Expression.And);
         }
 
         public static Expression<Func<T, bool>> OrElse<T>(this Expression<Func<T, bool>> first,
             Expression<Func<T, bool>> second)
         {
-            if (first == null)
-                return second;
-            return first.Compose(second, Expression.Or);
+            return first == null ? second : first.Compose(second, Expression.Or);
         }
 
+        private static Expression<Func<T, bool>> buildContainsExpression<T>(Expression<Func<T, string>> expr, string value)
+        {
+            //MemberExpression member = expr.Body
+
+            //if (expr.Body is MemberExpression body)
+            //    member = body.Member;
+            //else
+            //{
+            // var op = ((UnaryExpression)expr.Body).Operand;
+            //dynamic member = ((MemberExpression)op).Member;
+            //}
+
+            var member = expr.Body;
+
+            var constant = Expression.Constant(value, typeof(string));
+            var method = typeof(string).GetTypeInfo().GetMethod("Contains");
+            var callExpression = Expression.Call(member, method, constant);
+            var result = Expression.Lambda(callExpression, expr.Parameters);
+            return (Expression<Func<T, bool>>)result;
+        }
+
+        /// <summary>
+        /// list.ApplyTokenizedContainsSearch("Smith Jack", c => c.FirstName, c => c.LastName);
+        /// will return result where FirstName contains Smith Or Jack and LastName contains Smith Or Jack
+        /// case sensitive with linq to objects, case instensitive with linq to entities
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="query">any IQueryable</param>
+        /// <param name="searchText">space delimited search text, such as "Smith Bob"</param>
+        /// <param name="propertiesToSearch">properties to search such as c=>c.FirstName, c=>c.LastName</param>
+        /// <returns></returns>
+        public static IQueryable<T> ApplyTokenizedContainsSearch<T>(this IQueryable<T> query, string searchText, params Expression<Func<T, string>>[] propertiesToSearch)
+        {
+            if (string.IsNullOrWhiteSpace(searchText))
+                return query;
+
+            var tokens = searchText.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+            Expression<Func<T, bool>> andExpression = c => true;
+            foreach (var token in tokens)
+            {
+                Expression<Func<T, bool>> orExpression = c => false;
+                foreach (var prop in propertiesToSearch)
+                {
+                    orExpression = orExpression.OrElse(buildContainsExpression(prop, token));
+                }
+                andExpression = andExpression.AndAlso(orExpression);
+
+            }
+
+            return query.Where(andExpression);
+        }
         /// <summary>
         ///     http://microsoftnlayerapp.codeplex.com/
         /// </summary>
