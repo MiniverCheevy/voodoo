@@ -1,8 +1,12 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
+using FluentAssertions;
 using Voodoo.Messages;
 using Voodoo.Tests.TestClasses;
 using Voodoo.Validation.Infrastructure;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Voodoo.Logging;
+using Voodoo.Tests.Voodoo.Logging;
 
 namespace Voodoo.Tests.Voodoo.Operations
 {
@@ -63,6 +67,40 @@ namespace Voodoo.Tests.Voodoo.Operations
             Assert.AreEqual(Strings.Validation.validationErrorsOccurred, result.Message);
             Assert.AreNotEqual(true, result.IsOk);
 
+        }
+
+        [TestMethod]
+        public void Execute_ExceptionIsThrownWithLogInExceptionData_ExtraExceptionPropertiesAreCaptured()
+        {
+            var testLogger = new TestLogger();
+            LogManager.Logger = testLogger;
+            VoodooGlobalConfiguration.RemoveExceptionFromResponseAfterLogging = false;
+            VoodooGlobalConfiguration.ErrorDetailLoggingMethodology = ErrorDetailLoggingMethodology.LogInExceptionData;
+            var result = new CommandThatThrowsErrors(new EmptyRequest()).Execute();
+            testLogger.Exceptions.Count().Should().Be(1);
+            var ex = testLogger.Exceptions.First();
+            var keys = ex.Data.Keys;
+            var values = new List<string>();
+            foreach (var key in keys)
+            {
+                values.Add(ex.Data[key].ToString());
+            }
+            var hasSpecialPropertyValue = values.Any(c => c.Contains(TestException.UsefulDebugInformation));
+            hasSpecialPropertyValue.Should().Be(true);
+        }
+        [TestMethod]
+        public void Execute_ExceptionIsThrownWithLogAsSeperateException_ExtraExceptionPropertiesAreCaptured()
+        {
+            var testLogger = new TestLogger();
+            LogManager.Logger = testLogger;
+            VoodooGlobalConfiguration.RemoveExceptionFromResponseAfterLogging = false;
+            VoodooGlobalConfiguration.ErrorDetailLoggingMethodology = ErrorDetailLoggingMethodology.LogAsSecondException;
+            var result = new CommandThatThrowsErrors(new EmptyRequest()).Execute();
+            testLogger.Exceptions.Count().Should().Be(1);
+            testLogger.Messages.Count().Should().Be(1);
+            var ex = testLogger.Messages.First();
+            ex.IndexOf(TestException.UsefulDebugInformation).Should().BeGreaterThan(0);
+            
         }
 #endif
     }

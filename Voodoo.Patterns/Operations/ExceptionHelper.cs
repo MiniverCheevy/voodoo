@@ -34,7 +34,7 @@ namespace Voodoo.Operations
                 if (VoodooGlobalConfiguration.ErrorDetailLoggingMethodology == ErrorDetailLoggingMethodology.LogInExceptionData)
                     ex.Data["Test"] = builder.ToString();
 
-                LogManager.Logger.Log(ex);
+                LogManager.Log(ex);
 
                 if (VoodooGlobalConfiguration.ErrorDetailLoggingMethodology !=
                     ErrorDetailLoggingMethodology.LogAsSecondException) return;
@@ -51,7 +51,7 @@ namespace Voodoo.Operations
                         builder.AppendLine($"Failed to stringify details for {item}, {e.Message}");
                     }
                 }
-                LogManager.Logger.Log(builder.ToString());
+                LogManager.Log(builder.ToString(), "Error", LogLevels.Error);
             }
         }
 

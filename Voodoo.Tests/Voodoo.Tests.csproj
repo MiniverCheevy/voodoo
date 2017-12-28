@@ -125,6 +125,7 @@
     <Compile Include="Voodoo\Linq\QueryableExtensionTests.cs" />
     <Compile Include="Voodoo\Logging\FallbackLoggerTests.cs" />
     <Compile Include="Voodoo\Logging\LogManagerTests.cs" />
+    <Compile Include="Voodoo\Logging\TestException.cs" />
     <Compile Include="Voodoo\Logging\TestLogger.cs" />
     <Compile Include="Voodoo\ModelHelperTests.cs" />
     <Compile Include="Voodoo\NameIdExtensionTests.cs" />

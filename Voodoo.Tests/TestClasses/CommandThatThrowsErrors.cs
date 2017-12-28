@@ -3,6 +3,7 @@ using Voodoo.Logging;
 using Voodoo.Messages;
 using Voodoo.Operations;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Voodoo.Tests.Voodoo.Logging;
 
 namespace Voodoo.Tests.TestClasses
 {
@@ -14,7 +15,7 @@ namespace Voodoo.Tests.TestClasses
 
         protected override TestingResponse ProcessRequest()
         {
-            throw new Exception(TestingResponse.OhNo);
+            throw new TestException(TestingResponse.OhNo);
         }
 
         protected override void CustomErrorBehavior(Exception ex)
