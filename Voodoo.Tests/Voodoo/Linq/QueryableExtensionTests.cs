@@ -198,28 +198,28 @@ namespace Voodoo.Tests.Voodoo.Linq
         public void ApplyTokenizedContainsSearch_Zero_Parameter_IsOk()
 	    {
 	        var list = GetTestList().AsQueryable();
-	        var result = list.ApplyTokenizedContainsSearch(" ", c => c.FirstName, c => c.LastName);
+	        var result = list.ToTokenizedContainsSearchQuery(" ", c => c.FirstName, c => c.LastName);
 	        result.Count().Should().Be(4);
 	    }
         [TestMethod]
         public void ApplyTokenizedContainsSearch_OneParameter_IsOk()
         {
             var list = GetTestList().AsQueryable();
-            var result = list.ApplyTokenizedContainsSearch("Smith", c => c.FirstName, c => c.LastName);
+            var result = list.ToTokenizedContainsSearchQuery("Smith", c => c.FirstName, c => c.LastName);
             result.Count().Should().Be(2);
         }
 	    [TestMethod]
         public void ApplyTokenizedContainsSearch_OneParameterAndAdditionalQuery_IsOk()
 	    {
 	        var list = GetTestList().AsQueryable();
-	        var result = list.ApplyTokenizedContainsSearch("Smith", c => c.FirstName, c => c.LastName).Where(c=>c.IsTrue);
+	        var result = list.ToTokenizedContainsSearchQuery("Smith", c => c.FirstName, c => c.LastName).Where(c=>c.IsTrue);
 	        result.Count().Should().Be(1);
 	    }
         [TestMethod]
         public void ApplyTokenizedContainsSearch_TwoParameter_IsOk()
 	    {
 	        var list = GetTestList().AsQueryable();
-	        var result = list.ApplyTokenizedContainsSearch("Smith Jack", c => c.FirstName, c => c.LastName);
+	        var result = list.ToTokenizedContainsSearchQuery("Smith Jack", c => c.FirstName, c => c.LastName);
 	        result.Count().Should().Be(1);
 	    }
         public List<ClassToReflect> GetComplexList()

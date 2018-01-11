@@ -158,7 +158,7 @@ namespace Voodoo
         }
 
         /// <summary>
-        /// list.ApplyTokenizedContainsSearch("Smith Jack", c => c.FirstName, c => c.LastName);
+        /// list.ToTokenizedContainsSearchQuery("Smith Jack", c => c.FirstName, c => c.LastName);
         /// will return result where FirstName contains Smith Or Jack and LastName contains Smith Or Jack
         /// case sensitive with linq to objects, case instensitive with linq to entities
         /// </summary>
@@ -167,7 +167,7 @@ namespace Voodoo
         /// <param name="searchText">space delimited search text, such as "Smith Bob"</param>
         /// <param name="propertiesToSearch">properties to search such as c=>c.FirstName, c=>c.LastName</param>
         /// <returns></returns>
-        public static IQueryable<T> ApplyTokenizedContainsSearch<T>(this IQueryable<T> query, string searchText, params Expression<Func<T, string>>[] propertiesToSearch)
+        public static IQueryable<T> ToTokenizedContainsSearchQuery<T>(this IQueryable<T> query, string searchText, params Expression<Func<T, string>>[] propertiesToSearch)
         {
             if (string.IsNullOrWhiteSpace(searchText))
                 return query;
