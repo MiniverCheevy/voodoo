@@ -60,6 +60,7 @@
     <Compile Include="ErrorDetailLoggingMethodology.cs" />
     <Compile Include="Helpers\CollectionChangeSet.cs" />
     <Compile Include="Helpers\CollectionReconciler.cs" />
+    <Compile Include="Helpers\GraphWalker.cs" />
     <Compile Include="Helpers\ResponseExceptionDecorator.cs" />
     <Compile Include="Infrastructure\ExceptionTranslater.cs" />
     <Compile Include="Infrastructure\ExceptionTranslation.cs" />

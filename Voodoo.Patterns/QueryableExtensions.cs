@@ -79,7 +79,7 @@ namespace Voodoo
             var sortMember = paging.SortMember ?? paging.DefaultSortMember;
 
             source = !string.IsNullOrEmpty(sortMember)
-                ? source.OrderByDynamic(string.Format("{0} {1}", sortMember, paging.SortDirection))
+                ? source.OrderByDynamic($"{sortMember} {paging.SortDirection}")
                 : source.OrderBy(c => true);
 
             paging.TotalRecords = LinqHelper.Count(source);
