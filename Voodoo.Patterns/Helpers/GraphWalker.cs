@@ -52,14 +52,14 @@ namespace Voodoo.Helpers
 
             if (type.IsScalar() && !settings.IncludeScalarTypes)
                 return;
-            if (isNullable(type) && !settings.TreatNullableTypesAsDistict)
-                type = type.GetGenericArguments().First();
+            if (type.IsNullable()  && !settings.TreatNullableTypesAsDistict)
+                type = type.GetGenericArgumentsList().First();
             if (distinctTypes.Contains(type))
                 return;
 
             distinctTypes.Add(type);
 
-            foreach (var property in type.GetProperties())
+            foreach (var property in type.GetPropertiesList())
             {
                 var propertyType = property.PropertyType;
                 if (propertyType.IsScalar() && !settings.IncludeScalarTypes)
@@ -69,9 +69,7 @@ namespace Voodoo.Helpers
             }
         }
 
-        private bool isNullable(Type type) =>
-            type.IsGenericType && type.GetGenericTypeDefinition() == typeof(Nullable<>);
-
+      
 
 
     }

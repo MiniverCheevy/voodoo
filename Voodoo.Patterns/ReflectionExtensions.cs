@@ -19,7 +19,30 @@ namespace Voodoo
         return type.GetProperty(name);
         }
 #endif
-
+        public static bool IsNullable(this Type type)
+        {
+#if NETCOREAPP1_0 || NETSTANDARD1_6 || NETSTANDARD2_0
+            return type.GetTypeInfo().IsGenericType && type.GetTypeInfo().GetGenericTypeDefinition() == typeof(Nullable<>);
+#else            
+            return type.IsGenericType && type.GetGenericTypeDefinition() == typeof(Nullable<>);
+#endif
+        }
+        public static List<PropertyInfo> GetPropertiesList(this Type type)
+        {
+#if NETCOREAPP1_0 || NETSTANDARD1_6 || NETSTANDARD2_0
+            return type.GetTypeInfo().GetProperties().ToList();
+#else            
+            return type.GetProperties().ToList();
+#endif
+        }
+        public static List<Type> GetGenericArgumentsList(this Type type)
+        {
+#if NETCOREAPP1_0 || NETSTANDARD1_6 || NETSTANDARD2_0
+            return type.GetTypeInfo().GetGenericArguments().ToList();
+#else            
+            return type.GetGenericArguments().ToList();
+#endif
+        }
         public static bool IsEnumerable(this Type t)
         {
             return typeof (IEnumerable).IsAssignableFrom(t);
