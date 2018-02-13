@@ -83,6 +83,7 @@
     <Compile Include="Logging\ILogger.cs" />
     <Compile Include="Logging\LogLevels.cs" />
     <Compile Include="Logging\LogManager.cs" />
+    <Compile Include="Messages\BinaryResponse.cs" />
     <Compile Include="Messages\DefaultRequest.cs" />
     <Compile Include="Messages\EmptyRequest.cs" />
     <Compile Include="Messages\Grouping.cs" />

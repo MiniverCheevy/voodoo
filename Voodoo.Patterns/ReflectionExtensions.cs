@@ -27,6 +27,22 @@ namespace Voodoo
             return type.IsGenericType && type.GetGenericTypeDefinition() == typeof(Nullable<>);
 #endif
         }
+        public static bool IsEnum(this Type type)
+        {
+#if NETCOREAPP1_0 || NETSTANDARD1_6 || NETSTANDARD2_0
+            return type.GetTypeInfo().IsEnum;
+#else            
+            return type.IsEnum;
+#endif
+        }
+        public static bool IsGenericType(this Type type)
+        {
+#if NETCOREAPP1_0 || NETSTANDARD1_6 || NETSTANDARD2_0
+            return type.GetTypeInfo().IsGenericType;
+#else            
+            return type.IsGenericType;
+#endif
+        }
         public static List<PropertyInfo> GetPropertiesList(this Type type)
         {
 #if NETCOREAPP1_0 || NETSTANDARD1_6 || NETSTANDARD2_0
@@ -50,7 +66,7 @@ namespace Voodoo
 
         public static bool IsScalar(this Type t)
         {
-            const string types = "string,guid,datetime,timespan,decimal,datetimeoffset";
+            const string types = "string,guid,datetime,decimal,datetimeoffset";
             if (t.Name.ToLower().Contains("nullable"))
                 return true;
 

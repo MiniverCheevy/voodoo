@@ -29,7 +29,8 @@ namespace Voodoo.Helpers
 
         public GraphWalker(params Type[] types)
         {
-            this.types = types;
+            if (types != null)
+                this.types = new Type[] { typeof(DayOfWeek?) }.Union(types.Distinct().OrderBy(c => c.Name).ToArray()).ToArray(); ;
         }
 
         public GraphWalker(GraphWalkerSettings settings, params Type[] types) : this(types)
@@ -43,33 +44,76 @@ namespace Voodoo.Helpers
             {
                 read(type);
             }
-
-            return distinctTypes;
+            var orderedResult = new HashSet<Type>();
+            var names = new HashSet<string>();
+            foreach (var item in distinctTypes.Distinct().OrderBy(c => c.Name))
+            {
+                if (!names.Contains(item.FullName))
+                {
+                    names.Add(item.FullName);
+                    orderedResult.Add(item);
+                }
+            }
+            return orderedResult;
         }
 
         private void read(Type type)
         {
+            var isNullable = type.IsNullable();
+            var isScalar = type.IsScalar();
+            var isEnum = type.IsEnum();           
 
-            if (type.IsScalar() && !settings.IncludeScalarTypes)
+            if (isScalar && !settings.IncludeScalarTypes && !isEnum && !isNullable)
                 return;
-            if (type.IsNullable()  && !settings.TreatNullableTypesAsDistict)
+
+            if (isNullable && !settings.TreatNullableTypesAsDistict)
+            { 
                 type = type.GetGenericArgumentsList().First();
+                isNullable = type.IsNullable();
+                isScalar = type.IsScalar();
+                isEnum = type.IsEnum();
+            }
+            else if (type.IsGenericType())
+            {
+                foreach (var argument in type.GetGenericArgumentsList())
+                {
+                    read(argument);
+                }
+            }
+
+            if (type.FullName.StartsWith("System.") && !isScalar && !isNullable)
+                return;
+
             if (distinctTypes.Contains(type))
+                return;
+
+            if (isEnum)
+            {
+                distinctTypes.Add(type);
+                return;
+            }
+            if (isNullable && settings.TreatNullableTypesAsDistict)
+            {
+                distinctTypes.Add(type);
+                return;
+            }
+            if (isScalar && settings.IncludeScalarTypes)
+            {
+                distinctTypes.Add(type);
+                return;
+            }
+            else if (isScalar)
                 return;
 
             distinctTypes.Add(type);
 
             foreach (var property in type.GetPropertiesList())
             {
-                var propertyType = property.PropertyType;
-                if (propertyType.IsScalar() && !settings.IncludeScalarTypes)
-                    continue;
-
-                read(propertyType);
+                read(property.PropertyType);
             }
         }
 
-      
+
 
 
     }

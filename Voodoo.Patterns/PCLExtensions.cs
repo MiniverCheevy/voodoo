@@ -66,11 +66,6 @@ namespace Voodoo
             return typeFrom.GetTypeInfo().IsAssignableFrom(typeTo.GetTypeInfo());
         }
 
-        public static bool IsEnum(this Type type)
-        {
-            return type.GetTypeInfo().IsEnum;
-        }
-
         public static PropertyInfo GetProperty(this Type t, string name)
         {
             return t.GetTypeInfo().GetDeclaredProperty(name);

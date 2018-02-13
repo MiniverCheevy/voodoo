@@ -18,53 +18,56 @@ namespace Voodoo
         {
             get
             {
-#if NET40 || NET45 || NET451 || NET452 || NET46
-                return System.Web.HttpContext.Current == null;
-
-#elif NETCOREAPP1_0
+#if NETCOREAPP1_0
                 //return string.IsNullOrWhiteSpace(HostingEnvironment.WebRootPath)
                 //    ? Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)
                 //    : HostingEnvironment.Virtual;
-               
+#elif NETSTANDARD2_0
+                throw new NotImplementedException();
+#else
+                return System.Web.HttpContext.Current == null;
 #endif
-				throw new NotImplementedException();
-			}
+                throw new NotImplementedException();
+            }
         }
-            public static string GetApplicationRootDirectory()
+        public static string GetApplicationRootDirectory()
         {
-#if NET40 || NET45 || NET451 || NET452 || NET46
-                return System.Web.HttpContext.Current == null
-                ? Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)
-                : System.Web.HttpContext.Current.Server.MapPath(".");
 
-#elif NETCOREAPP1_0
+#if NETCOREAPP1_0
             
             //return string.IsNullOrWhiteSpace(HostingEnvironment.WebRootPath)
             //    ? Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)
             //    : HostingEnvironment.Virtual;
+#elif NETSTANDARD2_0
+                throw new NotImplementedException();
+#else
+            return System.Web.HttpContext.Current == null
+            ? Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)
+            : System.Web.HttpContext.Current.Server.MapPath(".");
+
 #endif
 
-			throw new NotImplementedException();
-		}
+            throw new NotImplementedException();
+        }
 
-		/// <summary>
-		/// Strips leading slashes from the every path except the first so that combining "C:\" and "\abc\def" yeilds "C:\abc\def", System.IO.Path.Combine would yeild "\abc\def".  
-		/// </summary>
-		public static string PathCombineLocal(params string[] paths)
+        /// <summary>
+        /// Strips leading slashes from the every path except the first so that combining "C:\" and "\abc\def" yeilds "C:\abc\def", System.IO.Path.Combine would yeild "\abc\def".  
+        /// </summary>
+        public static string PathCombineLocal(params string[] paths)
         {
-			if (paths.Length <= 1)
-				return string.Empty;
-			var cleanPaths = new List<string> { paths[0] };
-			var rest = paths.Skip(1).ToArray();
+            if (paths.Length <= 1)
+                return string.Empty;
+            var cleanPaths = new List<string> { paths[0] };
+            var rest = paths.Skip(1).ToArray();
 
-			foreach (var p in rest)
-			{
-				var path = p;
-				path = path.TrimStart(Path.DirectorySeparatorChar);
-				path = path.TrimStart(Path.AltDirectorySeparatorChar);
-				cleanPaths.Add(path);
-			}
-			return Path.Combine(cleanPaths.ToArray());
+            foreach (var p in rest)
+            {
+                var path = p;
+                path = path.TrimStart(Path.DirectorySeparatorChar);
+                path = path.TrimStart(Path.AltDirectorySeparatorChar);
+                cleanPaths.Add(path);
+            }
+            return Path.Combine(cleanPaths.ToArray());
         }
         public static string ResolveRelativePath(string path, string rootFolder = null)
         {
@@ -134,50 +137,50 @@ namespace Voodoo
             using (var sw = File.AppendText(fileName))
             {
                 sw.Write(contents);
-                sw.Flush();                
+                sw.Flush();
             }
         }
-		
-		public static void WriteFile(string fileContents, string fileName)
-		{
-			StreamWriter sw = null;
 
-			verifyDirectory(fileName);
-			
-			var exists = File.Exists(fileName);
+        public static void WriteFile(string fileContents, string fileName)
+        {
+            StreamWriter sw = null;
+
+            verifyDirectory(fileName);
+
+            var exists = File.Exists(fileName);
 #if NETCOREAPP1_0
 			exists = false;
 #endif
 #if !NETCOREAPP1_0
-			if (exists)
-			{
-				File.SetAttributes(fileName, FileAttributes.Archive);
-				sw = new StreamWriter(fileName);
-			}
+            if (exists)
+            {
+                File.SetAttributes(fileName, FileAttributes.Archive);
+                sw = new StreamWriter(fileName);
+            }
 #endif
-			if (!exists)
-			{
-				KillFile(fileName);
-				sw = File.CreateText(fileName);
-			}
+            if (!exists)
+            {
+                KillFile(fileName);
+                sw = File.CreateText(fileName);
+            }
 
-			using (sw)
+            using (sw)
             {
                 sw.Write(fileContents);
                 sw.Flush();
             }
 
 
-		}
+        }
 
-	    private static void verifyDirectory(string fileName)
-	    {
-		    var directory = Path.GetDirectoryName(fileName);
-		    if (!Directory.Exists(directory))
-			    MakeDir(directory);
-	    }
+        private static void verifyDirectory(string fileName)
+        {
+            var directory = Path.GetDirectoryName(fileName);
+            if (!Directory.Exists(directory))
+                MakeDir(directory);
+        }
 
-	    public static void MakeDir(string path)
+        public static void MakeDir(string path)
         {
             if (Directory.Exists(path)) return;
 
