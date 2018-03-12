@@ -1,7 +1,5 @@
 ﻿using System;
-#if (PCL)
 using Voodoo.Logging;
-#endif
 
 namespace Voodoo.Logging
 {
@@ -18,11 +16,7 @@ namespace Voodoo.Logging
 
         private static ILogger getDefaultLogger()
         {
-#if PCL
-            return new DebugLogger();
-#else
             return new FallbackLogger();
-#endif
         }
 
         public static void Log(string message, LogLevels level = LogLevels.Info)
@@ -45,6 +39,7 @@ namespace Voodoo.Logging
 
             Logger.Log(ex);
         }
+
         public static void Log(string message, string category, LogLevels level = LogLevels.Error)
         {
             if (level.To<int>() > CurrentLogLevel.To<int>())

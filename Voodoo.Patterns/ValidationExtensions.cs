@@ -6,18 +6,12 @@ namespace Voodoo
 {
     public static class ValidationExtensions
     {
-
         public static void ThrowIfNull(this object @object, string message)
         {
-            if(@object == null)
-            throw new Exception(message);
+            if (@object == null)
+                throw new Exception(message);
         }
-        
-        [Obsolete("This was poorly named, use IsValid or GetValidationResponse")]
-        public static bool Validate(this object request)
-        {
-            return IsValid(request);
-        }
+       
         public static bool IsValid(this object request)
         {
             if (request == null)
@@ -33,6 +27,7 @@ namespace Voodoo
                 return false;
             }
         }
+
         public static Response GetValidationResponse(this object request)
         {
             var response = new Response();
@@ -45,9 +40,8 @@ namespace Voodoo
             {
                 var validator = ValidationManager.GetDefaultValidatitor();
                 validator.Validate(request);
-                
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 response.SetExceptions(ex);
             }

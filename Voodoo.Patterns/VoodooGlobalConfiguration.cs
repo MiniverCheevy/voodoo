@@ -16,6 +16,7 @@ namespace Voodoo
             LogMaximumNumberOfItemsInCollection = 100;
             ErrorDetailLoggingMethodology = ErrorDetailLoggingMethodology.LogAsSecondException;
         }
+
         public static bool IncludeResponseWithExceptionData { get; set; }
         public static ErrorDetailLoggingMethodology ErrorDetailLoggingMethodology { get; set; }
         internal static ExceptionTranslater ExceptionTranslator { get; set; }
@@ -36,7 +37,7 @@ namespace Voodoo
 
         public static void RegisterExceptionMapping<T>(ExceptionTranslation mapper) where T : Exception
         {
-            var type = typeof (T);
+            var type = typeof(T);
             if (ExceptionTranslator.ContainsKey(type))
                 ExceptionTranslator[type] = mapper;
             else

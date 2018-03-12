@@ -11,26 +11,24 @@ namespace Voodoo
 {
     public static class ActionHandler
     {
-
-		public static Response Try(Action action) 
-		{
-			var response = new Response();
-			try
-			{
-				 action();
-			}
-			catch (Exception ex)
-			{
-
-                response = new Response { IsOk = false, Exception = ex };
+        public static Response Try(Action action)
+        {
+            var response = new Response();
+            try
+            {
+                action();
+            }
+            catch (Exception ex)
+            {
+                response = new Response {IsOk = false, Exception = ex};
                 response.SetExceptions(ex);
                 if (VoodooGlobalConfiguration.RemoveExceptionFromResponseAfterLogging)
                     response.Exception = null;
             }
-			return response;
-		}
+            return response;
+        }
 
-		public static T Execute<T>(Func<T> action) where T : IResponse, new()
+        public static T Execute<T>(Func<T> action) where T : IResponse, new()
         {
             var response = new T();
             try
@@ -39,8 +37,7 @@ namespace Voodoo
             }
             catch (Exception ex)
             {
-
-                response = new T { IsOk = false };                
+                response = new T {IsOk = false};
                 response.SetExceptions(ex);
                 LogManager.Log(ex);
                 if (VoodooGlobalConfiguration.RemoveExceptionFromResponseAfterLogging)
@@ -48,8 +45,8 @@ namespace Voodoo
                 return response;
             }
         }
-#if ! NET40
-		public static async Task<T> ExecuteAsync<T>(Func<Task<T>> action) where T : IResponse, new()
+
+        public static async Task<T> ExecuteAsync<T>(Func<Task<T>> action) where T : IResponse, new()
         {
             var response = new T();
             try
@@ -58,7 +55,7 @@ namespace Voodoo
             }
             catch (Exception ex)
             {
-                response = new T { IsOk = false };
+                response = new T {IsOk = false};
                 response.SetExceptions(ex);
                 LogManager.Log(ex);
                 if (VoodooGlobalConfiguration.RemoveExceptionFromResponseAfterLogging)
@@ -66,6 +63,5 @@ namespace Voodoo
                 return response;
             }
         }
-#endif
-	}
+    }
 }

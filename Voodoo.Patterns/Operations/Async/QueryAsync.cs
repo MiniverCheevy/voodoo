@@ -1,7 +1,5 @@
 ﻿using Voodoo.Messages;
 
-#if ! NET40
-
 namespace Voodoo.Operations.Async
 {
     public abstract class QueryAsync<TRequest, TResponse> : ExecutorAsync<TRequest, TResponse>
@@ -12,5 +10,3 @@ namespace Voodoo.Operations.Async
         }
     }
 }
-
-#endif

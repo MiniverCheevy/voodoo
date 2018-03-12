@@ -1,16 +1,20 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
       <TargetFramework>netcoreapp2.0</TargetFramework>
+      <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
+        <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <GenerateBindingRedirectsOutputType>true</GenerateBindingRedirectsOutputType>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="..\Voodoo.Tests\**\*.cs" Exclude="..\Voodoo.Tests\**\AssemblyInfo*.*;..\Voodoo.Tests\**\Temp*.*;..\Voodoo.Tests\**\dotnet*.*" />
+    <Compile Include="..\Tests.net461\**\*.cs" Exclude="..\Tests.net461\**\AssemblyInfo*.*;..\Tests.net461\**\Temp*.*;..\Tests.net461\**\dotnet*.*" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="FluentAssertions" Version="4.19.2" />
-    <PackageReference Include="MSTest.TestAdapter" Version="1.1.18" />
-    <PackageReference Include="MSTest.TestFramework" Version="1.1.18" />
+    <PackageReference Include="FluentAssertions" Version="5.1.2" />
+    <PackageReference Include="MSTest.TestAdapter" Version="1.2.0" />
+    <PackageReference Include="MSTest.TestFramework" Version="1.2.0" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\netStandard20\Voodoo.Patterns.netStandard20.csproj" />
+    <ProjectReference Include="..\Voodoo.Patterns\Voodoo.Patterns.csproj" />
   </ItemGroup>
+  
 </Project>

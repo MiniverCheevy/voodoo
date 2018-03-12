@@ -2,9 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel;
-#if !PCL
 using System.ComponentModel.DataAnnotations;
-#endif
 using System.Linq;
 using System.Reflection;
 using Voodoo.Messages;
@@ -45,8 +43,8 @@ namespace Voodoo
 
         public static string GetValue(this IEnumerable<INameValuePair> list, string name)
         {
-	        var result = list?.FirstOrDefault(e => e.Name == name);
-	        return result?.Value;
+            var result = list?.FirstOrDefault(e => e.Name == name);
+            return result?.Value;
         }
 
         public static bool ContainsValue(this IEnumerable<INameValuePair> list, string value)
@@ -86,7 +84,7 @@ namespace Voodoo
 
         public static IList<INameValuePair> ToINameValuePairList(this Type enumeration)
         {
-            if (enumeration.GetTypeInfo().BaseType != typeof (Enum))
+            if (enumeration.GetTypeInfo().BaseType != typeof(Enum))
             {
                 throw new ArgumentException(Strings.Validation.enumerationMustBeAnEnum);
             }
@@ -95,15 +93,16 @@ namespace Voodoo
                     .Select(
                         e =>
                             (INameValuePair)
-                                new NameValuePair(
-									Enum.Parse(enumeration, e).ToFriendlyString() ,((int) Enum.Parse(enumeration, e)).ToString()))
+                            new NameValuePair(
+                                Enum.Parse(enumeration, e).ToFriendlyString(),
+                                ((int) Enum.Parse(enumeration, e)).ToString()))
                     .ToList();
             return result;
         }
-	
-	    public static IList<INameValuePair> ToINameValuePairListWithUnfriendlyNames(this Type enumeration)
+
+        public static IList<INameValuePair> ToINameValuePairListWithUnfriendlyNames(this Type enumeration)
         {
-            if (enumeration.GetTypeInfo().BaseType != typeof (Enum))
+            if (enumeration.GetTypeInfo().BaseType != typeof(Enum))
             {
                 throw new ArgumentException(Strings.Validation.enumerationMustBeAnEnum);
             }
@@ -114,19 +113,19 @@ namespace Voodoo
             return ret;
         }
 
-        public static Dictionary<string, string> ToDictionary(this IList<INameValuePair> list, bool throwForDuplicateKeys = false)
+        public static Dictionary<string, string> ToDictionary(this IList<INameValuePair> list,
+            bool throwForDuplicateKeys = false)
         {
             var result = new Dictionary<string, string>();
             foreach (var item in list)
             {
                 if ((result.ContainsKey(item.Value) && throwForDuplicateKeys) || !result.ContainsKey(item.Value))
                     result.Add(item.Value, item.Name);
-                
             }
             return result;
         }
 
-#if !PCL 
+
         public static IEnumerable<INameValuePair> AsEnumerable(this NameValueCollection nvc)
         {
             var result = new List<INameValuePair>();
@@ -136,6 +135,5 @@ namespace Voodoo
             }
             return result.AsEnumerable();
         }
-#endif
     }
 }

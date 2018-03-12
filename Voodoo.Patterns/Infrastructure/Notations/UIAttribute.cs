@@ -18,6 +18,7 @@ namespace Voodoo.Infrastructure.Notations
         public bool DoNotSort { get; set; }
         public List<NameValuePair> Metadata { get; set; }
     }
+
     public enum DisplayFormat
     {
         Text = 0,
@@ -27,6 +28,6 @@ namespace Voodoo.Infrastructure.Notations
         Currency = 4,
         Decimal = 5,
         PhoneNumber = 6,
-        Int =7 
+        Int = 7
     }
 }

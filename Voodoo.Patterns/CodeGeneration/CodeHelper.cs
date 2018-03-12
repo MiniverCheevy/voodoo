@@ -8,11 +8,10 @@ namespace Voodoo.CodeGeneration
 {
     public static class CodeHelper
     {
-
         public static string Format(string code)
         {
             var response = new StringBuilder();
-            var lines = code.Split((char)13);
+            var lines = code.Split((char) 13);
             var indent = 0;
             var lastWasBlank = false;
             var lastWasOpen = false;
@@ -45,9 +44,7 @@ namespace Voodoo.CodeGeneration
                 lastWasBlank = thisIsBlank;
                 lastWasOpen = isOpen;
                 lastLine = formatted;
-
             }
-
 
             return response.ToString();
         }
@@ -60,4 +57,3 @@ namespace Voodoo.CodeGeneration
         }
     }
 }
-

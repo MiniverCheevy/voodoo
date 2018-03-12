@@ -3,6 +3,6 @@
     public enum ErrorDetailLoggingMethodology
     {
         LogInExceptionData = 1,
-        LogAsSecondException=2,
+        LogAsSecondException = 2,
     }
 }

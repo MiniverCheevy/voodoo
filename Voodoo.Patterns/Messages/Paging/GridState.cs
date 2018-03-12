@@ -43,7 +43,7 @@ namespace Voodoo.Messages.Paging
                 PageNumber = paging.PageNumber > 0 ? paging.PageNumber : 1;
                 PageSize = paging.PageSize > 0 ? paging.PageSize : 10;
                 TotalRecords = paging.TotalRecords;
-                TotalPages = Math.Ceiling(TotalRecords.To<decimal>()/PageSize.To<decimal>()).To<int>();
+                TotalPages = Math.Ceiling(TotalRecords.To<decimal>() / PageSize.To<decimal>()).To<int>();
                 ResetPaging = paging.ResetPaging;
                 if (PageNumber <= 0)
                     PageNumber = 1;

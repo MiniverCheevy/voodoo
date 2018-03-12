@@ -8,7 +8,7 @@ using System.Reflection;
 using System.Text;
 using Voodoo.Infrastructure;
 using Voodoo.Infrastructure.Notations;
-#if (!PCL)
+
 namespace Voodoo.Logging
 {
     public class FallbackLogger : ILogger
@@ -27,7 +27,6 @@ namespace Voodoo.Logging
                     log.AppendLine("");
                     log.AppendLine(item.Key.To<string>());
                     log.AppendLine(item.Value.To<string>());
-
                 }
             }
 
@@ -52,56 +51,52 @@ namespace Voodoo.Logging
                 var text = string.Concat(DateTime.Now.ToString("F"),
                     Environment.NewLine, log, Environment.NewLine,
                     "**********************************************************", Environment.NewLine);
-#if !NETCOREAPP1_0
+
                 lock (locker)
                 {
-#endif
                     File.AppendAllText(path, text);
-#if !NETCOREAPP1_0
                 }
-#endif
             }
             catch (Exception ex)
             {
-                handleFileWriteFailure(log, ex, appName, path);
+                Debug.WriteLine(ex.ToString());
+                //handleFileWriteFailure(log, ex, appName, path);
             }
         }
 
-        private static void handleFileWriteFailure(string actualError, Exception ex, string appName, string path)
-        {
+        //private static void handleFileWriteFailure(string actualError, Exception ex, string appName, string path)
+        //{
 
-#if !NETCOREAPP1_0 && !NETSTANDARD2_0
-            var failedToWriteMessage = "Fallback Logger Failed to write log file: " + path;
-            var source = appName ?? "Application";
-            const string logName = "Application";
+        //    var failedToWriteMessage = "Fallback Logger Failed to write log file: " + path;
+        //    var source = appName ?? "Application";
+        //    const string logName = "Application";
 
-            try
-            {
-                if (!EventLog.SourceExists(source))
-                    EventLog.CreateEventSource(source, logName);
-            }
-            catch
-            {
-                source = "ASP.NET 4.0.30319.0";
+        //    try
+        //    {
+        //        if (!EventLog.SourceExists(source))
+        //            EventLog.CreateEventSource(source, logName);
+        //    }
+        //    catch
+        //    {
+        //        source = "ASP.NET 4.0.30319.0";
 
-                var command =
-                    $"eventcreate /ID 1 /L APPLICATION /T INFORMATION  /SO {appName} /D \"Event Source Created\"";
-                var eventSourceDoesNotExistMessage =
-                    string.Concat(
-                        "Event source does not exist for this application, you can set v:appName in the config file to customize it and/or run the following command ",
-                        Environment.NewLine, command, Environment.NewLine,
-                        "You may have to change the /ID parameter if it already exists");
-                EventLog.WriteEntry(source, eventSourceDoesNotExistMessage, EventLogEntryType.Warning);
-            }
+        //        var command =
+        //            $"eventcreate /ID 1 /L APPLICATION /T INFORMATION  /SO {appName} /D \"Event Source Created\"";
+        //        var eventSourceDoesNotExistMessage =
+        //            string.Concat(
+        //                "Event source does not exist for this application, you can set v:appName in the config file to customize it and/or run the following command ",
+        //                Environment.NewLine, command, Environment.NewLine,
+        //                "You may have to change the /ID parameter if it already exists");
+        //        EventLog.WriteEntry(source, eventSourceDoesNotExistMessage, EventLogEntryType.Warning);
+        //    }
 
-            var actualMessage = $"{actualError} {ex}";
-            if (actualMessage.Length > 32000)
-                actualMessage = actualMessage.Substring(0, 32000);
-            EventLog.WriteEntry(source, failedToWriteMessage, EventLogEntryType.Warning);
+        //    var actualMessage = $"{actualError} {ex}";
+        //    if (actualMessage.Length > 32000)
+        //        actualMessage = actualMessage.Substring(0, 32000);
+        //    EventLog.WriteEntry(source, failedToWriteMessage, EventLogEntryType.Warning);
 
-            EventLog.WriteEntry(source, actualMessage, EventLogEntryType.Error);
-#endif
-        }
+        //    EventLog.WriteEntry(source, actualMessage, EventLogEntryType.Error);
+        //}
 
         private static void deleteFileIfNeeded(string path)
         {
@@ -126,12 +121,11 @@ namespace Voodoo.Logging
             if (string.IsNullOrEmpty(logFilePath))
                 logFilePath = configuredPath;
 
-
             var today = DateTime.Now.DayOfWeek.ToString();
 
             if (string.IsNullOrEmpty(logFilePath))
             {
-                logFilePath = IoNic.IsWebHosted ? IoNic.GetApplicationRootDirectory() : @"c:\Logs";
+                logFilePath = IoNic.GetApplicationRootDirectory() ?? @"c:\Logs";
             }
             var fileName = $"log.{today}.txt";
             var path = Path.Combine(logFilePath, fileName);
@@ -146,20 +140,15 @@ namespace Voodoo.Logging
                 appName = VoodooGlobalConfiguration.ApplicationName;
                 if (string.IsNullOrEmpty(appName))
                 {
-#if !NETCOREAPP1_0 && !PCL
                     var assembly = Assembly.GetCallingAssembly() == null
                         ? AppDomain.CurrentDomain.FriendlyName
                         : Assembly.GetCallingAssembly().FullName;
                     appName = assembly.Split(',')[0];
                     appName = "Unnamed App";
-#endif
-#if NETCOREAPP1_0
-                     appName="Unnamed DotNetCoreApp";
-#endif
-#if PCL
-                     appName="Unnamed PortableApp";
-#endif
 
+                    appName = "Unnamed DotNetCoreApp";
+
+                    appName = "Unnamed PortableApp";
                 }
             }
             catch
@@ -170,4 +159,3 @@ namespace Voodoo.Logging
         }
     }
 }
-#endif

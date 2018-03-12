@@ -4,51 +4,14 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-#if NETCOREAPP1_0
-//using Microsoft.AspNet.Hosting;
-//using Microsoft.AspNet.Http;
-#endif
 
-#if (!PCL)
+
 namespace Voodoo
 {
     public static class IoNic
     {
-        public static bool IsWebHosted
-        {
-            get
-            {
-#if NETCOREAPP1_0
-                //return string.IsNullOrWhiteSpace(HostingEnvironment.WebRootPath)
-                //    ? Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)
-                //    : HostingEnvironment.Virtual;
-#elif NETSTANDARD2_0
-                throw new NotImplementedException();
-#else
-                return System.Web.HttpContext.Current == null;
-#endif
-                throw new NotImplementedException();
-            }
-        }
         public static string GetApplicationRootDirectory()
-        {
-
-#if NETCOREAPP1_0
-            
-            //return string.IsNullOrWhiteSpace(HostingEnvironment.WebRootPath)
-            //    ? Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)
-            //    : HostingEnvironment.Virtual;
-#elif NETSTANDARD2_0
-                throw new NotImplementedException();
-#else
-            return System.Web.HttpContext.Current == null
-            ? Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)
-            : System.Web.HttpContext.Current.Server.MapPath(".");
-
-#endif
-
-            throw new NotImplementedException();
-        }
+            => Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
 
         /// <summary>
         /// Strips leading slashes from the every path except the first so that combining "C:\" and "\abc\def" yeilds "C:\abc\def", System.IO.Path.Combine would yeild "\abc\def".  
@@ -57,7 +20,7 @@ namespace Voodoo
         {
             if (paths.Length <= 1)
                 return string.Empty;
-            var cleanPaths = new List<string> { paths[0] };
+            var cleanPaths = new List<string> {paths[0]};
             var rest = paths.Skip(1).ToArray();
 
             foreach (var p in rest)
@@ -69,6 +32,7 @@ namespace Voodoo
             }
             return Path.Combine(cleanPaths.ToArray());
         }
+
         public static string ResolveRelativePath(string path, string rootFolder = null)
         {
             rootFolder = rootFolder ?? GetApplicationRootDirectory();
@@ -148,16 +112,15 @@ namespace Voodoo
             verifyDirectory(fileName);
 
             var exists = File.Exists(fileName);
-#if NETCOREAPP1_0
-			exists = false;
-#endif
-#if !NETCOREAPP1_0
+
+            exists = false;
+
             if (exists)
             {
                 File.SetAttributes(fileName, FileAttributes.Archive);
                 sw = new StreamWriter(fileName);
             }
-#endif
+
             if (!exists)
             {
                 KillFile(fileName);
@@ -169,8 +132,6 @@ namespace Voodoo
                 sw.Write(fileContents);
                 sw.Flush();
             }
-
-
         }
 
         private static void verifyDirectory(string fileName)
@@ -226,4 +187,3 @@ namespace Voodoo
         }
     }
 }
-#endif

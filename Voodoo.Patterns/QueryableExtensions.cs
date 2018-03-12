@@ -6,7 +6,6 @@ using System.Reflection;
 using System.Threading.Tasks;
 using Voodoo.Messages;
 using Voodoo.Messages.Paging;
-
 using Voodoo.Linq;
 
 namespace Voodoo
@@ -32,20 +31,20 @@ namespace Voodoo
             return buildSortExpression(query, sortExpression, Strings.SortDirection.Descending);
         }
 
-        private static IQueryable<TQueryResult> buildSortExpression<TQueryResult>(IQueryable<TQueryResult> query, string sortExpression, string sortDirection)
+        private static IQueryable<TQueryResult> buildSortExpression<TQueryResult>(IQueryable<TQueryResult> query,
+            string sortExpression, string sortDirection)
             where TQueryResult : class
         {
             if (!sortExpression.Contains(","))
                 return query.OrderByDynamic($"{sortExpression} {Strings.SortDirection.Descending}");
             else
             {
-                var sortElements = sortExpression.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
+                var sortElements = sortExpression.Split(new char[] {','}, StringSplitOptions.RemoveEmptyEntries)
                     .ToArray()
                     .Select(c => $"{c} {sortDirection}");
                 sortExpression = String.Join(",", sortElements);
                 return query.OrderByDynamic(sortExpression);
             }
-
         }
 
         public static IQueryable<TQueryResult> OrderBy<TQueryResult>(this IQueryable<TQueryResult> query,
@@ -53,6 +52,7 @@ namespace Voodoo
         {
             return buildSortExpression(query, sortExpression, Strings.SortDirection.Ascending);
         }
+
         public static PagedResponse<TObject> ToPagedResponse<TObject>(this IQueryable<TObject> source, IGridState paging)
             where TObject : class, new()
         {
@@ -83,9 +83,9 @@ namespace Voodoo
                 : source.OrderBy(c => true);
 
             paging.TotalRecords = LinqHelper.Count(source);
-            paging.TotalPages = Math.Ceiling(paging.TotalRecords.To<decimal>() / paging.PageSize.To<decimal>()).To<int>();
+            paging.TotalPages =
+                Math.Ceiling(paging.TotalRecords.To<decimal>() / paging.PageSize.To<decimal>()).To<int>();
             var state = paging.Map(new GridState(paging));
-
 
             var skip = (state.PageNumber - 1) * state.PageSize;
             skip = skip < 0 ? 0 : skip;
@@ -102,7 +102,7 @@ namespace Voodoo
             var response = new PagedResponse<Grouping<TSource>>(source.State);
             var grouped = source.Data.GroupBy(keySelector);
             response.Data =
-                grouped.Select(c => new Grouping<TSource> { Name = c.Key.To<string>(), Data = c.ToList() }).ToList();
+                grouped.Select(c => new Grouping<TSource> {Name = c.Key.To<string>(), Data = c.ToList()}).ToList();
             return response;
         }
 
@@ -111,14 +111,14 @@ namespace Voodoo
             if (expression.Body is MemberExpression body)
                 return body.Member.Name;
 
-            var op = ((UnaryExpression)expression.Body).Operand;
-            return ((MemberExpression)op).Member.Name;
+            var op = ((UnaryExpression) expression.Body).Operand;
+            return ((MemberExpression) op).Member.Name;
         }
 
         public static Expression<T> Compose<T>(this Expression<T> first, Expression<T> second,
             Func<Expression, Expression, Expression> merge)
         {
-            var map = first.Parameters.Select((f, i) => new { f, s = second.Parameters[i] })
+            var map = first.Parameters.Select((f, i) => new {f, s = second.Parameters[i]})
                 .ToDictionary(p => p.s, p => p.f);
             var secondBody = ParameterRebinder.ReplaceParameters(map, second.Body);
             return Expression.Lambda<T>(merge(first.Body, secondBody), first.Parameters);
@@ -136,7 +136,8 @@ namespace Voodoo
             return first == null ? second : first.Compose(second, Expression.Or);
         }
 
-        private static Expression<Func<T, bool>> buildContainsExpression<T>(Expression<Func<T, string>> expr, string value)
+        private static Expression<Func<T, bool>> buildContainsExpression<T>(Expression<Func<T, string>> expr,
+            string value)
         {
             //MemberExpression member = expr.Body
 
@@ -154,7 +155,7 @@ namespace Voodoo
             var method = typeof(string).GetTypeInfo().GetMethod("Contains");
             var callExpression = Expression.Call(member, method, constant);
             var result = Expression.Lambda(callExpression, expr.Parameters);
-            return (Expression<Func<T, bool>>)result;
+            return (Expression<Func<T, bool>>) result;
         }
 
         /// <summary>
@@ -167,12 +168,13 @@ namespace Voodoo
         /// <param name="searchText">space delimited search text, such as "Smith Bob"</param>
         /// <param name="propertiesToSearch">properties to search such as c=>c.FirstName, c=>c.LastName</param>
         /// <returns></returns>
-        public static IQueryable<T> ToTokenizedContainsSearchQuery<T>(this IQueryable<T> query, string searchText, params Expression<Func<T, string>>[] propertiesToSearch)
+        public static IQueryable<T> ToTokenizedContainsSearchQuery<T>(this IQueryable<T> query, string searchText,
+            params Expression<Func<T, string>>[] propertiesToSearch)
         {
             if (string.IsNullOrWhiteSpace(searchText))
                 return query;
 
-            var tokens = searchText.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+            var tokens = searchText.Split(new char[] {' '}, StringSplitOptions.RemoveEmptyEntries);
             Expression<Func<T, bool>> andExpression = c => true;
             foreach (var token in tokens)
             {
@@ -182,11 +184,11 @@ namespace Voodoo
                     orExpression = orExpression.OrElse(buildContainsExpression(prop, token));
                 }
                 andExpression = andExpression.AndAlso(orExpression);
-
             }
 
             return query.Where(andExpression);
         }
+
         /// <summary>
         ///     http://microsoftnlayerapp.codeplex.com/
         /// </summary>
@@ -216,7 +218,7 @@ namespace Voodoo
             }
         }
 
-#if ! NET40 
+
         public static async Task<PagedResponse<TObject>> ToPagedResponseAsync<TObject>(this IQueryable<TObject> source,
             IGridState paging) where TObject : class, new()
         {
@@ -228,7 +230,5 @@ namespace Voodoo
         {
             return await Task.Run(() => ToPagedResponse(source, paging, transform));
         }
-
-#endif
     }
 }

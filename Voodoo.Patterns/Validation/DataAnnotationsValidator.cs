@@ -1,5 +1,4 @@
-﻿#if (!PCL)
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using Voodoo.Messages;
@@ -36,15 +35,9 @@ namespace Voodoo.Validation
 
         private bool tryValidate(object @object, out ICollection<ValidationResult> results)
         {
-#if (NETCOREAPP1_0)
-            var context = new ValidationContext(@object);
-#else
             var context = new ValidationContext(@object, null, null);
-#endif
             results = new List<ValidationResult>();
             return Validator.TryValidateObject(@object, context, results, true);
         }
     }
 }
-
-#endif

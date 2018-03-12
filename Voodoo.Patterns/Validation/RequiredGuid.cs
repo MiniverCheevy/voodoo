@@ -1,7 +1,5 @@
 ﻿using System;
 
-#if (!PCL)
-
 namespace Voodoo.Validation
 {
     public class RequiredGuid : SafeValidationAttribute
@@ -20,5 +18,3 @@ namespace Voodoo.Validation
         }
     }
 }
-
-#endif

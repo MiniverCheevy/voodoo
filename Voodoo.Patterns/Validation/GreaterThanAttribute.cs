@@ -1,5 +1,4 @@
-﻿#if (!PCL)
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Globalization;
@@ -10,14 +9,13 @@ using System.Threading.Tasks;
 
 namespace Voodoo.Validation
 {
-
-    public class GreaterThanAttribute :SafeValidationAttribute
+    public class GreaterThanAttribute : SafeValidationAttribute
     {
         public GreaterThanAttribute(string otherProperty)
         {
             this.OtherProperty = otherProperty;
         }
-        
+
         public string OtherProperty { get; set; }
 
         public override bool RequiresValidationContext => true;
@@ -46,13 +44,12 @@ namespace Voodoo.Validation
             if (comparableValue == null || comparableOtherValue == null)
                 return new ValidationResult("'{value}' is not greater than '{otherPropertyValue}'");
 
-            var compareResult = comparableValue.CompareTo((IComparable)otherPropertyValue);
+            var compareResult = comparableValue.CompareTo((IComparable) otherPropertyValue);
             if (compareResult == 1)
                 return null;
 
             var message = ErrorMessage ?? $"must be greater than {OtherProperty.ToFriendlyString()}";
             return new ValidationResult(message);
-        }        
+        }
     }
 }
-#endif

@@ -1,7 +1,6 @@
 ﻿using System.Linq;
 using Voodoo.Infrastructure;
 
-#if (!PCL)
 
 namespace Voodoo.Validation.Infrastructure
 {
@@ -29,5 +28,3 @@ namespace Voodoo.Validation.Infrastructure
         }
     }
 }
-
-#endif

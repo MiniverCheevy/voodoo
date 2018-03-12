@@ -1,7 +1,5 @@
 ﻿using System;
 
-#if (!PCL)
-
 namespace Voodoo.Validation
 {
     public class RequiredDateTimeAttribute : SafeValidationAttribute
@@ -13,10 +11,8 @@ namespace Voodoo.Validation
 
             var dateTime = (DateTime) value;
 
-            return dateTime != DateTime.MinValue && 
-                dateTime != DateTime.MaxValue;
+            return dateTime != DateTime.MinValue &&
+                   dateTime != DateTime.MaxValue;
         }
     }
 }
-
-#endif

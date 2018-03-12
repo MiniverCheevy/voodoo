@@ -42,7 +42,6 @@ namespace Voodoo.Operations
             if (currentItemsInGraph > maxItemsInGraph)
                 return string.Empty;
 
-
             if (element == null || element is ValueType || element is string)
             {
                 write(format(element));
@@ -50,7 +49,7 @@ namespace Voodoo.Operations
             else
             {
                 var objectType = element.GetType();
-                if (!typeof (IEnumerable).IsAssignableFrom(objectType))
+                if (!typeof(IEnumerable).IsAssignableFrom(objectType))
                 {
                     write("{{{0}}}", objectType.FullName);
                     hashes.Add(element.GetHashCode());
@@ -84,10 +83,9 @@ namespace Voodoo.Operations
                 }
                 else
                 {
-
                     var members =
                         element.GetType()
-                        .GetProperties(BindingFlags.Public | BindingFlags.Instance)
+                            .GetProperties(BindingFlags.Public | BindingFlags.Instance)
                             .OrderBy(OrderProperties)
                             .ThenBy(c => c.Name)
                             .ToArray();
@@ -100,14 +98,12 @@ namespace Voodoo.Operations
 
                     foreach (var memberInfo in members)
                     {
-
-
                         var propertyInfo = memberInfo as PropertyInfo;
-                        
 
                         if (propertyInfo == null)
                             continue;
-                        if (propertyInfo != null && propertyInfo.GetCustomAttributes(typeof(SecretAttribute), false).Any())
+                        if (propertyInfo != null &&
+                            propertyInfo.GetCustomAttributes(typeof(SecretAttribute), false).Any())
                             continue;
 
                         var type = propertyInfo.PropertyType;
@@ -120,13 +116,13 @@ namespace Voodoo.Operations
                         {
                             value = ex.Message;
                         }
-                        if (type.GetTypeInfo().IsValueType || type == typeof (string))
+                        if (type.GetTypeInfo().IsValueType || type == typeof(string))
                         {
                             write("{0}: {1}", memberInfo.Name, format(value));
                         }
                         else
                         {
-                            var isEnumerable = typeof (IEnumerable).IsAssignableFrom(type);
+                            var isEnumerable = typeof(IEnumerable).IsAssignableFrom(type);
                             var isScalar = type.IsScalar();
                             write("{0}: {1}", memberInfo.Name, isEnumerable ? "..." : "{ }");
 
@@ -141,7 +137,7 @@ namespace Voodoo.Operations
                     }
                 }
 
-                if (!typeof (IEnumerable).IsAssignableFrom(objectType))
+                if (!typeof(IEnumerable).IsAssignableFrom(objectType))
                 {
                     depth--;
                 }
@@ -180,7 +176,7 @@ namespace Voodoo.Operations
         private void write(string value, params object[] args)
         {
             currentItemsInGraph++;
-            var space = new string(' ', depth*padding);
+            var space = new string(' ', depth * padding);
 
             if (args != null)
                 value = string.Format(value, args);

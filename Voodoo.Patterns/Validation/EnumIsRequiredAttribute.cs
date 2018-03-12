@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Reflection;
 
-#if (!PCL)
-
 namespace Voodoo.Validation
 {
     public class EnumIsRequiredAttribute : SafeValidationAttribute
@@ -19,7 +17,7 @@ namespace Voodoo.Validation
 
             var enumType = value.GetType();
 
-            if (enumType.GetTypeInfo().BaseType != typeof (Enum))
+            if (enumType.GetTypeInfo().BaseType != typeof(Enum))
                 return false;
 
             if (Enum.IsDefined(enumType, value) == false)
@@ -31,5 +29,3 @@ namespace Voodoo.Validation
         }
     }
 }
-
-#endif

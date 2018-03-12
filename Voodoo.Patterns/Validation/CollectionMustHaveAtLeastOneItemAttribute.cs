@@ -1,7 +1,5 @@
 ﻿using System.Collections;
 
-#if (!PCL)
-
 namespace Voodoo.Validation
 {
     public class CollectionMustHaveAtLeastOneItemAttribute : SafeValidationAttribute
@@ -21,5 +19,3 @@ namespace Voodoo.Validation
         }
     }
 }
-
-#endif

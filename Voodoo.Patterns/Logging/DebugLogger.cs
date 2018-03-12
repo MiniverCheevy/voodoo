@@ -4,9 +4,6 @@ using Voodoo.Logging;
 
 namespace Voodoo.Logging
 {
-
-#if !NETCOREAPP1_0
-
     public class DebugLogger : ILogger
     {
         public void Log(string message)
@@ -26,5 +23,4 @@ namespace Voodoo.Logging
             Debug.WriteLine(message);
         }
     }
-#endif
 }

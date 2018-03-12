@@ -31,7 +31,8 @@ namespace Voodoo.Operations
 
                 appendDetails(ex);
 
-                if (VoodooGlobalConfiguration.ErrorDetailLoggingMethodology == ErrorDetailLoggingMethodology.LogInExceptionData)
+                if (VoodooGlobalConfiguration.ErrorDetailLoggingMethodology ==
+                    ErrorDetailLoggingMethodology.LogInExceptionData)
                     ex.Data["Test"] = builder.ToString();
 
                 LogManager.Log(ex);
@@ -57,7 +58,17 @@ namespace Voodoo.Operations
 
         private static void appendDetails(Exception ex)
         {
-            var ignored = new List<string> { "Message", "Data", "InnerException", "TargetSite", "StackTrace", "HelpLink", "Source", "HResult" };
+            var ignored = new List<string>
+            {
+                "Message",
+                "Data",
+                "InnerException",
+                "TargetSite",
+                "StackTrace",
+                "HelpLink",
+                "Source",
+                "HResult"
+            };
             var exception = ex;
 
             while (exception != null)
@@ -85,22 +96,12 @@ namespace Voodoo.Operations
 
         private static object getValue(PropertyInfo prop, Exception ex)
         {
-#if NET40
-            return prop.GetValue(ex, null);
-#else
             return prop.GetValue(ex);
-#endif
         }
 
         private static IEnumerable<PropertyInfo> getProperties(Type type)
         {
-#if NET40
-            return type.GetProperties(BindingFlags.Public | BindingFlags.Instance);
-#else
             return type.GetProperties();
-#endif
-
-
         }
     }
 }

@@ -4,64 +4,40 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using Voodoo.Logging;
+
 namespace Voodoo
 {
     public static class ReflectionExtensions
     {
-#if NET40
-        public static Type GetTypeInfo(this Type t)
-        {
-            return t;
-        }
-
-        public static PropertyInfo GetDeclaredProperty(this Type type,string name)
-        {
-        return type.GetProperty(name);
-        }
-#endif
         public static bool IsNullable(this Type type)
         {
-#if NETCOREAPP1_0 || NETSTANDARD1_6 || NETSTANDARD2_0
-            return type.GetTypeInfo().IsGenericType && type.GetTypeInfo().GetGenericTypeDefinition() == typeof(Nullable<>);
-#else            
-            return type.IsGenericType && type.GetGenericTypeDefinition() == typeof(Nullable<>);
-#endif
+            return type.GetTypeInfo().IsGenericType &&
+                   type.GetTypeInfo().GetGenericTypeDefinition() == typeof(Nullable<>);
         }
+
         public static bool IsEnum(this Type type)
         {
-#if NETCOREAPP1_0 || NETSTANDARD1_6 || NETSTANDARD2_0
             return type.GetTypeInfo().IsEnum;
-#else            
-            return type.IsEnum;
-#endif
         }
+
         public static bool IsGenericType(this Type type)
         {
-#if NETCOREAPP1_0 || NETSTANDARD1_6 || NETSTANDARD2_0
             return type.GetTypeInfo().IsGenericType;
-#else            
-            return type.IsGenericType;
-#endif
         }
+
         public static List<PropertyInfo> GetPropertiesList(this Type type)
         {
-#if NETCOREAPP1_0 || NETSTANDARD1_6 || NETSTANDARD2_0
             return type.GetTypeInfo().GetProperties().ToList();
-#else            
-            return type.GetProperties().ToList();
-#endif
         }
+
         public static List<Type> GetGenericArgumentsList(this Type type)
         {
-#if NETCOREAPP1_0 || NETSTANDARD1_6 || NETSTANDARD2_0
             return type.GetTypeInfo().GetGenericArguments().ToList();
-#else            
-            return type.GetGenericArguments().ToList();
-#endif
         }
+
         public static bool IsEnumerable(this Type t)
         {
-            return typeof (IEnumerable).IsAssignableFrom(t);
+            return typeof(IEnumerable).IsAssignableFrom(t);
         }
 
         public static bool IsScalar(this Type t)
@@ -82,13 +58,12 @@ namespace Voodoo
             return false;
         }
 
-#if !PCL
+
         public static Type[] GetTypesSafetly(this Assembly assembly)
         {
             try
             {
-                return assembly.GetTypes().Where(c=>c != null).ToArray();
-
+                return assembly.GetTypes().Where(c => c != null).ToArray();
             }
             catch (ReflectionTypeLoadException rtl)
             {
@@ -96,7 +71,6 @@ namespace Voodoo
                 return rtl.Types.Where(c => c != null).ToArray();
             }
         }
-#endif
 
         public static string GetTypeNameWithoutGenericArguments(this Type type)
         {
@@ -207,7 +181,7 @@ namespace Voodoo
         public static string FixUpTypeName(this Type type)
         {
             var result = type.FixUpScalarTypeName();
-            if (type.GetTypeInfo().IsGenericType && type.GetGenericTypeDefinition() == typeof (Nullable<>))
+            if (type.GetTypeInfo().IsGenericType && type.GetGenericTypeDefinition() == typeof(Nullable<>))
             {
                 result = $"{Nullable.GetUnderlyingType(type).FixUpScalarTypeName()}?";
             }
@@ -265,7 +239,7 @@ namespace Voodoo
         {
             if (type.GetTypeInfo().IsGenericType)
             {
-                var collectionTypeInterfaces = new[] {typeof (IEnumerable), typeof (IList), typeof (ICollection)};
+                var collectionTypeInterfaces = new[] {typeof(IEnumerable), typeof(IList), typeof(ICollection)};
                 var isCollectionType = type.GetInterfaces().Intersect(collectionTypeInterfaces).Any();
                 var canConstructTypeDefinition =
                     type.GetGenericArguments().Any(c => c.GetInterfaces().Contains(typeDefinition));

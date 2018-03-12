@@ -1,7 +1,4 @@
-﻿
-#if (!PCL)
-
-namespace Voodoo.Validation
+﻿namespace Voodoo.Validation
 {
     public class RequiredInt : SafeValidationAttribute
     {
@@ -10,10 +7,8 @@ namespace Voodoo.Validation
             if (value == null)
                 return false;
 
-            var number = (int) value;            
+            var number = (int) value;
             return true;
         }
     }
 }
-
-#endif

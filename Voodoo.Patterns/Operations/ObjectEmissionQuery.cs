@@ -46,7 +46,6 @@ namespace Voodoo.Operations
             if (currentItemsInGraph > MaxItemsInGraph)
                 return string.Empty;
 
-
             if (element == null || element is ValueType || element is string)
                 writeInline(format(element));
             else
@@ -73,32 +72,20 @@ namespace Voodoo.Operations
 
         private void readPropertiesFromObject(object element)
         {
-#if !PCL
             var members =
-                element.GetType()
-                    .GetMembers(BindingFlags.Public | BindingFlags.Instance)
+                element.GetType().GetTypeInfo().GetAllProperties()
                     .OrderBy(OrderProperties)
                     .ThenBy(c => c.Name)
                     .ToArray();
-#else
-            var members =
-                  element.GetType().GetTypeInfo().GetAllProperties()
-                    .OrderBy(OrderProperties)
-                    .ThenBy(c => c.Name)
-                    .ToArray();
-#endif
+
             foreach (var memberInfo in members)
             {
-#if PCL
-                var propertyInfo = memberInfo;
-#else
                 var propertyInfo = memberInfo as PropertyInfo;
-#endif
                 if (propertyInfo == null || !propertyInfo.CanWrite)
                     continue;
 
                 var type = propertyInfo.PropertyType;
-                if (propertyInfo.GetCustomAttributes(typeof(SecretAttribute),false).Any())
+                if (propertyInfo.GetCustomAttributes(typeof(SecretAttribute), false).Any())
                     return;
 
                 object value = null;
@@ -177,7 +164,7 @@ namespace Voodoo.Operations
 
         private void write(string value, params object[] args)
         {
-            var pad = depth*5;
+            var pad = depth * 5;
             result.Append(new string(' ', pad));
             currentItemsInGraph++;
 
@@ -199,7 +186,7 @@ namespace Voodoo.Operations
 
         private void writeInline(string value, params object[] args)
         {
-            var pad = depth*5;
+            var pad = depth * 5;
             result.Append(new string(' ', pad));
             if (args != null)
                 value = string.Format(value, args);
@@ -243,7 +230,7 @@ namespace Voodoo.Operations
                 return string.Empty;
             if (o is bool)
                 return o.ToString().ToLower();
-            if (o.GetType() == typeof (bool?) && o.To<bool?>().HasValue)
+            if (o.GetType() == typeof(bool?) && o.To<bool?>().HasValue)
                 return o.To<bool?>().ToString().ToLower();
 
             if (o is ValueType)

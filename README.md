@@ -11,3 +11,9 @@ Install from nuget
 >  PM> Install-Package Voodoo.Patterns
 
 
+breaking changes in 3.0 
+removed GridConstants
+removed Request
+removed ValidationExtensions.IsValid
+removed EventLog support in FallbackLogger
+Supports only NetStandard 2.0 (.net 4.6.1/.net Core 2.0)  

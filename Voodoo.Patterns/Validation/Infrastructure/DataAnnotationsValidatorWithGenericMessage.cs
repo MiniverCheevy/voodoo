@@ -1,7 +1,5 @@
 ﻿using Voodoo.Infrastructure;
 
-#if (!PCL)
-
 namespace Voodoo.Validation.Infrastructure
 {
     public class DataAnnotationsValidatorWithGenericMessage : IValidator
@@ -27,5 +25,3 @@ namespace Voodoo.Validation.Infrastructure
         }
     }
 }
-
-#endif

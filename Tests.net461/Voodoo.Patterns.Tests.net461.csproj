@@ -1,0 +1,177 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\MSTest.TestAdapter.1.1.18\build\net45\MSTest.TestAdapter.props" Condition="Exists('..\packages\MSTest.TestAdapter.1.1.18\build\net45\MSTest.TestAdapter.props')" />
+  <PropertyGroup>
+    <CopyNuGetImplementations>true</CopyNuGetImplementations>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <GenerateBindingRedirectsOutputType>true</GenerateBindingRedirectsOutputType>
+  </PropertyGroup>
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{61B6F812-E5C1-4CF0-B49F-6BA54EF26EF6}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Voodoo.Tests</RootNamespace>
+    <AssemblyName>Voodoo.Tests</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">15.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+    <ReferencePath>$(ProgramFiles)\Common Files\microsoft shared\VSTT\$(VisualStudioVersion)\UITestExtensionPackages</ReferencePath>
+    <IsCodedUITest>False</IsCodedUITest>
+    <TestProjectType>UnitTest</TestProjectType>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations">
+      <HintPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\System.ComponentModel.DataAnnotations.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization">
+      <HintPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\System.Runtime.Serialization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Transactions">
+      <HintPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\System.Transactions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web">
+      <HintPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\System.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Scratch.cs" />
+    <Compile Include="TestClasses\ClassMismatchedCollectionMustHaveAtLeastOneItemAttribute.cs" />
+    <Compile Include="TestClasses\ClassMismatchedEnumIsRequiredAttribute.cs" />
+    <Compile Include="TestClasses\ClassToReflect.cs" />
+    <Compile Include="TestClasses\ClassToStringify.cs" />
+    <Compile Include="TestClasses\ClassWithCollection.cs" />
+    <Compile Include="TestClasses\ClassWithCompareValidator.cs" />
+    <Compile Include="TestClasses\ClassWithDate.cs" />
+    <Compile Include="TestClasses\ClassWithDoubleProperties.cs" />
+    <Compile Include="TestClasses\ClassWithEnum.cs" />
+    <Compile Include="TestClasses\ClassWithGuid.cs" />
+    <Compile Include="TestClasses\ClassWithGuidAsString.cs" />
+    <Compile Include="TestClasses\ClassWithInt.cs" />
+    <Compile Include="TestClasses\ClassWithNullableDate.cs" />
+    <Compile Include="TestClasses\ClassWithNullableEnum.cs" />
+    <Compile Include="TestClasses\ClassWithNullableGuid.cs" />
+    <Compile Include="TestClasses\ClassWithNullableInt.cs" />
+    <Compile Include="TestClasses\ClassWithRequiredInt.cs" />
+    <Compile Include="TestClasses\ClassWithRequiredNonZeroInt.cs" />
+    <Compile Include="TestClasses\ClassWithRequiredNonZeroNullableInt.cs" />
+    <Compile Include="TestClasses\ClassWithRequiredNullableInt.cs" />
+    <Compile Include="TestClasses\CommandThatDoesNotThrowErrors.cs" />
+    <Compile Include="TestClasses\CommandThatThrowsErrors.cs" />
+    <Compile Include="TestClasses\CommandWithNonEmptyRequest.cs" />
+    <Compile Include="TestClasses\DataObject.cs" />
+    <Compile Include="TestClasses\Department.cs" />
+    <Compile Include="TestClasses\ExecutorAsyncThatFailsValidation.cs" />
+    <Compile Include="TestClasses\ExecutorAsyncThatThrowsExceptions.cs" />
+    <Compile Include="TestClasses\Level.cs" />
+    <Compile Include="TestClasses\LookupValue.cs" />
+    <Compile Include="TestClasses\MemberDetail.cs" />
+    <Compile Include="TestClasses\MessageObject.cs" />
+    <Compile Include="TestClasses\Operation.cs" />
+    <Compile Include="TestClasses\Person.cs" />
+    <Compile Include="TestClasses\PersonPagedRequest.cs" />
+    <Compile Include="TestClasses\QueryThatDoesNotThrowErrors.cs" />
+    <Compile Include="TestClasses\RequestWithRequiredString.cs" />
+    <Compile Include="TestClasses\Role.cs" />
+    <Compile Include="TestClasses\TestEnum.cs" />
+    <Compile Include="TestClasses\TestingResponse.cs" />
+    <Compile Include="TestClasses\TestResponse.cs" />
+    <Compile Include="TestClasses\TwitchyObject.cs" />
+    <Compile Include="TestClasses\User.cs" />
+    <Compile Include="Voodoo\ActionHandlerTests.cs" />
+    <Compile Include="Voodoo\CollectionExtensionTests.cs" />
+    <Compile Include="Voodoo\ConversionExtensions.Demo.cs" />
+    <Compile Include="Voodoo\ConversionExtensionTests.cs" />
+    <Compile Include="Voodoo\ConvertionExtensionsDateParsingTests.cs" />
+    <Compile Include="Voodoo\Helpers\CollectionChangeSetTests.cs" />
+    <Compile Include="Voodoo\Helpers\CollectionReconcilerTests.cs" />
+    <Compile Include="Voodoo\Helpers\GraphWalkerTests.cs" />
+    <Compile Include="Voodoo\IonicTests.cs" />
+    <Compile Include="Voodoo\Linq\QueryableExtensionTests.cs" />
+    <Compile Include="Voodoo\Logging\FallbackLoggerTests.cs" />
+    <Compile Include="Voodoo\Logging\LogManagerTests.cs" />
+    <Compile Include="Voodoo\Logging\TestException.cs" />
+    <Compile Include="Voodoo\Logging\TestLogger.cs" />
+    <Compile Include="Voodoo\ModelHelperTests.cs" />
+    <Compile Include="Voodoo\NameIdExtensionTests.cs" />
+    <Compile Include="Voodoo\NameValuePairExtensionTests.cs" />
+    <Compile Include="Voodoo\ObjectifierTests.cs" />
+    <Compile Include="Voodoo\Operations\Async\ExecutorAsyncTests.cs" />
+    <Compile Include="Voodoo\Operations\CommandTests.cs" />
+    <Compile Include="Voodoo\Operations\ExcpetionHelperTests.cs" />
+    <Compile Include="Voodoo\Operations\ObjectEmissionTests.cs" />
+    <Compile Include="Voodoo\Operations\ObjectStringificationTests.cs" />
+    <Compile Include="Voodoo\Operations\QueryTests.cs" />
+    <Compile Include="Voodoo\Operations\QueryThatThrowsErrors.cs" />
+    <Compile Include="Voodoo\ReflectionExtensionTests.cs" />
+    <Compile Include="Voodoo\ReflectionHierarchyTests.cs" />
+    <Compile Include="Voodoo\Validation\CollectionMustHaveAtLeastOneItemTests.cs" />
+    <Compile Include="Voodoo\Validation\DataAnnotationsValidatorTests.cs" />
+    <Compile Include="Voodoo\Validation\EnumIsRequiredTests.cs" />
+    <Compile Include="Voodoo\Validation\GreaterThanTests.cs" />
+    <Compile Include="Voodoo\Validation\GreaterThanZeroIntegerIsRequiredTests.cs" />
+    <Compile Include="Voodoo\Validation\RequiredDateTimeTests.cs" />
+    <Compile Include="Voodoo\Validation\RequiredGuidTests.cs" />
+    <Compile Include="Voodoo\Validation\RequiredIntTests.cs" />
+    <Compile Include="Voodoo\Validation\RequiredNonZeroIntIsRequiredTests.cs" />
+    <Compile Include="Voodoo\Validation\ValidateExtensionMethod.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Voodoo\Infrastructure\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Voodoo.Patterns\Voodoo.Patterns.csproj">
+      <Project>{a11e882c-4f6a-4f2f-a16c-ed0b2b8f1921}</Project>
+      <Name>Voodoo.Patterns</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="FluentAssert">
+      <Version>1.0.0.11</Version>
+    </PackageReference>
+    <PackageReference Include="FluentAssertions">
+      <Version>5.1.2</Version>
+    </PackageReference>
+    <PackageReference Include="MSTest.TestFramework">
+      <Version>1.2.0</Version>
+    </PackageReference>
+  </ItemGroup>
+  <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

@@ -4,7 +4,6 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 
-#if !NET40
 namespace Voodoo
 {
     /// <summary>
@@ -44,8 +43,6 @@ namespace Voodoo
 
                 typeInfo = typeInfo.BaseType?.GetTypeInfo();
             }
-
         }
     }
 }
-#endif

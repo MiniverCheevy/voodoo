@@ -3,8 +3,6 @@ using System.Threading.Tasks;
 using Voodoo.Messages;
 using Voodoo.Validation.Infrastructure;
 
-#if ! NET40
-
 namespace Voodoo.Operations.Async
 {
     public abstract class ExecutorAsync<TRequest, TResponse> where TRequest : class
@@ -29,7 +27,6 @@ namespace Voodoo.Operations.Async
             catch (Exception ex)
             {
                 response = BuildResponseWithException(ex);
-                
             }
             return response;
         }
@@ -38,22 +35,23 @@ namespace Voodoo.Operations.Async
 
         protected virtual async Task Validate()
         {
-            await Task.Run(() => { 
-			ValidationManager.Validate(request); return Task.FromResult(0);}
-			);
-	      
+            await Task.Run(() =>
+                {
+                    ValidationManager.Validate(request);
+                    return Task.FromResult(0);
+                }
+            );
         }
 
         protected virtual void CustomErrorBehavior(Exception ex)
         {
-            
         }
 
         protected TResponse BuildResponseWithException(Exception ex)
         {
             response = new TResponse {IsOk = false};
             CustomErrorBehavior(ex);
-            ExceptionHelper.HandleException(ex, GetType(), request);            
+            ExceptionHelper.HandleException(ex, GetType(), request);
             response.SetExceptions(ex);
             if (VoodooGlobalConfiguration.RemoveExceptionFromResponseAfterLogging)
                 response.Exception = null;
@@ -61,5 +59,3 @@ namespace Voodoo.Operations.Async
         }
     }
 }
-
-#endif

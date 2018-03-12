@@ -1,7 +1,5 @@
-﻿#if(!PCL)
-using System;
+﻿using System;
 using System.ComponentModel.DataAnnotations;
-
 
 
 namespace Voodoo.Validation
@@ -19,21 +17,23 @@ namespace Voodoo.Validation
                 return false;
             }
         }
-       
+
         protected override ValidationResult IsValid(object value, ValidationContext context)
-        {            
+        {
             try
             {
                 return IsValueValid(value, context);
             }
             catch (Exception ex)
             {
-                return new ValidationResult(ex.Message, new string[] { context.MemberName});
+                return new ValidationResult(ex.Message, new string[] {context.MemberName});
             }
         }
 
         protected abstract bool IsValueValid(object value);
-        protected virtual ValidationResult IsValueValid(object value, ValidationContext context) {
+
+        protected virtual ValidationResult IsValueValid(object value, ValidationContext context)
+        {
             try
             {
                 var message = base.ErrorMessage ?? "invalid";
@@ -41,14 +41,12 @@ namespace Voodoo.Validation
                 if (IsValueValid(value))
                     return null;
                 else
-                    return new ValidationResult(message, new string[]{ context.MemberName });
+                    return new ValidationResult(message, new string[] {context.MemberName});
             }
             catch (Exception ex)
             {
-                return new ValidationResult(ex.Message, new string[] { context.MemberName });
+                return new ValidationResult(ex.Message, new string[] {context.MemberName});
             }
         }
     }
 }
-
-#endif

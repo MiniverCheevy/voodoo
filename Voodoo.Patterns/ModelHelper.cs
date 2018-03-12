@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using Voodoo.Logging;
 
@@ -16,19 +17,20 @@ namespace Voodoo
             var slashPosition = name.IndexOf('\\');
             var atPosition = name.IndexOf('@');
             if (slashPosition > -1)
-                name = name.Substring(slashPosition+1);
+                name = name.Substring(slashPosition + 1);
             if (atPosition > -1)
                 name = name.Substring(0, atPosition);
 
             return name;
-
         }
+
         public static string Truncate(this string s, int maxLength)
         {
             if (s == null)
                 return string.Empty;
             return (s.Length > maxLength) ? s.Remove(maxLength) : s;
         }
+
         public static string FormatPhone(string phone)
         {
             if (string.IsNullOrWhiteSpace(phone) || phone.Length != 10)
@@ -36,11 +38,12 @@ namespace Voodoo
 
             return $"({phone.Substring(0, 3)}) {phone.Substring(3, 3)}-{phone.Substring(6, 4)}";
         }
+
         public static string UnformatPhone(string phone)
         {
             return new string(phone.To<string>().ToArray<char>().Where(char.IsDigit).ToArray());
         }
-#if !PCL && !NETCOREAPP1_0
+
         public static T GetAttributeFromEnumMember<T>(object enumMember)
             where T : Attribute
         {
@@ -66,6 +69,5 @@ namespace Voodoo
             }
             return null;
         }
-#endif
     }
 }

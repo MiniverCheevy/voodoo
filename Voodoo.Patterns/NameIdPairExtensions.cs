@@ -21,8 +21,8 @@ namespace Voodoo
                     .Select(
                         e =>
                             (INameIdPair)
-                                new NameIdPair(
-                                    Enum.Parse(enumeration, e).ToFriendlyString(), ((int)Enum.Parse(enumeration, e))))
+                            new NameIdPair(
+                                Enum.Parse(enumeration, e).ToFriendlyString(), ((int) Enum.Parse(enumeration, e))))
                     .ToList();
             return result;
         }
@@ -35,19 +35,19 @@ namespace Voodoo
             }
             var ret =
                 Enum.GetNames(enumeration)
-                    .Select(e => (INameIdPair)new NameIdPair(e, ((int)Enum.Parse(enumeration, e))))
+                    .Select(e => (INameIdPair) new NameIdPair(e, ((int) Enum.Parse(enumeration, e))))
                     .ToList();
             return ret;
         }
 
-        public static Dictionary<int, string> ToDictionary(this IList<INameIdPair> list, bool throwForDuplicateKeys = false)
+        public static Dictionary<int, string> ToDictionary(this IList<INameIdPair> list,
+            bool throwForDuplicateKeys = false)
         {
             var result = new Dictionary<int, string>();
             foreach (var item in list)
             {
                 if ((result.ContainsKey(item.Id) && throwForDuplicateKeys) || !result.ContainsKey(item.Id))
                     result.Add(item.Id, item.Name);
-
             }
             return result;
         }

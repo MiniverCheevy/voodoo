@@ -20,7 +20,6 @@ namespace Voodoo.Helpers
     }
 
 
-
     public class GraphWalker
     {
         private readonly HashSet<Type> distinctTypes = new HashSet<Type>();
@@ -30,7 +29,9 @@ namespace Voodoo.Helpers
         public GraphWalker(params Type[] types)
         {
             if (types != null)
-                this.types = new Type[] { typeof(DayOfWeek?) }.Union(types.Distinct().OrderBy(c => c.Name).ToArray()).ToArray(); ;
+                this.types =
+                    new Type[] {typeof(DayOfWeek?)}.Union(types.Distinct().OrderBy(c => c.Name).ToArray()).ToArray();
+            ;
         }
 
         public GraphWalker(GraphWalkerSettings settings, params Type[] types) : this(types)
@@ -61,13 +62,13 @@ namespace Voodoo.Helpers
         {
             var isNullable = type.IsNullable();
             var isScalar = type.IsScalar();
-            var isEnum = type.IsEnum();           
+            var isEnum = type.IsEnum();
 
             if (isScalar && !settings.IncludeScalarTypes && !isEnum && !isNullable)
                 return;
 
             if (isNullable && !settings.TreatNullableTypesAsDistict)
-            { 
+            {
                 type = type.GetGenericArgumentsList().First();
                 isNullable = type.IsNullable();
                 isScalar = type.IsScalar();
@@ -112,9 +113,5 @@ namespace Voodoo.Helpers
                 read(property.PropertyType);
             }
         }
-
-
-
-
     }
 }

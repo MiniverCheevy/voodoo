@@ -26,8 +26,13 @@ namespace Voodoo.Helpers
             Deleted = existing.Where(c => DeletedKeys.Contains(existingKey(c))).ToArray();
             Edited =
                 existing.Join(modified, existingKey, modifiedKey,
-                    (e, m) =>
-                        new EditedItem<TExisting, TModified, TKey> {Existing = e, Modified = m, Key = existingKey(e)})
+                        (e, m) =>
+                            new EditedItem<TExisting, TModified, TKey>
+                            {
+                                Existing = e,
+                                Modified = m,
+                                Key = existingKey(e)
+                            })
                     .ToArray();
         }
 

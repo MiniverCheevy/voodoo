@@ -38,13 +38,12 @@ namespace Voodoo.Operations
 
         protected virtual void CustomErrorBehavior(Exception ex)
         {
-           
         }
 
         protected TResponse BuildResponseWithException(Exception ex)
         {
             response = new TResponse {IsOk = false, Exception = ex};
-            
+
             CustomErrorBehavior(ex);
             ExceptionHelper.HandleException(ex, GetType(), request);
             response.SetExceptions(ex);

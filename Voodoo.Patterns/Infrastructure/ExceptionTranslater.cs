@@ -8,7 +8,7 @@ namespace Voodoo.Infrastructure
     {
         public bool Contains<T>()
         {
-            return ContainsKey(typeof (T));
+            return ContainsKey(typeof(T));
         }
 
         public bool DecorateResponseWithException<T>(Exception ex, IResponse response)
@@ -16,7 +16,7 @@ namespace Voodoo.Infrastructure
             if (!Contains<T>())
                 return false;
 
-            var translator = this[typeof (T)];
+            var translator = this[typeof(T)];
             return translator.DecorateResponse(ex, response);
         }
 

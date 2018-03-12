@@ -1,7 +1,4 @@
-﻿
-#if (!PCL)
-
-namespace Voodoo.Validation
+﻿namespace Voodoo.Validation
 {
     public class RequiredNonZeroInt : SafeValidationAttribute
     {
@@ -16,5 +13,3 @@ namespace Voodoo.Validation
         }
     }
 }
-
-#endif
