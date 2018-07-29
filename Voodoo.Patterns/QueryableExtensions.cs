@@ -158,6 +158,38 @@ namespace Voodoo
             return (Expression<Func<T, bool>>) result;
         }
 
+        public static Expression<Func<T, bool>> ToTokenizedContainsSearchExpression<T>(string searchText,
+            params Expression<Func<T, string>>[] propertiesToSearch)
+        {
+
+            var tokens = searchText.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+            Expression<Func<T, bool>> andExpression = null;
+            foreach (var token in tokens)
+            {
+                Expression<Func<T, bool>> orExpression = c => false;
+                foreach (var prop in propertiesToSearch)
+                {
+                    orExpression = orExpression.OrElse(buildContainsExpression(prop, token));
+                }
+                andExpression = andExpression.AndAlso(orExpression);
+            }
+
+            return andExpression;
+        }
+
+        public static Expression<Func<T, bool>> BuildContainsExpression<T>(Expression<Func<T, string>> expr,
+            string value)
+        {
+            var member = expr.Body;
+
+            var constant = Expression.Constant(value, typeof(string));
+            var method = String.Empty.GetType().GetMethod("Contains");
+            var callExpression = Expression.Call(member, method, constant);
+            var result = Expression.Lambda(callExpression, expr.Parameters);
+            return (Expression<Func<T, bool>>)result;
+        }
+
+
         /// <summary>
         /// list.ToTokenizedContainsSearchQuery("Smith Jack", c => c.FirstName, c => c.LastName);
         /// will return result where FirstName contains Smith Or Jack and LastName contains Smith Or Jack

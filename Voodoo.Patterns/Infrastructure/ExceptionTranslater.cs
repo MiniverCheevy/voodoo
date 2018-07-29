@@ -4,7 +4,7 @@ using Voodoo.Messages;
 
 namespace Voodoo.Infrastructure
 {
-    public class ExceptionTranslater : Dictionary<Type, ExceptionTranslation>
+    public class ExceptionTranslater : Dictionary<Type, List<ExceptionTranslation>>
     {
         public bool Contains<T>()
         {
@@ -16,17 +16,31 @@ namespace Voodoo.Infrastructure
             if (!Contains<T>())
                 return false;
 
-            var translator = this[typeof(T)];
-            return translator.DecorateResponse(ex, response);
+            var items = this[typeof(T)];
+            var result = false;
+            foreach (var translator in items)
+            {
+                result = translator.DecorateResponse(ex, response);
+                if (result)
+                    return result;
+            }
+            return result;
         }
 
         public bool DecorateResponseWithException(Exception ex, IResponse response)
         {
             if (!ContainsKey(ex.GetType()))
                 return false;
-
-            var translator = this[ex.GetType()];
-            return translator.DecorateResponse(ex, response);
+          
+            var items = this[ex.GetType()];
+            var result = false;
+            foreach (var translator in items)
+            {
+                result = translator.DecorateResponse(ex, response);
+                if (result)
+                    return result;
+            }
+            return result;
         }
     }
 }

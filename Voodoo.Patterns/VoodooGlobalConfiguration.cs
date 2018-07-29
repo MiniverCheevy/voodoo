@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Reflection;
 using Voodoo.Infrastructure;
 using Voodoo.Logging;
@@ -39,9 +40,9 @@ namespace Voodoo
         {
             var type = typeof(T);
             if (ExceptionTranslator.ContainsKey(type))
-                ExceptionTranslator[type] = mapper;
+                ExceptionTranslator[type].Add( mapper);
             else
-                ExceptionTranslator.Add(type, mapper);
+                ExceptionTranslator.Add(type, new List<ExceptionTranslation> { mapper });
         }
     }
 }

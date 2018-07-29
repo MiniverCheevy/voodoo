@@ -16,18 +16,21 @@ namespace Voodoo.Infrastructure.Notations
         public int GroupOrder { get; set; }
         public int? ListId { get; set; }
         public bool DoNotSort { get; set; }
+        public bool DoNotFormat { get; set; }
+        public int NumberOfDecimalPlaces { get; set; } = -1;
         public List<NameValuePair> Metadata { get; set; }
     }
 
     public enum DisplayFormat
     {
-        Text = 0,
-        Date = 1,
-        Time = 2,
-        DateTime = 3,
-        Currency = 4,
-        Decimal = 5,
-        PhoneNumber = 6,
-        Int = 7
+        NotSet=0,
+        Text = 1,
+        Date = 2,
+        Time = 3,
+        DateTime = 4,
+        Currency = 5,
+        Decimal = 6,
+        PhoneNumber = 7,
+        Int = 8
     }
 }
