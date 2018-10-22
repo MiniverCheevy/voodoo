@@ -1,0 +1,10 @@
+﻿dist: trusty
+sudo: required
+language: csharp
+mono: none
+dotnet: 2.0.0
+solution: Voodoo.Patterns.sln
+script:
+  - cd Voodoo.Patterns
+  - dotnet restore
+  - dotnet build -c Release
