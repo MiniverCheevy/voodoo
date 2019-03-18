@@ -15,9 +15,9 @@ namespace Voodoo
             return @object.ToDebugString();
         }
 
-        public static string ToCode(object @object)
+        public static string ToCode(object @object, string name = "request")
         {
-            return @object.ToCode();
+            return @object.ToCode(name);
         }
 
         public static T To<T>(object @object)

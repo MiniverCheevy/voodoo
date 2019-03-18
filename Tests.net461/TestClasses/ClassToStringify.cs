@@ -27,9 +27,10 @@ namespace Voodoo.Tests.TestClasses
         public int? NullableInt { get; set; }
 
         public char AChar { get; set; }
-
+        public Guid AGuid { get; set; }
         [Secret]
         public string SecretProperty { get; set; }
+        public DateTimeOffset DateTimeOffset { get; set; }
 
         public ClassToStringify()
         {

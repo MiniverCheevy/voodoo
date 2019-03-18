@@ -314,9 +314,10 @@ namespace Voodoo
             return response.Message;
         }
 
-        public static string ToCode(this object o)
+        public static string ToCode(this object o, string name = "request")
         {
-            var response = new ObjectEmissionQuery(o).Execute();
+            var request = new ObjectEmissionRequest { Name = name, Source = o };
+            var response = new ObjectEmissionQuery(request).Execute();
             if (response.IsOk)
                 return response.Text;
             return response.Message;

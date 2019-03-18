@@ -11,7 +11,7 @@ namespace Voodoo.Infrastructure.Notations
     {
         public bool IsHidden { get; set; }
         public bool IsReadOnly { get; set; }
-        public DisplayFormat DisplayFormat { get; set; } = DisplayFormat.Text;
+        public DisplayFormat DisplayFormat { get; set; } = DisplayFormat.NotSet;
         public string Grouping { get; set; }
         public int GroupOrder { get; set; }
         public int? ListId { get; set; }
@@ -19,6 +19,8 @@ namespace Voodoo.Infrastructure.Notations
         public bool DoNotFormat { get; set; }
         public int NumberOfDecimalPlaces { get; set; } = -1;
         public List<NameValuePair> Metadata { get; set; }
+        public string SortExpression { get; set; }
+        public string HelpText { get; set; }
     }
 
     public enum DisplayFormat

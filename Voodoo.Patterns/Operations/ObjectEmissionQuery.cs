@@ -9,7 +9,7 @@ using Voodoo.Messages;
 
 namespace Voodoo.Operations
 {
-    public class ObjectEmissionQuery : Query<object, TextResponse>
+    public class ObjectEmissionQuery : Query<ObjectEmissionRequest, TextResponse>
     {
         private const int MaxItemsInGraph = 1000;
         private readonly List<int> hashes = new List<int>();
@@ -17,23 +17,26 @@ namespace Voodoo.Operations
         private int currentItemsInGraph;
         private int depth;
 
-        public ObjectEmissionQuery(object request) : base(request)
+        public ObjectEmissionQuery(ObjectEmissionRequest request) : base(request)
         {
         }
 
         protected override TextResponse ProcessRequest()
 
         {
-            if (request == null)
+            if (request.Source == null)
             {
                 response.Message = "=null";
                 response.IsOk = false;
                 return response;
             }
 
-            read(request);
+            read(request.Source);
 
-            response.Text = "var request=" + result + ";";
+            if (string.IsNullOrWhiteSpace(request.Name))
+                request.Name = "request";
+
+            response.Text = $"var {request.Name}=" + result + ";";
             return response;
         }
 
@@ -51,7 +54,7 @@ namespace Voodoo.Operations
             else
                 readObject(element);
 
-            return result.ToString().TrimEnd(',');
+            return result.ToString();
         }
 
         private void readObject(object element)
@@ -67,7 +70,7 @@ namespace Voodoo.Operations
             else
                 readPropertiesFromObject(element);
             depth--;
-            write("}},");
+            write("}}");
         }
 
         private void readPropertiesFromObject(object element)
@@ -86,7 +89,7 @@ namespace Voodoo.Operations
 
                 var type = propertyInfo.PropertyType;
                 if (propertyInfo.GetCustomAttributes(typeof(SecretAttribute), false).Any())
-                    return;
+                    continue;
 
                 object value = null;
                 try
@@ -115,6 +118,7 @@ namespace Voodoo.Operations
                     {
                         writeInline("{0}=", memberInfo.Name);
                         readObject(value);
+                        write(",");
                     }
                 }
             }
@@ -128,10 +132,8 @@ namespace Voodoo.Operations
                 counter++;
                 if (counter > VoodooGlobalConfiguration.LogMaximumNumberOfItemsInCollection)
                     break;
-
                 read(item);
-                if (item != null && item.GetType().IsScalar())
-                    writeNoPad(",");
+                writeNoPad(",");
             }
         }
 
@@ -170,8 +172,10 @@ namespace Voodoo.Operations
 
             if (args != null)
                 value = string.Format(value, args);
-
-            result.AppendLine(value);
+            if (value == "}")
+                result.Append(value);
+            else
+                result.AppendLine(value);
         }
 
         private void writeNoPad(string value, params object[] args)
@@ -181,7 +185,10 @@ namespace Voodoo.Operations
             if (args != null)
                 value = string.Format(value, args);
 
-            result.AppendLine(value);
+            if (value == "}")
+                result.Append(value);
+            else
+                result.AppendLine(value);
         }
 
         private void writeInline(string value, params object[] args)
@@ -206,37 +213,39 @@ namespace Voodoo.Operations
         {
             if (o == null)
                 return ("null");
-            if (o is Enum)
+            else if (o is Enum)
             {
                 var value = o.ToString();
                 if (value == "0")
                     return string.Format("({0})0", o.GetType().Name);
                 return string.Format("{0}.{1}", o.GetType().Name, o);
             }
-            if (o is DateTime)
+            else if (o is Guid)
+                return $"Guid.Parse(\"{o.ToString()}\")";
+            else if (o is DateTime)
             {
-                var date = o.To<DateTime>();
-                return $"new DateTime({date.Year}, {date.Month}, {date.Day}, {date.Hour}, {date.Minute}, {date.Second})";
+                return $"DateTime.Parse(\"{o}\")";
             }
-            if (o is decimal)
+            else if (o is DateTimeOffset)
             {
+                return $"DateTimeOffset.Parse(\"{o}\")";
+            }
+            else if (o is decimal)
                 return string.Format("{0}m", o);
-            }
-
-            if (o is string)
+            else if (o is string)
                 return string.Format("\"{0}\"", o);
-
-            if (o is char && (char) o == '\0')
-                return string.Empty;
-            if (o is bool)
+            else if (o is char && (char) o == '\0')
+                return "(char)0";
+            else if (o is char )
+                return $"'{o}'";
+            else if (o is bool)
                 return o.ToString().ToLower();
-            if (o.GetType() == typeof(bool?) && o.To<bool?>().HasValue)
+            else if (o.GetType() == typeof(bool?) && o.To<bool?>().HasValue)
                 return o.To<bool?>().ToString().ToLower();
-
-            if (o is ValueType)
+            else if (o is ValueType)
                 return (o.ToString());
-
-            return (string.Format("//cannot generate code for {0}", o.GetType().FixUpTypeName()));
+            else
+                return (string.Format("//cannot generate code for {0}", o.GetType().FixUpTypeName()));
         }
     }
 }

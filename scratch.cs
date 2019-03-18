@@ -1,78 +1,11 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using Voodoo.Operations;
-using Voodoo.Tests.TestClasses;
-using FluentAssertions;
 
-namespace Voodoo.Tests.Voodoo.Operations
+namespace SolutionItems
 {
-    [TestClass]
-    public class ObjectEmissionTests
+    public class scratch
     {
-        [TestMethod]
-        public void SmokeTest()
-        {
-            var request = new ObjectEmissionRequest { Source = GetValidRequest() };
-            var response = new ObjectEmissionQuery(request).Execute();
-            Assert.AreEqual(null, response.Message);
-            Assert.AreEqual(true, response.IsOk);
-            Debug.WriteLine(response.Text);
-            Assert.IsTrue(!response.Text.Contains("SecretProperty"));
-            Assert.IsTrue(!response.Text.Contains("Secret Secret"));
-            Assert.IsTrue(response.Text.Contains("537da78a-8b8d-4479-96af-a36c7e9b41af"));
-        }
-
-        [TestMethod]
-        public void ComparisonTest()
-        {
-            var request = GetValidRequest();
-            var emmited = GetEmmitedRequest();
-            //emmited.Should().BeEquivalentTo(request);
-
-            //TODO: Write Custom EquivelentTo Method?
-            //Fluent Assertions has issues with circular references
-            //And Date precision
-        }
-
-        public ClassToStringify GetValidRequest()
-        {
-            var request = new ClassToStringify
-            {
-                Decimal = 1.1M,
-                Items = new List<string> { "foo", "bar" },
-                NestedLists = new List<List<string>> { new List<string> { "foo" } },
-                Number = 7,
-                Date = "1/1/1970".To<DateTime>(),
-                Boolean = true,
-                NullableInt = 7,
-                NullableBoolean = false,
-                AGuid = Guid.Parse("537da78a-8b8d-4479-96af-a36c7e9b41af"),
-                DateTimeOffset = DateTimeOffset.Now,
-                SecretProperty = "Secret Secret"
-
-            };
-            request.NestedObject = request;
-            request.AnotherNestedObject = new ClassToStringify
-            {
-                Decimal = 2.2M,
-                Items = new List<string> { "goo", "goo", "gachoo" },
-                NestedLists = new List<List<string>> { new List<string> { "blue" } },
-                Number = 99
-            };
-
-            request.AString = "String";
-            request.AnObnoxiousObjectWhosePropertiesThrowExceptions = new TwitchyObject();
-            request.ListOfObjects = new List<ClassToStringify>
-            {
-                new ClassToStringify {AString = "First", Date = DateTime.Now},
-                new ClassToStringify {AString = "Second", Date = DateTime.Now.AddYears(-1)}
-            };
-            request.TestEnum = TestEnum.Blue;
-            return request;
-        }
-        public ClassToStringify GetEmmitedRequest()
+        public void foo()
         {
             var request = new ClassToStringify
             {
@@ -173,9 +106,6 @@ namespace Voodoo.Tests.Voodoo.Operations
           },
      },
             };
-
-            return request;
-
         }
 
     }

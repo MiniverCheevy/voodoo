@@ -6,5 +6,6 @@ dotnet: 2.0.0
 solution: Voodoo.Patterns.sln
 script:
   - cd Voodoo.Patterns
+  - nuget restore ./Tests.net461/Voodoo.Patterns.Tests.net461.csproj
   - dotnet restore
   - dotnet build -c Release
