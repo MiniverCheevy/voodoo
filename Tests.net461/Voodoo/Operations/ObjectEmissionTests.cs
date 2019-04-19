@@ -23,7 +23,21 @@ namespace Voodoo.Tests.Voodoo.Operations
             Assert.IsTrue(!response.Text.Contains("Secret Secret"));
             Assert.IsTrue(response.Text.Contains("537da78a-8b8d-4479-96af-a36c7e9b41af"));
         }
+        [TestMethod]
+        public void ListOfObjectsTest()
+        {
+            var request = new ObjectEmissionRequest { Source = GetSimpleRequest() };
+            var response = new ObjectEmissionQuery(request).Execute();
+            Assert.AreEqual(null, response.Message);
+            Assert.AreEqual(true, response.IsOk);
+            Debug.WriteLine(response.Text);
+            Assert.IsTrue(response.Text.Contains("1234567"));
+            Assert.IsTrue(response.Text.Contains("ABCDEFG"));
+            Assert.IsTrue(response.Text.Contains("NESTED"));
+            Assert.IsTrue(response.Text.Contains("DEEPLY NESTED"));
 
+
+        }
         [TestMethod]
         public void ComparisonTest()
         {
@@ -34,6 +48,23 @@ namespace Voodoo.Tests.Voodoo.Operations
             //TODO: Write Custom EquivelentTo Method?
             //Fluent Assertions has issues with circular references
             //And Date precision
+        }
+        public ClassToStringify GetSimpleRequest()
+        {
+            return new ClassToStringify
+            {
+                ListOfObjects = new List<ClassToStringify> {
+                    new ClassToStringify{  AString = "ABCDEFG",
+                    ListOfObjects = new List<ClassToStringify>
+                    {
+                        new ClassToStringify{  AString = "NESTED"
+                        , ListOfObjects = new List<ClassToStringify>{
+                            new ClassToStringify{ AString = "DEEPLY NESTED"}
+                        } }                  }
+                    },
+                    new ClassToStringify{  AString = "1234567"}
+                }
+            };
         }
 
         public ClassToStringify GetValidRequest()

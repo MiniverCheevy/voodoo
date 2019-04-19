@@ -1,5 +1,6 @@
 ﻿using Voodoo.Messages;
 using System.Transactions;
+using System;
 
 namespace Voodoo.Operations
 {
@@ -13,12 +14,7 @@ namespace Voodoo.Operations
             
         }
     }
-
-    /// <summary>
-    /// Because commands use explicit transaction management where allowed you should not call a command from a command
-    /// unless you're planning on using DTC.  Another way to approach this is use a command for the outer operation and
-    /// Executor`T for the inner operations
-    /// </summary>
+    
     public abstract class CommandWithExplicitTransaction<TRequest, TResponse> : Executor<TRequest, TResponse> where TRequest : class
         where TResponse : class, IResponse, new()
     {
@@ -28,17 +24,31 @@ namespace Voodoo.Operations
 
         public override TResponse Execute()
         {
-            var transactionOptions = new TransactionOptions {IsolationLevel = IsolationLevel.ReadCommitted};
+            response = new TResponse { IsOk = true };
 
-            using (var transaction = new TransactionScope(TransactionScopeOption.Required, transactionOptions))
+            try
             {
-                response = base.Execute();
-                if (response.IsOk)
+                Validate();
+                var transactionOptions = new TransactionOptions { IsolationLevel = IsolationLevel.ReadCommitted };
+                using (var transaction = new TransactionScope(TransactionScopeOption.Required, transactionOptions))
                 {
-                    transaction.Complete();
+                    response = base.Execute();
+                    if (response.IsOk)
+                    {
+                        response = ProcessRequest();
+                    }
+                    if (response.IsOk)
+                        transaction.Complete();
                 }
             }
+            catch (Exception ex)
+            {
+                response = BuildResponseWithException(ex);
+            }
+
             return response;
         }
+
+
     }
 }

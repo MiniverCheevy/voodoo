@@ -10,7 +10,7 @@
     <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
     <AssemblyName>Voodoo</AssemblyName>
     <RootNamespace>Voodoo</RootNamespace>
-    <Version>3.0.0.5</Version>
+    <Version>3.0.0.7</Version>
     <PackageId>Voodoo.Patterns</PackageId>
     <Authors>Shawn Doucet</Authors>
     <Company></Company>
