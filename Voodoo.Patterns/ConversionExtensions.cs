@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Globalization;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Reflection;
 using System.Text;
 using Voodoo.Operations;
-using System.ComponentModel.DataAnnotations;
 
 namespace Voodoo
 {
@@ -77,7 +76,7 @@ namespace Voodoo
                 return returnDefaultValue<T>();
 
             if (value is T)
-                return (T) value;
+                return (T)value;
 
             T returnValue;
             convertValue(value, out returnValue);
@@ -88,7 +87,7 @@ namespace Voodoo
         {
             var type = typeof(T);
             if (nonNullDefaults.ContainsKey(type))
-                return (T) nonNullDefaults[type];
+                return (T)nonNullDefaults[type];
             return default(T);
         }
 
@@ -97,7 +96,7 @@ namespace Voodoo
             var type = typeof(T);
             try
             {
-                if (type.ToString().ToLower().Contains("int") && value is string && value.ToString().Contains("."))
+                if (type.ToString().ToLower().Contains("int")  && value.ToString().Contains("."))
                 {
                     value = value.ToString().Substring(0, value.ToString().IndexOf("."));
                 }
@@ -111,7 +110,7 @@ namespace Voodoo
             {
                 var defaultValue = default(T);
                 if (defaultValue != null)
-                    typeCode = ((IConvertible) default(T)).GetTypeCode();
+                    typeCode = ((IConvertible)default(T)).GetTypeCode();
 
                 if (typeCode.HasValue && convertObject(value, typeCode.Value, out converted))
                     return true;
@@ -132,7 +131,7 @@ namespace Voodoo
                 value = getCustomMappedValue<T>(value);
                 value = getCustomMappedValue<T>(value);
                 var converter = TypeDescriptor.GetConverter(typeof(T));
-                converted = (T) converter.ConvertFromInvariantString(value.ToString());
+                converted = (T)converter.ConvertFromInvariantString(value.ToString());
                 return true;
             }
             catch
@@ -143,7 +142,7 @@ namespace Voodoo
             {
                 if (value != null)
                 {
-                    converted = (T) value;
+                    converted = (T)value;
                     return true;
                 }
             }
@@ -153,7 +152,7 @@ namespace Voodoo
 
             try
             {
-                converted = (T) value;
+                converted = (T)value;
                 return true;
             }
             catch
@@ -177,7 +176,7 @@ namespace Voodoo
                     var match = Enum.Parse(type, name);
                     if (match != null)
                     {
-                        converted = (T) match;
+                        converted = (T)match;
                         return true;
                     }
                 }
@@ -189,7 +188,7 @@ namespace Voodoo
                     var match = Enum.Parse(type, val);
                     if (match != null)
                     {
-                        converted = (T) match;
+                        converted = (T)match;
                         return true;
                     }
                 }
@@ -199,7 +198,7 @@ namespace Voodoo
                 obj = Enum.Parse(type, friendlyValue != null
                     ? friendlyValue.Value
                     : value.ToString());
-                converted = (T) obj;
+                converted = (T)obj;
                 return true;
             }
             converted = default(T);
@@ -209,83 +208,145 @@ namespace Voodoo
         private static bool convertObject<T>(object value, TypeCode typeCode, out T valueToConvert)
         {
             valueToConvert = default(T);
+            if (value == null)
+            {
+                return false;
+            }
+
             switch (typeCode)
             {
                 case TypeCode.Boolean:
-                {
-                    valueToConvert = (T) (object) Convert.ToBoolean(value);
-                    return true;
-                }
+                    {
+                        if (bool.TryParse(value.ToString(), out bool parsedBool))
+                        {
+                            valueToConvert = (T)(object)parsedBool;
+                            return true;
+                        }
+                        return false;
+                    }
                 case TypeCode.Byte:
-                {
-                    valueToConvert = (T) (object) Convert.ToByte(value);
-                    return true;
-                }
+                    {
+                        if (Byte.TryParse(value.ToString(), out Byte parsedByte))
+                        {
+                            valueToConvert = (T)(object)parsedByte;
+                            return true;
+                        }
+                        return false;
+                    }
                 case TypeCode.Char:
-                {
-                    valueToConvert = (T) (object) Convert.ToChar(value);
-                    return true;
-                }
+                    {
+                        if (Char.TryParse(value.ToString(), out Char parsedChar))
+                        {
+                            valueToConvert = (T)(object)parsedChar;
+                            return true;
+                        }
+                        return false;
+                    }
                 case TypeCode.DateTime:
-                {
-                    valueToConvert = (T) (object) DateTime.Parse(value.ToString().Trim());
-                    return true;
-                }
+                    {
+                        if (DateTime.TryParse(value.ToString(), out DateTime parsedDateTime))
+                        {
+                            valueToConvert = (T)(object)parsedDateTime;
+                            return true;
+                        }
+                        return false;
+                    }
                 case TypeCode.Decimal:
-                {
-                    valueToConvert = (T) (object) Convert.ToDecimal(value);
-                    return true;
-                }
+                    {
+                        if (Decimal.TryParse(value.ToString(), out Decimal parsedDecimal))
+                        {
+                            valueToConvert = (T)(object)parsedDecimal;
+                            return true;
+                        }
+                        return false;
+                    }
                 case TypeCode.Double:
-                {
-                    valueToConvert = (T) (object) Convert.ToDouble(value);
-                    return true;
-                }
+                    {
+                        if (Double.TryParse(value.ToString(), out Double parsedDouble))
+                        {
+                            valueToConvert = (T)(object)parsedDouble;
+                            return true;
+                        }
+                        return false;
+                    }
                 case TypeCode.Int16:
-                {
-                    valueToConvert = (T) (object) Convert.ToInt16(value);
-                    return true;
-                }
+                    {
+                        if (Int16.TryParse(value.ToString(), out Int16 parsedInt16))
+                        {
+                            valueToConvert = (T)(object)parsedInt16;
+                            return true;
+                        }
+                        return false;
+                    }
                 case TypeCode.Int32:
-                {
-                    valueToConvert = (T) (object) Convert.ToInt32(value);
-                    return true;
-                }
+                    {
+                        if (Int32.TryParse(value.ToString(), out Int32 parsedInt32))
+                        {
+                            valueToConvert = (T)(object)parsedInt32;
+                            return true;
+                        }
+                        return false;
+                    }
                 case TypeCode.Int64:
-                {
-                    valueToConvert = (T) (object) Convert.ToInt64(value);
-                    return true;
-                }
+                    {
+                        if (Int64.TryParse(value.ToString(), out Int64 parsedInt64))
+                        {
+                            valueToConvert = (T)(object)parsedInt64;
+                            return true;
+                        }
+                        return false;
+                    }
                 case TypeCode.SByte:
-                {
-                    valueToConvert = (T) (object) Convert.ToSByte(value);
-                    return true;
-                }
+                    {
+                        if (SByte.TryParse(value.ToString(), out SByte parsedSByte))
+                        {
+                            valueToConvert = (T)(object)parsedSByte;
+                            return true;
+                        }
+                        return false;
+                    }
                 case TypeCode.Single:
-                {
-                    valueToConvert = (T) (object) Convert.ToSingle(value);
-                    return true;
-                }
+                    {
+                        if (Single.TryParse(value.ToString(), out Single parsedSingle))
+                        {
+                            valueToConvert = (T)(object)parsedSingle;
+                            return true;
+                        }
+                        return false;
+                    }
                 case TypeCode.String:
-                {
-                    valueToConvert = (T) (object) Convert.ToString(value);
-                    return true;
-                }
+                    {
+
+                        valueToConvert = (T)(object)Convert.ToString(value);
+                        return true;
+                    }
                 case TypeCode.UInt16:
-                {
-                    valueToConvert = (T) (object) Convert.ToUInt16(value);
-                    return true;
-                }
+                    {
+                        if (UInt16.TryParse(value.ToString(), out UInt16 parsedUInt16))
+                        {
+                            valueToConvert = (T)(object)parsedUInt16;
+                            return true;
+                        }
+                        return false;
+                    }
                 case TypeCode.UInt32:
-                {
-                    valueToConvert = (T) (object) Convert.ToUInt32(value);
-                    return true;
-                }
+                    {
+                        if (UInt32.TryParse(value.ToString(), out UInt32 parsedUInt32))
+                        {
+                            valueToConvert = (T)(object)parsedUInt32;
+                            return true;
+                        }
+                        return false;
+                    }
                 case TypeCode.UInt64:
-                {
-                    valueToConvert = (T) (object) Convert.ToUInt64(value);
-                    return true;
-                }
+                    {
+                        if (UInt64.TryParse(value.ToString(), out UInt64 parsedUInt64))
+                        {
+                            valueToConvert = (T)(object)parsedUInt64;
+                            return true;
+                        }
+                        return false;
+                    }
 
                 case TypeCode.DBNull:
 
@@ -335,12 +396,12 @@ namespace Voodoo
                 var description = memberInfos.First().GetCustomAttributes(typeof(DescriptionAttribute),
                     false).FirstOrDefault();
                 if (description != null)
-                    return ((DescriptionAttribute) description).Description;
+                    return ((DescriptionAttribute)description).Description;
 
                 var display = memberInfos.First().GetCustomAttributes(typeof(DisplayAttribute),
                     false).FirstOrDefault();
                 if (display != null)
-                    return ((DisplayAttribute) display).Name;
+                    return ((DisplayAttribute)display).Name;
             }
 
             return null;
@@ -368,7 +429,7 @@ namespace Voodoo
             foreach (var c in val)
             {
                 var s = c.ToString();
-                var n = (int) c;
+                var n = (int)c;
                 if (n == 32 | n == 95)
                 {
                     stringBuilder.Append(" ");

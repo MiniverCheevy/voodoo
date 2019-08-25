@@ -1,6 +1,7 @@
 ﻿using System;
 using Voodoo.Messages;
 using Voodoo.Validation.Infrastructure;
+using Voodoo.Infrastructure;
 
 namespace Voodoo
 {
@@ -9,7 +10,7 @@ namespace Voodoo
         public static void ThrowIfNull(this object @object, string message)
         {
             if (@object == null)
-                throw new Exception(message);
+                throw new NotFoundException(message);
         }
        
         public static bool IsValid(this object request)

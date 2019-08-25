@@ -5,6 +5,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using Voodoo.Infrastructure.Notations;
+using Voodoo.Logging;
 using Voodoo.Messages;
 
 namespace Voodoo.Operations
@@ -163,7 +164,22 @@ namespace Voodoo.Operations
                 hashes.Add(hash);
             return wasTouched;
         }
+        private string format(string value, params object[] args)
+        {
+            try
+            {
+                return string.Format(value, args);
+            }
+            catch (Exception ex)
+            {
+                ex.Data.Add("FormatString", value);
+                ex.Data.Add("FormatValues", args);
+                LogManager.Log(ex);
+                return "Failed To Format:" + value + String.Join(",", args) +" " +ex.Message;
+            }
+            
 
+        }
         private void write(string value, params object[] args)
         {
             var pad = depth * 5;
@@ -171,7 +187,7 @@ namespace Voodoo.Operations
             currentItemsInGraph++;
 
             if (args != null)
-                value = string.Format(value, args);
+                value = format(value, args);
             if (value == "}")
                 result.Append(value);
             else
@@ -183,7 +199,7 @@ namespace Voodoo.Operations
             currentItemsInGraph++;
 
             if (args != null)
-                value = string.Format(value, args);
+                value = format(value, args);
 
             if (value == "}")
                 result.Append(value);
@@ -196,7 +212,7 @@ namespace Voodoo.Operations
             var pad = depth * 5;
             result.Append(new string(' ', pad));
             if (args != null)
-                value = string.Format(value, args);
+                value = format(value, args);
 
             result.Append(value);
         }
@@ -204,7 +220,7 @@ namespace Voodoo.Operations
         private void writeInlineNoPad(string value, params object[] args)
         {
             if (args != null)
-                value = string.Format(value, args);
+                value = format(value, args);
 
             result.Append(value);
         }
@@ -217,8 +233,8 @@ namespace Voodoo.Operations
             {
                 var value = o.ToString();
                 if (value == "0")
-                    return string.Format("({0})0", o.GetType().Name);
-                return string.Format("{0}.{1}", o.GetType().Name, o);
+                    return format("({0})0", o.GetType().Name);
+                return format("{0}.{1}", o.GetType().Name, o);
             }
             else if (o is Guid)
                 return $"Guid.Parse(\"{o.ToString()}\")";
@@ -231,9 +247,9 @@ namespace Voodoo.Operations
                 return $"DateTimeOffset.Parse(\"{o}\")";
             }
             else if (o is decimal)
-                return string.Format("{0}m", o);
+                return format("{0}m", o);
             else if (o is string)
-                return string.Format("\"{0}\"", o);
+                return format("\"{0}\"", o);
             else if (o is char && (char) o == '\0')
                 return "(char)0";
             else if (o is char )
@@ -245,7 +261,7 @@ namespace Voodoo.Operations
             else if (o is ValueType)
                 return (o.ToString());
             else
-                return (string.Format("//cannot generate code for {0}", o.GetType().FixUpTypeName()));
+                return (format("//cannot generate code for {0}", o.GetType().FixUpTypeName()));
         }
     }
 }

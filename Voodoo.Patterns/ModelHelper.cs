@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
-using System.Threading.Tasks;
+using System.Text;
 using Voodoo.Logging;
 
 namespace Voodoo
@@ -69,5 +67,19 @@ namespace Voodoo
             }
             return null;
         }
+
+        public static string RemoveSpecialCharacters(string value)
+        {
+            var sb = new StringBuilder();
+            foreach (var c in value)
+                if (c >= '0' && c <= '9' || c >= 'A' && c <= 'Z' || c >= 'a' && c <= 'z')
+                    sb.Append(c);
+            return sb.ToString();
+        }
+        public static string[] SplitStringIntoLines(string value)
+        {
+            return value.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
+        }
+
     }
 }

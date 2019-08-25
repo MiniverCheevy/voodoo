@@ -11,5 +11,6 @@ namespace Voodoo.Messages
         }
 
         public List<T> Data { get; set; }
+        public string Format { get; set; }
     }
 }
