@@ -29,7 +29,7 @@ namespace Voodoo.Tests.Voodoo.Operations
             VoodooGlobalConfiguration.RemoveExceptionFromResponseAfterLogging = false;
             var result = new CommandThatThrowsErrors(new EmptyRequest()).Execute();
             Assert.Equal(TestingResponse.OhNo, result.Message);
-            Assert.IsNotNull(result.Exception);
+            Assert.NotNull(result.Exception);
             VoodooGlobalConfiguration.RemoveExceptionFromResponseAfterLogging = true;
         }
 
@@ -37,8 +37,8 @@ namespace Voodoo.Tests.Voodoo.Operations
         public void Execute_CommandReturnsResponse_IsOk()
         {
             var result = new CommandThatDoesNotThrowErrors(new EmptyRequest()).Execute();
-            Assert.IsNotNull(result);
-            Assert.IsNull(result.Message);
+            Assert.NotNull(result);
+            Assert.Null(result.Message);
             Assert.True(result.IsOk);
         }
 
@@ -48,10 +48,10 @@ namespace Voodoo.Tests.Voodoo.Operations
         {
             VoodooGlobalConfiguration.RegisterValidator(new DataAnnotationsValidatorWithFirstErrorAsMessage());
             var result = new CommandWithNonEmptyRequest(new RequestWithRequiredString()).Execute();
-            Assert.IsNotNull(result);
-            Assert.IsNotNull(result.Message);
+            Assert.NotNull(result);
+            Assert.NotNull(result.Message);
             Assert.Equal(result.Details.First().Value, result.Message);
-            Assert.AreNotEqual(true, result.IsOk);
+            Assert.False(result.IsOk);
             VoodooGlobalConfiguration.RegisterValidator(new DataAnnotationsValidatorWithFirstErrorAsMessage());
             VoodooGlobalConfiguration.RegisterValidator(new DataAnnotationsValidatorWithGenericMessage());
         }
@@ -61,10 +61,10 @@ namespace Voodoo.Tests.Voodoo.Operations
         {
             VoodooGlobalConfiguration.RegisterValidator(new DataAnnotationsValidatorWithGenericMessage());
             var result = new CommandWithNonEmptyRequest(new RequestWithRequiredString()).Execute();
-            Assert.IsNotNull(result);
-            Assert.IsNotNull(result.Message);
+            Assert.NotNull(result);
+            Assert.NotNull(result.Message);
             Assert.Equal(Strings.Validation.validationErrorsOccurred, result.Message);
-            Assert.AreNotEqual(true, result.IsOk);
+            Assert.False(result.IsOk);
         }
 
         [Fact]

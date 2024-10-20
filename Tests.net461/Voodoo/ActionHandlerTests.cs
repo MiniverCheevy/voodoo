@@ -55,7 +55,7 @@ namespace Voodoo.Tests.Voodoo
         [Fact]
         public async Task ExecuteAsync_Exception_DoesNotThrow()
         {
-            var response = await ActionHandler.ExecuteAsync<Response>(async () => { throw new Exception(error); });
+            var response = await ActionHandler.ExecuteAsync<Response>(() => { throw new Exception(error); });
             Assert.Equal(error, response.Message);
             Assert.False(response.IsOk);
         }

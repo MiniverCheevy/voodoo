@@ -169,7 +169,6 @@ namespace Voodoo.Tests.Voodoo
         {
             char? test = null;
             var converted = test.To<char>();
-            Assert.IsNotNull(converted);
         }
 
         [Fact]
@@ -281,7 +280,6 @@ namespace Voodoo.Tests.Voodoo
         {
             object test = null;
             var converted = test.To<char>();
-            Assert.IsNotNull(converted);
         }
 
         [Fact]
@@ -377,7 +375,6 @@ namespace Voodoo.Tests.Voodoo
         {
             var test = string.Empty;
             var converted = test.To<char>();
-            Assert.IsNotNull(converted);
         }
 
         [Fact]
@@ -577,7 +574,6 @@ namespace Voodoo.Tests.Voodoo
         {
             object test = null;
             var converted = test.As<char>();
-            Assert.IsNotNull(converted);
         }
 
         [Fact]
@@ -673,7 +669,6 @@ namespace Voodoo.Tests.Voodoo
         {
             var test = string.Empty;
             var converted = test.As<char>();
-            Assert.IsNotNull(converted);
         }
 
         [Fact]

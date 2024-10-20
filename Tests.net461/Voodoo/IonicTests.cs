@@ -38,7 +38,7 @@ namespace Voodoo.Tests.Voodoo
         }
 
         //[Fact]
-        public void ShellExecute_textFile_OpensTextFileInAssociatedEditor()
+        private void ShellExecute_textFile_OpensTextFileInAssociatedEditor()
         {
             var fileName = IoNic.GetTempFileNameAndPath();
             var text = "foo";
@@ -79,7 +79,7 @@ namespace Voodoo.Tests.Voodoo
             IoNic.WriteFile("1", fileName);
             Assert.True(File.Exists(fileName));
             IoNic.ClearDir(newPath);
-            Assert.Equal(0, Directory.GetFiles(newPath).Count());
+            Assert.Empty(Directory.GetFiles(newPath));
             IoNic.KillDir(newPath);
             Assert.False(Directory.Exists(newPath));
         }

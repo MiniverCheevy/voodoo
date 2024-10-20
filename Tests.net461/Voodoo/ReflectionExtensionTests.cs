@@ -146,22 +146,22 @@ namespace Voodoo.Tests.Voodoo
         [Fact]
         public void FixUpTypeName_Primitives_ConvertedToEasyToReadFormat()
         {
-            Assert.Equal(typeof(string).FixUpScalarTypeName(), "string");
-            Assert.Equal(typeof(byte).FixUpScalarTypeName(), "byte");
-            Assert.Equal(typeof(byte[]).FixUpScalarTypeName(), "byte[]");
-            Assert.Equal(typeof(short).FixUpScalarTypeName(), "short");
-            Assert.Equal(typeof(int).FixUpScalarTypeName(), "int");
-            Assert.Equal(typeof(long).FixUpScalarTypeName(), "long");
-            Assert.Equal(typeof(char).FixUpScalarTypeName(), "char");
-            Assert.Equal(typeof(float).FixUpScalarTypeName(), "float");
-            Assert.Equal(typeof(double).FixUpScalarTypeName(), "double");
-            Assert.Equal(typeof(bool).FixUpScalarTypeName(), "bool");
-            Assert.Equal(typeof(decimal).FixUpScalarTypeName(), "decimal");
-            Assert.Equal(typeof(sbyte).FixUpScalarTypeName(), "sbyte");
-            Assert.Equal(typeof(ushort).FixUpScalarTypeName(), "ushort");
-            Assert.Equal(typeof(uint).FixUpScalarTypeName(), "uint");
-            Assert.Equal(typeof(ulong).FixUpScalarTypeName(), "ulong");
-            Assert.Equal(typeof(object).FixUpScalarTypeName(), "object");
+            Assert.Equal("string", typeof(string).FixUpScalarTypeName());
+            Assert.Equal("byte", typeof(byte).FixUpScalarTypeName());
+            Assert.Equal("byte[]", typeof(byte[]).FixUpScalarTypeName());
+            Assert.Equal("short", typeof(short).FixUpScalarTypeName());
+            Assert.Equal("int", typeof(int).FixUpScalarTypeName());
+            Assert.Equal("long", typeof(long).FixUpScalarTypeName());
+            Assert.Equal("char", typeof(char).FixUpScalarTypeName());
+            Assert.Equal("float", typeof(float).FixUpScalarTypeName());
+            Assert.Equal("double", typeof(double).FixUpScalarTypeName());
+            Assert.Equal("bool", typeof(bool).FixUpScalarTypeName());
+            Assert.Equal("decimal", typeof(decimal).FixUpScalarTypeName());
+            Assert.Equal("sbyte", typeof(sbyte).FixUpScalarTypeName());
+            Assert.Equal("ushort", typeof(ushort).FixUpScalarTypeName());
+            Assert.Equal("uint", typeof(uint).FixUpScalarTypeName());
+            Assert.Equal("ulong", typeof(ulong).FixUpScalarTypeName());
+            Assert.Equal("object", typeof(object).FixUpScalarTypeName());
         }
 
         [Fact]

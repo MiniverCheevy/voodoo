@@ -21,7 +21,7 @@ namespace Voodoo.Tests.Voodoo
         {
             var source = GetComplexClass();
             var target = Objectifyer.DeepCopy(source);
-            Assert.AreNotEqual(source.ComplexObject, target.ComplexObject);
+            Assert.NotEqual(source.ComplexObject, target.ComplexObject);
             comparePrimitives(source, target);
         }
 

@@ -11,7 +11,7 @@ namespace Voodoo.Tests.Voodoo.Validation
     public class RequiredIntTests
     {
         [Fact]
-        public void IsValid_NullableValueIsNull_ReturnsFalse()
+        public void IsValid_NullableValueNull_ReturnsFalse()
         {
             var item = new ClassWithRequiredNullableInt();
             var isvalid = item.IsValid();

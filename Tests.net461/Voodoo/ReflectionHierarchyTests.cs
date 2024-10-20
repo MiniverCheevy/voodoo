@@ -30,7 +30,7 @@ namespace Voodoo.Tests.Voodoo
 
             //Assert.Equal failed. Expected:<Voodoo.Tests.Voodoo.TestBaseClass`1[T]>. Actual:<Voodoo.Tests.Voodoo.TestBaseClass`1[Voodoo.Tests.Voodoo.MessageClass]>. 
 
-            Assert.AreNotEqual(baseType, subType.BaseType.GetTypeInfo());
+            Assert.NotEqual(baseType, subType.BaseType.GetTypeInfo());
         }
     }
 }

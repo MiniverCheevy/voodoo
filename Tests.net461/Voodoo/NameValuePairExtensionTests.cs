@@ -32,7 +32,7 @@ namespace Voodoo.Tests.Voodoo
         {
             var list = new List<INameValuePair>();
             list.Add(name, value);
-            Assert.Equal(1, list.Count());
+            Assert.Single(list);
             Assert.True(list.ContainsName(name));
             Assert.True(list.ContainsValue(value));
         }
@@ -43,7 +43,7 @@ namespace Voodoo.Tests.Voodoo
             const string newValue = "newValue";
             var list = new List<INameValuePair> {new NameValuePair(name, value)};
             list.SetValue(name, newValue);
-            Assert.Equal(1, list.Count());
+            Assert.Single(list);
             Assert.True(list.ContainsName(name));
             Assert.False(list.ContainsValue(value));
             Assert.True(list.ContainsValue(newValue));
@@ -54,7 +54,7 @@ namespace Voodoo.Tests.Voodoo
         {
             var list = new List<INameValuePair> {new NameValuePair(name, value)};
             list.RemoveByName(name);
-            Assert.Equal(0, list.Count());
+            Assert.Empty(list);
         }
 
         [Fact]
@@ -63,7 +63,7 @@ namespace Voodoo.Tests.Voodoo
             var item = new NameValuePair(name, value);
             var list = new List<INameValuePair> {item, item};
             list.RemoveByValue(value);
-            Assert.Equal(0, list.Count());
+            Assert.Empty(list);
         }
 
         [Fact]
@@ -183,7 +183,7 @@ namespace Voodoo.Tests.Voodoo
             var collection = new NameValueCollection {{name, value}};
             var list = collection.AsEnumerable().ToArray();
 
-            Assert.Equal(1, list.Count());
+            Assert.Single(list);
             Assert.True(list.ContainsName(name));
             Assert.True(list.ContainsValue(value));
         }

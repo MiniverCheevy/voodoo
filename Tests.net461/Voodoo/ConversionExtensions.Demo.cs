@@ -15,8 +15,8 @@ namespace Voodoo.Tests.Voodoo
             Assert.Equal(foo, toInterface);
 
             var cantCast = bar.To<Foo>();
-            Assert.IsNotNull(bar);
-            Assert.AreNotEqual<object>(bar, cantCast);
+            Assert.NotNull(bar);
+            Assert.NotEqual<object>(bar, cantCast);
 
             decimal? number = null;
             Assert.Null(number.As<decimal?>());

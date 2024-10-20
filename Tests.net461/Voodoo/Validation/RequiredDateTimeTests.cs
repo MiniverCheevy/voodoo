@@ -11,7 +11,7 @@ namespace Voodoo.Tests.Voodoo.Validation
     public class RequiredDateTimeTests
     {
         [Fact]
-        public void IsValid_NullableDateIsNull_ReturnsFalse()
+        public void IsValid_NullableDateNull_ReturnsFalse()
         {
             var item = new ClassWithNullableDate();
             var isValid = item.IsValid();

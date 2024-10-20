@@ -10,7 +10,7 @@ namespace Voodoo.Tests.Voodoo.Validation
     public class GreaterThanZeroIntegerIsRequiredTests
     {
         [Fact]
-        public void IsValid_NullableValueIsNull_ReturnsFalse()
+        public void IsValid_NullableValueNull_ReturnsFalse()
         {
             var item = new TestClasses.ClassWithNullableInt();
             var isvalid = item.IsValid();

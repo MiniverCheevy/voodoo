@@ -19,7 +19,7 @@ namespace Voodoo.Tests.Voodoo.Validation
         }
 
         [Fact]
-        public void IsValid_ValueIsNull_ReturnsFalse()
+        public void IsValid_ValueNull_ReturnsFalse()
         {
             var item = new ClassWithNullableEnum();
             var isvalid = item.IsValid();

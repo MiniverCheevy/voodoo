@@ -16,9 +16,9 @@ namespace Voodoo.Tests.Voodoo.Helpers
             var modified = new List<DataObject> {new DataObject {Id = 1}, new DataObject {Id = 2}};
             var helper = new CollectionReconciler<DataObject, DataObject, int>(source, modified, c => c.Id, c => c.Id);
 
-            Assert.Equal(0, helper.Added.Count());
+            Assert.Empty(helper.Added);
             Assert.Equal(2, helper.Edited.Count());
-            Assert.Equal(0, helper.Deleted.Count());
+            Assert.Empty(helper.Deleted);
         }
 
         [Fact]
@@ -27,9 +27,9 @@ namespace Voodoo.Tests.Voodoo.Helpers
             var source = new List<DataObject> {new DataObject {Id = 1}, new DataObject {Id = 2}};
             var modified = new List<DataObject> {new DataObject {Id = 1}};
             var helper = new CollectionReconciler<DataObject, DataObject, int>(source, modified, c => c.Id, c => c.Id);
-            Assert.Equal(0, helper.Added.Count());
-            Assert.Equal(1, helper.Edited.Count());
-            Assert.Equal(1, helper.Deleted.Count());
+            Assert.Empty(helper.Added);
+            Assert.Single(helper.Edited);
+            Assert.Single(helper.Deleted);
         }
 
         [Fact]
@@ -45,9 +45,9 @@ namespace Voodoo.Tests.Voodoo.Helpers
             };
 
             var helper = new CollectionReconciler<DataObject, DataObject, int>(source, modified, c => c.Id, c => c.Id);
-            Assert.Equal(1, helper.Added.Count());
+            Assert.Single(helper.Added);
             Assert.Equal(2, helper.Edited.Count());
-            Assert.Equal(0, helper.Deleted.Count());
+            Assert.Empty(helper.Deleted);
         }
 
         [Fact]
@@ -63,8 +63,8 @@ namespace Voodoo.Tests.Voodoo.Helpers
             };
             var helper = new CollectionReconciler<DataObject, DataObject, int>(source, modified, c => c.Id, c => c.Id);
             Assert.Equal(2, helper.Added.Count());
-            Assert.Equal(1, helper.Edited.Count());
-            Assert.Equal(1, helper.Deleted.Count());
+            Assert.Single(helper.Edited);
+            Assert.Single(helper.Deleted);
         }
     }
 }

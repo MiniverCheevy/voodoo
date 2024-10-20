@@ -67,7 +67,7 @@ namespace Voodoo.Tests.Voodoo
         {
             ICollection source = new[] {"A", "B", "C"};
             var converted = source.ToArray<string>();
-            Assert.Equal(converted.GetType(), typeof(string[]));
+            Assert.Equal(typeof(string[]), converted.GetType());
         }
 
         [Fact]
@@ -76,7 +76,7 @@ namespace Voodoo.Tests.Voodoo
             var list = new List<string>();
             string nullString = null;
             list.AddIfNotNull(nullString);
-            Assert.Equal(0, list.Count);
+            Assert.Empty(list);
         }
 
         [Fact]
@@ -85,7 +85,7 @@ namespace Voodoo.Tests.Voodoo
             var list = new List<string>();
             var nonNullString = "string";
             list.AddIfNotNull(nonNullString);
-            Assert.Equal(1, list.Count);
+            Assert.Single(list);
         }
 
         [Fact]
@@ -94,7 +94,7 @@ namespace Voodoo.Tests.Voodoo
             var list = new List<string>();
             string nullString = null;
             list.AddIfNotNullOrWhiteSpace(nullString);
-            Assert.Equal(0, list.Count);
+            Assert.Empty(list);
         }
 
         [Fact]
@@ -143,7 +143,7 @@ namespace Voodoo.Tests.Voodoo
             var list = new List<string>();
             var spacedString = "    ";
             list.AddIfNotNullOrWhiteSpace(spacedString);
-            Assert.Equal(0, list.Count);
+            Assert.Empty(list);
         }
 
         [Fact]
@@ -152,7 +152,7 @@ namespace Voodoo.Tests.Voodoo
             var list = new List<string>();
             var stringString = "string";
             list.AddIfNotNull(stringString);
-            Assert.Equal(1, list.Count);
+            Assert.Single(list);
         }
     }
 }

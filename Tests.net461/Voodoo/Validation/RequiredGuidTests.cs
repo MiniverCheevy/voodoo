@@ -11,7 +11,7 @@ namespace Voodoo.Tests.Voodoo.Validation
     public class RequiredGuidTests
     {
         [Fact]
-        public void IsValid_NullableValueIsNull_ReturnsFalse()
+        public void IsValid_NullableValueNull_ReturnsFalse()
         {
             var item = new ClassWithNullableGuid();
             var isvalid = item.IsValid();
@@ -19,7 +19,7 @@ namespace Voodoo.Tests.Voodoo.Validation
         }
 
         [Fact]
-        public void IsValid_StringValueIsNull_ReturnsFalse()
+        public void IsValid_StringValueNull_ReturnsFalse()
         {
             var item = new ClassWithGuidAsString();
             var isvalid = item.IsValid();

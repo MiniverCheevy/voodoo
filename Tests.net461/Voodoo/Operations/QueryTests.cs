@@ -35,15 +35,15 @@ namespace Voodoo.Tests.Voodoo.Operations
             VoodooGlobalConfiguration.RemoveExceptionFromResponseAfterLogging = false;
             var result = new QueryThatThrowsErrors(new EmptyRequest()).Execute();
             Assert.Equal(TestingResponse.OhNo, result.Message);
-            Assert.IsNotNull(result.Exception);
+            Assert.NotNull(result.Exception);
         }
 
         [Fact]
         public void Execute_QueryReturnsResponse_IsOk()
         {
             var result = new QueryThatDoesNotThrowErrors(new EmptyRequest()).Execute();
-            Assert.IsNotNull(result);
-            Assert.IsNull(result.Message);
+            Assert.NotNull(result);
+            Assert.Null(result.Message);
             Assert.True(result.IsOk);
         }
     }
