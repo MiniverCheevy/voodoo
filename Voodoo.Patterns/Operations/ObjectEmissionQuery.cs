@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+
 using Voodoo.Infrastructure.Notations;
 using Voodoo.Logging;
 using Voodoo.Messages;
@@ -12,7 +13,7 @@ namespace Voodoo.Operations
 {
     public class ObjectEmissionQuery : Query<ObjectEmissionRequest, TextResponse>
     {
-        private const int MaxItemsInGraph = 10000;
+        private const int MaxItemsInGraph = 1000;
         private readonly List<int> hashes = new List<int>();
         private readonly StringBuilder result = new StringBuilder();
         private int currentItemsInGraph;
@@ -45,26 +46,27 @@ namespace Voodoo.Operations
         {
         }
 
-        private string read<T>(T element)
-            where T : class
+        private string read(object element)
         {
             if (currentItemsInGraph > MaxItemsInGraph)
                 return string.Empty;
-            
-            if ( element is ValueType || element is string)
-                writeInline(format(element));
-            else
-                readObject(element);
 
+            if (element != null || (element == null && request.IncludeNull))
+            {
+                if (element == null || element is ValueType || element is string)
+                {
+                    writeInline(format(element));
+                }
+                else
+                {
+                    readObject(element);
+                }
+            }
             return result.ToString();
         }
 
-        private void readObject<T>(T element)
-            where T:class
+        private void readObject(object element)
         {
-            if (element == null)
-                return;
-
             var objectType = element.GetType();
 
             writeNoPad(" new {0} {{", objectType.FixUpTypeName());
@@ -78,7 +80,7 @@ namespace Voodoo.Operations
             depth--;
             write("}}");
         }
-       
+
         private void readPropertiesFromObject(object element)
         {
             var members =
@@ -105,20 +107,35 @@ namespace Voodoo.Operations
                 catch
                 {
                 }
-                
-                else
+                if (value != null || (value == null && request.IncludeNull))
                 {
-                    if (alreadyTouched(value))
+                    if (type.IsScalar())
                     {
-                        write("//{1} = new {0}() <-- bidirectional reference found",
-                            element.GetType().FixUpTypeName(), memberInfo.Name);
+                        var isNullorDefault = isNullOrDefault(value);
+                        if (!isNullorDefault || (isNullorDefault && request.IncludeDafaultValues))
+                        {
+                            write("{0}={1},", memberInfo.Name, format(value));
+                        }
+                    }
+                    else if (value == null)
+                    {
+                        write("{0}=null,", memberInfo.Name);
                     }
                     else
                     {
-                        writeInline("{0}=", memberInfo.Name);
-                        readObject(value);
-                        write(",");
+                        if (alreadyTouched(value))
+                        {
+                            write("//{1} = new {0}() <-- bidirectional reference found",
+                                element.GetType().FixUpTypeName(), memberInfo.Name);
+                        }
+                        else
+                        {
+                            writeInline("{0}=", memberInfo.Name);
+                            read(value);
+                            write(",");
+                        }
                     }
+
                 }
             }
         }
@@ -173,9 +190,9 @@ namespace Voodoo.Operations
                 ex.Data.Add("FormatString", value);
                 ex.Data.Add("FormatValues", args);
                 LogManager.Log(ex);
-                return "Failed To Format:" + value + String.Join(",", args) +" " +ex.Message;
+                return "Failed To Format:" + value + String.Join(",", args) + " " + ex.Message;
             }
-            
+
 
         }
         private void write(string value, params object[] args)
@@ -222,6 +239,26 @@ namespace Voodoo.Operations
 
             result.Append(value);
         }
+        private bool isNullOrDefault<T>(T argument)
+        {
+            // deal with normal scenarios
+            if (argument == null) return true;
+            if (object.Equals(argument, default(T))) return true;
+
+            // deal with non-null nullables
+            Type methodType = typeof(T);
+            if (Nullable.GetUnderlyingType(methodType) != null) return false;
+
+            // deal with boxed value types
+            Type argumentType = argument.GetType();
+            if (argumentType.IsValueType && argumentType != methodType)
+            {
+                object obj = Activator.CreateInstance(argument.GetType());
+                return obj.Equals(argument);
+            }
+
+            return false;
+        }
 
         private string format(object o)
         {
@@ -248,9 +285,9 @@ namespace Voodoo.Operations
                 return format("{0}m", o);
             else if (o is string)
                 return format("\"{0}\"", o);
-            else if (o is char && (char) o == '\0')
+            else if (o is char && (char)o == '\0')
                 return "(char)0";
-            else if (o is char )
+            else if (o is char)
                 return $"'{o}'";
             else if (o is bool)
                 return o.ToString().ToLower();
