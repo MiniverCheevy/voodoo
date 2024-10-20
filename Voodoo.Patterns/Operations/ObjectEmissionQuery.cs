@@ -12,7 +12,7 @@ namespace Voodoo.Operations
 {
     public class ObjectEmissionQuery : Query<ObjectEmissionRequest, TextResponse>
     {
-        private const int MaxItemsInGraph = 1000;
+        private const int MaxItemsInGraph = 10000;
         private readonly List<int> hashes = new List<int>();
         private readonly StringBuilder result = new StringBuilder();
         private int currentItemsInGraph;
@@ -45,14 +45,12 @@ namespace Voodoo.Operations
         {
         }
 
-        private string read(object element)
+        private string read<T>(T element)
+            where T : class
         {
             if (currentItemsInGraph > MaxItemsInGraph)
                 return string.Empty;
-
-            if (element == null && !request.IncludeNull)
-                return string.Empty;
-
+            
             if ( element is ValueType || element is string)
                 writeInline(format(element));
             else
@@ -61,8 +59,12 @@ namespace Voodoo.Operations
             return result.ToString();
         }
 
-        private void readObject(object element)
+        private void readObject<T>(T element)
+            where T:class
         {
+            if (element == null)
+                return;
+
             var objectType = element.GetType();
 
             writeNoPad(" new {0} {{", objectType.FixUpTypeName());
@@ -76,7 +78,7 @@ namespace Voodoo.Operations
             depth--;
             write("}}");
         }
-
+       
         private void readPropertiesFromObject(object element)
         {
             var members =
@@ -103,14 +105,7 @@ namespace Voodoo.Operations
                 catch
                 {
                 }
-                if (type.IsScalar())
-                {
-                    write("{0}={1},", memberInfo.Name, format(value));
-                }
-                else if (value == null)
-                {
-                    write("{0}=null,", memberInfo.Name);
-                }
+                
                 else
                 {
                     if (alreadyTouched(value))
