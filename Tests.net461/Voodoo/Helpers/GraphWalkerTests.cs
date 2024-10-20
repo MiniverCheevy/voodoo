@@ -3,17 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using FluentAssertions;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Xunit;
 using Voodoo;
 using Voodoo.Helpers;
 using Voodoo.Tests.TestClasses;
 
 namespace Voodoo.Tests.Voodoo.Helpers
 {
-    [TestClass]
+    
     public class GraphWalkerTests
     {
-        [TestMethod]
+        [Fact]
         public void GetDistinctTypes_SameTypeTwice_TypeReturnsOnce()
         {
             var walker = new GraphWalker(
@@ -24,7 +24,7 @@ namespace Voodoo.Tests.Voodoo.Helpers
             result.Should().Contain(typeof(Role));
         }
 
-        [TestMethod]
+        [Fact]
         public void GetDistinctTypes_NoScalar_ShouldNotContainDateTime()
         {
             var walker = new GraphWalker(
@@ -34,7 +34,7 @@ namespace Voodoo.Tests.Voodoo.Helpers
             result.Should().NotContain(typeof(DateTime));
         }
 
-        [TestMethod]
+        [Fact]
         public void GetDistinctTypes_ScalarNoNullable_ShouldNotContainNullableDateTime()
         {
             var walker = new GraphWalker(
@@ -45,7 +45,7 @@ namespace Voodoo.Tests.Voodoo.Helpers
             result.Should().NotContain(typeof(DateTime?));
         }
 
-        [TestMethod]
+        [Fact]
         public void GetDistinctTypes_ScalarNullable_ShouldContainNullableDateTime()
         {
             var walker = new GraphWalker(

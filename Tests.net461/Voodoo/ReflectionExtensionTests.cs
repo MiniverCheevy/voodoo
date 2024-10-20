@@ -4,180 +4,180 @@ using System.Reflection;
 using Voodoo.Messages;
 using Voodoo.Operations;
 using Voodoo.Tests.TestClasses;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Xunit;
 
 namespace Voodoo.Tests.Voodoo
 {
-    [TestClass]
+    
     public class ReflectionExtensionTests
     {
-        [TestMethod]
+        [Fact]
         public void IsScalar_Type_WorksAsExpected()
         {
-            Assert.AreEqual(true, typeof(string).IsScalar());
-            Assert.AreEqual(true, typeof(byte).IsScalar());
-            Assert.AreEqual(true, typeof(short).IsScalar());
-            Assert.AreEqual(true, typeof(int).IsScalar());
-            Assert.AreEqual(true, typeof(long).IsScalar());
-            Assert.AreEqual(true, typeof(char).IsScalar());
-            Assert.AreEqual(true, typeof(float).IsScalar());
-            Assert.AreEqual(true, typeof(double).IsScalar());
-            Assert.AreEqual(true, typeof(bool).IsScalar());
-            Assert.AreEqual(true, typeof(decimal).IsScalar());
-            Assert.AreEqual(true, typeof(sbyte).IsScalar());
-            Assert.AreEqual(true, typeof(ushort).IsScalar());
-            Assert.AreEqual(true, typeof(uint).IsScalar());
-            Assert.AreEqual(true, typeof(ulong).IsScalar());
-            Assert.AreEqual(true, typeof(byte?).IsScalar());
-            Assert.AreEqual(true, typeof(short?).IsScalar());
-            Assert.AreEqual(true, typeof(int?).IsScalar());
-            Assert.AreEqual(true, typeof(long?).IsScalar());
-            Assert.AreEqual(true, typeof(char?).IsScalar());
-            Assert.AreEqual(true, typeof(float?).IsScalar());
-            Assert.AreEqual(true, typeof(double?).IsScalar());
-            Assert.AreEqual(true, typeof(bool?).IsScalar());
-            Assert.AreEqual(true, typeof(decimal?).IsScalar());
-            Assert.AreEqual(true, typeof(sbyte?).IsScalar());
-            Assert.AreEqual(true, typeof(ushort?).IsScalar());
-            Assert.AreEqual(true, typeof(uint?).IsScalar());
-            Assert.AreEqual(true, typeof(ulong?).IsScalar());
+            Assert.True(typeof(string).IsScalar());
+            Assert.True(typeof(byte).IsScalar());
+            Assert.True(typeof(short).IsScalar());
+            Assert.True(typeof(int).IsScalar());
+            Assert.True(typeof(long).IsScalar());
+            Assert.True(typeof(char).IsScalar());
+            Assert.True(typeof(float).IsScalar());
+            Assert.True(typeof(double).IsScalar());
+            Assert.True(typeof(bool).IsScalar());
+            Assert.True(typeof(decimal).IsScalar());
+            Assert.True(typeof(sbyte).IsScalar());
+            Assert.True(typeof(ushort).IsScalar());
+            Assert.True(typeof(uint).IsScalar());
+            Assert.True(typeof(ulong).IsScalar());
+            Assert.True(typeof(byte?).IsScalar());
+            Assert.True(typeof(short?).IsScalar());
+            Assert.True(typeof(int?).IsScalar());
+            Assert.True(typeof(long?).IsScalar());
+            Assert.True(typeof(char?).IsScalar());
+            Assert.True(typeof(float?).IsScalar());
+            Assert.True(typeof(double?).IsScalar());
+            Assert.True(typeof(bool?).IsScalar());
+            Assert.True(typeof(decimal?).IsScalar());
+            Assert.True(typeof(sbyte?).IsScalar());
+            Assert.True(typeof(ushort?).IsScalar());
+            Assert.True(typeof(uint?).IsScalar());
+            Assert.True(typeof(ulong?).IsScalar());
         }
 
-        [TestMethod]
+        [Fact]
         public void IsScalar_Object_ReturnsFalse()
         {
             var complexObject = GetProperties().First(c => c.Name == "ComplexObject");
             var result = complexObject.PropertyType.IsScalar();
-            Assert.IsFalse(result);
+            Assert.False(result);
         }
 
-        [TestMethod]
+        [Fact]
         public void IsScalar_Decimal_ReturnsFalse()
         {
             var complexObject = GetProperties().First(c => c.Name == "Decimal");
             var result = complexObject.PropertyType.IsScalar();
-            Assert.IsTrue(result);
+            Assert.True(result);
         }
 
-        [TestMethod]
+        [Fact]
         public void IsScalar_Int_ReturnsTrue()
         {
             var complexObject = GetProperties().First(c => c.Name == "Int");
             var result = complexObject.PropertyType.IsScalar();
-            Assert.IsTrue(result);
+            Assert.True(result);
         }
 
-        [TestMethod]
+        [Fact]
         public void IsScalar_NullableInt_ReturnsTrue()
         {
             var complexObject = GetProperties().First(c => c.Name == "NullableInt");
             var result = complexObject.PropertyType.IsScalar();
-            Assert.IsTrue(result);
+            Assert.True(result);
         }
 
-        [TestMethod]
+        [Fact]
         public void IsScalar_DateTime_ReturnsTrue()
         {
             var complexObject = GetProperties().First(c => c.Name == "DateAndTime");
             var result = complexObject.PropertyType.IsScalar();
-            Assert.IsTrue(result);
+            Assert.True(result);
         }
 
-        [TestMethod]
+        [Fact]
         public void IsScalar_NullableDateTime_ReturnsTrue()
         {
             var complexObject = GetProperties().First(c => c.Name == "NullableDateAndTime");
             var result = complexObject.PropertyType.IsScalar();
-            Assert.IsTrue(result);
+            Assert.True(result);
         }
 
-        [TestMethod]
+        [Fact]
         public void IsScalar_String_ReturnsTrue()
         {
             var complexObject = GetProperties().First(c => c.Name == "String");
             var result = complexObject.PropertyType.IsScalar();
-            Assert.IsTrue(result);
+            Assert.True(result);
         }
 
-        [TestMethod]
+        [Fact]
         public void IsScalar_Enum_ReturnsTrue()
         {
             var complexObject = GetProperties().First(c => c.Name == "TestEnum");
             var result = complexObject.PropertyType.IsScalar();
-            Assert.IsTrue(result);
+            Assert.True(result);
         }
 
-        [TestMethod]
+        [Fact]
         public void GetParameters_MethodHasParameters_ReturnsParametersAsString()
         {
             var parametersAsString = GetMethod().GetParametersForCodeGeneration();
-            Assert.AreEqual("string string, int int, int? nullableInt, List<String> list", parametersAsString);
+            Assert.Equal("string string, int int, int? nullableInt, List<String> list", parametersAsString);
         }
 
-        [TestMethod]
+        [Fact]
         public void GetParameterDictionary_MethodHasParameters_ReturnsParameters()
         {
             var parameters = GetMethod().GetParameterDictionary();
-            Assert.AreEqual(4, parameters.Count);
-            Assert.AreEqual(typeof(string), parameters[0].Key);
-            Assert.AreEqual(typeof(int), parameters[1].Key);
-            Assert.AreEqual(typeof(int?), parameters[2].Key);
-            Assert.AreEqual(typeof(List<string>), parameters[3].Key);
-            Assert.AreEqual("string", parameters[0].Value);
-            Assert.AreEqual("int", parameters[1].Value);
-            Assert.AreEqual("nullableInt", parameters[2].Value);
-            Assert.AreEqual("list", parameters[3].Value);
+            Assert.Equal(4, parameters.Count);
+            Assert.Equal(typeof(string), parameters[0].Key);
+            Assert.Equal(typeof(int), parameters[1].Key);
+            Assert.Equal(typeof(int?), parameters[2].Key);
+            Assert.Equal(typeof(List<string>), parameters[3].Key);
+            Assert.Equal("string", parameters[0].Value);
+            Assert.Equal("int", parameters[1].Value);
+            Assert.Equal("nullableInt", parameters[2].Value);
+            Assert.Equal("list", parameters[3].Value);
         }
 
-        [TestMethod]
+        [Fact]
         public void FixUpTypeName_NestedGenerics_IsOk()
         {
             var type = typeof(List<List<string>>);
-            Assert.AreEqual("List<List<String>>", type.FixUpTypeName());
+            Assert.Equal("List<List<String>>", type.FixUpTypeName());
         }
 
-        [TestMethod]
+        [Fact]
         public void FixUpTypeName_Nullable_IsOk()
         {
             var type = typeof(int?);
-            Assert.AreEqual("int?", type.FixUpTypeName());
+            Assert.Equal("int?", type.FixUpTypeName());
         }
 
-        [TestMethod]
+        [Fact]
         public void FixUpTypeName_Primitives_ConvertedToEasyToReadFormat()
         {
-            Assert.AreEqual(typeof(string).FixUpScalarTypeName(), "string");
-            Assert.AreEqual(typeof(byte).FixUpScalarTypeName(), "byte");
-            Assert.AreEqual(typeof(byte[]).FixUpScalarTypeName(), "byte[]");
-            Assert.AreEqual(typeof(short).FixUpScalarTypeName(), "short");
-            Assert.AreEqual(typeof(int).FixUpScalarTypeName(), "int");
-            Assert.AreEqual(typeof(long).FixUpScalarTypeName(), "long");
-            Assert.AreEqual(typeof(char).FixUpScalarTypeName(), "char");
-            Assert.AreEqual(typeof(float).FixUpScalarTypeName(), "float");
-            Assert.AreEqual(typeof(double).FixUpScalarTypeName(), "double");
-            Assert.AreEqual(typeof(bool).FixUpScalarTypeName(), "bool");
-            Assert.AreEqual(typeof(decimal).FixUpScalarTypeName(), "decimal");
-            Assert.AreEqual(typeof(sbyte).FixUpScalarTypeName(), "sbyte");
-            Assert.AreEqual(typeof(ushort).FixUpScalarTypeName(), "ushort");
-            Assert.AreEqual(typeof(uint).FixUpScalarTypeName(), "uint");
-            Assert.AreEqual(typeof(ulong).FixUpScalarTypeName(), "ulong");
-            Assert.AreEqual(typeof(object).FixUpScalarTypeName(), "object");
+            Assert.Equal(typeof(string).FixUpScalarTypeName(), "string");
+            Assert.Equal(typeof(byte).FixUpScalarTypeName(), "byte");
+            Assert.Equal(typeof(byte[]).FixUpScalarTypeName(), "byte[]");
+            Assert.Equal(typeof(short).FixUpScalarTypeName(), "short");
+            Assert.Equal(typeof(int).FixUpScalarTypeName(), "int");
+            Assert.Equal(typeof(long).FixUpScalarTypeName(), "long");
+            Assert.Equal(typeof(char).FixUpScalarTypeName(), "char");
+            Assert.Equal(typeof(float).FixUpScalarTypeName(), "float");
+            Assert.Equal(typeof(double).FixUpScalarTypeName(), "double");
+            Assert.Equal(typeof(bool).FixUpScalarTypeName(), "bool");
+            Assert.Equal(typeof(decimal).FixUpScalarTypeName(), "decimal");
+            Assert.Equal(typeof(sbyte).FixUpScalarTypeName(), "sbyte");
+            Assert.Equal(typeof(ushort).FixUpScalarTypeName(), "ushort");
+            Assert.Equal(typeof(uint).FixUpScalarTypeName(), "uint");
+            Assert.Equal(typeof(ulong).FixUpScalarTypeName(), "ulong");
+            Assert.Equal(typeof(object).FixUpScalarTypeName(), "object");
         }
 
-        [TestMethod]
+        [Fact]
         public void FixUpTypeName_ReturnTypeOfVoidMethod_ConvertedToEasyToReadFormat()
         {
             var method = typeof(TwitchyObject).GetMethod("MethodThatReturnsNothing");
             var returnType = method.ReturnType.FixUpTypeName();
-            Assert.AreEqual("void", returnType);
+            Assert.Equal("void", returnType);
         }
 
-        [TestMethod]
+        [Fact]
         public void FixUpTypeName_ReturnTypeWithGenericArguments_ConvertsProperly()
         {
             var method = typeof(CollectionExtensions).GetMethod("ForEach");
             var returnType = method.ReturnType.FixUpTypeName();
-            Assert.AreEqual("IEnumerable<T>", returnType);
+            Assert.Equal("IEnumerable<T>", returnType);
         }
 
         public MethodInfo GetMethod()
@@ -192,7 +192,7 @@ namespace Voodoo.Tests.Voodoo
             return properties;
         }
 
-        //[TestMethod]
+        //[Fact]
         //public void IsGenericTypeInheritedFromOtherGenericType_IsInherited_ReturnsTrue()
         //{
         //    var query =
@@ -207,18 +207,18 @@ namespace Voodoo.Tests.Voodoo
         //        typeof (Response).GetTypeInfo().Assembly.GetTypes()
         //            .First(c => c.Namespace == "Voodoo.Operations" && c.UserName.StartsWith("Executor"));
 
-        //    Assert.AreEqual(false,
+        //    Assert.Equal(false,
         //        typeof (ObjectStringificationQuery).IsGenericTypeDirectlyInheritedFromOtherGenericType(executor));
 
-        //    Assert.AreEqual(true,
+        //    Assert.Equal(true,
         //        typeof (ObjectStringificationQuery).IsGenericTypeDirectlyInheritedFromOtherGenericType(query));
 
-        //    Assert.AreEqual(false,
+        //    Assert.Equal(false,
         //        typeof (ObjectStringificationQuery).IsGenericTypeDirectlyInheritedFromOtherGenericType(command));
 
-        //    Assert.AreEqual(true, command.IsGenericTypeDirectlyInheritedFromOtherGenericType(executor));
+        //    Assert.Equal(true, command.IsGenericTypeDirectlyInheritedFromOtherGenericType(executor));
 
-        //    Assert.AreEqual(true, query.IsGenericTypeDirectlyInheritedFromOtherGenericType(executor));
+        //    Assert.Equal(true, query.IsGenericTypeDirectlyInheritedFromOtherGenericType(executor));
         //}
     }
 }

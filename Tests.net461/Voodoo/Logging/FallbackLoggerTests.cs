@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Xunit;
 using Voodoo.Logging;
 
 namespace Voodoo.Tests.Voodoo.Logging
 {
-    [TestClass]
+    
     public class FallbackLoggerTests
     {
-        [TestMethod]
+        [Fact]
         public void Log_IOException_DoesNotBubbleUpException()
         {
             var logger = new FallbackLogger();

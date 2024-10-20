@@ -3,14 +3,14 @@ using System.Linq;
 using System.IO;
 using FluentAssertions;
 using Voodoo.Tests.TestClasses;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Xunit;
 
 namespace Voodoo.Tests.Voodoo
 {
-    [TestClass]
+    
     public class IonicTests
     {
-        [TestMethod]
+        [Fact]
         public void WriteFile_FileExists_IsOk()
         {
             var path = IoNic.GetTempFileNameAndPath(".txt");
@@ -21,23 +21,23 @@ namespace Voodoo.Tests.Voodoo
             IoNic.ReadFile(path).Should().Be("test2");
         }
 
-        [TestMethod]
+        [Fact]
         public void PathCombineLocal_PathStartsWithSlash_ReturnsCombinedPath()
         {
             var fragment = "\\abc\\efg";
             var path = IoNic.PathCombineLocal(@"C:\", fragment);
-            Assert.IsTrue(path.StartsWith("C"));
+            Assert.StartsWith("C", path);
         }
 
-        [TestMethod]
+        [Fact]
         public void GetTempFileNameAndPath_NoValue_ReturnsValidPath()
         {
             var fileName = IoNic.GetTempFileNameAndPath(".abc");
             var path = Path.GetDirectoryName(fileName);
-            Assert.IsTrue(Directory.Exists(path));
+            Assert.True(Directory.Exists(path));
         }
 
-        //[TestMethod]
+        //[Fact]
         public void ShellExecute_textFile_OpensTextFileInAssociatedEditor()
         {
             var fileName = IoNic.GetTempFileNameAndPath();
@@ -46,17 +46,17 @@ namespace Voodoo.Tests.Voodoo
             IoNic.ShellExecute(fileName);
         }
 
-        [TestMethod]
+        [Fact]
         public void ReadFile_ValidFile_ReadsFile()
         {
             var fileName = IoNic.GetTempFileNameAndPath();
             var text = "foo";
             IoNic.WriteFile(text, fileName);
             var readText = IoNic.ReadFile(fileName);
-            Assert.AreEqual(text, readText);
+            Assert.Equal(text, readText);
         }
 
-        [TestMethod]
+        [Fact]
         public void AppendToFile_ValidFile_ReadsFile()
         {
             var fileName = IoNic.GetTempFileNameAndPath();
@@ -64,24 +64,24 @@ namespace Voodoo.Tests.Voodoo
             IoNic.WriteFile(text, fileName);
             IoNic.AppendToFile("bar", fileName);
             var readText = IoNic.ReadFile(fileName);
-            Assert.AreEqual("foobar", readText);
+            Assert.Equal("foobar", readText);
         }
 
-        [TestMethod]
+        [Fact]
         public static void CleanDir_ValidFolder_DeletesFolderAndFiles()
         {
             var fileName1 = IoNic.GetTempFileNameAndPath(".abc");
             var path = Path.GetDirectoryName(fileName1);
             var newPath = Path.Combine(path, "New");
             IoNic.MakeDir(newPath);
-            Assert.IsTrue(Directory.Exists(newPath));
+            Assert.True(Directory.Exists(newPath));
             var fileName = Path.Combine(newPath, Guid.NewGuid().ToString());
             IoNic.WriteFile("1", fileName);
-            Assert.IsTrue(File.Exists(fileName));
+            Assert.True(File.Exists(fileName));
             IoNic.ClearDir(newPath);
-            Assert.AreEqual(0, Directory.GetFiles(newPath).Count());
+            Assert.Equal(0, Directory.GetFiles(newPath).Count());
             IoNic.KillDir(newPath);
-            Assert.IsFalse(Directory.Exists(newPath));
+            Assert.False(Directory.Exists(newPath));
         }
     }
 }

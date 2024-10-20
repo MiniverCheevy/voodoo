@@ -1,4 +1,4 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Xunit;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -8,37 +8,38 @@ using FluentAssertions;
 
 namespace Voodoo.Tests.Voodoo.Operations
 {
-    [TestClass]
+    
     public class ObjectEmissionTests
     {
-        [TestMethod]
+        [Fact]
         public void SmokeTest()
         {
             var request = new ObjectEmissionRequest { Source = GetValidRequest() };
             var response = new ObjectEmissionQuery(request).Execute();
-            Assert.AreEqual(null, response.Message);
-            Assert.AreEqual(true, response.IsOk);
+            Assert.Null(response.Message);
+            Assert.True(response.IsOk);
             Debug.WriteLine(response.Text);
-            Assert.IsTrue(!response.Text.Contains("SecretProperty"));
-            Assert.IsTrue(!response.Text.Contains("Secret Secret"));
-            Assert.IsTrue(response.Text.Contains("537da78a-8b8d-4479-96af-a36c7e9b41af"));
+            Assert.True(!response.Text.Contains("SecretProperty"));
+            Assert.True(!response.Text.Contains("Secret Secret"));
+            Assert.Contains("537da78a-8b8d-4479-96af-a36c7e9b41af", response.Text);
+            Assert.DoesNotContain("null", response.Text);
         }
-        [TestMethod]
+        [Fact]
         public void ListOfObjectsTest()
         {
             var request = new ObjectEmissionRequest { Source = GetSimpleRequest() };
             var response = new ObjectEmissionQuery(request).Execute();
-            Assert.AreEqual(null, response.Message);
-            Assert.AreEqual(true, response.IsOk);
+            Assert.Null(response.Message);
+            Assert.True(response.IsOk);
             Debug.WriteLine(response.Text);
-            Assert.IsTrue(response.Text.Contains("1234567"));
-            Assert.IsTrue(response.Text.Contains("ABCDEFG"));
-            Assert.IsTrue(response.Text.Contains("NESTED"));
-            Assert.IsTrue(response.Text.Contains("DEEPLY NESTED"));
+            Assert.Contains("1234567", response.Text);
+            Assert.Contains("ABCDEFG", response.Text);
+            Assert.Contains("NESTED", response.Text);
+            Assert.Contains("DEEPLY NESTED", response.Text);
 
 
         }
-        [TestMethod]
+        [Fact]
         public void ComparisonTest()
         {
             var request = GetValidRequest();

@@ -4,5 +4,7 @@
     {
         public object Source { get; set; }
         public string Name { get; set; }
+
+        public bool IncludeNull { get; set; } = true;
     }
 }

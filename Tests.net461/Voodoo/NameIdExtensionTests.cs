@@ -5,15 +5,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using FluentAssertions;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Xunit;
 using Voodoo.Tests.TestClasses;
 
 namespace Voodoo.Tests.Voodoo
 {
-    [TestClass]
+    
     public class NameIdExtensionTests
     {
-        [TestMethod]
+        [Fact]
         public void ToINameIdPairList_ValueIsEnum_ReturnesList()
         {
             var list = typeof(TestEnum).ToINameIdPairList();
@@ -21,14 +21,14 @@ namespace Voodoo.Tests.Voodoo
             list.Count().Should().Be(3);
         }
 
-        [TestMethod]
+        [Fact]
         public void ToINameIdPairListWithUnfriendlyNames_ValueIsEnum_ReturnesList()
         {
             var list = typeof(TestEnum).ToINameIdPairListWithUnfriendlyNames();
-            Assert.AreEqual(3, list.Count);
+            Assert.Equal(3, list.Count);
         }
 
-        [TestMethod]
+        [Fact]
         public void ToDictionary_ExistingList_IsOk()
         {
             var list = typeof(TestEnum).ToINameIdPairListWithUnfriendlyNames();

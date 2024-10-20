@@ -4,16 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using FluentAssertions;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Xunit;
 using Voodoo.Tests.TestClasses;
 using DescriptionAttribute = System.ComponentModel.DescriptionAttribute;
 
 namespace Voodoo.Tests.Voodoo
 {
-    [TestClass]
+    
     public class ModelHelperTests
     {
-        [TestMethod]
+        [Fact]
         public void ExtractUserNameFromDomainNameOrEmailAddress_DomainName_IsOk()
         {
             var input = @"DOMAIN\shawn";
@@ -21,7 +21,7 @@ namespace Voodoo.Tests.Voodoo
             output.Should().Be("shawn");
         }
 
-        [TestMethod]
+        [Fact]
         public void ExtractUserNameFromDomainNameOrEmailAddress_EmailAddress_IsOk()
         {
             var input = @"shawn@shawnland.com";
@@ -29,7 +29,7 @@ namespace Voodoo.Tests.Voodoo
             output.Should().Be("shawn");
         }
 
-        [TestMethod]
+        [Fact]
         public void ExtractUserNameFromDomainNameOrEmailAddress_RandomString_IsOk()
         {
             var input = @"turtlesallthewaydown";
@@ -37,7 +37,7 @@ namespace Voodoo.Tests.Voodoo
             output.Should().Be("turtlesallthewaydown");
         }
 
-        [TestMethod]
+        [Fact]
         public void ExtractUserNameFromDomainNameOrEmailAddress_Null_IsOk()
         {
             var input = default(string);
@@ -45,7 +45,7 @@ namespace Voodoo.Tests.Voodoo
             output.Should().Be(string.Empty);
         }
 
-        [TestMethod]
+        [Fact]
         public void Truncate_SmallerString_IsOk()
         {
             var input = "fish";
@@ -53,7 +53,7 @@ namespace Voodoo.Tests.Voodoo
             output.Should().Be(input);
         }
 
-        [TestMethod]
+        [Fact]
         public void Truncate_LongerString_IsOk()
         {
             var input = "fishfish";
@@ -61,7 +61,7 @@ namespace Voodoo.Tests.Voodoo
             output.Should().Be("fishfi");
         }
 
-        [TestMethod]
+        [Fact]
         public void Truncate_Null_IsOk()
         {
             var input = default(string);
@@ -69,7 +69,7 @@ namespace Voodoo.Tests.Voodoo
             output.Should().Be(string.Empty);
         }
 
-        [TestMethod]
+        [Fact]
         public void FormatPhone_PhoneNumber_IsOk()
         {
             var input = "2252252255";
@@ -77,7 +77,7 @@ namespace Voodoo.Tests.Voodoo
             output.Should().Be("(225) 225-2255");
         }
 
-        [TestMethod]
+        [Fact]
         public void FormatPhone_RandomString_IsOk()
         {
             var input = "fishfish";
@@ -85,7 +85,7 @@ namespace Voodoo.Tests.Voodoo
             output.Should().Be(input);
         }
 
-        [TestMethod]
+        [Fact]
         public void FormatPhone_Null_IsOk()
         {
             var input = default(string);
@@ -93,7 +93,7 @@ namespace Voodoo.Tests.Voodoo
             output.Should().Be(string.Empty);
         }
 
-        [TestMethod]
+        [Fact]
         public void UnFormatPhone_Null_IsOk()
         {
             var input = default(string);
@@ -101,7 +101,7 @@ namespace Voodoo.Tests.Voodoo
             output.Should().Be(string.Empty);
         }
 
-        [TestMethod]
+        [Fact]
         public void UnFormatPhone_FormattedPhone_IsOk()
         {
             var input = "(225) 225-2255";
@@ -109,7 +109,7 @@ namespace Voodoo.Tests.Voodoo
             output.Should().Be("2252252255");
         }
 
-        [TestMethod]
+        [Fact]
         public void GetAttributeFromEnumMember_HasAttribute_IsOk()
         {
             var attr = ModelHelper.GetAttributeFromEnumMember<DescriptionAttribute>(MeasurementType.WholeNumber);
@@ -117,7 +117,7 @@ namespace Voodoo.Tests.Voodoo
             attr.Description.Should().Be("Whole Number");
         }
 
-        [TestMethod]
+        [Fact]
         public void GetAttributeFromEnumMember_HasNoAttribute_IsOk()
         {
             var attr = ModelHelper.GetAttributeFromEnumMember<DescriptionAttribute>(TestEnum.Blue);

@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Xunit;
 using Voodoo.Tests.TestClasses;
 
 namespace Voodoo.Tests.Voodoo.Validation
 {
-    [TestClass]
+    
     public class ValidateExtensionMethod
     {
-        [TestMethod]
+        [Fact]
         public void GetValidationResponse_AllErrorsHaveMemberName()
         {
             var request = new MemberDetail
@@ -28,7 +28,7 @@ namespace Voodoo.Tests.Voodoo.Validation
                 Title = "expensive Paper Plates",
             };
             var validation = request.GetValidationResponse();
-            validation.Details.ForEach(c => Assert.IsTrue(!string.IsNullOrWhiteSpace(c.Name)));
+            validation.Details.ForEach(c => Assert.True(!string.IsNullOrWhiteSpace(c.Name)));
         }
     }
 }

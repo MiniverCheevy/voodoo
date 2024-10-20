@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 using System.Reflection;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Xunit;
 
 
 namespace Voodoo.Tests.Voodoo
@@ -18,17 +18,17 @@ namespace Voodoo.Tests.Voodoo
     {
     }
 
-    [TestClass]
+    
     public class ReflectionHierarchyTests
     {
-        [TestMethod]
+        [Fact]
         public void ProveSubClassInheritsFromBase()
         {
             var baseType =
                 typeof(MessageClass).GetTypeInfo().Assembly.DefinedTypes.First(c => c.Name.StartsWith("TestBaseClass"));
             var subType = new TestSubClass().GetType().GetTypeInfo();
 
-            //Assert.AreEqual failed. Expected:<Voodoo.Tests.Voodoo.TestBaseClass`1[T]>. Actual:<Voodoo.Tests.Voodoo.TestBaseClass`1[Voodoo.Tests.Voodoo.MessageClass]>. 
+            //Assert.Equal failed. Expected:<Voodoo.Tests.Voodoo.TestBaseClass`1[T]>. Actual:<Voodoo.Tests.Voodoo.TestBaseClass`1[Voodoo.Tests.Voodoo.MessageClass]>. 
 
             Assert.AreNotEqual(baseType, subType.BaseType.GetTypeInfo());
         }

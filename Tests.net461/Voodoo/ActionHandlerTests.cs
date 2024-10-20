@@ -3,34 +3,34 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Xunit;
 using Voodoo.Messages;
 
 
 namespace Voodoo.Tests.Voodoo
 {
-    [TestClass]
+    
     public class ActionHandlerTests
     {
         private const string error = "Oh noes!!";
         private const string works = "Works on my box!";
 
-        [TestMethod]
+        [Fact]
         public void Try_Exception_DoesNotThrow()
         {
             var response = ActionHandler.Try(() => { throw new Exception(error); });
-            Assert.AreEqual(false, response.IsOk);
-            Assert.AreEqual(error, response.Message);
+            Assert.False(response.IsOk);
+            Assert.Equal(error, response.Message);
         }
 
-        [TestMethod]
+        [Fact]
         public void Try_NoException_IsOk()
         {
             var response = ActionHandler.Try(() => { });
-            Assert.AreEqual(true, response.IsOk);
+            Assert.True(response.IsOk);
         }
 
-        [TestMethod]
+        [Fact]
         public void Execute_Exception_DoesNotThrow()
         {
             var response = ActionHandler.Execute<Response>(() =>
@@ -39,28 +39,28 @@ namespace Voodoo.Tests.Voodoo
                 exception.Data.Add("key", "value");
                 throw exception;
             });
-            Assert.AreEqual(error, response.Message);
-            Assert.AreEqual(false, response.IsOk);
+            Assert.Equal(error, response.Message);
+            Assert.False(response.IsOk);
         }
 
-        [TestMethod]
+        [Fact]
         public void Execute_NoException_IsOk()
         {
             var response = ActionHandler.Execute(() => new Response() {Message = works});
-            Assert.AreEqual(works, response.Message);
-            Assert.AreEqual(true, response.IsOk);
+            Assert.Equal(works, response.Message);
+            Assert.True(response.IsOk);
         }
 
 
-        [TestMethod]
+        [Fact]
         public async Task ExecuteAsync_Exception_DoesNotThrow()
         {
             var response = await ActionHandler.ExecuteAsync<Response>(async () => { throw new Exception(error); });
-            Assert.AreEqual(error, response.Message);
-            Assert.AreEqual(false, response.IsOk);
+            Assert.Equal(error, response.Message);
+            Assert.False(response.IsOk);
         }
 
-        [TestMethod]
+        [Fact]
         public async Task ExecuteAsync_NoException_IsOk()
         {
             var response = await ActionHandler.ExecuteAsync<Response>(async () =>
@@ -68,8 +68,8 @@ namespace Voodoo.Tests.Voodoo
                 var result = await Task.Run(() => new Response {Message = works});
                 return result;
             });
-            Assert.AreEqual(works, response.Message);
-            Assert.AreEqual(true, response.IsOk);
+            Assert.Equal(works, response.Message);
+            Assert.True(response.IsOk);
         }
     }
 }

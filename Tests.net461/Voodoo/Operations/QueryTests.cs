@@ -1,50 +1,50 @@
 ﻿using Voodoo.Messages;
 using Voodoo.Tests.TestClasses;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Xunit;
 
 namespace Voodoo.Tests.Voodoo.Operations
 {
-    [TestClass]
+    
     public class QueryTests
     {
-        [TestMethod]
+        [Fact]
         public void Execute_ExceptionIsThrown_IsNotOk()
         {
             VoodooGlobalConfiguration.RemoveExceptionFromResponseAfterLogging = false;
             var result = new QueryThatThrowsErrors(new EmptyRequest()).Execute();
-            Assert.AreEqual(false, result.IsOk);
+            Assert.False(result.IsOk);
             VoodooGlobalConfiguration.RemoveExceptionFromResponseAfterLogging = true;
         }
 
-        [TestMethod]
+        [Fact]
         public void Execute_ErrorAndMergedResponses_IsNotOk()
         {
             VoodooGlobalConfiguration.RemoveExceptionFromResponseAfterLogging = false;
             var result = new QueryThatThrowsErrors(new EmptyRequest()).Execute();
-            Assert.AreEqual(false, result.IsOk);
+            Assert.False(result.IsOk);
             var response = new Response {IsOk = true};
             response.AppendResponse(result);
-            Assert.AreEqual(false, response.IsOk);
+            Assert.False(response.IsOk);
 
             VoodooGlobalConfiguration.RemoveExceptionFromResponseAfterLogging = true;
         }
 
-        [TestMethod]
+        [Fact]
         public void Execute_ExceptionIsThrown_ExceptionIsBubbled()
         {
             VoodooGlobalConfiguration.RemoveExceptionFromResponseAfterLogging = false;
             var result = new QueryThatThrowsErrors(new EmptyRequest()).Execute();
-            Assert.AreEqual(TestingResponse.OhNo, result.Message);
+            Assert.Equal(TestingResponse.OhNo, result.Message);
             Assert.IsNotNull(result.Exception);
         }
 
-        [TestMethod]
+        [Fact]
         public void Execute_QueryReturnsResponse_IsOk()
         {
             var result = new QueryThatDoesNotThrowErrors(new EmptyRequest()).Execute();
             Assert.IsNotNull(result);
             Assert.IsNull(result.Message);
-            Assert.AreEqual(true, result.IsOk);
+            Assert.True(result.IsOk);
         }
     }
 }

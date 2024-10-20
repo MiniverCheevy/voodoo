@@ -9,9 +9,11 @@
     <Compile Include="..\Tests.net461\**\*.cs" Exclude="..\Tests.net461\**\AssemblyInfo*.*;..\Tests.net461\**\Temp*.*;..\Tests.net461\**\dotnet*.*" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="FluentAssertions" Version="5.1.2" />
-    <PackageReference Include="MSTest.TestAdapter" Version="1.2.0" />
-    <PackageReference Include="MSTest.TestFramework" Version="1.2.0" />
+    <Compile Remove="..\Tests.net461\obj\Debug\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="FluentAssertions" Version="6.12" />
+    <PackageReference Include="xunit" Version="2.9.2" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Voodoo.Patterns\Voodoo.Patterns.csproj" />

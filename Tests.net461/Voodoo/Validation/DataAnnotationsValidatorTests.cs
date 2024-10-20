@@ -5,20 +5,20 @@ using System.Text;
 using System.Threading.Tasks;
 using Voodoo.Tests.TestClasses;
 using Voodoo.Validation;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Xunit;
 
 namespace Voodoo.Tests.Voodoo.Validation
 {
-    [TestClass]
+    
     public class DataAnnotationsValidatorTests
     {
-        [TestMethod]
+        [Fact]
         public void ClassWithCompare_ValuesDoNotMatch_IsNotOk()
         {
             var @class = new ClassWithCompareValidator() {Password = "abc", ConfirmPassword = "123"};
             var validator = new DataAnnotationsValidator(@class);
             var response = validator.ValidationResultsAsNameValuePair;
-            Assert.AreEqual(false, validator.IsValid);
+            Assert.False(validator.IsValid);
         }
     }
 }

@@ -6,49 +6,49 @@ using FluentAssertions;
 using Voodoo.Linq;
 using Voodoo.Messages;
 using Voodoo.Tests.TestClasses;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Xunit;
 using Voodoo.Messages.Paging;
 
 namespace Voodoo.Tests.Voodoo.Linq
 {
-    [TestClass]
+    
     public class QueryableExtensionTests
     {
         private readonly Person person = new Person();
 
-        [TestMethod]
+        [Fact]
         public void GetName_StringProperty_ReturnsName()
         {
             var result = person.GetName(c => c.UserName);
-            Assert.AreEqual("UserName", result);
+            Assert.Equal("UserName", result);
         }
 
-        [TestMethod]
+        [Fact]
         public void GetName_IntValue_ReturnsName()
         {
             var result = person.GetName(c => c.Id);
-            Assert.AreEqual("Id", result);
+            Assert.Equal("Id", result);
         }
 
-        [TestMethod]
+        [Fact]
         public void GetName_BoolValue_ReturnsName()
         {
-            var result = person.GetName(c => c.IsTrue);
-            Assert.AreEqual("IsTrue", result);
+            var result = person.GetName(c => c.True);
+            Assert.Equal("True", result);
         }
 
-        [TestMethod]
+        [Fact]
         public void OrderByDescending_ValidValue_ReturnsSortedList()
         {
             var list = GetTestList().AsQueryable();
             var result = list.OrderByDescending("Id").ToArray();
-            Assert.AreEqual(4, result[0].Id);
-            Assert.AreEqual(3, result[1].Id);
-            Assert.AreEqual(2, result[2].Id);
-            Assert.AreEqual(1, result[3].Id);
+            Assert.Equal(4, result[0].Id);
+            Assert.Equal(3, result[1].Id);
+            Assert.Equal(2, result[2].Id);
+            Assert.Equal(1, result[3].Id);
         }
 
-        [TestMethod]
+        [Fact]
         public void PagedResult_ValidValue_ReturnsSortedList()
         {
             var list = GetTestList().AsQueryable();
@@ -56,14 +56,14 @@ namespace Voodoo.Tests.Voodoo.Linq
 
             var pagedResult = list.ToPagedResponse(paging);
             var result = pagedResult.Data;
-            Assert.AreEqual(4, pagedResult.State.TotalRecords);
-            Assert.AreEqual(2, pagedResult.Data.Count);
-            Assert.AreEqual(3, result[0].Id);
-            Assert.AreEqual(4, result[1].Id);
+            Assert.Equal(4, pagedResult.State.TotalRecords);
+            Assert.Equal(2, pagedResult.Data.Count);
+            Assert.Equal(3, result[0].Id);
+            Assert.Equal(4, result[1].Id);
         }
 
 
-        [TestMethod]
+        [Fact]
         public async Task PagedResultAsync_ValidValue_ReturnsSortedList()
         {
             var list = GetTestList().AsQueryable();
@@ -71,14 +71,14 @@ namespace Voodoo.Tests.Voodoo.Linq
 
             var pagedResult = await list.ToPagedResponseAsync(paging);
             var result = pagedResult.Data;
-            Assert.AreEqual(4, pagedResult.State.TotalRecords);
-            Assert.AreEqual(2, pagedResult.Data.Count);
-            Assert.AreEqual(3, result[0].Id);
-            Assert.AreEqual(4, result[1].Id);
+            Assert.Equal(4, pagedResult.State.TotalRecords);
+            Assert.Equal(2, pagedResult.Data.Count);
+            Assert.Equal(3, result[0].Id);
+            Assert.Equal(4, result[1].Id);
         }
 
 
-        [TestMethod]
+        [Fact]
         public void PagedResult_ValidValue_ReturnsConvertedListList()
         {
             var list = GetTestList().AsQueryable();
@@ -87,13 +87,13 @@ namespace Voodoo.Tests.Voodoo.Linq
             var pagedResult = list.ToPagedResponse(paging,
                 c => new NameValuePair {Name = c.UserName, Value = c.Id.ToString()});
             var result = pagedResult.Data;
-            Assert.AreEqual(4, pagedResult.State.TotalRecords);
-            Assert.AreEqual(2, pagedResult.Data.Count);
-            Assert.AreEqual("3", result[0].Value);
-            Assert.AreEqual("4", result[1].Value);
+            Assert.Equal(4, pagedResult.State.TotalRecords);
+            Assert.Equal(2, pagedResult.Data.Count);
+            Assert.Equal("3", result[0].Value);
+            Assert.Equal("4", result[1].Value);
         }
 
-        [TestMethod]
+        [Fact]
         public void PagedResult_CustomStateIsReturned_ReturnsConvertedListList()
         {
             var list = GetTestList().AsQueryable();
@@ -105,11 +105,11 @@ namespace Voodoo.Tests.Voodoo.Linq
             response.From(pagedResult,
                 c => new NameValuePair {Name = c.UserName, Value = c.Id.ToString()});
 
-            Assert.IsTrue(response.State is PersonPagedRequest);
-            Assert.AreEqual(paging.Text, response.State.As<PersonPagedRequest>().Text);
+            Assert.True(response.State is PersonPagedRequest);
+            Assert.Equal(paging.Text, response.State.As<PersonPagedRequest>().Text);
         }
 
-        [TestMethod]
+        [Fact]
         public void PagedResult_EvenRecordsPerPage_TotalPagesIsAccurate()
         {
             var list = GetTestList().AsQueryable();
@@ -117,11 +117,11 @@ namespace Voodoo.Tests.Voodoo.Linq
 
             var pagedResult = list.ToPagedResponse(paging);
 
-            Assert.AreEqual(2, pagedResult.State.TotalPages);
-            Assert.AreEqual(4, pagedResult.State.TotalRecords);
+            Assert.Equal(2, pagedResult.State.TotalPages);
+            Assert.Equal(4, pagedResult.State.TotalRecords);
         }
 
-        [TestMethod]
+        [Fact]
         public void PagedResult_OddRecordsPerPage_TotalPagesIsAccurate()
         {
             var list = GetTestList().AsQueryable();
@@ -129,11 +129,11 @@ namespace Voodoo.Tests.Voodoo.Linq
 
             var pagedResult = list.ToPagedResponse(paging);
 
-            Assert.AreEqual(2, pagedResult.State.TotalPages);
-            Assert.AreEqual(4, pagedResult.State.TotalRecords);
+            Assert.Equal(2, pagedResult.State.TotalPages);
+            Assert.Equal(4, pagedResult.State.TotalRecords);
         }
 
-        [TestMethod]
+        [Fact]
         public void PagedResult_AllRecordsInOnePage_TotalPagesIsAccurate()
         {
             var list = GetTestList().AsQueryable();
@@ -141,63 +141,65 @@ namespace Voodoo.Tests.Voodoo.Linq
 
             var pagedResult = list.ToPagedResponse(paging);
 
-            Assert.AreEqual(1, pagedResult.State.TotalPages);
-            Assert.AreEqual(4, pagedResult.State.TotalRecords);
+            Assert.Equal(1, pagedResult.State.TotalPages);
+            Assert.Equal(4, pagedResult.State.TotalRecords);
         }
 
-        [TestMethod]
+        [Fact]
         public void PagedResult_RequestIsEmpty_IsOk()
         {
             var list = GetTestList().AsQueryable();
             var pagedResult = list.ToPagedResponse(new PersonPagedRequest());
 
-            Assert.AreEqual(1, pagedResult.State.TotalPages);
-            Assert.AreEqual(4, pagedResult.State.TotalRecords);
+            Assert.Equal(1, pagedResult.State.TotalPages);
+            Assert.Equal(4, pagedResult.State.TotalRecords);
         }
 
+        [Fact]
         public void PagedResult_PreviousRequestIsEmpty_IsOk()
         {
             var list = GetTestList().AsQueryable();
             var pagedResult = list.ToPagedResponse(new GridState(null));
 
-            Assert.AreEqual(1, pagedResult.State.TotalPages);
-            Assert.AreEqual(4, pagedResult.State.TotalRecords);
+            Assert.Equal(1, pagedResult.State.TotalPages);
+            Assert.Equal(4, pagedResult.State.TotalRecords);
         }
 
-        [TestMethod]
+        [Fact]
         public void SortOnNestedProperties_IsOk()
         {
             var list = GetComplexList();
             var sorted = list.AsQueryable().OrderByDynamic("ComplexObject.DateAndTime");
-            Assert.IsTrue(sorted.First().ComplexObject.DateAndTime < sorted.Last().ComplexObject.DateAndTime);
-            Assert.IsTrue(sorted.Count() == 2);
+            Assert.True(sorted.First().ComplexObject.DateAndTime < sorted.Last().ComplexObject.DateAndTime);
+            Assert.True(sorted.Count() == 2);
         }
 
-        [TestMethod]
+        [Fact]
         public void SortOnInheritedProperties_IsOk()
         {
             var list = GetListWithInheritedObjects();
             var sorted = list.AsQueryable().OrderByDynamic("ComplexObject.DateAndTime");
-            Assert.IsTrue(sorted.First().ComplexObject.DateAndTime < sorted.Last().ComplexObject.DateAndTime);
-            Assert.IsTrue(sorted.Count() == 2);
+            Assert.True(sorted.First().ComplexObject.DateAndTime < sorted.Last().ComplexObject.DateAndTime);
+            Assert.True(sorted.Count() == 2);
         }
 
-        [TestMethod]
+        [Fact]
         public void SortOnMultipeProperties_IsOk()
         {
             var list = GetTestList();
             var sorted = list.AsQueryable().OrderByDescending("LastName,FirstName");
-            Assert.IsTrue(sorted.First().FirstName == "Jill");
-            Assert.IsTrue(sorted.First().LastName == "Smith");
+            Assert.True(sorted.First().FirstName == "Jill");
+            Assert.True(sorted.First().LastName == "Smith");
         }
 
-        [TestMethod, ExpectedException(typeof(ArgumentException))]
+        [Fact]
         public void SortOnNonExistantNestedProperties_IsNotOk()
         {
-            GetComplexList().AsQueryable().OrderByDynamic("ComplexObject.DateTime");
+            Assert.Throws<ArgumentException>(() => GetComplexList().AsQueryable().OrderByDynamic("ComplexObject.DateTime"));
+            ;
         }
 
-        [TestMethod]
+        [Fact]
         public void ApplyTokenizedContainsSearch_Zero_Parameter_IsOk()
         {
             var list = GetTestList().AsQueryable();
@@ -205,7 +207,7 @@ namespace Voodoo.Tests.Voodoo.Linq
             result.Count().Should().Be(4);
         }
 
-        [TestMethod]
+        [Fact]
         public void ApplyTokenizedContainsSearch_OneParameter_IsOk()
         {
             var list = GetTestList().AsQueryable();
@@ -213,16 +215,16 @@ namespace Voodoo.Tests.Voodoo.Linq
             result.Count().Should().Be(2);
         }
 
-        [TestMethod]
+        [Fact]
         public void ApplyTokenizedContainsSearch_OneParameterAndAdditionalQuery_IsOk()
         {
             var list = GetTestList().AsQueryable();
             var result =
-                list.ToTokenizedContainsSearchQuery("Smith", c => c.FirstName, c => c.LastName).Where(c => c.IsTrue);
+                list.ToTokenizedContainsSearchQuery("Smith", c => c.FirstName, c => c.LastName).Where(c => c.True);
             result.Count().Should().Be(1);
         }
 
-        [TestMethod]
+        [Fact]
         public void ApplyTokenizedContainsSearch_TwoParameter_IsOk()
         {
             var list = GetTestList().AsQueryable();
@@ -252,10 +254,10 @@ namespace Voodoo.Tests.Voodoo.Linq
         {
             return new List<Person>
             {
-                new Person {Id = 3, FirstName = "Bob", LastName = "Robertson", UserName = "Orange", IsTrue = true},
-                new Person {Id = 2, FirstName = "John", LastName = "Johnson", UserName = "Green", IsTrue = true},
-                new Person {Id = 1, FirstName = "Jack", LastName = "Smith", UserName = "Red", IsTrue = false},
-                new Person {Id = 4, FirstName = "Jill", LastName = "Smith", UserName = "Yellow", IsTrue = true}
+                new Person {Id = 3, FirstName = "Bob", LastName = "Robertson", UserName = "Orange", True = true},
+                new Person {Id = 2, FirstName = "John", LastName = "Johnson", UserName = "Green", True = true},
+                new Person {Id = 1, FirstName = "Jack", LastName = "Smith", UserName = "Red", True = false},
+                new Person {Id = 4, FirstName = "Jill", LastName = "Smith", UserName = "Yellow", True = true}
             };
         }
     }

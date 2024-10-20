@@ -50,7 +50,10 @@ namespace Voodoo.Operations
             if (currentItemsInGraph > MaxItemsInGraph)
                 return string.Empty;
 
-            if (element == null || element is ValueType || element is string)
+            if (element == null && !request.IncludeNull)
+                return string.Empty;
+
+            if ( element is ValueType || element is string)
                 writeInline(format(element));
             else
                 readObject(element);

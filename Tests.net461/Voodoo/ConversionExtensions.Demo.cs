@@ -1,26 +1,26 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Xunit;
 
 namespace Voodoo.Tests.Voodoo
 {
-    [TestClass]
+    
     public class ConversionExtensions
     {
-        [TestMethod]
+        [Fact]
         public void ToAndAs()
         {
             var foo = new Foo {AProperty = "A"};
             var bar = new Bar {AProperty = "B"};
 
             var toInterface = foo.To<IHaveAProperty>();
-            Assert.AreEqual(foo, toInterface);
+            Assert.Equal(foo, toInterface);
 
             var cantCast = bar.To<Foo>();
             Assert.IsNotNull(bar);
             Assert.AreNotEqual<object>(bar, cantCast);
 
             decimal? number = null;
-            Assert.AreEqual(null, number.As<decimal?>());
-            Assert.AreEqual(0, number.As<decimal>());
+            Assert.Null(number.As<decimal?>());
+            Assert.Equal(0, number.As<decimal>());
         }
 
         public interface IHaveAProperty

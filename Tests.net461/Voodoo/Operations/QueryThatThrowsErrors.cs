@@ -4,11 +4,11 @@ using Voodoo.Logging;
 using Voodoo.Messages;
 using Voodoo.Operations;
 using Voodoo.Tests.TestClasses;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Xunit;
 
 namespace Voodoo.Tests.Voodoo.Operations
 {
-    [TestClass]
+    
     public class QueryThatThrowsErrors : Query<EmptyRequest, TestingResponse>
     {
         public QueryThatThrowsErrors(EmptyRequest request) : base(request)

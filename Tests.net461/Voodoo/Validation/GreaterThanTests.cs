@@ -4,16 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using FluentAssertions;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Xunit;
 using Voodoo.Validation;
 using Voodoo.Validation.Infrastructure;
 
 namespace Voodoo.Tests.Voodoo.Validation
 {
-    [TestClass]
+    
     public class GreaterThanTests
     {
-        [TestMethod]
+        [Fact]
         public void EmptyValues_IsValid()
         {
             var entity = new TestClasses.ClassWithDoubleProperties();
@@ -21,7 +21,7 @@ namespace Voodoo.Tests.Voodoo.Validation
             isValid.Should().Be(true);
         }
 
-        [TestMethod]
+        [Fact]
         public void EmptyDateSource_IsNotValid()
         {
             var entity = new TestClasses.ClassWithDoubleProperties();
@@ -30,7 +30,7 @@ namespace Voodoo.Tests.Voodoo.Validation
             isValid.Should().Be(true);
         }
 
-        [TestMethod]
+        [Fact]
         public void EmptyDateTarget_IsNotValid()
         {
             var entity = new TestClasses.ClassWithDoubleProperties();
@@ -39,7 +39,7 @@ namespace Voodoo.Tests.Voodoo.Validation
             isValid.Should().Be(true);
         }
 
-        [TestMethod]
+        [Fact]
         public void IsNotGreaterThanDate_IsNotValid()
         {
             var entity = new TestClasses.ClassWithDoubleProperties();
@@ -49,7 +49,7 @@ namespace Voodoo.Tests.Voodoo.Validation
             isValid.Should().Be(false);
         }
 
-        [TestMethod]
+        [Fact]
         public void IsNotGreaterThanInt_IsNotValid()
         {
             var entity = new TestClasses.ClassWithDoubleProperties();
@@ -59,7 +59,7 @@ namespace Voodoo.Tests.Voodoo.Validation
             isValid.Should().Be(false);
         }
 
-        [TestMethod]
+        [Fact]
         public void IsNotGreaterThanDecimal_IsNotValid()
         {
             var entity = new TestClasses.ClassWithDoubleProperties();

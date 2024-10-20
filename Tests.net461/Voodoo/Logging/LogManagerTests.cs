@@ -4,15 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using FluentAssertions;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Xunit;
 using Voodoo.Logging;
 
 namespace Voodoo.Tests.Voodoo.Logging
 {
-    [TestClass]
+    
     public class LogManagerTests
     {
-        [TestMethod]
+        [Fact]
         public void LogLevelIsEqual_MessageIsLogged()
         {
             var testLogger = new TestLogger();
@@ -22,7 +22,7 @@ namespace Voodoo.Tests.Voodoo.Logging
             testLogger.Messages.Count.Should().Be(1);
         }
 
-        [TestMethod]
+        [Fact]
         public void LogLevelIsLower_MessageIsLogged()
         {
             var testLogger = new TestLogger();
@@ -32,7 +32,7 @@ namespace Voodoo.Tests.Voodoo.Logging
             testLogger.Messages.Count.Should().Be(1);
         }
 
-        [TestMethod]
+        [Fact]
         public void LogLevelIsHiger_MessageIsNotLogged()
         {
             var testLogger = new TestLogger();

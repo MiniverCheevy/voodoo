@@ -3,25 +3,25 @@ using System.Diagnostics;
 using System.Linq;
 using Voodoo.Operations;
 using Voodoo.Tests.TestClasses;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Xunit;
 
 namespace Voodoo.Tests.Voodoo.Operations
 {
-    [TestClass]
+    
     public class ObjectStringificationTests
     {
-        [TestMethod]
+        [Fact]
         public void SmokeTest()
         {
             var request = GetValidRequest();
             var response = new ObjectStringificationQuery(request).Execute();
-            Assert.AreEqual(null, response.Message);
-            Assert.AreEqual(true, response.IsOk);
+            Assert.Null(response.Message);
+            Assert.True(response.IsOk);
             Debug.WriteLine(response.Text);
-            Assert.IsTrue(!response.Text.Contains("SecretProperty"));
+            Assert.True(!response.Text.Contains("SecretProperty"));
         }
 
-        [TestMethod]
+        [Fact]
         public void Execute_ClassWithCollection_DoesNotExceedMaximumItemsInGraph()
         {
             var request = new ClassWithCollection();
@@ -33,10 +33,10 @@ namespace Voodoo.Tests.Voodoo.Operations
             var current = VoodooGlobalConfiguration.LogMaximumNumberOfItemsInCollection;
             VoodooGlobalConfiguration.LogMaximumNumberOfItemsInCollection = 10;
             var response = new ObjectStringificationQuery(request).Execute();
-            Assert.AreEqual(null, response.Message);
-            Assert.AreEqual(true, response.IsOk);
+            Assert.Null(response.Message);
+            Assert.True(response.IsOk);
             var rows = response.Text.Split((char) 13);
-            Assert.AreEqual(13, rows.Count());
+            Assert.Equal(13, rows.Count());
             Debug.WriteLine(response.Text);
             VoodooGlobalConfiguration.LogMaximumNumberOfItemsInCollection = current;
         }
