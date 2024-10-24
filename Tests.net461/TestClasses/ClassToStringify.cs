@@ -32,6 +32,10 @@ namespace Voodoo.Tests.TestClasses
         public string SecretProperty { get; set; }
         public DateTimeOffset DateTimeOffset { get; set; }
 
+        public Dictionary<string,int> KeyValuePairs {  get; set; }
+        
+        public Dictionary<string, ClassToReflect> Dictionary { get; set; }
+
         public ClassToStringify()
         {
             SecretProperty = "Shhhh!";

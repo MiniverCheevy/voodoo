@@ -7,6 +7,6 @@
 
         public bool IncludeNull { get; set; } 
 
-        public bool IncludeDafaultValues { get; set; }
+        public bool IncludeDefaultValues { get; set; }
     }
 }

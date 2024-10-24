@@ -3,12 +3,42 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+
 using Voodoo.Logging;
 
 namespace Voodoo
 {
     public static class ReflectionExtensions
     {
+        public static bool IsNullOrDefault<T>(this T argument)
+        {
+            return argument == null ? true : IsDefault(argument);
+        }
+        public static bool IsDefault<T>(this T argument, Type argumentType = null)
+        {
+
+            // deal with normal scenarios            
+            Type methodType = typeof(T);
+            if (object.Equals(argument, default(T))) return true;
+            
+            if (methodType.IsNullable() && !object.Equals(argument, null)) return false;
+
+            if (argument != null)
+            {
+                // deal with non-null nullables            
+                argumentType = argumentType ?? argument.GetType();
+                if (Nullable.GetUnderlyingType(argumentType) != null) return false;
+
+                // deal with boxed value types            
+                if (argumentType.IsValueType && argumentType != methodType)
+                {
+                    object obj = Activator.CreateInstance(argument.GetType());
+                    return obj.Equals(argument);
+                }
+            }
+            return false;
+        }
+
         public static bool IsNullable(this Type type)
         {
             return type.GetTypeInfo().IsGenericType &&
@@ -239,7 +269,7 @@ namespace Voodoo
         {
             if (type.GetTypeInfo().IsGenericType)
             {
-                var collectionTypeInterfaces = new[] {typeof(IEnumerable), typeof(IList), typeof(ICollection)};
+                var collectionTypeInterfaces = new[] { typeof(IEnumerable), typeof(IList), typeof(ICollection) };
                 var isCollectionType = type.GetInterfaces().Intersect(collectionTypeInterfaces).Any();
                 var canConstructTypeDefinition =
                     type.GetGenericArguments().Any(c => c.GetInterfaces().Contains(typeDefinition));

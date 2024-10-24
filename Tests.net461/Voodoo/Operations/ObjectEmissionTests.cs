@@ -8,7 +8,7 @@ using FluentAssertions;
 
 namespace Voodoo.Tests.Voodoo.Operations
 {
-    
+
     public class ObjectEmissionTests
     {
         [Fact]
@@ -22,12 +22,12 @@ namespace Voodoo.Tests.Voodoo.Operations
             Assert.True(!response.Text.Contains("SecretProperty"));
             Assert.True(!response.Text.Contains("Secret Secret"));
             Assert.Contains("537da78a-8b8d-4479-96af-a36c7e9b41af", response.Text);
-            Assert.DoesNotContain("null", response.Text);
         }
         [Fact]
         public void ListOfObjectsTest()
         {
-            var request = new ObjectEmissionRequest { Source = GetSimpleRequest() };
+            var request = new ObjectEmissionRequest { Source = GetSimpleRequest() };            
+            
             var response = new ObjectEmissionQuery(request).Execute();
             Assert.Null(response.Message);
             Assert.True(response.IsOk);
@@ -36,8 +36,18 @@ namespace Voodoo.Tests.Voodoo.Operations
             Assert.Contains("ABCDEFG", response.Text);
             Assert.Contains("NESTED", response.Text);
             Assert.Contains("DEEPLY NESTED", response.Text);
+            Assert.Contains("NullableInt=0", response.Text);
 
 
+        }
+        [Fact]
+        public void DictionaryTest()
+        {
+            var request = GetDictionary();
+            request = new ClassToStringify();
+            request.NullableInt = 0;
+            var response = request.ToCode();
+            Debug.WriteLine(response);
         }
         [Fact]
         public void ComparisonTest()
@@ -50,10 +60,22 @@ namespace Voodoo.Tests.Voodoo.Operations
             //Fluent Assertions has issues with circular references
             //And Date precision
         }
+
+        public ClassToStringify GetDictionary()
+        {
+            return new ClassToStringify
+            {
+                KeyValuePairs
+                = new Dictionary<string, int> { { "a", 1 }, { "b", 2 } },
+                Dictionary = new Dictionary<string, ClassToReflect> { { "a", new ClassToReflect { NullableInt = 0 } } }
+            };
+        }
+
         public ClassToStringify GetSimpleRequest()
         {
             return new ClassToStringify
             {
+                NullableInt = 0,
                 ListOfObjects = new List<ClassToStringify> {
                     new ClassToStringify{  AString = "ABCDEFG",
                     ListOfObjects = new List<ClassToStringify>

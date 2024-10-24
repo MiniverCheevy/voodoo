@@ -179,7 +179,56 @@ namespace Voodoo.Tests.Voodoo
             var returnType = method.ReturnType.FixUpTypeName();
             Assert.Equal("IEnumerable<T>", returnType);
         }
+        [Fact]
+        public void IsDefault_ReturnsExpectedValues()
+        {
+            int @int = new int();
+            int @int2 = 0;
+            int @int3 = 1;
 
+            Assert.True(@int.IsDefault());
+            Assert.True(@int2.IsDefault());
+            Assert.False(@int3.IsDefault());
+
+            object @obj = @int;
+            object @obj2 = @int2;
+            object @obj3 = @int3;
+
+            Assert.True(@obj.IsDefault());
+            Assert.True(@obj2.IsDefault());
+            Assert.False(@obj3.IsDefault());            
+
+            int? @nint = default(int?);
+            int? @nint2 = 0;
+
+            Assert.True(@nint.IsDefault());
+            Assert.False(@nint2.IsDefault());
+            Assert.True(nint.IsNullOrDefault());
+
+            @obj = @nint;
+            @obj2 = @nint2;
+
+            Assert.True(@nint.IsDefault());
+            Assert.False(@nint2.IsDefault());
+
+            var @class = new ClassToReflect();
+
+            Assert.True(@class.Int.IsDefault());
+            Assert.True(@class.NullableInt.IsDefault());
+            Assert.True(@class.NullableDateAndTime.IsDefault());
+            Assert.True(@class.TestEnum.IsDefault());
+
+            @class.Int = 1;
+            @class.NullableInt = 0;
+
+            Assert.False(@class.Int.IsDefault());
+            Assert.False(@class.NullableInt.IsDefault());
+
+
+
+
+
+        }
         public MethodInfo GetMethod()
         {
             var method = typeof(ClassToReflect).GetMethod("Method");
@@ -192,6 +241,9 @@ namespace Voodoo.Tests.Voodoo
             return properties;
         }
 
+        
+        
+        
         //[Fact]
         //public void IsGenericTypeInheritedFromOtherGenericType_IsInherited_ReturnsTrue()
         //{
